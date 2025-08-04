@@ -22,6 +22,9 @@ const sidebars: SidebarsConfig = {
           label: 'Authentication',
           items: [
             'api/authentication/login',
+            'api/authentication/verify',
+            'api/authentication/refresh',
+            'api/authentication/logout',
           ],
         },
       ],
@@ -49,6 +52,8 @@ const sidebars: SidebarsConfig = {
           label: 'Lookup Tables',
           items: [
             'reference/lookup-tables/markets',
+            'reference/lookup-tables/orders',
+            'reference/lookup-tables/response-codes',
           ],
         },
       ],
