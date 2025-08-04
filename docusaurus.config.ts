@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'ETHGas Documentation',
   tagline: 'Complete API documentation for ETHGas platform',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/ETHGas_logo.png',
 
   future: {
     v4: true,
@@ -59,7 +59,7 @@ const config: Config = {
       title: 'ETHGas Docs',
       logo: {
         alt: 'ETHGas Logo',
-        src: 'img/logo.svg',
+        src: 'img/ETHGas_logo.png',
       },
       items: [
         {
@@ -69,16 +69,6 @@ const config: Config = {
           label: 'Documentation',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://developers.ethgas.com',
-          label: 'Original Docs',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/ethgas',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
