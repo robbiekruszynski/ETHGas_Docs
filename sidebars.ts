@@ -2,11 +2,11 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
-    'intro',
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Introduction',
       items: [
+        'intro',
         'getting-started/welcome',
         'getting-started/environments',
         'getting-started/connecting',
@@ -14,63 +14,79 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'REST API',
+      label: 'Core Concepts',
       items: [
         'api/overview',
+        // Add concept pages here when created
+        // 'concepts/block-building',
+        // 'concepts/mev-protection',
+        // 'concepts/inclusion-preconf',
+        // 'concepts/whole-block-trading',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'API Reference',
+      items: [
         {
           type: 'category',
-          label: 'Authentication',
+          label: 'REST API',
           items: [
-            'api/authentication/login',
-            'api/authentication/verify',
-            'api/authentication/refresh',
-            'api/authentication/logout',
+            {
+              type: 'category',
+              label: 'Authentication',
+              items: [
+                'api/authentication/login',
+                'api/authentication/verify',
+                'api/authentication/refresh',
+                'api/authentication/logout',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'User Management',
+              items: [
+                'api/user/update',
+                'api/user/payout-address',
+              ],
+            },
           ],
         },
         {
           type: 'category',
-          label: 'User Management',
+          label: 'WebSocket API',
           items: [
-            'api/user/update',
-            'api/user/payout-address',
+            'websocket/overview',
           ],
         },
       ],
     },
     {
       type: 'category',
-      label: 'WebSocket API',
-      items: [
-        'websocket/overview',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Reference',
+      label: 'Resources',
       items: [
         {
           type: 'category',
-          label: 'Error Codes',
+          label: 'Reference',
           items: [
-            'reference/error-codes/general',
+            {
+              type: 'category',
+              label: 'Error Codes',
+              items: [
+                'reference/error-codes/general',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Lookup Tables',
+              items: [
+                'reference/lookup-tables/markets',
+                'reference/lookup-tables/orders',
+                'reference/lookup-tables/response-codes',
+              ],
+            },
           ],
         },
-        {
-          type: 'category',
-          label: 'Lookup Tables',
-          items: [
-            'reference/lookup-tables/markets',
-            'reference/lookup-tables/orders',
-            'reference/lookup-tables/response-codes',
-          ],
-        },
-      ],
-    },
-
-    {
-      type: 'category',
-      label: 'Changelog',
-      items: [
         'changelog/index',
       ],
     },

@@ -2,19 +2,33 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# ETHGas Documentation
 
-Welcome to the ETHGas documentation! This comprehensive guide will help you understand and integrate with the ETHGas platform.
+ETHGas is a decentralized platform for Ethereum gas trading and MEV (Maximal Extractable Value) opportunities. This documentation provides comprehensive guides for developers to integrate with the ETHGas platform.
 
 ## What is ETHGas?
 
-ETHGas is a platform that provides infrastructure for Ethereum gas trading and MEV (Maximal Extractable Value) opportunities. It offers APIs for:
+ETHGas provides infrastructure for trading Ethereum gas and capturing MEV opportunities through:
 
 - **Whole Block Markets**: Trade entire blocks for MEV opportunities
-- **Inclusion Preconf Markets**: Trade gas price predictions
-- **Bundle Submission**: Submit transaction bundles to builders
+- **Inclusion Preconf Markets**: Trade gas price predictions and inclusion guarantees
+- **Bundle Submission**: Submit transaction bundles to block builders
 - **Builder Management**: Register and manage block builders
-- **Validator Operations**: Manage validator operations and fees
+- **Validator Operations**: Manage validator operations and fee collection
+
+## Get Familiar with ETHGas
+
+**Core Concepts** - Learn the fundamentals of gas trading and MEV.
+
+**API Reference** - Complete REST and WebSocket API documentation.
+
+**Resources** - Error codes, lookup tables, and reference materials.
+
+## Use ETHGas
+
+**TestNet App** - [testnet.ethgas.com](https://testnet.ethgas.com) - Try ETHGas on testnet.
+
+**MainNet** - Production environment for live trading.
 
 ## Key Features
 
@@ -36,13 +50,12 @@ ETHGas is a platform that provides infrastructure for Ethereum gas trading and M
 
 This documentation is organized into several main sections:
 
-- **Getting Started**: Environment setup, authentication, and basic concepts
-- **REST API**: Complete API reference with examples
-- **WebSocket API**: Real-time data streaming documentation
-- **Reference**: Data types, error codes, and lookup tables
-- **Changelog**: Platform updates and version history
+- **Introduction**: Overview and getting started guides
+- **Core Concepts**: Fundamental concepts and platform architecture
+- **API Reference**: Complete REST and WebSocket API documentation
+- **Resources**: Reference materials, error codes, and lookup tables
 
-## Support
+## Support & Resources
 
 - **Original Documentation**: [developers.ethgas.com](https://developers.ethgas.com)
 - **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com)
@@ -52,8 +65,8 @@ This documentation is organized into several main sections:
 
 If you need assistance with the ETHGas platform:
 
-1. Check the [Reference](/docs/reference/error-codes) section for error codes
-2. Review the [API Examples](/docs/api/overview) for implementation guidance
+1. Check the [Error Codes](/docs/reference/error-codes/general) section for troubleshooting
+2. Review the [API Overview](/docs/api/overview) for implementation guidance
 3. Contact the ETHGas team through their official channels
 
 Ready to get started? Head over to the [Getting Started](/docs/getting-started/welcome) section to begin your journey with ETHGas!
