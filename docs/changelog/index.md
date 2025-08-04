@@ -6,45 +6,95 @@ sidebar_position: 1
 
 This page tracks all updates to the ETHGas platform and documentation.
 
+## 2025-07-08
+
+### API Updates
+- **Updated inclusion-preconf cancel-all-orders API**
+- **Updated inclusion-preconf/markets API** by adding validator_type field
+- **Added new API endpoint** `POST /api/v1/user/payoutAddress`
+- **Removed API endpoint** `POST /api/v1/builder/verify`
+  - Now users can use `POST /api/v1/builder/register` to register and verify builder public keys with signatures
+
+### User Management
+- **Allow users to update payment address**
+- **Allow users to specify collateral per slot** for block owner / validator
+- **Renamed field** `fee_recipient` to `validator_payout_address`
+
+## 2025-06-26
+
+### Validator API
+- **Updated validator API** with enhanced functionality
+
+## 2025-06-18
+
+### Builder Management
+- **Updated builder delegation API** with improved features
+
+## 2025-05-14
+
+### Validator Operations
+- **Added validator fees payout API**
+- **Added set User onchain_payout_enabled API**
+- **Added contract address for different environments**
+
+## 2025-05-06
+
+### API Improvements
+- **Updated withdraw API** with enhanced functionality
+- **Renamed endpoint** `/api/v1/p/blockchain` to `/api/v1/p/network`
+
+## 2025-04-16
+
+### User Features
+- **Added user fees API** for fee management
+
+## 2025-04-02
+
+### Mainnet Launch
+- **Mainnet v1 launched**
+- **Updated mainnet collateral deposit address**
+
+## 2025-03-28
+
+### Market Data
+- **Updated get wholeblock and inclusion preconf markets API**
+
+## 2025-03-25
+
+### Infrastructure Updates
+- **Updated Production Hoodi API and WS base URL**
+- **Updated testchain URL** for example usage
+- **Updated Validator API and User deposit collateral API**
+
+## 2025-03-15
+
+### Infrastructure Updates
+- **Updated Production Hoodi API and WS base URL**
+- **Updated testchain URL** for example usage
+- **Updated Validator API and User deposit collateral API**
+
+## 2025-02-21
+
+### API Versioning
+- **Updated API naming**
+- **Added version control (v1)**
+
+## 2025-01-12
+
+### New Features
+- **Added pricer API** for market making
+- **Added block building API** for submitting bundles
+- **Added get user validators API** for retrieving a list of validators for the user
+
+## 2024-12-01
+
+### Infrastructure Updates
+- **Updated RPC endpoint** for Holesky chain
+
 ## 2024-10-01
 
-### Documentation Launch
+### Initial Launch
 - **Ready for Testnet launch**
-- Initial documentation structure created
-- Complete API reference added
-- WebSocket API documentation included
-- Reference materials and lookup tables added
-
-### Platform Features
-- **Whole Block Markets**: Complete trading infrastructure
-- **Inclusion Preconf Markets**: Gas price prediction markets
-- **Bundle Submission**: Transaction bundle management
-- **Builder Management**: Block builder registration and delegation
-- **Validator Operations**: Validator fee management
-
-### API Endpoints
-- **Authentication**: Complete login/logout system
-- **User Management**: Profile and account management
-- **Trading**: Order placement and management
-- **Market Data**: Real-time market information
-- **WebSocket**: Real-time data streaming
-
-### Data Types
-- **User**: User profile and account information
-- **Account**: Account details and transaction history
-- **Orders**: Order management and status tracking
-- **Positions**: Position monitoring and updates
-- **Markets**: Market data and status information
-
-### Error Handling
-- **Comprehensive Error Codes**: Detailed error descriptions
-- **Response Codes**: Standard HTTP response codes
-- **Validation**: Input validation and error messages
-
-### Security
-- **Token-based Authentication**: Secure access management
-- **Session Management**: Automatic token refresh
-- **Rate Limiting**: API usage limits and throttling
 
 ## Documentation Structure
 
@@ -104,4 +154,4 @@ For questions about this documentation or the ETHGas platform:
 
 ---
 
-*Last updated: 2024-10-01* 
+*Last updated: 2025-07-08* 

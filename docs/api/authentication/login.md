@@ -128,7 +128,6 @@ async function login(username, password) {
     }
 }
 
-// Usage
 login('your_username', 'your_password')
     .then(token => console.log('Access token:', token))
     .catch(error => console.error('Error:', error));
