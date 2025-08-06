@@ -1,19 +1,8 @@
 import React from "react";
 import BaseChefAI from "@cookbookdev/docsbot/react";
 
-// For now, we'll use a placeholder. In production, this should be set via environment variables
-const COOKBOOK_PUBLIC_API_KEY = "your_api_key_here";
+const COOKBOOK_PUBLIC_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODhiYjdiNGUyNWM1MzM5MDhiM2Y1N2IiLCJpYXQiOjE3NTM5ODY5OTYsImV4cCI6MjA2OTU2Mjk5Nn0.o0d_aT1zUe08bYcYk1FyjBD9ubcjsLvxwe346ZJT3Qw";
 
 export default function ChefAI(props) {
-  // Only render if we have an API key
-  if (!COOKBOOK_PUBLIC_API_KEY || COOKBOOK_PUBLIC_API_KEY === "your_api_key_here") {
-    return (
-      <div style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-        <p>ChefAI component requires API key configuration.</p>
-        <p>Please set your Cookbook API key in the environment variables.</p>
-      </div>
-    );
-  }
-
   return <BaseChefAI apiKey={COOKBOOK_PUBLIC_API_KEY} />;
 } 
