@@ -6,7 +6,69 @@ sidebar_position: 1
 
 The ETHGas WebSocket API provides real-time data streaming for market updates, order changes, and account information. This enables you to build responsive applications that react to market changes instantly.
 
-## Connection Information
+## Quick Navigation
+
+<div className="row">
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Connection</h3>
+      <p>Learn about WebSocket URLs, authentication requirements, and connection management.</p>
+      <a href="#connection-information" className="button button--outline button--sm">
+        View Connection Info →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Channels</h3>
+      <p>Explore public and private channels for real-time market data and account updates.</p>
+      <a href="#channel-types" className="button button--outline button--sm">
+        View Channels →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Authentication</h3>
+      <p>Understand the login process and authentication flow for private channels.</p>
+      <a href="#authentication" className="button button--outline button--sm">
+        View Auth Guide →
+      </a>
+    </div>
+  </div>
+</div>
+
+<div className="row" style={{ marginTop: '1rem' }}>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Messages</h3>
+      <p>Learn about message structure, commands, and data formats for WebSocket communication.</p>
+      <a href="#message-structure" className="button button--outline button--sm">
+        View Message Format →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Best Practices</h3>
+      <p>Discover connection management, error handling, and performance optimization tips.</p>
+      <a href="#best-practices" className="button button--outline button--sm">
+        View Best Practices →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Error Handling</h3>
+      <p>Understand common errors, rate limiting, and troubleshooting strategies.</p>
+      <a href="#error-handling" className="button button--outline button--sm">
+        View Error Guide →
+      </a>
+    </div>
+  </div>
+</div>
+
+## Connection Information {#connection-information}
 
 ### WebSocket URLs
 
@@ -22,7 +84,7 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
 - **Rate Limiting**: Applied to prevent abuse
 - **Reconnection**: Implement automatic reconnection logic
 
-## Message Structure
+## Message Structure {#message-structure}
 
 All WebSocket messages follow a consistent JSON format:
 
@@ -82,7 +144,7 @@ All WebSocket messages follow a consistent JSON format:
 |---------|-------------|
 | `query` | Query current data |
 
-## Channel Types
+## Channel Types {#channel-types}
 
 ### Public Channels
 
@@ -105,7 +167,7 @@ Private channels require authentication and provide user-specific data:
 - **Account Position Updates**: Your position changes
 - **Preconf Bundle Updates**: Your bundle submission status
 
-## Authentication
+## Authentication {#authentication}
 
 ### Login Process
 
@@ -337,7 +399,7 @@ function handlePositionUpdate(data) {
 }
 ```
 
-## Best Practices
+## Best Practices {#best-practices}
 
 ### Connection Management
 
@@ -360,7 +422,7 @@ function handlePositionUpdate(data) {
 3. **Connection Pooling**: Reuse connections when appropriate
 4. **Data Caching**: Cache frequently accessed data
 
-## Error Handling
+## Error Handling {#error-handling}
 
 ### Common Errors
 

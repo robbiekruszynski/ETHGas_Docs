@@ -5,19 +5,149 @@
 
 .heroBanner {
   padding: 4rem 0;
-  text-align: center;
+  text-align: left;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.heroBanner .container {
+  position: relative;
+  z-index: 1;
+}
+
+.heroImage {
+  text-align: center;
+  padding: 2rem;
+}
+
+.heroImage img {
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.buttons .button {
+  margin: 0;
+}
+
+.quickStart {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+[data-theme='dark'] .quickStart {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.quickStart h2 {
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+}
+
+.features {
+  padding: 4rem 0;
+  background: white;
+}
+
+[data-theme='dark'] .features {
+  background: var(--ifm-background-color);
+}
+
+.features h2 {
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+}
+
+.resources {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+[data-theme='dark'] .resources {
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+}
+
+.resources h2 {
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+}
+
+/* Responsive design */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+  
+  .heroBanner .row {
+    flex-direction: column;
+  }
+  
+  .heroImage {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+  
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .buttons .button {
+    text-align: center;
+  }
+  
+  .quickStart h2,
+  .features h2,
+  .resources h2 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    padding: 1rem;
+  }
+  
+  .quickStart,
+  .features,
+  .resources {
+    padding: 2rem 0;
+  }
+  
+  .quickStart h2,
+  .features h2,
+  .resources h2 {
+    font-size: 1.75rem;
+  }
+  
+  .feature-card {
+    margin-bottom: 1rem;
+  }
 }

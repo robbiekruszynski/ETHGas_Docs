@@ -110,7 +110,6 @@ async function refreshToken(refreshToken) {
     }
 }
 
-// Usage
 refreshToken('your_refresh_token')
     .then(newToken => console.log('New access token:', newToken))
     .catch(error => console.error('Refresh failed:', error));

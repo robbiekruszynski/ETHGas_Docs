@@ -4,14 +4,14 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'ETHGas Documentation',
-  tagline: 'Complete API documentation for ETHGas platform',
+  tagline: 'Complete API documentation for ETHGas platform - Ethereum gas trading and MEV opportunities',
   favicon: 'img/ETHGas_logo.png',
 
   future: {
     v4: true,
   },
 
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://docs.ethgas.com',
   baseUrl: '/',
 
   organizationName: 'ethgas',
@@ -24,6 +24,14 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  // Add Google Fonts for better typography
+  scripts: [
+    {
+      src: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap',
+      type: 'text/css',
+    },
+  ],
 
   presets: [
     [
@@ -53,8 +61,6 @@ const config: Config = {
     ],
   ],
 
-
-
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
@@ -62,6 +68,7 @@ const config: Config = {
       logo: {
         alt: 'ETHGas Logo',
         src: 'img/ETHGas_logo.png',
+        srcDark: 'img/ETHGas_logo.png',
       },
       items: [
         {
@@ -70,7 +77,31 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          to: '/docs/api/overview',
+          label: 'API Reference',
+          position: 'left',
+        },
+        {
+          to: '/docs/websocket/overview',
+          label: 'WebSocket',
+          position: 'left',
+        },
+        {
+          to: '/blog',
+          label: 'Blog',
+          position: 'right',
+        },
+        {
+          href: 'https://testnet.ethgas.com',
+          label: 'TestNet App',
+          position: 'right',
+        },
+        {
+          href: 'https://github.com/ethgas',
+          label: 'GitHub',
+          position: 'right',
+        },
       ],
     },
     footer: {
@@ -85,28 +116,32 @@ const config: Config = {
             },
             {
               label: 'API Reference',
-              to: '/docs/category/api-reference',
+              to: '/docs/api/overview',
             },
             {
               label: 'WebSocket API',
-              to: '/docs/category/websocket-api',
+              to: '/docs/websocket/overview',
+            },
+            {
+              label: 'Error Codes',
+              to: '/docs/reference/error-codes/general',
             },
           ],
         },
         {
-          title: 'Resources',
+          title: 'Platform',
           items: [
             {
-              label: 'Original ETHGas Docs',
-              href: 'https://developers.ethgas.com',
+              label: 'TestNet App',
+              href: 'https://testnet.ethgas.com',
             },
             {
               label: 'ETHGas Homepage',
               href: 'https://ethgas.com',
             },
             {
-              label: 'TestNet App',
-              href: 'https://testnet.ethgas.com',
+              label: 'Original Docs',
+              href: 'https://developers.ethgas.com',
             },
           ],
         },
@@ -121,6 +156,10 @@ const config: Config = {
               label: 'Discord',
               href: 'https://discord.gg/ethgas',
             },
+            {
+              label: 'Twitter',
+              href: 'https://twitter.com/ethgas',
+            },
           ],
         },
       ],
@@ -129,6 +168,13 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ['bash', 'json', 'typescript'],
+    },
+    // Add color mode toggle
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
   } satisfies Preset.ThemeConfig,
 };

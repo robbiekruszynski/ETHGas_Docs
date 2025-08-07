@@ -59,6 +59,16 @@ const sidebars: SidebarsConfig = {
             'websocket/overview',
           ],
         },
+        {
+          type: 'category',
+          label: 'Builder API',
+          items: [
+            'api/builder/overview',
+            'api/builder/setup',
+            'api/builder/registration',
+            'api/builder/building',
+          ],
+        },
       ],
     },
     {
