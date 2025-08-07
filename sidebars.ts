@@ -4,7 +4,7 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Overview',
       items: [
         'getting-started/welcome',
         'getting-started/environments',
@@ -16,7 +16,6 @@ const sidebars: SidebarsConfig = {
       label: 'For Developers',
       items: [
         'developers/overview',
-        'intro',
         'api/overview',
         'websocket/overview',
         'reference/error-codes/general',

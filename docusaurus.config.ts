@@ -28,8 +28,12 @@ const config: Config = {
   // Add Google Fonts for better typography
   scripts: [
     {
-      src: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap',
+      src: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap',
       type: 'text/css',
+    },
+    {
+      src: '/js/sidebar-tabs.js',
+      type: 'text/javascript',
     },
   ],
 
@@ -75,7 +79,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'Overview',
         },
         {
           to: '/docs/api/overview',
@@ -92,21 +96,6 @@ const config: Config = {
           label: 'Validators',
           position: 'left',
         },
-        {
-          to: '/blog',
-          label: 'Blog',
-          position: 'right',
-        },
-        {
-          href: 'https://testnet.ethgas.com',
-          label: 'TestNet App',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/ethgas',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
@@ -116,8 +105,8 @@ const config: Config = {
           title: 'Documentation',
           items: [
             {
-              label: 'Getting Started',
-              to: '/docs/intro',
+              label: 'Overview',
+              to: '/docs/getting-started/welcome',
             },
             {
               label: 'API Reference',

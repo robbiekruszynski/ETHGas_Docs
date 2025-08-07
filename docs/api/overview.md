@@ -47,34 +47,32 @@ API requests are subject to rate limiting. Check response headers for rate limit
 
 ## API Endpoints
 
-<details>
-<summary><strong>Authentication</strong> - User login, verification, and session management</summary>
+<div className="api-endpoints-grid">
 
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>Authentication</strong>
+  <span className="api-category-desc">User login, verification, and session management</span>
+</summary>
 
 - **GET** `/api/v1/user/login/verify` - Verify authentication status
-
-### POST Endpoints
-
 - **POST** `/api/v1/user/login` - User authentication
 - **POST** `/api/v1/user/login/refresh` - Refresh access token
 - **POST** `/api/v1/user/logout` - User logout
 
 </details>
 
-<details>
-<summary><strong>User Management</strong> - User profiles, accounts, and settings</summary>
-
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>User Management</strong>
+  <span className="api-category-desc">User profiles, accounts, and settings</span>
+</summary>
 
 - **GET** `/api/v1/user/info` - Get user information
 - **GET** `/api/v1/user/accounts` - Get user accounts
 - **GET** `/api/v1/user/account/{accountId}` - Get specific account
 - **GET** `/api/v1/user/account/{accountId}/txs` - Get account transactions
 - **GET** `/api/v1/user/account/txs` - Get all account transactions
-
-### POST Endpoints
-
 - **POST** `/api/v1/user/update` - Update user profile
 - **POST** `/api/v1/user/payoutAddress` - Set payout address
 - **POST** `/api/v1/user/collateralPerSlot` - Set collateral per slot
@@ -82,27 +80,26 @@ API requests are subject to rate limiting. Check response headers for rate limit
 
 </details>
 
-<details>
-<summary><strong>Funding</strong> - Deposits, withdrawals, and account funding</summary>
-
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>Funding</strong>
+  <span className="api-category-desc">Deposits, withdrawals, and account funding</span>
+</summary>
 
 - **GET** `/api/v1/p/funding/contractAddress` - Get funding contract address
 - **GET** `/api/v1/user/funding/deposits` - Get user deposits
 - **GET** `/api/v1/p/funding/withdraw/dailyWithdrawLimits` - Get withdrawal limits
 - **GET** `/api/v1/user/funding/withdraw/status` - Get withdrawal status
 - **GET** `/api/v1/user/funding/withdraws` - Get withdrawal history
-
-### POST Endpoints
-
 - **POST** `/api/v1/user/funding/withdraw` - Withdraw funds
 
 </details>
 
-<details>
-<summary><strong>Market Data</strong> - Network info, tokens, markets, and trading data</summary>
-
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>Market Data</strong>
+  <span className="api-category-desc">Network info, tokens, markets, and trading data</span>
+</summary>
 
 - **GET** `/api/v1/p/network` - Get network information
 - **GET** `/api/v1/p/tokens` - Get supported tokens
@@ -118,10 +115,11 @@ API requests are subject to rate limiting. Check response headers for rate limit
 
 </details>
 
-<details>
-<summary><strong>Trading</strong> - Order placement, cancellation, and position management</summary>
-
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>Trading</strong>
+  <span className="api-category-desc">Order placement, cancellation, and position management</span>
+</summary>
 
 - **GET** `/api/v1/user/wholeblock/all-orders` - Get all whole block orders
 - **GET** `/api/v1/user/wholeblock/orders` - Get user whole block orders
@@ -129,9 +127,6 @@ API requests are subject to rate limiting. Check response headers for rate limit
 - **GET** `/api/v1/user/inclusion-preconf/all-orders` - Get all inclusion preconf orders
 - **GET** `/api/v1/user/inclusion-preconf/orders` - Get user inclusion preconf orders
 - **GET** `/api/v1/user/inclusion-preconf/positions` - Get user inclusion preconf positions
-
-### POST Endpoints
-
 - **POST** `/api/v1/wholeblock/order` - Place whole block order
 - **POST** `/api/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders
 - **POST** `/api/v1/wholeblock/cancel-batch-orders` - Cancel batch whole block orders
@@ -143,48 +138,44 @@ API requests are subject to rate limiting. Check response headers for rate limit
 
 </details>
 
-<details>
-<summary><strong>Bundle Submission</strong> - Transaction bundle management</summary>
-
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>Bundle Submission</strong>
+  <span className="api-category-desc">Transaction bundle management</span>
+</summary>
 
 - **GET** `/api/v1/bundle/status` - Get bundle status
 - **GET** `/api/v1/bundle/history` - Get bundle history
-
-### POST Endpoints
-
 - **POST** `/api/v1/bundle/submit` - Submit transaction bundle
 
 </details>
 
-<details>
-<summary><strong>Builder Management</strong> - Block builder registration and delegation</summary>
-
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>Builder Management</strong>
+  <span className="api-category-desc">Block builder registration and delegation</span>
+</summary>
 
 - **GET** `/api/v1/builder/info` - Get builder information
 - **GET** `/api/v1/builder/list` - Get builder list
-
-### POST Endpoints
-
 - **POST** `/api/v1/builder/register` - Register block builder
 - **POST** `/api/v1/builder/delegate` - Delegate to builder
 
 </details>
 
-<details>
-<summary><strong>Validator Operations</strong> - Fee recipient and withdrawal management</summary>
-
-### GET Endpoints
+<details className="api-category">
+<summary className="api-category-header">
+  <strong>Validator Operations</strong>
+  <span className="api-category-desc">Fee recipient and withdrawal management</span>
+</summary>
 
 - **GET** `/api/v1/validator/fee-recipient` - Get fee recipient
-
-### POST Endpoints
-
 - **POST** `/api/v1/validator/fee-recipient` - Set fee recipient
 - **POST** `/api/v1/validator/withdraw` - Withdraw validator fees
 
 </details>
+
+</div>
 
 ## Next Steps
 

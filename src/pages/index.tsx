@@ -24,7 +24,7 @@ function HomepageHeader() {
             <div className={styles.buttons}>
               <Link
                 className="button button--primary button--lg"
-                to="/docs/intro">
+                to="/docs/getting-started/welcome">
                 Get Started →
               </Link>
               <Link
@@ -146,7 +146,7 @@ function ResourcesSection() {
                 <div className="feature-card text--center">
                   <h3>Documentation</h3>
                   <p>Comprehensive guides and API reference for developers.</p>
-                  <Link to="/docs/intro" className="button button--primary">
+                  <Link to="/docs/getting-started/welcome" className="button button--primary">
                     Explore Docs
                   </Link>
                 </div>
