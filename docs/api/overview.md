@@ -508,5 +508,5 @@ curl -X POST "https://api.ethgas.com/api/v1/validator/withdraw" \
 
 - [Authentication](/docs/api/authentication) - Learn about API authentication
 - [User Management](/docs/api/user) - Manage user accounts and profiles
-- [Trading](/docs/api/whole-block-trading) - Start trading on the platform
+- [Trading](/docs/api/trading/whole-block) - Start trading on the platform
 - [WebSocket API](/docs/websocket/overview) - Real-time data streaming 

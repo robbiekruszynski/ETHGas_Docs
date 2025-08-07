@@ -8,7 +8,7 @@ sidebar_label: Community
 
 Connect with the ETHGas community, stay updated with the latest developments, and engage with fellow developers and traders.
 
-## Social Media Platforms
+
 
 <div className="row">
   <div className="col col--4">

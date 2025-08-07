@@ -294,4 +294,4 @@ curl -X POST "https://api.ethgas.com/api/v1/wholeblock/cancel-all-orders" \
 - [Markets](/docs/reference/lookup-tables/markets) - Market types and status codes
 - [Trading](/docs/api/trading/whole-block/place-order) - How to place orders
 - [Error Codes](/docs/reference/error-codes/general) - Order-related error codes
-- [WebSocket API](/docs/websocket/private/account-order-update) - Real-time order updates 
+- [WebSocket Overview](/docs/websocket/overview) - Real-time updates 

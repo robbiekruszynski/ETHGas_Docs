@@ -147,7 +147,8 @@ const userData = {
     timezone: 'UTC'
 };
 
-updateUserProfile('your_access_token', userData)
+const accessToken = 'your_access_token';
+updateUserProfile(accessToken, userData)
     .then(updatedUser => console.log('User updated:', updatedUser))
     .catch(error => console.error('Error:', error));
 ```

@@ -90,21 +90,8 @@ For typical Ethereum validators using standard infrastructure:
 - [Registration Process](/docs/validators/registration/standard) - How to register
 - [Collateral Management](/docs/validators/deposits) - Managing deposits
 
-### SSV Validators
-For validators using SSV (Secret Shared Validator) infrastructure:
-- [SSV Setup](/docs/validators/setup/ssv) - SSV-specific configuration
-- [SSV Registration](/docs/validators/registration/ssv) - SSV registration process
-- [Cluster Management](/docs/validators/ssv/clusters) - Managing SSV clusters
-
-### Advanced Validators
-For validators with custom requirements:
-- [Custom Builders](/docs/validators/builders/custom) - Integrating custom builders
-- [Advanced Pricing](/docs/validators/pricing/advanced) - Custom pricing strategies
-- [Performance Optimization](/docs/validators/optimization) - Maximizing earnings
-
 ## Next Steps
 
 - [Validator Setup](/docs/validators/setup) - Get started with ETHGas
 - [Registration Guide](/docs/validators/registration) - Register your validators
-- [Deposit Management](/docs/validators/deposits) - Manage your collateral
-- [Builder Integration](/docs/validators/builders) - Integrate with builders 
+- [Deposit Management](/docs/validators/deposits) - Manage your collateral 

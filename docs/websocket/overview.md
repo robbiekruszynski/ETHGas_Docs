@@ -554,5 +554,5 @@ function handlePositionUpdate(data) {
 
 - [Authentication](/docs/websocket/authentication) - WebSocket authentication details
 - [Public Channels](/docs/websocket/public/preconf-market-update) - Public data channels
-- [Private Channels](/docs/websocket/private/account-order-update) - Private user channels
-- [Queries](/docs/websocket/queries/public/preconf-markets) - Data query methods 
+- [WebSocket Authentication](/docs/websocket/authentication) - Authentication guide
+- [WebSocket Authentication](/docs/websocket/authentication) - Authentication guide 

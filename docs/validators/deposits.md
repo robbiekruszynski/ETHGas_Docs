@@ -28,7 +28,7 @@ import TabItem from '@theme/TabItem';
 **Contract Address**: `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`
 
 **Requirements**:
-- **Minimum**: 1 ETH per validator
+- **Minimum**: 0 ETH per validator
 - **Recommended**: 2-5 ETH per validator for optimal participation
 - **Maximum**: No upper limit (based on your risk tolerance)
 

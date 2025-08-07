@@ -302,6 +302,6 @@ Now that you're connected:
 1. [Explore the API](/docs/api/overview) to understand available endpoints
 2. [Set up WebSocket connections](/docs/websocket/overview) for real-time data
 3. [Test your integration](/docs/api/user) with user management endpoints
-4. [Start trading](/docs/api/whole-block-trading) on the platform
+4. [Start trading](/docs/api/trading/whole-block) on the platform
 
 Your ETHGas integration is ready to go! 

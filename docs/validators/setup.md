@@ -144,8 +144,10 @@ docker-compose up -d
 Lighthouse is a high-performance Rust-based consensus client. Follow these specific configuration steps:
 
 #### Lighthouse Configuration
+:::tip
 
 **Important**: For Lighthouse validators, configure these specific timeout settings to boost value:
+:::
 
 ```bash
 # In your Lighthouse configuration

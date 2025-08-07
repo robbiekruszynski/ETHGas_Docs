@@ -106,7 +106,8 @@ async function logout(accessToken) {
 }
 
 // Usage
-logout('your_access_token')
+const accessToken = 'your_access_token';
+logout(accessToken)
     .then(success => {
         if (success) {
             console.log('Successfully logged out');

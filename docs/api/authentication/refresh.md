@@ -122,7 +122,8 @@ async function refreshToken(refreshToken) {
 }
 
 // Usage
-refreshToken('your_refresh_token_here')
+const refreshTokenValue = 'your_refresh_token_here';
+refreshToken(refreshTokenValue)
     .then(tokens => {
         console.log('New access token:', tokens.accessToken);
         console.log('New refresh token:', tokens.refreshToken);

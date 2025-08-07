@@ -107,7 +107,8 @@ async function verifyToken(accessToken) {
 }
 
 // Usage
-verifyToken('your_access_token')
+const accessToken = 'your_access_token';
+verifyToken(accessToken)
     .then(isValid => console.log('Token is valid:', isValid))
     .catch(error => console.error('Error:', error));
 ```

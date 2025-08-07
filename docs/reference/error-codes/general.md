@@ -28,6 +28,79 @@ ETHGas uses standardized error codes across all API endpoints. Understanding the
 | 10011 | Invalid Token (Withdraw) |
 | 10012 | Not Enough Funds to Withdraw |
 
+## Order API Error Codes
+
+### 400 - Bad Request
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 40001 | Invalid order parameters | Order data is malformed | Check request format |
+| 40002 | Invalid block number | Block number is invalid | Use valid block number |
+| 40003 | Invalid transaction hash | Transaction hash format is wrong | Use valid hex format |
+| 40004 | Gas limit too high | Gas limit exceeds maximum | Reduce gas limit |
+| 40005 | Gas limit too low | Gas limit below minimum | Increase gas limit |
+| 40006 | Invalid fee structure | Fee parameters are invalid | Check fee values |
+| 40007 | Invalid address format | Address is not valid Ethereum address | Use valid address |
+| 40008 | Order already exists | Order for this block already placed | Cancel existing order first |
+
+### 401 - Unauthorized
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 40101 | Invalid access token | Token is missing or invalid | Re-authenticate |
+| 40102 | Token expired | Access token has expired | Refresh token |
+| 40103 | Insufficient permissions | User lacks trading permissions | Contact support |
+
+### 403 - Forbidden
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 40301 | Trading disabled | Trading is currently disabled | Wait for trading to resume |
+| 40302 | Account suspended | Account is suspended | Contact support |
+| 40303 | Rate limit exceeded | Too many requests | Wait before retrying |
+| 40304 | Insufficient balance | Not enough funds for order | Add more funds |
+
+### 404 - Not Found
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 40401 | Order not found | Order ID does not exist | Check order ID |
+| 40402 | Market not found | Market does not exist | Check market symbol |
+| 40403 | Block not found | Block number does not exist | Check block number |
+
+### 409 - Conflict
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 40901 | Order conflict | Conflicting order exists | Cancel conflicting order |
+| 40902 | Block already proposed | Block already has a proposal | Wait for next block |
+| 40903 | Transaction conflict | Transaction already included | Use different transaction |
+
+### 422 - Unprocessable Entity
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 42201 | Invalid order type | Order type not supported | Use supported order type |
+| 42202 | Invalid market | Market not available for trading | Check market status |
+| 42203 | Invalid price | Price outside allowed range | Use valid price |
+| 42204 | Invalid quantity | Quantity below minimum | Increase quantity |
+
+### 429 - Too Many Requests
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 42901 | Rate limit exceeded | Too many requests per minute | Wait before retrying |
+| 42902 | Order limit exceeded | Too many orders per hour | Reduce order frequency |
+| 42903 | Block limit exceeded | Too many block proposals | Wait for next slot |
+
+### 500 - Internal Server Error
+
+| Code | Message | Description | Solution |
+|------|---------|-------------|----------|
+| 50001 | Order processing failed | Internal error processing order | Retry request |
+| 50002 | Market data unavailable | Market data temporarily unavailable | Wait and retry |
+| 50003 | Network error | Network connectivity issue | Check connection |
+
 ## HTTP Response Codes
 
 | Code | Description |
@@ -46,6 +119,44 @@ All error responses follow a consistent format:
   "code": 1001,
   "message": "Validation Error",
   "data": null
+}
+```
+
+### Detailed Error Response
+
+```json
+{
+  "code": 400,
+  "message": "Invalid order parameters",
+  "data": null,
+  "errorCode": "40001",
+  "details": {
+    "field": "blockNumber",
+    "value": "invalid",
+    "expected": "positive integer"
+  }
+}
+```
+
+### Validation Error Response
+
+```json
+{
+  "code": 422,
+  "message": "Validation failed",
+  "data": null,
+  "errors": [
+    {
+      "field": "gasLimit",
+      "message": "Gas limit must be between 1,000,000 and 30,000,000",
+      "value": "50000000"
+    },
+    {
+      "field": "baseFee",
+      "message": "Base fee must be positive",
+      "value": "-1000000000"
+    }
+  ]
 }
 ```
 
@@ -98,133 +209,116 @@ def handle_api_response(response_data):
 ```python
 def handle_auth_error(error_code):
     if error_code == 401:
-        # Token expired or invalid
-        return "Please re-authenticate"
+        return "Authentication failed - check your credentials"
     elif error_code == 403:
-        # Insufficient permissions
-        return "Check your API permissions"
+        return "Permission denied - check your API permissions"
     else:
-        return "Authentication error occurred"
+        return "Unknown authentication error"
 ```
 
-#### Validation Errors
+#### Trading Errors
 
 ```python
-def handle_validation_error(error_code):
-    if error_code == 1001:
-        return "Check your request parameters"
-    elif error_code == 10000:
-        return "Invalid account for deposit"
-    elif error_code == 10001:
-        return "Invalid token for deposit"
-    elif error_code == 10010:
-        return "Invalid account for withdrawal"
-    elif error_code == 10011:
-        return "Invalid token for withdrawal"
-    elif error_code == 10012:
-        return "Insufficient funds for withdrawal"
+def handle_trading_error(error_code):
+    if error_code == 40001:
+        return "Invalid order parameters - check your request format"
+    elif error_code == 40002:
+        return "Invalid block number - use a valid future block"
+    elif error_code == 40304:
+        return "Insufficient balance - add more funds"
+    elif error_code == 42901:
+        return "Rate limit exceeded - wait before retrying"
     else:
-        return "Validation error occurred"
+        return "Unknown trading error"
+```
+
+### 4. JavaScript Error Handling
+
+```javascript
+async function handleApiError(response) {
+    if (!response.ok) {
+        const errorData = await response.json();
+        
+        switch (response.status) {
+            case 400:
+                if (errorData.errorCode === '40001') {
+                    throw new Error('Invalid order parameters');
+                } else if (errorData.errorCode === '40002') {
+                    throw new Error('Invalid block number');
+                }
+                break;
+            case 401:
+                throw new Error('Authentication failed');
+            case 403:
+                throw new Error('Insufficient permissions or funds');
+            case 429:
+                throw new Error('Rate limit exceeded');
+            default:
+                throw new Error(`Error ${response.status}: ${errorData.message}`);
+        }
+    }
+    
+    return response.json();
+}
+
+// Usage
+fetch('/api/v1/trading/whole-block/place-order', {
+    method: 'POST',
+    headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(orderData)
+})
+.then(handleApiError)
+.then(data => console.log('Order placed:', data))
+.catch(error => console.error('Error:', error));
+```
+
+### 5. Retry Logic
+
+```javascript
+async function makeRequestWithRetry(requestFn, maxRetries = 3) {
+    for (let i = 0; i < maxRetries; i++) {
+        try {
+            return await requestFn();
+        } catch (error) {
+            if (i === maxRetries - 1) {
+                throw error;
+            }
+            
+            // Wait before retry (exponential backoff)
+            await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, i)));
+        }
+    }
+}
+
+// Usage
+makeRequestWithRetry(() => placeOrder(orderData))
+    .then(result => console.log('Success:', result))
+    .catch(error => console.error('Failed after retries:', error));
 ```
 
 ## Common Error Scenarios
 
 ### Authentication Issues
+- **401 Unauthorized**: Check your access token
+- **403 Forbidden**: Verify your API permissions
+- **Token Expired**: Refresh your access token
 
-```python
-# Token expired
-if response.status_code == 401:
-    # Refresh token or re-authenticate
-    new_token = refresh_access_token(refresh_token)
-    # Retry request with new token
-```
-
-### Permission Issues
-
-```python
-# Insufficient permissions
-if response.status_code == 403:
-    # Check if user has required permissions
-    # Contact support if permissions should be granted
-```
-
-### Validation Issues
-
-```python
-# Invalid parameters
-if response_data["code"] == 1001:
-    # Check request parameters
-    # Ensure all required fields are present
-    # Verify data types and formats
-```
+### Trading Issues
+- **Invalid Parameters**: Check request format and data types
+- **Insufficient Balance**: Add more funds to your account
+- **Rate Limits**: Wait before making additional requests
+- **Market Closed**: Check market status and trading hours
 
 ### Network Issues
-
-```python
-# Service unavailable
-if response.status_code == 503:
-    # Service is temporarily unavailable
-    # Implement retry logic with exponential backoff
-    time.sleep(2 ** retry_count)
-    # Retry request
-```
-
-## Retry Logic
-
-Implement retry logic for transient errors:
-
-```python
-import time
-import requests
-
-def api_request_with_retry(url, headers, data=None, max_retries=3):
-    for attempt in range(max_retries):
-        try:
-            response = requests.post(url, headers=headers, json=data, timeout=30)
-            
-            if response.status_code == 200:
-                return response.json()
-            elif response.status_code == 503:
-                # Service unavailable - retry
-                if attempt < max_retries - 1:
-                    time.sleep(2 ** attempt)  # Exponential backoff
-                    continue
-                else:
-                    raise Exception("Service unavailable after retries")
-            else:
-                # Don't retry other errors
-                response.raise_for_status()
-                
-        except requests.exceptions.RequestException as e:
-            if attempt < max_retries - 1:
-                time.sleep(2 ** attempt)
-                continue
-            else:
-                raise Exception(f"Request failed after {max_retries} attempts: {e}")
-    
-    raise Exception("Max retries exceeded")
-```
-
-## Error Logging
-
-Implement proper error logging:
-
-```python
-import logging
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-def log_api_error(endpoint, error_code, message):
-    logger.error(f"API Error on {endpoint}: Code {error_code} - {message}")
-    
-    # Log additional context for debugging
-    logger.debug(f"Request details: {endpoint}")
-    logger.debug(f"Error response: {message}")
-```
+- **Connection Timeout**: Check your internet connection
+- **Server Errors**: Retry the request later
+- **Service Unavailable**: Check ETHGas service status
 
 ## Related Documentation
 
-- [Order API Error Codes](/docs/reference/error-codes/order-api) - Specific error codes for trading operations
-- [Response Codes](/docs/reference/lookup-tables/response-codes) - HTTP response code reference
-- [Authentication](/docs/api/authentication/login) - Authentication error handling 
+- [API Overview](/docs/api/overview) - Complete API reference
+- [Trading API](/docs/api/trading/whole-block) - Trading endpoints
+- [Authentication](/docs/api/authentication) - Authentication guide 

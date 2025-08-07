@@ -140,7 +140,9 @@ async function updatePayoutAddress(accessToken, payoutAddress) {
 }
 
 // Usage
-updatePayoutAddress('your_access_token', '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6')
+const accessToken = 'your_access_token';
+const payoutAddress = '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6';
+updatePayoutAddress(accessToken, payoutAddress)
     .then(result => console.log('Payout address updated:', result))
     .catch(error => console.error('Error:', error));
 ```
