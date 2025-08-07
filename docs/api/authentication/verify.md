@@ -17,7 +17,7 @@ POST /api/v1/user/login/verify
 | Header | Value |
 |--------|-------|
 | Content-Type | application/json |
-| Authorization | Bearer {access_token} |
+| Authorization | Bearer YOUR_ACCESS_TOKEN |
 
 ## Request Body
 

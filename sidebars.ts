@@ -18,10 +18,34 @@ const sidebars: SidebarsConfig = {
         'developers/overview',
         'api/overview',
         'websocket/overview',
-        'reference/error-codes/general',
+        {
+          type: 'category',
+          label: 'API Reference',
+          items: [
+            {
+              type: 'category',
+              label: 'Authentication',
+              items: [
+                'api/authentication/login',
+                'api/authentication/logout',
+                'api/authentication/refresh',
+                'api/authentication/verify',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'User Management',
+              items: [
+                'api/user/update',
+                'api/user/payout-address',
+              ],
+            },
+          ],
+        },
         'reference/lookup-tables/markets',
         'reference/lookup-tables/orders',
         'reference/lookup-tables/response-codes',
+        'reference/error-codes/general',
       ],
     },
     {
@@ -30,6 +54,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'validators/overview',
         'validators/setup',
+        'validators/registration',
+        'validators/deposits',
       ],
     },
     {
@@ -44,32 +70,9 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'API Reference',
-      items: [
-        {
-          type: 'category',
-          label: 'Authentication',
-          items: [
-            'api/authentication/login',
-            'api/authentication/logout',
-            'api/authentication/refresh',
-            'api/authentication/verify',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'User Management',
-          items: [
-            'api/user/update',
-            'api/user/payout-address',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
       label: 'Resources',
       items: [
+        'community',
         'changelog/index',
       ],
     },

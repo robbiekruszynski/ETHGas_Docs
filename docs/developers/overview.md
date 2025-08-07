@@ -4,30 +4,19 @@ sidebar_position: 1
 
 # Developer Overview
 
-ETHGas is a decentralized platform that enables trading of Ethereum gas and MEV (Maximal Extractable Value) opportunities. This overview explains the core concepts, architecture, and opportunities for developers.
+Welcome to ETHGas, the premier platform for Ethereum gas trading and MEV opportunities. This guide provides a comprehensive overview for developers looking to integrate with the ETHGas ecosystem.
 
 ## What is ETHGas?
 
-ETHGas provides infrastructure for:
+ETHGas is a decentralized platform that enables trading of Ethereum gas and MEV opportunities through various market types:
 
-- **Gas Trading**: Trade gas price predictions and inclusion guarantees
-- **MEV Opportunities**: Extract value from block building and transaction ordering
-- **Preconfirmation Markets**: Guarantee transaction inclusion in future blocks
-- **Builder Infrastructure**: Specialized block building for optimized MEV extraction
+### Core Components
 
-## Core Concepts
-
-### Preconfirmation (Preconf)
-Preconfirmation allows traders to guarantee that specific transactions will be included in future blocks, creating a market for transaction inclusion.
-
-### Whole Block Markets
-Traders can bid on entire blocks, gaining control over transaction ordering and MEV extraction opportunities.
-
-### Inclusion Preconf Markets
-Traders can predict and trade on gas prices and transaction inclusion probabilities.
-
-### Block Builders
-Specialized entities that construct blocks with optimized transaction ordering for maximum MEV extraction.
+- **Whole Block Markets**: Trade entire blocks for MEV opportunities
+- **Inclusion Preconf Markets**: Trade gas price predictions and inclusion probabilities
+- **Builder Infrastructure**: Modified rbuilder for block building
+- **Validator Integration**: Commit boost module for validator participation
+- **Smart Contracts**: On-chain infrastructure for trading and settlement
 
 ## Platform Architecture
 
@@ -35,7 +24,7 @@ Specialized entities that construct blocks with optimized transaction ordering f
   <div className="col col--6">
     <div className="feature-card">
       <h3>REST API</h3>
-      <p>Complete HTTP API for all platform operations including market data, trading, and account management.</p>
+      <p>Complete HTTP API for all platform operations including authentication, trading, and market data.</p>
       <a href="/docs/api/overview" className="button button--outline button--sm">
         API Reference →
       </a>
@@ -44,156 +33,312 @@ Specialized entities that construct blocks with optimized transaction ordering f
   <div className="col col--6">
     <div className="feature-card">
       <h3>WebSocket API</h3>
-      <p>Real-time data streaming for market updates, order status, and position tracking.</p>
+      <p>Real-time data streaming for live market updates, order book changes, and position updates.</p>
       <a href="/docs/websocket/overview" className="button button--outline button--sm">
-        WebSocket Guide →
+        WebSocket Docs →
       </a>
     </div>
   </div>
 </div>
 
+## Key Concepts
+
+### Markets
+Markets are the core trading venues on ETHGas:
+- **Whole Block Markets**: Trade complete blocks for MEV opportunities
+- **Inclusion Preconf Markets**: Trade gas price predictions
+
+### Orders
+Orders represent your trading intentions:
+- **Market Orders**: Execute immediately at current market price
+- **Limit Orders**: Execute only at specified price or better
+- **Fill-Or-Kill Orders**: Execute completely or not at all
+
+### Positions
+Positions track your current market exposure:
+- **Long Positions**: Profitable when prices increase
+- **Short Positions**: Profitable when prices decrease
+
+## GitHub Repositories
+
+### Core Infrastructure
+
+#### [ETHGas Preconf Commit Boost Module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module)
+**Purpose**: Validator integration and preconfirmation commitments
+
+**Key Features**:
+- Commit boost module for validator participation
+- PBS (Proposer-Builder Separation) integration
+- Docker containerized deployment
+- Health monitoring and logging
+
+**Use Cases**:
+- Validators wanting to earn additional rewards
+- Operators managing validator infrastructure
+- Developers building validator tools
+
+#### [ETHGas Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)
+**Purpose**: Builder registration and management
+
+**Key Features**:
+- Automated builder registration
+- Environment configuration (mainnet/testnet)
+- Docker deployment
+- Health checks and monitoring
+
+**Use Cases**:
+- Block builders wanting to participate in ETHGas
+- Infrastructure operators
+- MEV researchers and developers
+
+#### [Preconf Builder](https://github.com/ethgas-developer/preconf-builder)
+**Purpose**: Modified rbuilder for ETHGas integration
+
+**Key Features**:
+- Preconf transaction streaming
+- Commitment compliance validation
+- Bundle positioning management
+- Mempool integration
+
+**Use Cases**:
+- Block builders requiring ETHGas integration
+- MEV infrastructure developers
+- Researchers studying block building
+
+#### [ETHGas Contracts](https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit)
+**Purpose**: Smart contract implementations
+
+**Key Features**:
+- Trading contract implementations
+- Settlement mechanisms
+- Fee distribution logic
+- Security audit reports
+
+**Use Cases**:
+- Smart contract developers
+- Security researchers
+- Protocol integrators
+
+### Additional Resources
+
+#### [ETHGas Audit](https://github.com/ethgas-developer/ethgas-audit)
+**Purpose**: Security audit reports and findings
+
+#### [ETHGas Bangkok DevCon Workshop](https://github.com/ethgas-developer/ethgas-bangkok-devcon-workshop)
+**Purpose**: Workshop materials and examples
+
+#### [Constraints Specs](https://github.com/ethgas-developer/constraints-specs)
+**Purpose**: API specifications and constraints
+
+## Development Paths
+
+### For Traders
+
+**Getting Started**:
+1. **Environment Setup**: [Configure your environment](/docs/getting-started/environments)
+2. **Authentication**: [Set up API authentication](/docs/api/authentication/login)
+3. **Trading**: [Start trading on the platform](/docs/api/overview)
+
+**Key APIs**:
+- **Market Data**: Get real-time market information
+- **Order Management**: Place and manage orders
+- **Position Tracking**: Monitor your positions
+- **WebSocket**: Real-time data streaming
+
+**Example Integration**:
+```python
+import requests
+
+class ETHGasTrader:
+    def __init__(self, api_url, access_token):
+        self.api_url = api_url
+        self.access_token = access_token
+        self.headers = {"Authorization": f"Bearer {access_token}"}
+    
+    def get_markets(self):
+        response = requests.get(f"{self.api_url}/api/v1/p/wholeblock/markets")
+        return response.json()
+    
+    def place_order(self, market_id, side, order_type, quantity, price=None):
+        data = {
+            "marketId": market_id,
+            "side": side,
+            "orderType": order_type,
+            "quantity": quantity
+        }
+        if price:
+            data["price"] = price
+        
+        response = requests.post(
+            f"{self.api_url}/api/v1/wholeblock/order",
+            headers=self.headers,
+            json=data
+        )
+        return response.json()
+```
+
+### For Validators
+
+**Getting Started**:
+1. **Repository Setup**: Clone [ethgas-preconf-commit-boost-module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module)
+2. **Client Configuration**: [Configure your consensus client](/docs/validators/setup)
+3. **Integration**: [Set up ETHGas integration](/docs/validators/setup)
+
+**Key Features**:
+- **Commit Boost Module**: Participate in preconfirmation commitments
+- **PBS Integration**: Proposer-Builder Separation support
+- **Fee Collection**: Earn additional rewards
+- **Monitoring**: Health checks and performance tracking
+
+**Example Configuration**:
+```toml
+# commitboost.toml
+[network]
+network = "mainnet"
+
+[keys]
+bls_key_pair = "your_bls_key_pair"
+eoa_signing_key = "your_eoa_signing_key"
+
+[registration]
+enable_registration = true
+entity_name = "your_entity_name"
+registration_mode = "standard"
+
+[collateral]
+collateral_per_slot = 0.1
+```
+
+### For Builders
+
+**Getting Started**:
+1. **Repository Setup**: Clone [ethgas-builder-scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)
+2. **Registration**: [Register as a builder](/docs/api/builder/setup)
+3. **Integration**: [Set up modified rbuilder](/docs/api/builder/setup)
+
+**Key Features**:
+- **Builder Registration**: Automated registration process
+- **Block Building**: Modified rbuilder for ETHGas
+- **Preconf Integration**: Handle preconfirmation transactions
+- **Fee Distribution**: Manage priority fees and MEV
+
+**Example Setup**:
+```bash
+# Clone builder scripts
+git clone https://github.com/ethgas-developer/ethgas-builder-scripts
+cd ethgas-builder-scripts
+
+# Configure environment
+cp .env.example.mainnet .env
+# Edit .env with your keys
+
+# Build and deploy
+./scripts/build.sh
+docker-compose up -d
+```
+
+### For Smart Contract Developers
+
+**Getting Started**:
+1. **Repository Access**: Clone [ethgas-contracts-avs-for-audit](https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit)
+2. **Audit Review**: Review security audit reports
+3. **Integration**: Integrate with ETHGas contracts
+
+**Key Features**:
+- **Trading Contracts**: Core trading functionality
+- **Settlement Logic**: Order settlement mechanisms
+- **Fee Distribution**: Priority fee and MEV distribution
+- **Security Audits**: Comprehensive security reviews
+
 ## Market Types
 
 ### Whole Block Markets
-- **Purpose**: Trade entire blocks for MEV opportunities
-- **Participants**: Block builders, validators, traders
-- **Value**: Control over transaction ordering and MEV extraction
-- **Risk**: High capital requirements, complex strategies
+Trade entire blocks for MEV opportunities:
+- **Block Ownership**: Own complete blocks for MEV extraction
+- **Bundle Positioning**: Control transaction ordering
+- **Priority Fees**: Collect all priority fees from the block
 
 ### Inclusion Preconf Markets
-- **Purpose**: Trade gas price predictions and inclusion guarantees
-- **Participants**: Traders, validators, DApps
-- **Value**: Guaranteed transaction inclusion, gas price hedging
-- **Risk**: Moderate, suitable for various trading strategies
-
-## Key Participants
-
-### Traders
-- **Role**: Buy and sell gas and MEV opportunities
-- **Tools**: REST API, WebSocket API, trading interfaces
-- **Opportunities**: Arbitrage, speculation, hedging
-
-### Validators
-- **Role**: Provide block building and transaction inclusion
-- **Tools**: Commit Boost Module, PBS integration
-- **Opportunities**: Earn additional rewards through preconfirmation fees
-
-### Builders
-- **Role**: Construct optimized blocks for MEV extraction
-- **Tools**: Modified rbuilder, relay integration
-- **Opportunities**: Specialized block building services
-
-### Developers
-- **Role**: Build applications and integrations
-- **Tools**: APIs, SDKs, documentation
-- **Opportunities**: Create trading tools, analytics, automation
+Trade gas price predictions:
+- **Gas Price Prediction**: Predict future gas prices
+- **Inclusion Probability**: Trade transaction inclusion likelihood
+- **Risk Management**: Hedge against gas price volatility
 
 ## Technical Stack
 
 ### Backend Infrastructure
-- **Blockchain**: Ethereum mainnet and testnets
-- **APIs**: REST and WebSocket APIs
+- **REST API**: Comprehensive HTTP API
+- **WebSocket**: Real-time data streaming
 - **Authentication**: JWT-based authentication
-- **Database**: Real-time market data storage
+- **Rate Limiting**: API rate limiting and quotas
 
-### Trading Infrastructure
-- **Order Matching**: Real-time order book management
-- **Position Tracking**: Real-time position and P&L tracking
-- **Risk Management**: Automated risk controls and limits
-- **Settlement**: On-chain settlement and collateral management
+### Blockchain Integration
+- **Ethereum**: Native Ethereum integration
+- **MEV-Boost**: Proposer-Builder Separation
+- **BLS Signatures**: Validator authentication
+- **Smart Contracts**: On-chain trading infrastructure
 
-### Block Building
-- **Modified rbuilder**: ETHGas-optimized block builder
-- **Relay Integration**: PBS (Proposer-Builder Separation) support
-- **MEV Extraction**: Optimized transaction ordering algorithms
+### Development Tools
+- **Docker**: Containerized deployment
+- **Monitoring**: Health checks and logging
+- **Testing**: Comprehensive test suites
+- **Documentation**: Complete API documentation
 
-## Development Opportunities
-
-### Trading Applications
-- **Automated Trading Bots**: Algorithmic trading strategies
-- **Portfolio Management**: Multi-market position tracking
-- **Risk Management**: Automated risk controls and alerts
-- **Analytics**: Market analysis and performance tracking
-
-### Integration Tools
-- **API Wrappers**: Language-specific API libraries
-- **SDKs**: Complete development kits for various platforms
-- **Webhooks**: Real-time event notifications
-- **Data Feeds**: Market data and analytics feeds
-
-### Infrastructure Services
-- **Builder Services**: Specialized block building
-- **Relay Services**: PBS relay infrastructure
-- **Analytics Services**: Market analysis and insights
-- **Risk Services**: Risk management and compliance tools
-
-## Getting Started
+## Getting Started Checklist
 
 ### For Traders
-1. **Account Setup**: Register and verify your account
-2. **API Access**: Generate API keys for programmatic access
-3. **Market Research**: Study market types and trading strategies
-4. **Risk Management**: Set up position limits and risk controls
-
-### For Developers
-1. **API Documentation**: Review REST and WebSocket APIs
-2. **Authentication**: Set up API key authentication
-3. **Testing**: Use testnet for development and testing
-4. **Integration**: Build applications and tools
+- [ ] Set up API credentials
+- [ ] Configure environment (testnet/mainnet)
+- [ ] Test authentication
+- [ ] Place first order
+- [ ] Set up WebSocket connection
 
 ### For Validators
-1. **Setup Guide**: Follow the validator setup guide
-2. **Registration**: Register validators with ETHGas
-3. **Collateral**: Deposit ETH as collateral
-4. **Monitoring**: Track performance and earnings
+- [ ] Clone commit boost module repository
+- [ ] Configure consensus client
+- [ ] Set up ETHGas integration
+- [ ] Test preconfirmation commitments
+- [ ] Monitor performance
 
-## Market Dynamics
+### For Builders
+- [ ] Clone builder scripts repository
+- [ ] Register as builder
+- [ ] Set up modified rbuilder
+- [ ] Test block building
+- [ ] Monitor builder performance
 
-### Gas Price Factors
-- **Network Congestion**: High transaction volume increases gas prices
-- **Block Space**: Limited block space creates competition
-- **MEV Opportunities**: Valuable transactions drive up gas prices
-- **Market Sentiment**: Trader expectations influence prices
-
-### MEV Sources
-- **Arbitrage**: Price differences across DEXs
-- **Liquidations**: DeFi liquidation opportunities
-- **Sandwich Attacks**: Front-running and back-running
-- **Time-Bandit Attacks**: Reorg-based MEV extraction
-
-### Risk Factors
-- **Market Volatility**: Rapid price changes
-- **Liquidity Risk**: Limited market depth
-- **Technical Risk**: API failures, network issues
-- **Regulatory Risk**: Changing regulations and compliance
+### For Smart Contract Developers
+- [ ] Review contract implementations
+- [ ] Study audit reports
+- [ ] Understand integration points
+- [ ] Test contract interactions
+- [ ] Deploy custom integrations
 
 ## Resources for Developers
 
 ### Documentation
-- [API Reference](/docs/api/overview) - Complete API documentation
-- [WebSocket Guide](/docs/websocket/overview) - Real-time data streaming
-- [Error Codes](/docs/reference/error-codes/general) - Troubleshooting guide
-- [Data Types](/docs/reference/data-types) - API data structures
-
-### Tools and Libraries
-- **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com) - Interactive testing
-- **API Playground**: Test API endpoints directly
-- **SDK Examples**: Code examples in multiple languages
-- **Webhook Testing**: Test webhook integrations
+- **[API Reference](/docs/api/overview)**: Complete REST API documentation
+- **[WebSocket API](/docs/websocket/overview)**: Real-time data streaming
+- **[Authentication](/docs/api/authentication/login)**: API authentication guide
+- **[Error Codes](/docs/reference/error-codes/general)**: Comprehensive error reference
 
 ### Community
-- **Discord**: Join the ETHGas Discord for community support
-- **GitHub**: Contribute to open-source projects
-- **Twitter**: Follow [@ETHGas](https://twitter.com/ETHGas) for updates
-- **Blog**: Read technical articles and updates
+- **GitHub**: [ethgas-developer](https://github.com/ethgas-developer) organization
+- **Discord**: Join our developer community
+- **Email**: Direct support for enterprise users
+
+### Testing
+- **TestNet**: [testnet.ethgas.com](https://testnet.ethgas.com) for testing
+- **API Sandbox**: Test API endpoints safely
+- **WebSocket Testing**: Real-time data testing
 
 ## Next Steps
 
-Ready to dive deeper? Choose your path:
+Choose your development path and get started:
 
-- **Traders**: [Trading Guide](/docs/trading/overview) - Learn trading strategies
-- **Developers**: [API Reference](/docs/api/overview) - Build applications
-- **Validators**: [Validator Setup](/docs/validators/setup) - Earn additional rewards
-- **Builders**: [Builder Setup](/docs/api/builder/setup) - Provide block building services
+1. **[Trading Integration](/docs/api/overview)** - Start building trading applications
+2. **[Validator Setup](/docs/validators/setup)** - Integrate validators with ETHGas
+3. **[Builder Registration](/docs/api/builder/setup)** - Register as a block builder
+4. **[Smart Contract Development](https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit)** - Review and integrate contracts
 
-Start with the [Getting Started](/docs/getting-started/welcome) guide to begin your ETHGas journey! 
+For additional assistance, contact our support team or join our community channels. 

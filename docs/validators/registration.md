@@ -1,0 +1,184 @@
+---
+sidebar_position: 2
+---
+
+# Validator Registration
+
+Register your validators with ETHGas to start earning rewards through preconfirmation commitments and gas trading opportunities.
+
+## Registration Overview
+
+Validator registration is required to participate in the ETHGas ecosystem. This process involves:
+
+1. **Setting up the Commit Boost Module** - Configure your validator with ETHGas integration
+2. **Registering Validator Keys** - Submit your validator public keys to ETHGas
+3. **Depositing Collateral** - Provide ETH collateral to secure commitments
+4. **Configuring Network Settings** - Choose between MainNet and TestNet environments
+
+## Technical Specifications
+
+### Exchange Performance
+- **TPS**: 100k TPS
+- **Latency**: 3-5ms latency (depending on colo or direct EC2)
+- **Location**: AWS - Asia Pacific (Tokyo) / ap-northeast-1
+
+### Collateral Contract (EthgasPool)
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="mainnet" label="MainNet" default>
+
+**MainNet Contract Address**: `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`
+
+**Recommendation**: Deposit collateral via the [ETHGas website](https://ethgas.com)
+
+</TabItem>
+<TabItem value="testnet" label="TestNet (Hoodi)">
+
+**TestNet Contract Address**: `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`
+
+**Recommendation**: Deposit collateral via the [ETHGas TestNet](https://testnet.ethgas.com)
+
+</TabItem>
+</Tabs>
+
+## Relay Endpoints
+
+### Available Relays
+
+<Tabs>
+<TabItem value="mainnet-relays" label="MainNet Relays" default>
+
+**Tokyo Relay**:
+```
+https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com
+```
+
+**Frankfurt Relay**:
+```
+https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com
+```
+
+**Virginia Relay**:
+```
+https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com
+```
+
+</TabItem>
+<TabItem value="testnet-relays" label="TestNet Relays">
+
+**Hoodi Relay**:
+```
+https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com
+```
+
+</TabItem>
+</Tabs>
+
+## Registration Process
+
+### Step 1: Environment Setup
+
+Choose your environment and configure the Commit Boost Module:
+
+- **[MainNet Setup](/docs/validators/setup)** - Production environment configuration
+- **[TestNet Setup](/docs/validators/setup)** - Development and testing environment
+
+### Step 2: Register Validator Keys
+
+Use the Commit Boost Module to register your validator public keys:
+
+```bash
+# Register validator keys
+./scripts/register-validators.sh
+
+# Verify registration
+curl -X GET "https://api.ethgas.com/api/v1/validator/status" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+```
+
+### Step 3: Deposit Collateral
+
+Deposit ETH as collateral to secure your preconfirmation commitments:
+
+<Tabs>
+<TabItem value="mainnet-deposit" label="MainNet" default>
+
+**MainNet Deposit**:
+- **Contract**: `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`
+- **Method**: Deposit via [ETHGas website](https://ethgas.com)
+- **Minimum**: 1 ETH per validator
+- **Purpose**: Secure preconfirmation commitments
+
+</TabItem>
+<TabItem value="testnet-deposit" label="TestNet">
+
+**TestNet Deposit**:
+- **Contract**: `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`
+- **Method**: Deposit via [ETHGas TestNet](https://testnet.ethgas.com)
+- **Minimum**: 0.1 ETH per validator (testnet)
+- **Purpose**: Test preconfirmation commitments
+
+</TabItem>
+</Tabs>
+
+### Step 4: Configure Network Settings
+
+Update your validator configuration with ETHGas relay endpoints:
+
+```toml
+# In your validator configuration
+[ethgas]
+# Choose the relay closest to your location
+relay_url = "https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com"
+
+# Network configuration
+network = "mainnet"  # or "testnet"
+chain_id = 1         # or 17000 for testnet
+```
+
+## Integration Resources
+
+### Documentation & Source Code
+
+- **[API Documentation](https://developers.ethgas.com)** - Complete API reference
+- **[Commit Boost Module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module)** - Validator registration and setup
+- **[Modified rbuilder](https://github.com/ethgas-developer/preconf-builder)** - Enhanced block builder
+- **[Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)** - Builder registration and management
+
+### Support Resources
+
+- **[ETHGas Website](https://ethgas.com)** - Main platform
+- **[ETHGas TestNet](https://testnet.ethgas.com)** - Test environment
+- **[GitHub Organization](https://github.com/ethgas-developer)** - All source code and tools
+
+## Next Steps
+
+After completing registration:
+
+1. **[Setup Guide](/docs/validators/setup)** - Configure your validator environment
+2. **[Collateral Management](/docs/validators/deposits)** - Manage your ETH deposits
+3. **[Monitoring & Analytics](/docs/validators/monitoring)** - Track your performance and earnings
+
+## Troubleshooting
+
+### Common Issues
+
+**Registration Failed**
+- Verify your validator keys are correct
+- Ensure you have sufficient ETH for collateral
+- Check network connectivity to relay endpoints
+
+**Relay Connection Issues**
+- Try different relay endpoints based on your location
+- Verify your network configuration
+- Check firewall settings for WebSocket connections
+
+**Collateral Deposit Issues**
+- Use the recommended deposit method via the website
+- Verify contract addresses for your chosen network
+- Ensure sufficient ETH balance for deposits
+
+For additional support, visit the [ETHGas Community](https://discord.gg/ethgas) or check the [GitHub repositories](https://github.com/ethgas-developer) for the latest updates and troubleshooting guides. 

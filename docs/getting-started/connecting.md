@@ -30,12 +30,44 @@ ETHGas uses a token-based authentication system:
 
 Select the appropriate base URL for your environment:
 
+#### MainNet Configuration
+Use MainNet for production applications and real trading.
+
+**API Endpoints:**
+- **REST API:** `https://api.ethgas.com`
+- **WebSocket:** `wss://ws.ethgas.com`
+
+**Connection Example:**
+```bash
+# MainNet
+BASE_URL=https://api.ethgas.com
+
+curl -X POST "${BASE_URL}/api/v1/user/login" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "your_username",
+    "password": "your_password"
+  }'
+```
+
+#### TestNet Configuration
+Use TestNet for development, testing, and learning.
+
+**API Endpoints:**
+- **REST API:** `https://testnet-api.ethgas.com`
+- **WebSocket:** `wss://testnet-ws.ethgas.com`
+
+**Connection Example:**
 ```bash
 # TestNet
 BASE_URL=https://testnet-api.ethgas.com
 
-# MainNet
-BASE_URL=https://api.ethgas.com
+curl -X POST "${BASE_URL}/api/v1/user/login" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "your_username",
+    "password": "your_password"
+  }'
 ```
 
 ### Step 2: Authenticate
@@ -80,11 +112,35 @@ curl -X GET "${BASE_URL}/api/v1/user/info" \
 
 For real-time data, establish a WebSocket connection:
 
-### Connection URL
-- **TestNet**: `wss://testnet-ws.ethgas.com`
-- **MainNet**: `wss://ws.ethgas.com`
+#### MainNet WebSocket
+Connect to MainNet WebSocket for production real-time data.
 
-### Authentication
+**Connection URL:**
+```
+wss://ws.ethgas.com
+```
+
+**Authentication:**
+Send authentication message after connection:
+
+```json
+{
+  "cmd": "login",
+  "data": {
+    "accessToken": "your_access_token"
+  }
+}
+```
+
+#### TestNet WebSocket
+Connect to TestNet WebSocket for development and testing.
+
+**Connection URL:**
+```
+wss://testnet-ws.ethgas.com
+```
+
+**Authentication:**
 Send authentication message after connection:
 
 ```json

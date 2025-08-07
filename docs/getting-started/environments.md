@@ -8,7 +8,12 @@ ETHGas provides multiple environments for development, testing, and production u
 
 ## Available Environments
 
-### TestNet Environment
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="testnet" label="TestNet" default>
+
 **Base URL**: `https://testnet-api.ethgas.com`
 
 The TestNet environment is designed for development and testing purposes:
@@ -19,7 +24,23 @@ The TestNet environment is designed for development and testing purposes:
 - **Features**: Full API functionality with test data
 - **Recommended for**: Initial development, API testing, and learning
 
-### MainNet Environment
+### TestNet Configuration
+
+```bash
+# TestNet Configuration
+ETHGAS_API_URL=https://testnet-api.ethgas.com
+ETHGAS_WS_URL=wss://testnet-ws.ethgas.com
+```
+
+### TestNet Considerations
+- **Authentication**: Test credentials provided
+- **Data**: Simulated market conditions
+- **Limits**: Higher rate limits for testing
+- **Support**: Dedicated testnet support
+
+</TabItem>
+<TabItem value="mainnet" label="MainNet">
+
 **Base URL**: `https://api.ethgas.com`
 
 The MainNet environment is for production use:
@@ -30,7 +51,27 @@ The MainNet environment is for production use:
 - **Features**: Complete production functionality
 - **Recommended for**: Production applications and live trading
 
+### MainNet Configuration
+
+```bash
+# MainNet Configuration
+ETHGAS_API_URL=https://api.ethgas.com
+ETHGAS_WS_URL=wss://ws.ethgas.com
+```
+
+### MainNet Considerations
+- **Authentication**: Production credentials required
+- **Data**: Real market data and conditions
+- **Limits**: Production rate limits apply
+- **Support**: Production support channels
+
+</TabItem>
+</Tabs>
+
 ## Environment Configuration
+
+<Tabs>
+<TabItem value="testnet-config" label="TestNet" default>
 
 ### API Endpoints
 
@@ -40,16 +81,73 @@ All API endpoints follow the same pattern across environments:
 {ENVIRONMENT_BASE_URL}/api/v1/{ENDPOINT}
 ```
 
-Examples:
-- TestNet: `https://testnet-api.ethgas.com/api/v1/user/info`
-- MainNet: `https://api.ethgas.com/api/v1/user/info`
+**TestNet Examples:**
+- User Info: `https://testnet-api.ethgas.com/api/v1/user/info`
+- Authentication: `https://testnet-api.ethgas.com/api/v1/user/login`
+- Market Data: `https://testnet-api.ethgas.com/api/v1/market/data`
 
 ### WebSocket Connections
 
-WebSocket connections also vary by environment:
+**TestNet WebSocket URL**: `wss://testnet-ws.ethgas.com`
 
-- **TestNet**: `wss://testnet-ws.ethgas.com`
-- **MainNet**: `wss://ws.ethgas.com`
+### TestNet Environment Variables
+
+```bash
+# TestNet Configuration
+ETHGAS_API_URL=https://testnet-api.ethgas.com
+ETHGAS_WS_URL=wss://testnet-ws.ethgas.com
+ETHGAS_NETWORK=testnet
+ETHGAS_CHAIN_ID=17000
+```
+
+### TestNet Considerations
+
+- **Authentication**: Test credentials provided
+- **Data**: Simulated market conditions
+- **Limits**: Higher rate limits for testing
+- **Support**: Dedicated testnet support
+- **Risk**: No real funds or actual trading
+
+</TabItem>
+<TabItem value="mainnet-config" label="MainNet">
+
+### API Endpoints
+
+All API endpoints follow the same pattern across environments:
+
+```
+{ENVIRONMENT_BASE_URL}/api/v1/{ENDPOINT}
+```
+
+**MainNet Examples:**
+- User Info: `https://api.ethgas.com/api/v1/user/info`
+- Authentication: `https://api.ethgas.com/api/v1/user/login`
+- Market Data: `https://api.ethgas.com/api/v1/market/data`
+
+### WebSocket Connections
+
+**MainNet WebSocket URL**: `wss://ws.ethgas.com`
+
+### MainNet Environment Variables
+
+```bash
+# MainNet Configuration
+ETHGAS_API_URL=https://api.ethgas.com
+ETHGAS_WS_URL=wss://ws.ethgas.com
+ETHGAS_NETWORK=mainnet
+ETHGAS_CHAIN_ID=1
+```
+
+### MainNet Considerations
+
+- **Authentication**: Production credentials required
+- **Data**: Real market data and conditions
+- **Limits**: Production rate limits apply
+- **Support**: Production support channels
+- **Risk**: Real funds and actual trading
+
+</TabItem>
+</Tabs>
 
 ## Environment Selection
 
@@ -67,20 +165,6 @@ Use the MainNet environment:
 - Production-grade reliability
 - Full market access
 
-## Environment-Specific Considerations
-
-### TestNet
-- **Authentication**: Test credentials provided
-- **Data**: Simulated market conditions
-- **Limits**: Higher rate limits for testing
-- **Support**: Dedicated testnet support
-
-### MainNet
-- **Authentication**: Production credentials required
-- **Data**: Real market data and conditions
-- **Limits**: Production rate limits apply
-- **Support**: Production support channels
-
 ## Migration Path
 
 Recommended development workflow:
@@ -88,28 +172,4 @@ Recommended development workflow:
 1. **Start with TestNet**: Develop and test your integration
 2. **Validate Functionality**: Ensure all features work correctly
 3. **Test with Real Data**: Use TestNet's simulated real data
-4. **Deploy to MainNet**: Move to production when ready
-
-## Environment Variables
-
-Configure your application with environment-specific variables:
-
-```bash
-# TestNet Configuration
-ETHGAS_API_URL=https://testnet-api.ethgas.com
-ETHGAS_WS_URL=wss://testnet-ws.ethgas.com
-
-# MainNet Configuration
-ETHGAS_API_URL=https://api.ethgas.com
-ETHGAS_WS_URL=wss://ws.ethgas.com
-```
-
-## Next Steps
-
-Now that you understand the environments:
-
-1. [Set up your connection](/docs/getting-started/connecting) to the appropriate environment
-2. [Configure authentication](/docs/api/authentication) for your chosen environment
-3. [Test your integration](/docs/api/overview) with basic API calls
-
-Choose your environment and let's get started with the integration! 
+4. **Deploy to MainNet**: Move to production when ready 

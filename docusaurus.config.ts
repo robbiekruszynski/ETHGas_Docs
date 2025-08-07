@@ -82,13 +82,13 @@ const config: Config = {
           label: 'Overview',
         },
         {
-          to: '/docs/api/overview',
-          label: 'API Reference',
+          to: '/docs/developers/overview',
+          label: 'Developers',
           position: 'left',
         },
         {
-          to: '/docs/websocket/overview',
-          label: 'WebSocket',
+          to: '/docs/api/builder/overview',
+          label: 'Builders',
           position: 'left',
         },
         {

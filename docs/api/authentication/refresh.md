@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # POST /api/v1/user/login/refresh
 
-Refresh an expired access token using a refresh token.
+Refresh an expired access token using a valid refresh token.
 
 ## Endpoint
 
@@ -17,11 +17,14 @@ POST /api/v1/user/login/refresh
 | Header | Value |
 |--------|-------|
 | Content-Type | application/json |
-| Authorization | Bearer {refresh_token} |
 
 ## Request Body
 
-No request body required. The refresh token is passed in the Authorization header.
+```json
+{
+  "refreshToken": "YOUR_REFRESH_TOKEN"
+}
+```
 
 ## Response
 
@@ -32,8 +35,8 @@ No request body required. The refresh token is passed in the Authorization heade
   "code": 200,
   "message": "OK",
   "data": {
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "accessToken": "new_access_token_here",
+    "refreshToken": "new_refresh_token_here",
     "expiresIn": 3600
   }
 }
@@ -44,7 +47,7 @@ No request body required. The refresh token is passed in the Authorization heade
 ```json
 {
   "code": 401,
-  "message": "Unauthorized",
+  "message": "Invalid refresh token",
   "data": null
 }
 ```
@@ -53,9 +56,9 @@ No request body required. The refresh token is passed in the Authorization heade
 
 | Field | Type | Description |
 |-------|------|-------------|
-| accessToken | string | New JWT access token |
-| refreshToken | string | New JWT refresh token |
-| expiresIn | integer | Token expiration time in seconds |
+| accessToken | string | New access token |
+| refreshToken | string | New refresh token |
+| expiresIn | number | Token expiration time in seconds |
 
 ## Usage Examples
 
@@ -63,32 +66,37 @@ No request body required. The refresh token is passed in the Authorization heade
 
 ```bash
 curl -X POST "https://api.ethgas.com/api/v1/user/login/refresh" \
-  -H "Authorization: Bearer your_refresh_token"
+  -H "Content-Type: application/json" \
+  -d '{
+    "refreshToken": "your_refresh_token_here"
+  }'
 ```
 
 ### Python
 
 ```python
 import requests
+import json
 
 def refresh_token(refresh_token):
     url = "https://api.ethgas.com/api/v1/user/login/refresh"
-    headers = {"Authorization": f"Bearer {refresh_token}"}
+    headers = {"Content-Type": "application/json"}
+    data = {"refreshToken": refresh_token}
     
-    response = requests.post(url, headers=headers)
+    response = requests.post(url, headers=headers, json=data)
     
     if response.status_code == 200:
-        data = response.json()
-        return data["data"]["accessToken"]
+        return response.json()["data"]
     else:
-        raise Exception("Token refresh failed")
+        return None
 
 # Usage
-try:
-    new_access_token = refresh_token("your_refresh_token")
-    print(f"New access token: {new_access_token}")
-except Exception as e:
-    print(f"Refresh failed: {e}")
+new_tokens = refresh_token("your_refresh_token_here")
+if new_tokens:
+    print(f"New access token: {new_tokens['accessToken']}")
+    print(f"New refresh token: {new_tokens['refreshToken']}")
+else:
+    print("Token refresh failed")
 ```
 
 ### JavaScript
@@ -98,21 +106,30 @@ async function refreshToken(refreshToken) {
     const response = await fetch('https://api.ethgas.com/api/v1/user/login/refresh', {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${refreshToken}`
-        }
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            refreshToken: refreshToken
+        })
     });
 
     if (response.ok) {
         const data = await response.json();
-        return data.data.accessToken;
+        return data.data;
     } else {
         throw new Error('Token refresh failed');
     }
 }
 
-refreshToken('your_refresh_token')
-    .then(newToken => console.log('New access token:', newToken))
-    .catch(error => console.error('Refresh failed:', error));
+// Usage
+refreshToken('your_refresh_token_here')
+    .then(tokens => {
+        console.log('New access token:', tokens.accessToken);
+        console.log('New refresh token:', tokens.refreshToken);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 ```
 
 ## Token Refresh Flow

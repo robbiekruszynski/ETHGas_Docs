@@ -6,6 +6,26 @@ sidebar_position: 2
 
 This guide provides step-by-step instructions for setting up validators with ETHGas, tailored to your specific consensus client.
 
+## Repository Overview
+
+The [ETHGas Preconf Commit Boost Module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module) is the official repository for validator integration with ETHGas. This module enables validators to participate in preconfirmation commitments and earn additional rewards.
+
+### Repository Structure
+
+The [ethgas-preconf-commit-boost-module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module) repository includes:
+
+- **Commit Boost Module**: Core validator integration logic
+- **PBS Module**: Proposer-Builder Separation integration
+- **Docker Configuration**: Complete containerized setup
+- **Configuration Templates**: Environment-specific configurations
+- **Monitoring Tools**: Health checks and performance monitoring
+
+### Related Repositories
+
+- **[ETHGas Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)**: Builder registration and management
+- **[Preconf Builder](https://github.com/ethgas-developer/preconf-builder)**: Modified rbuilder for ETHGas integration
+- **[ETHGas Contracts](https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit)**: Smart contract implementations
+
 ## Prerequisites
 
 Before beginning the setup process, ensure you have:
@@ -16,6 +36,7 @@ Before beginning the setup process, ensure you have:
 - **Consensus Client**: Lighthouse, Prysm, or Teku (choose one)
 - **Execution Client**: Compatible with your consensus client
 - **Minimum Requirements**: 4GB RAM, 100GB storage, stable internet
+- **Network Access**: Ability to connect to ETHGas APIs
 
 ## Choose Your Consensus Client
 
@@ -52,14 +73,64 @@ cp .env.example .env
 ```
 
 ### 3. Configure Variables
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="mainnet" label="MainNet" default>
+
 ```bash
 # Set your validator keys
 BLS_KEY_PAIR=your_bls_key_pair
 EOA_SIGNING_KEY=your_eoa_signing_key
 
-# Set network (mainnet or testnet)
+# Set network (mainnet)
 NETWORK=mainnet
+
+# Optional: Additional configuration
+LOG_LEVEL=info
+METRICS_ENABLED=true
+ALERTING_ENABLED=true
 ```
+
+### MainNet Configuration
+
+For MainNet production use:
+
+- **Network**: MainNet
+- **Chain ID**: 1
+- **Contract Addresses**: Production addresses
+- **Security**: Production-grade security measures
+
+</TabItem>
+<TabItem value="testnet" label="TestNet">
+
+```bash
+# Set your validator keys
+BLS_KEY_PAIR=your_bls_key_pair
+EOA_SIGNING_KEY=your_eoa_signing_key
+
+# Set network (testnet)
+NETWORK=testnet
+
+# Optional: Additional configuration
+LOG_LEVEL=debug
+METRICS_ENABLED=true
+ALERTING_ENABLED=true
+```
+
+### TestNet Configuration
+
+For TestNet development and testing:
+
+- **Network**: TestNet
+- **Chain ID**: 17000 (Hoodi)
+- **Contract Addresses**: Test addresses
+- **Security**: Development security measures
+
+</TabItem>
+</Tabs>
 
 ### 4. Build and Deploy
 ```bash
@@ -228,6 +299,25 @@ eoa_signing_key = "${EOA_SIGNING_KEY}"
 
 [timeouts]
 timeout_get_header_ms = 1950  # Lighthouse specific
+
+[registration]
+enable_registration = true
+entity_name = "your_entity_name"
+registration_mode = "standard"  # standard, ssv, or skipped
+
+[collateral]
+collateral_per_slot = 0.1  # ETH per slot
+overall_wait_interval_in_second = 3600
+api_wait_interval_in_ms = 1000
+
+[authentication]
+is_jwt_provided = false
+eoa_signing_key = "${EOA_SIGNING_KEY}"
+
+# Or use JWT tokens
+# is_jwt_provided = true
+# access_jwt = "your_access_jwt_here"
+# refresh_jwt = "your_refresh_jwt_here"
 EOF
 ```
 
@@ -382,6 +472,8 @@ journalctl -u lighthouse-validator -f
 - **ETHGas TestNet**: [testnet.ethgas.com](https://testnet.ethgas.com)
 - **GitHub Repository**: [ethgas-preconf-commit-boost-module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module)
 - **Builder Scripts**: [ethgas-builder-scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)
+- **Preconf Builder**: [preconf-builder](https://github.com/ethgas-developer/preconf-builder)
+- **ETHGas Contracts**: [ethgas-contracts-avs-for-audit](https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit)
 
 ## Next Steps
 

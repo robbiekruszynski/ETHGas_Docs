@@ -47,11 +47,11 @@ Positions track your current market exposure:
 
 ## Getting Started Checklist
 
-1. **Environment Setup**: [Configure your environment](/docs/getting-started/environments)
-2. **Authentication**: [Set up API credentials](/docs/getting-started/connecting)
-3. **API Testing**: Test basic API calls
-4. **WebSocket Connection**: Connect to real-time data
-5. **First Trade**: Place your first order
+✅ **Environment Setup**: [Configure your environment](/docs/getting-started/environments)
+✅ **Authentication**: [Set up API credentials](/docs/getting-started/connecting)
+✅ **API Testing**: Test basic API calls
+✅ **WebSocket Connection**: Connect to real-time data
+✅ **First Trade**: Place your first order
 
 ## Next Steps
 

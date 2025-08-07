@@ -10,10 +10,12 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
 
 <div className="row" style={{ marginBottom: '2rem' }}>
   <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <h3>Connection</h3>
-      <p>Learn about WebSocket URLs, authentication requirements, and connection management.</p>
-      <div style={{ marginTop: 'auto' }}>
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Connection</h3>
+        <p>Learn about WebSocket URLs, authentication requirements, and connection management.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
         <a href="#connection-information" className="button button--outline button--sm">
           View Connection Info →
         </a>
@@ -21,10 +23,12 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
     </div>
   </div>
   <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <h3>Channels</h3>
-      <p>Explore public and private channels for real-time market data and account updates.</p>
-      <div style={{ marginTop: 'auto' }}>
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Channels</h3>
+        <p>Explore public and private channels for real-time market data and account updates.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
         <a href="#channel-types" className="button button--outline button--sm">
           View Channels →
         </a>
@@ -32,10 +36,12 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
     </div>
   </div>
   <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <h3>Authentication</h3>
-      <p>Understand the login process and authentication flow for private channels.</p>
-      <div style={{ marginTop: 'auto' }}>
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Authentication</h3>
+        <p>Understand the login process and authentication flow for private channels.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
         <a href="#authentication" className="button button--outline button--sm">
           View Auth Guide →
         </a>
@@ -46,10 +52,12 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
 
 <div className="row" style={{ marginBottom: '2rem' }}>
   <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <h3>Messages</h3>
-      <p>Learn about message structure, commands, and data formats for WebSocket communication.</p>
-      <div style={{ marginTop: 'auto' }}>
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Messages</h3>
+        <p>Learn about message structure, commands, and data formats for WebSocket communication.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
         <a href="#message-structure" className="button button--outline button--sm">
           View Message Format →
         </a>
@@ -57,10 +65,12 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
     </div>
   </div>
   <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <h3>Best Practices</h3>
-      <p>Discover connection management, error handling, and performance optimization tips.</p>
-      <div style={{ marginTop: 'auto' }}>
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Best Practices</h3>
+        <p>Discover connection management, error handling, and performance optimization tips.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
         <a href="#best-practices" className="button button--outline button--sm">
           View Best Practices →
         </a>
@@ -68,10 +78,12 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
     </div>
   </div>
   <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <h3>Error Handling</h3>
-      <p>Understand common errors, rate limiting, and troubleshooting strategies.</p>
-      <div style={{ marginTop: 'auto' }}>
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Error Handling</h3>
+        <p>Understand common errors, rate limiting, and troubleshooting strategies.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
         <a href="#error-handling" className="button button--outline button--sm">
           View Error Guide →
         </a>
@@ -82,28 +94,71 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
 
 ## Connection Information {#connection-information}
 
-### WebSocket URLs
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<div style={{ overflowX: 'auto' }}>
-  <table style={{ width: '100%', minWidth: '500px' }}>
-    <thead>
-      <tr>
-        <th style={{ padding: '12px', textAlign: 'left', borderBottom: '2px solid var(--ifm-color-primary-lightest)' }}>Environment</th>
-        <th style={{ padding: '12px', textAlign: 'left', borderBottom: '2px solid var(--ifm-color-primary-lightest)' }}>WebSocket URL</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style={{ padding: '12px', borderBottom: '1px solid rgba(0,0,0,0.1)' }}><strong>TestNet</strong></td>
-        <td style={{ padding: '12px', borderBottom: '1px solid rgba(0,0,0,0.1)', fontFamily: 'var(--ifm-font-family-monospace)', backgroundColor: 'var(--ifm-code-background)', borderRadius: '4px' }}><code>wss://testnet-ws.ethgas.com</code></td>
-      </tr>
-      <tr>
-        <td style={{ padding: '12px', borderBottom: '1px solid rgba(0,0,0,0.1)' }}><strong>MainNet</strong></td>
-        <td style={{ padding: '12px', borderBottom: '1px solid rgba(0,0,0,0.1)', fontFamily: 'var(--ifm-font-family-monospace)', backgroundColor: 'var(--ifm-code-background)', borderRadius: '4px' }}><code>wss://ws.ethgas.com</code></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<Tabs>
+<TabItem value="testnet" label="TestNet" default>
+
+**WebSocket URL**: `wss://testnet-ws.ethgas.com`
+
+Use TestNet WebSocket for development and testing:
+
+- **Purpose**: Development and testing
+- **Data**: Simulated market data
+- **Authentication**: Test credentials
+- **Rate Limits**: Higher limits for testing
+
+### TestNet Connection Example
+
+```javascript
+const ws = new WebSocket('wss://testnet-ws.ethgas.com');
+
+ws.onopen = function() {
+  console.log('Connected to ETHGas TestNet WebSocket');
+  
+  // Authenticate
+  ws.send(JSON.stringify({
+    cmd: 'login',
+    data: {
+      accessToken: 'your_testnet_access_token'
+    }
+  }));
+};
+```
+
+</TabItem>
+<TabItem value="mainnet" label="MainNet">
+
+**WebSocket URL**: `wss://ws.ethgas.com`
+
+Use MainNet WebSocket for production applications:
+
+- **Purpose**: Production trading
+- **Data**: Real market data
+- **Authentication**: Production credentials
+- **Rate Limits**: Production limits apply
+
+### MainNet Connection Example
+
+```javascript
+const ws = new WebSocket('wss://ws.ethgas.com');
+
+ws.onopen = function() {
+  console.log('Connected to ETHGas MainNet WebSocket');
+  
+  // Authenticate
+  ws.send(JSON.stringify({
+    cmd: 'login',
+    data: {
+      accessToken: 'your_mainnet_access_token'
+    }
+  }));
+};
+```
+
+</TabItem>
+</Tabs>
 
 ### Connection Requirements
 

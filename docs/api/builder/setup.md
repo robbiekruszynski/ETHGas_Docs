@@ -10,6 +10,22 @@ This guide provides step-by-step instructions for setting up a builder with ETHG
 
 The [ETHGas Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts) repository contains everything needed to onboard your BLS public keys to the ETHGas Exchange. This repository is essential for builders who want to participate in the ETHGas ecosystem.
 
+### Repository Structure
+
+The [ethgas-builder-scripts](https://github.com/ethgas-developer/ethgas-builder-scripts) repository includes:
+
+- **Docker Configuration**: Complete containerized setup
+- **Environment Templates**: Mainnet and testnet configurations
+- **Build Scripts**: Automated build and deployment
+- **Registration Logic**: Builder registration and management
+- **Monitoring**: Health checks and logging
+
+### Related Repositories
+
+- **[Preconf Builder](https://github.com/ethgas-developer/preconf-builder)**: Modified rbuilder for ETHGas integration
+- **[ETHGas Contracts](https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit)**: Smart contract implementations
+- **[Commit Boost Module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module)**: Validator integration module
+
 ## Prerequisites
 
 Before setting up your builder, ensure you have:
@@ -18,6 +34,7 @@ Before setting up your builder, ensure you have:
 - **BLS Key Pair**: Your BLS public and secret keys
 - **EOA Signing Key**: Your registered or to-be-registered account on ETHGas Exchange
 - **Entity Information**: Your company/entity name for registration
+- **Network Access**: Ability to connect to ETHGas APIs
 
 ## Quick Start
 
@@ -32,15 +49,65 @@ cd ethgas-builder-scripts
 
 Choose the appropriate environment file and configure it:
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="mainnet" label="MainNet" default>
+
 #### For Mainnet
 ```bash
 cp .env.example.mainnet .env
 ```
 
+### Mainnet Configuration
+
+The `.env.example.mainnet` file contains production settings:
+
+```bash
+# Mainnet API endpoint
+API_ENDPOINT=https://api.ethgas.com
+
+# Mainnet chain ID
+CHAIN_ID=1
+
+# Production logging
+LOG_LEVEL=info
+
+# Mainnet contract addresses
+REGISTRATION_CONTRACT=0x...
+BUILDER_REGISTRY_CONTRACT=0x...
+```
+
+</TabItem>
+<TabItem value="testnet" label="TestNet">
+
 #### For Testnet (Hoodi)
 ```bash
 cp .env.example.hoodi .env
 ```
+
+### Testnet Configuration
+
+The `.env.example.hoodi` file contains testnet settings:
+
+```bash
+# Testnet API endpoint
+API_ENDPOINT=https://testnet-api.ethgas.com
+
+# Testnet chain ID
+CHAIN_ID=17000
+
+# Development logging
+LOG_LEVEL=debug
+
+# Testnet contract addresses
+REGISTRATION_CONTRACT=0x...
+BUILDER_REGISTRY_CONTRACT=0x...
+```
+
+</TabItem>
+</Tabs>
 
 ### 3. Configure Environment Variables
 
@@ -90,6 +157,10 @@ CHAIN_ID=1
 
 # Production logging
 LOG_LEVEL=info
+
+# Mainnet contract addresses
+REGISTRATION_CONTRACT=0x...
+BUILDER_REGISTRY_CONTRACT=0x...
 ```
 
 ### Testnet Configuration
@@ -105,6 +176,10 @@ CHAIN_ID=17000
 
 # Development logging
 LOG_LEVEL=debug
+
+# Testnet contract addresses
+REGISTRATION_CONTRACT=0x...
+BUILDER_REGISTRY_CONTRACT=0x...
 ```
 
 ## Key Management
@@ -170,134 +245,249 @@ When `ENABLE_REGISTRATION=true`:
 
 1. **Validate keys**: Verify BLS and EOA keys are valid
 2. **Check registration**: Verify if already registered
-3. **Submit registration**: Send registration transaction
-4. **Confirm registration**: Wait for transaction confirmation
-5. **Verify status**: Check registration status on-chain
+3. **Submit registration**: Register with ETHGas Exchange
+4. **Confirm status**: Verify registration was successful
 
-### Deregistration
+### Manual Registration
 
-When `ENABLE_REGISTRATION=false`:
+For manual registration, use the API directly:
 
-1. **Check registration**: Verify current registration status
-2. **Submit deregistration**: Send deregistration transaction
-3. **Confirm deregistration**: Wait for transaction confirmation
-4. **Verify removal**: Check deregistration status on-chain
+```bash
+# Register builder via API
+curl -X POST "https://api.ethgas.com/api/v1/builder/register" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "blsPublicKey": "0x...",
+    "feeRecipient": "0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6",
+    "builderUrl": "https://builder.example.com"
+  }'
+```
+
+## Integration with Modified rbuilder
+
+### Installation
+
+```bash
+# Clone the modified rbuilder
+git clone https://github.com/ethgas-developer/preconf-builder
+cd preconf-builder
+
+# Build the project
+cargo build --release
+
+# Configure the builder
+cp config.example.toml config.toml
+# Edit config.toml with your settings
+```
+
+### Configuration
+
+```toml
+[ethgas]
+# ETHGas API endpoint
+api_url = "https://api.ethgas.com"
+# Your API credentials
+api_key = "your_api_key_here"
+
+[relay]
+# ETHGas relay endpoint
+relay_url = "https://relay.ethgas.com"
+# Relay authentication
+relay_auth = "your_relay_auth_token"
+
+[block_building]
+# Maximum gas limit for blocks
+max_gas_limit = 30000000
+# Minimum gas price for mempool transactions
+min_gas_price = 1000000000
+# Enable preconf transaction inclusion
+enable_preconf = true
+
+[commitments]
+# Commitment validation settings
+validate_commitments = true
+require_all_preconfs = true
+bundle_positioning = true
+```
+
+## API Integration
+
+### Authentication
+
+Builders must authenticate with ETHGas APIs using:
+
+```bash
+# API key authentication
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+     https://api.ethgas.com/v1/builder/status
+```
+
+### Required Endpoints
+
+Builders must implement integration with these endpoints:
+
+- **Preconf Transactions**: `/v1/builder/preconf-transactions`
+- **Block Submission**: `/v1/builder/submit-block`
+- **Commitment Validation**: `/v1/builder/validate-commitment`
+- **Fee Distribution**: `/v1/builder/fee-distribution`
+
+### Example API Calls
+
+```bash
+# Get preconf transactions for slot
+curl -X GET "https://api.ethgas.com/v1/builder/preconf-transactions/12345678" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+
+# Submit built block
+curl -X POST "https://api.ethgas.com/v1/builder/submit-block" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "slot": 12345678,
+    "block_hash": "0x...",
+    "parent_hash": "0x...",
+    "transactions": ["0x...", "0x..."],
+    "commitments_satisfied": ["commitment_123"]
+  }'
+```
+
+## Compliance Requirements
+
+### Block Validation
+
+All built blocks must pass validation checks:
+
+- **Preconf inclusion**: All preconf transactions for the slot must be included
+- **Bundle positioning**: Top and bottom bundles must be in correct positions
+- **Gas limit**: Block must not exceed gas limit
+- **Commitment compliance**: Block must satisfy all trader commitments
+
+### Performance Requirements
+
+- **Block building time**: Must complete within slot timeframe
+- **Relay submission**: Must submit blocks to relay before deadline
+- **Error handling**: Must handle failures gracefully
+- **Monitoring**: Must provide status and health information
+
+## Fee Distribution
+
+### Priority Fees
+
+Priority fees from block transactions are distributed as follows:
+
+- **Self Building**: All fees go to the block owner
+- **Specialist Builders**: Distribution negotiated between trader and builder
+- **Fallback Builder**: All fees go to the block owner
+
+### MEV Extraction
+
+MEV opportunities are distributed based on:
+
+- **Block ownership**: Block owners receive MEV from their blocks
+- **Builder fees**: Builders may receive a portion of MEV
+- **Trader commitments**: Traders receive value from their commitments
 
 ## Monitoring and Logs
 
-### Log Levels
+### Container Logs
 
-- **debug**: Detailed debugging information
-- **info**: General information and status updates
-- **warn**: Warning messages
-- **error**: Error messages and failures
+```bash
+# View real-time logs
+docker-compose logs -f
 
-### Monitoring
+# View specific service logs
+docker-compose logs builder-registration
 
-- **Registration status**: Check if builder is registered
-- **Transaction status**: Monitor registration/deregistration transactions
-- **API connectivity**: Verify connection to ETHGas APIs
-- **Error handling**: Monitor for any registration failures
+# View logs with timestamps
+docker-compose logs -f --timestamps
+```
+
+### Health Checks
+
+```bash
+# Check container status
+docker-compose ps
+
+# Check builder registration status
+curl -X GET "https://api.ethgas.com/v1/builder/status" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
 
 ## Troubleshooting
 
 ### Common Issues
 
-#### Invalid BLS Keys
-```
-Error: Invalid BLS key pair
-Solution: Ensure BLS_PUBKEY and BLS_SECRET_KEY are from the same key pair
-```
+1. **Registration Failed**
+   - Verify BLS key pair is valid
+   - Check EOA signing key permissions
+   - Ensure account is registered on ETHGas Exchange
 
-#### Invalid EOA Key
-```
-Error: Invalid EOA signing key
-Solution: Verify the EOA key is valid and registered on ETHGas Exchange
-```
+2. **Container Won't Start**
+   - Check environment variables are set correctly
+   - Verify Docker and Docker Compose are installed
+   - Check network connectivity to ETHGas APIs
 
-#### Network Connectivity
-```
-Error: Cannot connect to ETHGas API
-Solution: Check network connectivity and API endpoint configuration
-```
-
-#### Docker Issues
-```
-Error: Docker build failed
-Solution: Ensure Docker is installed and running, check Dockerfile syntax
-```
+3. **API Authentication Errors**
+   - Verify API key is correct
+   - Check token expiration
+   - Ensure proper Authorization header format
 
 ### Debug Mode
 
-Enable debug logging for detailed troubleshooting:
+Enable debug logging for troubleshooting:
 
 ```bash
+# Set debug logging
 LOG_LEVEL=debug
+
+# Restart container
+docker-compose restart
 ```
 
 ## Security Considerations
 
-### Key Security
+### Key Management
 
-- **Secure storage**: Store private keys in secure environments
+- **Secure storage**: Store private keys in hardware security modules (HSM) when possible
 - **Access control**: Limit access to builder keys
-- **Regular audits**: Periodically review key usage
-- **Incident response**: Have a plan for key compromise
+- **Regular rotation**: Consider rotating keys periodically
+- **Backup strategy**: Implement secure backup procedures
 
 ### Network Security
 
-- **Firewall configuration**: Restrict network access
-- **VPN usage**: Use secure connections when possible
-- **Monitoring**: Monitor for suspicious activity
-- **Updates**: Keep systems updated
-
-## Integration with Builder Software
-
-### Modified rbuilder
-
-The ETHGas-modified rbuilder includes:
-
-- **Preconf transaction streaming**: Receive latest preconf transactions
-- **Compliance checking**: Ensure blocks meet commitment requirements
-- **Position management**: Handle bundle positioning correctly
-- **Mempool integration**: Fill remaining blockspace appropriately
-
-### Relay Integration
-
-Submit blocks through ETHGas Relay:
-
-- **Block submission**: Send built blocks to relay
-- **Compliance verification**: Ensure blocks meet requirements
-- **Fee distribution**: Handle priority fee distribution
-- **Performance monitoring**: Track block building performance
+- **Firewall configuration**: Restrict access to builder ports
+- **VPN usage**: Use VPN for remote access
+- **Regular updates**: Keep all software updated
+- **Security audits**: Regular security assessments
 
 ## Support and Resources
 
 ### Documentation
 
-- [Builder Overview](/docs/api/builder/overview) - Understanding builders and sequencers
-- [Builder Registration](/docs/api/builder/registration) - Detailed registration process
-- [Block Building API](/docs/api/builder/building) - API endpoints for block building
+- **[ETHGas Documentation](https://docs.ethgas.com)**: Complete platform documentation
+- **[Builder API Reference](/docs/api/builder/building)**: Detailed API documentation
+- **[Registration Guide](/docs/api/builder/registration)**: Registration process details
 
 ### Community Support
 
-- **ETHGas Discord**: Join for community support and updates
 - **GitHub Issues**: Report issues in the [builder scripts repository](https://github.com/ethgas-developer/ethgas-builder-scripts)
-- **ETHGas X/Twitter**: [@ETHGas](https://twitter.com/ETHGas) for announcements
+- **Discord**: Join our builder community
+- **Email**: Direct support for enterprise users
 
 ### Essential Links
 
-- **Builder Scripts**: [https://github.com/ethgas-developer/ethgas-builder-scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)
-- **Modified rbuilder**: [https://github.com/ethgas-developer/preconf-builder](https://github.com/ethgas-developer/preconf-builder)
-- **ETHGas Documentation**: [https://docs.ethgas.com](https://docs.ethgas.com)
+- **[ETHGas TestNet](https://testnet.ethgas.com)**: Test your integration
+- **[Builder Scripts Repository](https://github.com/ethgas-developer/ethgas-builder-scripts)**: Complete setup code
+- **[Preconf Builder Repository](https://github.com/ethgas-developer/preconf-builder)**: Modified rbuilder
+- **[ETHGas Contracts](https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit)**: Smart contract implementations
 
 ## Next Steps
 
-After completing the setup:
+1. **Complete Setup**: Follow the instructions above to set up your builder
+2. **Test Integration**: Verify connection to ETHGas network
+3. **Monitor Performance**: Set up monitoring and alerting
+4. **Optimize Configuration**: Fine-tune based on performance metrics
+5. **Join Community**: Connect with other builders for support
 
-1. **Test registration**: Verify builder registration on testnet
-2. **Monitor performance**: Track block building performance
-3. **Optimize configuration**: Fine-tune settings for your environment
-4. **Join community**: Participate in ETHGas builder community
-
-For detailed API reference, see the [Block Building API](/docs/api/builder/building) documentation. 
+For additional assistance, contact our support team or join our community channels. 

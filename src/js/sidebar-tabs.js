@@ -1,40 +1,54 @@
-// Sidebar Tab-like Behavior
+// Sidebar tab-like behavior
 document.addEventListener('DOMContentLoaded', function() {
-  // Function to force collapse all sidebar categories
-  function forceCollapseAll() {
-    const allCategories = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1');
-    allCategories.forEach(cat => {
-      // Force collapse by adding the collapsed class
-      cat.classList.add('theme-doc-sidebar-item-category-level-1--collapsed');
-      // Remove any active states
-      cat.classList.remove('theme-doc-sidebar-item-category-level-1--active');
+  // Store the current active category
+  let currentActiveCategory = null;
+
+  // Function to collapse all categories
+  function collapseAllCategories() {
+    const categories = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1');
+    categories.forEach(category => {
+      category.classList.add('theme-doc-sidebar-item-category-level-1--collapsed');
+      category.classList.remove('theme-doc-sidebar-item-category-level-1--active');
     });
   }
 
-  // Function to expand a specific category and collapse others
+  // Function to expand only one category
   function expandOnlyCategory(categoryName) {
-    // First, force collapse all categories
-    forceCollapseAll();
+    // First collapse all categories
+    collapseAllCategories();
     
-    // Find the target category
-    const categoryHeaders = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1 > .theme-doc-sidebar-item-category-label');
-    const targetCategory = Array.from(categoryHeaders).find(header => 
-      header.textContent.trim() === categoryName
-    );
-    
-    if (targetCategory) {
-      const category = targetCategory.closest('.theme-doc-sidebar-item-category-level-1');
-      
-      // Remove collapsed class and add active class
-      category.classList.remove('theme-doc-sidebar-item-category-level-1--collapsed');
-      category.classList.add('theme-doc-sidebar-item-category-level-1--active');
-      
-      // Store the active category
-      sessionStorage.setItem('activeSidebarCategory', categoryName);
-    }
+    // Find and expand the target category
+    const categories = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1');
+    categories.forEach(category => {
+      const categoryLabel = category.querySelector('.theme-doc-sidebar-item-category-label');
+      if (categoryLabel && categoryLabel.textContent.trim() === categoryName) {
+        category.classList.remove('theme-doc-sidebar-item-category-level-1--collapsed');
+        category.classList.add('theme-doc-sidebar-item-category-level-1--active');
+        currentActiveCategory = categoryName;
+        
+        // Store in session storage
+        sessionStorage.setItem('activeSidebarCategory', categoryName);
+      }
+    });
   }
 
-  // Handle navbar link clicks with a more aggressive approach
+  // Function to get category name for a given path
+  function getCategoryForPath(path) {
+    if (path.includes('/docs/validators/') || path.includes('validators')) {
+      return 'For Validators';
+    } else if (path.includes('/docs/api/builder/') || path.includes('builder')) {
+      return 'For Builders';
+    } else if (path.includes('/docs/api/') || path.includes('/docs/websocket/') || path.includes('api') || path.includes('websocket')) {
+      return 'For Developers';
+    } else if (path.includes('/docs/getting-started/') || path.includes('overview')) {
+      return 'Overview';
+    } else if (path.includes('/docs/reference/') || path.includes('/docs/changelog/') || path.includes('/docs/community')) {
+      return 'Resources';
+    }
+    return null;
+  }
+
+  // Handle navbar link clicks with aggressive collapse
   function handleNavbarClick(href) {
     let targetCategory = null;
     
@@ -46,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
       targetCategory = 'For Developers';
     } else if (href.includes('/docs/getting-started/') || href.includes('overview')) {
       targetCategory = 'Overview';
-    } else if (href.includes('/docs/reference/') || href.includes('/docs/changelog/')) {
+    } else if (href.includes('/docs/reference/') || href.includes('/docs/changelog/') || href.includes('/docs/community')) {
       targetCategory = 'Resources';
     }
     
@@ -69,80 +83,61 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Also listen for navigation events
+  // Handle browser back/forward navigation
   window.addEventListener('popstate', function() {
     const currentPath = window.location.pathname;
-    const currentCategory = getCategoryForPath(currentPath);
-    if (currentCategory) {
+    const targetCategory = getCategoryForPath(currentPath);
+    if (targetCategory) {
       setTimeout(() => {
-        expandOnlyCategory(currentCategory);
+        expandOnlyCategory(targetCategory);
       }, 100);
     }
   });
 
-  // Handle sidebar category clicks
-  const categoryHeaders = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1 > .theme-doc-sidebar-item-category-label');
-  categoryHeaders.forEach(header => {
-    header.addEventListener('click', function(e) {
-      const category = this.closest('.theme-doc-sidebar-item-category-level-1');
-      const isCurrentlyExpanded = !category.classList.contains('theme-doc-sidebar-item-category-level-1--collapsed');
-      
-      // If this category is already expanded, allow normal collapse
-      if (isCurrentlyExpanded) {
-        return;
-      }
-      
-      // Get the category name
-      const categoryName = this.textContent.trim();
-      
-      // Collapse all others and expand this one
-      expandOnlyCategory(categoryName);
-    });
-  });
-  
-  // Restore active category on page load
-  const activeCategoryName = sessionStorage.getItem('activeSidebarCategory');
-  if (activeCategoryName) {
-    setTimeout(() => {
-      expandOnlyCategory(activeCategoryName);
-    }, 100);
-  }
-  
-  // Handle direct link clicks to auto-expand the relevant category
-  const currentPath = window.location.pathname;
-  const currentCategory = getCategoryForPath(currentPath);
-  if (currentCategory) {
-    setTimeout(() => {
-      expandOnlyCategory(currentCategory);
-    }, 100);
-  }
-
-  // Additional cleanup on page load to ensure only one category is expanded
+  // Initialize on page load
   setTimeout(() => {
-    const expandedCategories = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1:not(.theme-doc-sidebar-item-category-level-1--collapsed)');
-    if (expandedCategories.length > 1) {
-      // If multiple categories are expanded, collapse all and expand only the current one
-      const currentPath = window.location.pathname;
-      const currentCategory = getCategoryForPath(currentPath);
-      if (currentCategory) {
-        expandOnlyCategory(currentCategory);
-      }
+    const currentPath = window.location.pathname;
+    const targetCategory = getCategoryForPath(currentPath);
+    if (targetCategory) {
+      expandOnlyCategory(targetCategory);
     }
-  }, 500);
-});
+  }, 100);
 
-// Helper function to determine which category a path belongs to
-function getCategoryForPath(path) {
-  if (path.includes('/docs/validators/')) {
-    return 'For Validators';
-  } else if (path.includes('/docs/api/builder/')) {
-    return 'For Builders';
-  } else if (path.includes('/docs/api/') || path.includes('/docs/websocket/')) {
-    return 'For Developers';
-  } else if (path.includes('/docs/getting-started/')) {
-    return 'Overview';
-  } else if (path.includes('/docs/reference/') || path.includes('/docs/changelog/')) {
-    return 'Resources';
+  // Network tabs functionality
+  function initializeNetworkTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
+    
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+        const tabContainer = this.closest('.network-tabs');
+        
+        // Remove active class from all buttons and panes in this container
+        const buttons = tabContainer.querySelectorAll('.tab-button');
+        const panes = tabContainer.querySelectorAll('.tab-pane');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        panes.forEach(pane => pane.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding pane
+        this.classList.add('active');
+        
+        const targetPane = document.getElementById(tabId);
+        if (targetPane) {
+          targetPane.classList.add('active');
+        }
+      });
+    });
   }
-  return null;
-} 
+
+  // Initialize network tabs when DOM is ready
+  initializeNetworkTabs();
+  
+  // Also initialize on navigation (for SPA behavior)
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('tab-button')) {
+      // Re-initialize tabs if new ones are added dynamically
+      setTimeout(initializeNetworkTabs, 100);
+    }
+  });
+}); 
