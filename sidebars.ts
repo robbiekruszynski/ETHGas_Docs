@@ -4,9 +4,8 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     {
       type: 'category',
-      label: 'Introduction',
+      label: 'Getting Started',
       items: [
-        'intro',
         'getting-started/welcome',
         'getting-started/environments',
         'getting-started/connecting',
@@ -14,14 +13,34 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Core Concepts',
+      label: 'For Developers',
       items: [
+        'developers/overview',
+        'intro',
         'api/overview',
-        // Add concept pages here when created
-        // 'concepts/block-building',
-        // 'concepts/mev-protection',
-        // 'concepts/inclusion-preconf',
-        // 'concepts/whole-block-trading',
+        'websocket/overview',
+        'reference/error-codes/general',
+        'reference/lookup-tables/markets',
+        'reference/lookup-tables/orders',
+        'reference/lookup-tables/response-codes',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'For Validators',
+      items: [
+        'validators/overview',
+        'validators/setup',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'For Builders',
+      items: [
+        'api/builder/overview',
+        'api/builder/setup',
+        'api/builder/registration',
+        'api/builder/building',
       ],
     },
     {
@@ -30,43 +49,20 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'category',
-          label: 'REST API',
+          label: 'Authentication',
           items: [
-            {
-              type: 'category',
-              label: 'Authentication',
-              items: [
-                'api/authentication/login',
-                'api/authentication/verify',
-                'api/authentication/refresh',
-                'api/authentication/logout',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'User Management',
-              items: [
-                'api/user/update',
-                'api/user/payout-address',
-              ],
-            },
+            'api/authentication/login',
+            'api/authentication/logout',
+            'api/authentication/refresh',
+            'api/authentication/verify',
           ],
         },
         {
           type: 'category',
-          label: 'WebSocket API',
+          label: 'User Management',
           items: [
-            'websocket/overview',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Builder API',
-          items: [
-            'api/builder/overview',
-            'api/builder/setup',
-            'api/builder/registration',
-            'api/builder/building',
+            'api/user/update',
+            'api/user/payout-address',
           ],
         },
       ],
@@ -75,28 +71,6 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Resources',
       items: [
-        {
-          type: 'category',
-          label: 'Reference',
-          items: [
-            {
-              type: 'category',
-              label: 'Error Codes',
-              items: [
-                'reference/error-codes/general',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Lookup Tables',
-              items: [
-                'reference/lookup-tables/markets',
-                'reference/lookup-tables/orders',
-                'reference/lookup-tables/response-codes',
-              ],
-            },
-          ],
-        },
         'changelog/index',
       ],
     },

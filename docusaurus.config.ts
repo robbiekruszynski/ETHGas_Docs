@@ -88,6 +88,11 @@ const config: Config = {
           position: 'left',
         },
         {
+          to: '/docs/validators/overview',
+          label: 'Validators',
+          position: 'left',
+        },
+        {
           to: '/blog',
           label: 'Blog',
           position: 'right',

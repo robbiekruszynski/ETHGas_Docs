@@ -8,7 +8,7 @@ sidebar_position: 1
   <img src="/img/ETHGas_logo.png" alt="ETHGas Logo" style={{ maxWidth: '200px', height: 'auto' }} />
 </div>
 
-ETHGas is a decentralized platform for Ethereum gas trading and MEV (Maximal Extractable Value) opportunities. This documentation provides comprehensive guides for developers to integrate with the ETHGas platform.
+ETHGas is a decentralized platform for Ethereum gas trading and MEV (Maximal Extractable Value) opportunities. This documentation provides comprehensive guides for all participants in the ETHGas ecosystem.
 
 ## What is ETHGas?
 
@@ -19,6 +19,38 @@ ETHGas provides infrastructure for trading Ethereum gas and capturing MEV opport
 - **Bundle Submission**: Submit transaction bundles to block builders
 - **Builder Management**: Register and manage block builders
 - **Validator Operations**: Manage validator operations and fee collection
+
+## Choose Your Path
+
+<div className="row">
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>For Developers</h3>
+      <p>Build applications, integrate APIs, and create trading tools with our comprehensive developer documentation.</p>
+      <a href="/docs/developers/overview" className="button button--primary">
+        Developer Guide →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>For Validators</h3>
+      <p>Earn additional rewards through preconfirmation commitments and automated pricing strategies.</p>
+      <a href="/docs/validators/overview" className="button button--primary">
+        Validator Guide →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>For Builders</h3>
+      <p>Provide specialized block building services and optimize MEV extraction for maximum rewards.</p>
+      <a href="/docs/api/builder/overview" className="button button--primary">
+        Builder Guide →
+      </a>
+    </div>
+  </div>
+</div>
 
 ## Quick Start
 
@@ -71,23 +103,25 @@ Live market data, order updates, and position tracking for optimal trading decis
 
 ## Documentation Structure
 
-This documentation is organized into several main sections:
+This documentation is organized for different types of users:
 
-### **Getting Started**
-- [Welcome](/docs/getting-started/welcome) - Introduction to ETHGas
-- [Environments](/docs/getting-started/environments) - Testnet vs Mainnet
-- [Connecting](/docs/getting-started/connecting) - How to connect to ETHGas
+### **For Developers**
+- [Developer Overview](/docs/developers/overview) - Understanding ETHGas for developers
+- [API Reference](/docs/api/overview) - Complete API documentation
+- [WebSocket Guide](/docs/websocket/overview) - Real-time data streaming
+- [Reference Materials](/docs/reference/data-types) - Data structures and error codes
 
-### **API Reference**
-- [API Overview](/docs/api/overview) - Complete API documentation
-- [Authentication](/docs/api/authentication/login) - User authentication
-- [Trading](/docs/api/trading/whole-block) - Trading operations
-- [WebSocket](/docs/websocket/overview) - Real-time data streams
+### **For Validators**
+- [Validator Overview](/docs/validators/overview) - Understanding validator roles
+- [Validator Setup](/docs/validators/setup) - Complete setup guide
+- [Registration Process](/docs/validators/registration) - How to register validators
+- [Collateral Management](/docs/validators/deposits) - Managing deposits
 
-### **Resources**
-- [Error Codes](/docs/reference/error-codes/general) - Troubleshooting guide
-- [Data Types](/docs/reference/data-types) - API data structures
-- [Lookup Tables](/docs/reference/lookup-tables/markets) - Reference data
+### **For Builders**
+- [Builder Overview](/docs/api/builder/overview) - Understanding builder roles
+- [Builder Setup](/docs/api/builder/setup) - Complete setup guide
+- [Builder Registration](/docs/api/builder/registration) - How to register as a builder
+- [Block Building API](/docs/api/builder/building) - API endpoints for building
 
 ## Using ETHGas
 
@@ -146,5 +180,10 @@ If you need assistance with the ETHGas platform:
 
 <div style={{ textAlign: 'center', marginTop: '3rem', padding: '2rem', backgroundColor: 'var(--ifm-color-primary-lightest)', borderRadius: '12px' }}>
   <h3>Ready to get started?</h3>
-  <p>Head over to the <a href="/docs/getting-started/welcome" className="button button--primary">Getting Started</a> section to begin your journey with ETHGas!</p>
+  <p>Choose your path and begin your journey with ETHGas!</p>
+  <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+    <a href="/docs/developers/overview" className="button button--primary">For Developers</a>
+    <a href="/docs/validators/overview" className="button button--primary">For Validators</a>
+    <a href="/docs/api/builder/overview" className="button button--primary">For Builders</a>
+  </div>
 </div>

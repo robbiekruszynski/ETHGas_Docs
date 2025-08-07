@@ -6,14 +6,14 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  /* Modern ETHGas-inspired color palette */
-  --ifm-color-primary: #6366f1;
-  --ifm-color-primary-dark: #4f46e5;
-  --ifm-color-primary-darker: #4338ca;
-  --ifm-color-primary-darkest: #3730a3;
-  --ifm-color-primary-light: #818cf8;
-  --ifm-color-primary-lighter: #a5b4fc;
-  --ifm-color-primary-lightest: #c7d2fe;
+  /* Modern ETHGas-inspired color palette - Green/Teal theme */
+  --ifm-color-primary: #059669;
+  --ifm-color-primary-dark: #047857;
+  --ifm-color-primary-darker: #065f46;
+  --ifm-color-primary-darkest: #064e3b;
+  --ifm-color-primary-light: #10b981;
+  --ifm-color-primary-lighter: #34d399;
+  --ifm-color-primary-lightest: #6ee7b7;
   
   /* Typography improvements */
   --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -35,7 +35,7 @@
   --ifm-button-font-weight: 500;
   
   /* Code block improvements */
-  --docusaurus-highlighted-code-line-bg: rgba(99, 102, 241, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(5, 150, 105, 0.1);
   --ifm-code-background: #f8fafc;
   
   /* Navigation improvements */
@@ -45,19 +45,19 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #818cf8;
-  --ifm-color-primary-dark: #6366f1;
-  --ifm-color-primary-darker: #4f46e5;
-  --ifm-color-primary-darkest: #4338ca;
-  --ifm-color-primary-light: #a5b4fc;
-  --ifm-color-primary-lighter: #c7d2fe;
-  --ifm-color-primary-lightest: #e0e7ff;
+  --ifm-color-primary: #10b981;
+  --ifm-color-primary-dark: #059669;
+  --ifm-color-primary-darker: #047857;
+  --ifm-color-primary-darkest: #065f46;
+  --ifm-color-primary-light: #34d399;
+  --ifm-color-primary-lighter: #6ee7b7;
+  --ifm-color-primary-lightest: #a7f3d0;
   
   --ifm-background-color: #0f172a;
   --ifm-background-surface-color: #1e293b;
   --ifm-card-background-color: #1e293b;
   --ifm-code-background: #334155;
-  --docusaurus-highlighted-code-line-bg: rgba(129, 140, 248, 0.2);
+  --docusaurus-highlighted-code-line-bg: rgba(16, 185, 129, 0.2);
 }
 
 /* Enhanced typography */
@@ -258,32 +258,36 @@ a:hover {
 
 /* Table improvements */
 table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 thead {
-  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%);
-  color: white;
-}
-
-thead th {
-  border: none;
-  font-weight: 600;
-  padding: 1rem;
-}
-
-tbody tr {
-  transition: background-color 0.2s ease-in-out;
-}
-
-tbody tr:hover {
   background-color: var(--ifm-color-primary-lightest);
 }
 
+thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--ifm-color-primary-darkest);
+  border-bottom: 2px solid var(--ifm-color-primary-light);
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
 [data-theme='dark'] tbody tr:hover {
-  background-color: rgba(129, 140, 248, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Blockquote improvements */
@@ -336,13 +340,17 @@ blockquote {
   background-clip: text;
 }
 
+/* Feature card improvements for uniform alignment */
 .feature-card {
-  padding: 2rem;
-  border-radius: var(--ifm-card-border-radius);
   background: var(--ifm-card-background-color);
+  border-radius: var(--ifm-card-border-radius);
   box-shadow: var(--ifm-card-shadow);
+  padding: 1.5rem;
   transition: all 0.2s ease-in-out;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 [data-theme='dark'] .feature-card {
@@ -350,8 +358,24 @@ blockquote {
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+.feature-card p {
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.feature-card .button {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 /* Documentation content improvements */
