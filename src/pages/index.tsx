@@ -24,13 +24,9 @@ function HomepageHeader() {
             <div className={styles.buttons}>
               <Link
                 className="button button--primary button--lg"
-                to="/docs/getting-started/welcome">
+                to="/docs/getting-started/welcome"
+                style={{ cursor: 'pointer', position: 'relative', zIndex: 10 }}>
                 Get Started →
-              </Link>
-              <Link
-                className="button button--secondary button--lg"
-                to="/docs/developers/overview">
-                API Reference →
               </Link>
             </div>
           </div>

@@ -8,7 +8,9 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
 
 ## Quick Navigation
 
-<div className="row" style={{ marginBottom: '2rem' }}>
+<div className="quick-nav">
+
+<div className="row" style={{ marginBottom: '1rem' }}>
   <div className="col col--4">
     <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div>
@@ -50,7 +52,7 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
   </div>
 </div>
 
-<div className="row" style={{ marginBottom: '2rem' }}>
+<div className="row" style={{ marginBottom: '1rem' }}>
   <div className="col col--4">
     <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div>
@@ -90,6 +92,9 @@ The ETHGas WebSocket API provides real-time data streaming for market updates, o
       </div>
     </div>
   </div>
+  
+</div>
+
 </div>
 
 ## Connection Information {#connection-information}

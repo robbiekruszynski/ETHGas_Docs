@@ -462,7 +462,7 @@ blockquote {
   background: var(--ifm-card-background-color);
   border-radius: var(--ifm-card-border-radius);
   box-shadow: var(--ifm-card-shadow);
-  padding: 2rem;
+  padding: 1.25rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -481,20 +481,20 @@ blockquote {
 
 .feature-card h3 {
   color: var(--ifm-color-primary);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .feature-card p {
   color: var(--ifm-color-emphasis-700);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
   flex-grow: 1;
 }
 
 .feature-card .button {
-  margin-top: auto;
-  align-self: flex-start;
+  margin-top: 0.5rem;
+  align-self: center;
 }
 
 /* Enhanced hover styling for buttons within feature cards */

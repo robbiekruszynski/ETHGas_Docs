@@ -6,6 +6,123 @@ sidebar_position: 1
 
 The ETHGas REST API provides comprehensive access to all platform features including authentication, user management, trading, and market data.
 
+## Quick Navigation
+
+<div className="quick-nav">
+
+<div className="row" style={{ marginBottom: '1rem' }}>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Base URLs</h3>
+        <p>Choose environment and connection endpoints.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#base-urls" className="button button--outline button--sm">
+          View Base URLs →
+        </a>
+      </div>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Authentication</h3>
+        <p>Login, token usage, and refresh flow.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#authentication" className="button button--outline button--sm">
+          View Authentication →
+        </a>
+      </div>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Response Format</h3>
+        <p>Standard response schema and fields.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#response-format" className="button button--outline button--sm">
+          View Response Format →
+        </a>
+      </div>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Error Handling</h3>
+        <p>HTTP codes, messages, and remediation.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#error-handling" className="button button--outline button--sm">
+          View Error Handling →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="row" style={{ marginBottom: '1rem' }}>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Rate Limiting</h3>
+        <p>Limits and guidance for high-volume usage.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#rate-limiting" className="button button--outline button--sm">
+          View Rate Limits →
+        </a>
+      </div>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Quick Start</h3>
+        <p>Copy‑paste cURL to test endpoints fast.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#quick-start-examples" className="button button--outline button--sm">
+          View Quick Start →
+        </a>
+      </div>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>API Endpoints</h3>
+        <p>Browse endpoints by category.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#api-endpoints" className="button button--outline button--sm">
+          View API Endpoints →
+        </a>
+      </div>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <div>
+        <h3>Resources</h3>
+        <p>Key GitHub repos and docs links.</p>
+      </div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <a href="#essential-resources" className="button button--outline button--sm">
+          View Resources →
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
 ## Technical Specifications
 
 ### Exchange Performance

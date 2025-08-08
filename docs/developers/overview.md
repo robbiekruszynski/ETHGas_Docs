@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # Developer Overview
 
-Welcome to ETHGas, the premier platform for Ethereum gas trading and MEV opportunities. This guide provides a comprehensive overview for developers looking to integrate with the ETHGas ecosystem.
+This guide provides a comprehensive overview for developers looking to integrate with the ETHGas Ecosystem.
 
 ## What is ETHGas?
 
-ETHGas is a decentralized platform that enables trading of Ethereum gas and MEV opportunities through various market types:
+ETHGas is the premier platform for trading Ethereum Blockspace, and acquiring Realtime confirmations.
 
 ### Core Components
 

@@ -154,55 +154,11 @@ Send authentication message after connection:
 
 ## Code Examples
 
-### Python Example
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-```python
-import requests
-import json
-
-class ETHGasClient:
-    def __init__(self, base_url, username, password):
-        self.base_url = base_url
-        self.username = username
-        self.password = password
-        self.access_token = None
-    
-    def authenticate(self):
-        response = requests.post(
-            f"{self.base_url}/api/v1/user/login",
-            json={
-                "username": self.username,
-                "password": self.password
-            }
-        )
-        
-        if response.status_code == 200:
-            data = response.json()
-            self.access_token = data["data"]["accessToken"]
-            return True
-        return False
-    
-    def get_user_info(self):
-        headers = {"Authorization": f"Bearer {self.access_token}"}
-        response = requests.get(
-            f"{self.base_url}/api/v1/user/info",
-            headers=headers
-        )
-        return response.json()
-
-# Usage
-client = ETHGasClient(
-    "https://testnet-api.ethgas.com",
-    "your_username",
-    "your_password"
-)
-
-if client.authenticate():
-    user_info = client.get_user_info()
-    print(user_info)
-```
-
-### JavaScript Example
+<Tabs>
+  <TabItem value="javascript" label="JavaScript" default>
 
 ```javascript
 class ETHGasClient {
@@ -258,6 +214,58 @@ client.authenticate().then(success => {
     console.log(userInfo);
 });
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+import requests
+import json
+
+class ETHGasClient:
+    def __init__(self, base_url, username, password):
+        self.base_url = base_url
+        self.username = username
+        self.password = password
+        self.access_token = None
+    
+    def authenticate(self):
+        response = requests.post(
+            f"{self.base_url}/api/v1/user/login",
+            json={
+                "username": self.username,
+                "password": self.password
+            }
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            self.access_token = data["data"]["accessToken"]
+            return True
+        return False
+    
+    def get_user_info(self):
+        headers = {"Authorization": f"Bearer {self.access_token}"}
+        response = requests.get(
+            f"{self.base_url}/api/v1/user/info",
+            headers=headers
+        )
+        return response.json()
+
+# Usage
+client = ETHGasClient(
+    "https://testnet-api.ethgas.com",
+    "your_username",
+    "your_password"
+)
+
+if client.authenticate():
+    user_info = client.get_user_info()
+    print(user_info)
+```
+
+  </TabItem>
+</Tabs>
 
 ## Error Handling
 

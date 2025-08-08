@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Welcome to ETHGas
 
-Welcome to ETHGas, the premier platform for Ethereum gas trading and MEV opportunities. This guide will help you get started with the platform and understand its core concepts.
+Welcome to ETHGas, the premier platform for trading Ethereum Blockspace, and acquiring Realtime confirmations.
 
 ## What is ETHGas?
 
