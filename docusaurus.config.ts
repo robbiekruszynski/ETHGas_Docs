@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'ETHGas Documentation',
   tagline: 'Complete API documentation for ETHGas platform - Ethereum gas trading and MEV opportunities',
-  favicon: 'img/ETHGas_logo.png',
+  favicon: 'img/EG.svg',
 
   future: {
     v4: true,
@@ -168,7 +168,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
   } satisfies Preset.ThemeConfig,
 };

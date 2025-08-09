@@ -149,6 +149,25 @@ ETHGAS_CHAIN_ID=1
 </TabItem>
 </Tabs>
 
+## Collateral Contract (EthgasPool)
+
+- **Mainnet**: `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`
+- **Hoodi (Test environment)**: `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`
+
+> Recommendation: Deposit collateral via the website.
+
+## Relays
+
+Official relay endpoints by region (prepend key as shown):
+
+- **Tokyo**
+  - Mainnet: `https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com`
+  - Hoodi: `https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com`
+- **Frankfurt**
+  - Mainnet: `https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com`
+- **Virginia**
+  - Mainnet: `https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com`
+
 ## Environment Selection
 
 ### For Development

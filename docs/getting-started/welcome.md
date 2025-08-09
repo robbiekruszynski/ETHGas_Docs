@@ -11,10 +11,13 @@ Welcome to ETHGas, the premier platform for trading Ethereum Blockspace, and acq
 ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV opportunities through various market types:
 
 ### Whole Block Markets
-Trade entire blocks for MEV opportunities. These markets allow you to bid on complete blocks and extract value from transaction ordering and inclusion.
+For Trading or Building Purposes, available up to 64 slots in advance. Trade entire blocks for MEV opportunities. These markets allow you to bid on complete blocks and extract value from transaction ordering and inclusion.
+
+### Rest-of-Block Auction
+For Whole Block owners, submit Top-of-Block bundles and run a realtime auction on the Rest-of-Block, available only for the current slot. This enables dynamic pricing for remaining block space after top-of-block transactions are included.
 
 ### Inclusion Preconf Markets
-Trade gas price predictions and inclusion probabilities. These markets focus on predicting gas prices and transaction inclusion likelihood.
+Trade generic blockspace (i.e. neither top-of-block, nor state contentious) with a conventional CLOB interface. Available up to 32 slots in advance. These markets focus on predicting gas prices and transaction inclusion likelihood.
 
 ## Platform Overview
 
@@ -31,8 +34,9 @@ The ETHGas platform consists of several key components:
 
 ### Markets
 Markets are the core trading venues on ETHGas:
-- **Whole Block Markets**: Trade complete blocks for MEV opportunities
-- **Inclusion Preconf Markets**: Trade gas price predictions
+- **Whole Block Markets**: For Trading or Building Purposes, available up to 64 slots in advance
+- **Rest-of-Block Auction**: For Whole Block owners, submit Top-of-Block bundles and run a realtime auction on the Rest-of-Block, available only for the current slot
+- **Inclusion Preconf Markets**: Trade generic blockspace with a conventional CLOB interface, available up to 32 slots in advance
 
 ### Orders
 Orders represent your trading intentions:
@@ -47,11 +51,56 @@ Positions track your current market exposure:
 
 ## Getting Started Checklist
 
-✅ **Environment Setup**: [Configure your environment](/docs/getting-started/environments)
-✅ **Authentication**: [Set up API credentials](/docs/getting-started/connecting)
-✅ **API Testing**: Test basic API calls
-✅ **WebSocket Connection**: Connect to real-time data
-✅ **First Trade**: Place your first order
+<div className="row">
+  <div className="col col--4">
+    <div className="feature-card text--center">
+      <h3>Environment Setup</h3>
+      <p>Configure your development environment and API credentials</p>
+      <a href="/docs/getting-started/environments" className="button button--outline button--sm">
+        Configure Environment →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card text--center">
+      <h3>Authentication</h3>
+      <p>Set up API credentials and establish secure connections</p>
+      <a href="/docs/getting-started/connecting" className="button button--outline button--sm">
+        Set Up Auth →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card text--center">
+      <h3>API Testing</h3>
+      <p>Test basic API calls and verify your integration</p>
+      <a href="/docs/api/overview" className="button button--outline button--sm">
+        Test APIs →
+      </a>
+    </div>
+  </div>
+</div>
+
+<div className="row">
+  <div className="col col--4">
+    <div className="feature-card text--center">
+      <h3>WebSocket Connection</h3>
+      <p>Connect to real-time data streams for live updates</p>
+      <a href="/docs/websocket/overview" className="button button--outline button--sm">
+        Connect WebSocket →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card text--center">
+      <h3>First Trade</h3>
+      <p>Place your first order and start trading</p>
+      <a href="/docs/api/trading/whole-block" className="button button--outline button--sm">
+        Start Trading →
+      </a>
+    </div>
+  </div>
+</div>
 
 ## Next Steps
 

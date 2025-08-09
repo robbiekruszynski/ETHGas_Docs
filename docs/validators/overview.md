@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # Validator Overview
 
+:::info Role scope
+This page focuses on Validators. For Developers see `/docs/developers/overview`. For Builders see `/docs/api/builder/overview`. For copy/paste‑ready code, use `https://developers.ethgas.com` and the validator section therein.
+:::
+
 Validators play a crucial role in the ETHGas ecosystem by participating in preconfirmation (preconf) commitments and earning rewards through gas trading opportunities.
 
 ## What is ETHGas for Validators?
@@ -92,6 +96,5 @@ For typical Ethereum validators using standard infrastructure:
 
 ## Next Steps
 
-- [Validator Setup](/docs/validators/setup) - Get started with ETHGas
-- [Registration Guide](/docs/validators/registration) - Register your validators
-- [Deposit Management](/docs/validators/deposits) - Manage your collateral 
+- Official API Reference: `https://developers.ethgas.com`
+- ETHGas Repos: `https://github.com/ethgas-developer` 
