@@ -57,6 +57,10 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'For Builders',
+      link: {
+        type: 'doc',
+        id: 'api/builder/registration',
+      },
       items: [
         {
           type: 'doc',
@@ -75,15 +79,9 @@ const sidebars: SidebarsConfig = {
       label: 'Resources',
       items: [
         'community',
+        'reference/lookup-tables',
         'changelog/index',
-        {
-          type: 'category',
-          label: 'Reference',
-          items: [
-            'reference/error-codes',
-            'reference/lookup-tables',
-          ],
-        },
+        'reference/error-codes',
       ],
     },
   ],

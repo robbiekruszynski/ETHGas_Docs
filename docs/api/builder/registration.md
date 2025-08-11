@@ -310,6 +310,10 @@ print(response.text)
 }
 ```
 
+:::note
+Note: Please refer to [look up table](/docs/reference/lookup-tables) as needed
+:::
+
 <!-- ## Monitoring and Logs
 
 ### Container Logs
