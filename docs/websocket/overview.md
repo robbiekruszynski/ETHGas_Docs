@@ -156,4 +156,4 @@ import TabItem from '@theme/TabItem';
 
 ## References
 
-- WebSocket section: `https://developers.ethgas.com` 
+- WebSocket section: This documentation 

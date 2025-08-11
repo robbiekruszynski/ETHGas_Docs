@@ -143,7 +143,7 @@ chain_id = 1         # or 17000 for testnet
 
 ### Documentation & Source Code
 
-- **[API Documentation](https://developers.ethgas.com)** - Complete API reference
+- **API Documentation** - Complete API reference in this documentation
 - **[Commit Boost Module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module)** - Validator registration and setup
 - **[Modified rbuilder](https://github.com/ethgas-developer/preconf-builder)** - Enhanced block builder
 - **[Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)** - Builder registration and management

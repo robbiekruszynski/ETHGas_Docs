@@ -64,6 +64,28 @@
   padding-top: 1rem;
 }
 
+.socialLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.socialLink:hover .socialIcon {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 162, 199, 0.3);
+}
+
+[data-theme='dark'] .socialLink:hover .socialIcon {
+  box-shadow: 0 10px 20px rgba(26, 179, 214, 0.4);
+}
+
 .quickStart {
   padding: 4rem 0;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);

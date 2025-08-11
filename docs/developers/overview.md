@@ -5,7 +5,7 @@ sidebar_position: 1
 # Developer Overview
 
 :::info Role scope
-This page focuses on Developers. For Builders see `/docs/api/builder/overview`. For Validators see `/docs/validators/overview`. For copy/paste‑ready code, use `https://developers.ethgas.com`.
+This page focuses on Developers. For Builders see `/docs/api/builder/overview`. For Validators see `/docs/validators/overview`. For copy/paste‑ready code, see the API endpoints below.
 :::
 
 This guide provides a concise overview for developers integrating with the ETHGas ecosystem.
@@ -75,5 +75,5 @@ ETHGas is a platform for trading Ethereum blockspace and acquiring preconfirmati
 
 ## Resources for Developers
 
-- **API Reference**: `https://developers.ethgas.com`
+- **API Reference**: This documentation
 - **GitHub**: `https://github.com/ethgas-developer` 

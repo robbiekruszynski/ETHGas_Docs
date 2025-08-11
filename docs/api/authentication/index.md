@@ -39,9 +39,7 @@ sequenceDiagram
 - POST `/api/v1/user/login/refresh`
 - POST `/api/v1/user/logout`
 
-For copy/paste‑ready HTTP/Python examples, use the official API reference:
-
-- https://developers.ethgas.com/#change-log
+For copy/paste‑ready HTTP/Python examples, see the API endpoints below.
 
 ## Best Practices
 

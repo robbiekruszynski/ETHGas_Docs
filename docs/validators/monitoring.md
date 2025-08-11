@@ -18,7 +18,7 @@ Validator monitoring includes uptime, attestations, proposals, rewards, and syst
 
 For officially supported endpoints and copy/paste examples, use:
 
-- https://developers.ethgas.com/#change-log
+- See API endpoints below
 
 ## Best Practices
 

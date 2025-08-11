@@ -58,7 +58,11 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'For Builders',
       items: [
-        'api/builder/overview',
+        {
+          type: 'doc',
+          id: 'api/builder/overview',
+          label: 'Builders & Sequencers',
+        },
       ],
     },
     {

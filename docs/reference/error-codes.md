@@ -2,7 +2,7 @@
 
 The following codes are sourced from the official ETHGas API reference.
 
-Source: https://developers.ethgas.com/#change-log
+Source: Official ETHGas API documentation
 
 ## General Error Codes
 

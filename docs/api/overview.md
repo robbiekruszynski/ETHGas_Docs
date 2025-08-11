@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # REST API Overview
 
-The ETHGas REST API provides access to authentication, user management, funding, markets, trading, builder, pricer, validator, bundles, and more. See the full reference at `developers.ethgas.com`.
+The ETHGas REST API provides access to authentication, user management, funding, markets, trading, builder, pricer, validator, bundles, and more.
 
 ## Quick Navigation
 
@@ -132,7 +132,7 @@ The ETHGas REST API provides access to authentication, user management, funding,
 
 ### Integration Resources
 
-- **API Documentation**: `https://developers.ethgas.com`
+- **API Documentation**: This documentation
 - **Commit Boost Module**: `https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module`
 - **Modified rbuilder (preconf-builder)**: `https://github.com/ethgas-developer/preconf-builder`
 - **Builder Scripts**: `https://github.com/ethgas-developer/ethgas-builder-scripts`
@@ -189,9 +189,7 @@ ETHGas supports multiple market types for different trading and building scenari
 
 ## Quick Start Examples
 
-For copy/paste‑ready HTTP and Python examples, use the official API reference:
-
-- https://developers.ethgas.com/#change-log
+For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 ## API Endpoints
 
@@ -404,6 +402,6 @@ For copy/paste‑ready HTTP and Python examples, use the official API reference:
 
 ## Essential Resources
 
-- **API Reference**: `https://developers.ethgas.com`
+- **API Reference**: This documentation
 - **GitHub Organization**: `https://github.com/ethgas-developer`
-- **WebSocket API**: See WebSocket section in `developers.ethgas.com` 
+- **WebSocket API**: See WebSocket section in this documentation 

@@ -28,7 +28,7 @@ Reference: https://docs.ethgas.com/technical-integration
 ## Notes
 
 - Follow the official Technical Integration for latest addresses and guidance
-- For API usage and copy/paste examples, see: https://developers.ethgas.com/#change-log
+- For API usage and copy/paste examples, see the API endpoints below.
 
 ## Related
 

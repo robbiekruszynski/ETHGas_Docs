@@ -118,7 +118,7 @@ const config: Config = {
             },
             {
               label: 'Error Codes',
-              to: '/docs/reference/error-codes/general',
+              to: '/docs/reference/error-codes',
             },
           ],
         },
@@ -126,16 +126,8 @@ const config: Config = {
           title: 'Platform',
           items: [
             {
-              label: 'TestNet App',
-              href: 'https://testnet.ethgas.com',
-            },
-            {
               label: 'ETHGas Homepage',
               href: 'https://ethgas.com',
-            },
-            {
-              label: 'Original Docs',
-              href: 'https://developers.ethgas.com',
             },
           ],
         },

@@ -123,7 +123,7 @@ We welcome contributions to improve this documentation:
 
 For questions about this documentation or the ETHGas platform:
 
-- **Original Documentation**: [developers.ethgas.com](https://developers.ethgas.com)
+- **Documentation**: This documentation
 - **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com)
 - **ETHGas Homepage**: [ethgas.com](https://ethgas.com)
 

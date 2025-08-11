@@ -37,11 +37,11 @@ Refer to client docs for installation and configuration.
 ## Monitoring
 
 Use the official API docs for supported endpoints and examples:
-- https://developers.ethgas.com/#change-log
+- See API endpoints below
 
 ## Essential Links
 
 - ETHGas: https://www.ethgas.com/
 - TestNet: https://testnet.ethgas.com/
 - Technical Integration: https://docs.ethgas.com/technical-integration
-- API Reference: https://developers.ethgas.com/#change-log 
+- API Reference: This documentation 

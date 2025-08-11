@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Connecting to ETHGas
 
-This guide helps you establish connections to the ETHGas platform. For copy/paste‑ready code examples (HTTP and Python), refer to the official API reference at `developers.ethgas.com`.
+This guide helps you establish connections to the ETHGas platform. For copy/paste‑ready code examples (HTTP and Python), see the API endpoints below.
 
 ## Prerequisites
 
@@ -53,7 +53,7 @@ Use the Authentication endpoints described in the official reference.
 - **POST** `/api/v1/user/login/refresh`
 - **POST** `/api/v1/user/logout`
 
-See copy/paste examples: `https://developers.ethgas.com`
+See copy/paste examples in the API endpoints below.
 
 ## WebSocket Connection
 
@@ -95,6 +95,6 @@ Examples of commands (see full list in the official docs): `login`, `subscribe`,
 
 ## Next Steps
 
-- **Official API Reference (copy/paste code)**: `https://developers.ethgas.com`
+- **API Reference (copy/paste code)**: This documentation
 - **REST API Overview**: `/docs/api/overview`
 - **WebSocket Overview**: `/docs/websocket/overview` 

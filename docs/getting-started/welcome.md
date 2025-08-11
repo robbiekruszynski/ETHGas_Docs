@@ -113,7 +113,7 @@ Ready to dive deeper? Check out these resources:
 
 ## Support Resources
 
-- **Original Documentation**: [developers.ethgas.com](https://developers.ethgas.com)
+- **Documentation**: This documentation
 - **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com)
 - **ETHGas Homepage**: [ethgas.com](https://ethgas.com)
 

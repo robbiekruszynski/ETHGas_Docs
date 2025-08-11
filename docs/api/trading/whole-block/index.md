@@ -25,7 +25,7 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 For copy/paste‑ready examples (HTTP/Python), use the official API reference:
 
-- https://developers.ethgas.com/#change-log
+- See API endpoints below
 
 ## Related
 

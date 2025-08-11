@@ -22,7 +22,7 @@ Register your validator with ETHGas.
 
 For the exact endpoints and copy/paste examples, use the official API docs:
 
-- https://developers.ethgas.com/#change-log
+- See API endpoints below
 
 ## Status Codes
 
