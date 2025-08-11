@@ -2,6 +2,8 @@
 
 Complete documentation for the ETHGas platform API and WebSocket interfaces. This documentation is built with Docusaurus and provides comprehensive coverage of all ETHGas platform features.
 
+<!-- Force deployment update -->
+
 ## What is ETHGas?
 
 ETHGas is a platform that provides infrastructure for Ethereum gas trading and MEV (Maximal Extractable Value) opportunities. It offers APIs for:
