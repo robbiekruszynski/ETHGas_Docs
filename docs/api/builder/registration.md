@@ -233,11 +233,10 @@ When `ENABLE_REGISTRATION=true`:
 3. **Submit registration**: Register with ETHGas Exchange
 4. **Confirm status**: Verify registration was successful
 
-### Manual Registration
+## Manual Registration
 
-**POST /api/v1/builder/register**
-
-**Purpose**: Register builder public keys with the ETHGas platform.
+<details>
+<summary style={{listStyle: 'none'}}>Manual registration process for builder public keys</summary>
 
 #### Code Sample
 
@@ -313,6 +312,8 @@ print(response.text)
 :::note
 Note: Please refer to [look up table](/docs/reference/lookup-tables) as needed
 :::
+
+</details>
 
 <!-- ## Monitoring and Logs
 
