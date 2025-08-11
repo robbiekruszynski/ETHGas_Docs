@@ -549,8 +549,7 @@ The Market Lists API provides endpoints for retrieving market information and da
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets" \
-  -H "Authorization: Bearer <your-auth-token>"
+curl -X GET /api/v1/p/wholeblock/markets
 ```
 
 </TabItem>
@@ -559,23 +558,23 @@ curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets" \
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets"
-headers = {
-    "Authorization": "Bearer <your-auth-token>"
-}
+url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets
+
+headers = {}
 
 response = requests.get(url, headers=headers)
+
 print(response.text)
 ```
 
 </TabItem>
 </Tabs>
 
-**Request Parameters**
+<!-- **Request Parameters**
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| N/A | N/A | N/A | No parameters required |
+| N/A | N/A | N/A | No parameters required | -->
 
 **Response Example**
 
@@ -585,12 +584,39 @@ print(response.text)
     "data": {
         "markets": [
             {
-                "marketId": 1,
-                "marketType": 2,
+                "marketId": 2000000295209,
+                "slot": 295209,
+                "instrumentId": "ETH-WB-295209",
+                "name": "ETH Whole Block Slot #295209",
+                "priceStep": "0.00000000001",
+                "minPrice": "0.00000000001",
+                "maxPrice": "0.00001",
+                "availablePreconf": 17257755,
+                "direction": true,
+                "price": "0.00000000588",
+                "midPrice": "0.00000000564",
                 "status": 1,
-                "slot": 12345,
-                "startTime": 1730193765339,
-                "endTime": 1730193865339
+                "maturityTime": 1751947307000,
+                "blockTime": 1751947311000,
+                "finalityTime": 1751948079000,
+                "updateDate": 1751947297000
+            },
+            {
+                "marketId": 2000000295211,
+                "slot": 295211,
+                "instrumentId": "ETH-WB-295211",
+                "name": "ETH Whole Block Slot #295211",
+                "priceStep": "0.00000000001",
+                "minPrice": "0.00000000001",
+                "maxPrice": "0.00001",
+                "availablePreconf": 16587826,
+                "direction": true,
+                "price": "0.00000000581",
+                "status": 1,
+                "maturityTime": 1751947331000,
+                "blockTime": 1751947335000,
+                "finalityTime": 1751948103000,
+                "updateDate": 1751947297000
             }
         ]
     }
@@ -599,32 +625,39 @@ print(response.text)
 
 **Response Body**
 
-| Field | Type | Description |
-|-------|------|-------------|
-| success | boolean | Success status of the request |
-| data | object | Response data container |
-| └ markets | array | Array of market information |
-| └└ marketId | integer | Unique market identifier |
-| └└ marketType | integer | Type of market (2 = Whole Block) |
-| └└ status | integer | Market status code |
-| └└ slot | integer | Slot number for the market |
-| └└ startTime | integer | Market start timestamp |
-| └└ endTime | integer | Market end timestamp |
+| Name | Type | Description |
+|------|------|-------------|
+| markets | object[] | List of Whole Block Market objects |
+| └ marketId | integer | Whole block market ID |
+| └ slot | integer | Slot number of the block |
+| └ instrumentId | string | Whole block market instrument ID<br/><br/>Use endpoint to get a list of all available wholeblock markets' instrument IDs |
+| └ name | string | Whole block market name<br/><br/>In format: "ETH-WB-xxxxxx" |
+| └ priceStep | string | Minimum increment between valid price levels |
+| └ minPrice | string | Minimum price |
+| └ maxPrice | string | Maximum price |
+| └ availablePreconf | integer | Available preconf quantity for trading |
+| └ direction | boolean | The last trading direction (true = buy, false = sell) |
+| └ price | string | Latest traded market price for this market |
+| └ status | integer | Market status - see the Market Status Codes section for more information |
+| └ maturityTime | integer | Datetime (in UNIX time) when the market will be closed |
+| └ trxSubmitTime | integer | Datetime (in UNIX time) when the market will be closed for submitting transactions |
+| └ blockTime | integer | Datetime (in UNIX time) when the block starts |
+| └ finalityTime | integer | Datetime (in UNIX time) when the block is being finalized |
+| └ updateDate | integer | Datetime (in UNIX time) when the market orderbook was last updated |
 
 </details>
 
 ### GET /api/v1/p/inclusion-preconf/markets
 
 <details>
-<summary style={{listStyle: 'none'}}>Retrieve inclusion preconf markets</summary>
+<summary style={{listStyle: 'none'}}>Retrieve active preconf markets</summary>
 ### Sample Code
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/markets" \
-  -H "Authorization: Bearer <your-auth-token>"
+curl -x GET /api/v1/p/inclusion-preconf/markets
 ```
 
 </TabItem>
@@ -633,23 +666,23 @@ curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/markets" 
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/markets"
-headers = {
-    "Authorization": "Bearer <your-auth-token>"
-}
+url = "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/markets
+
+headers = {}
 
 response = requests.get(url, headers=headers)
+
 print(response.text)
 ```
 
 </TabItem>
 </Tabs>
 
-**Request Parameters**
+<!-- **Request Parameters**
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| N/A | N/A | N/A | No parameters required |
+| N/A | N/A | N/A | No parameters required | -->
 
 **Response Example**
 
@@ -658,13 +691,57 @@ print(response.text)
     "success": true,
     "data": {
         "markets": [
-            {
-                "marketId": 2,
-                "marketType": 1,
+           {
+                "marketId": 1000000295045,
+                "slot": 295045,
+                "instrumentId": "ETH-PC-295045",
+                "name": "Eth Preconf Inclusion Slot #295045",
+                "quantityStep": "1",
+                "minQuantity": "1",
+                "maxQuantity": "35850000",
+                "priceStep": "0.00000000001",
+                "minPrice": "0.00000000001",
+                "maxPrice": "0.00001",
+                "bestBid": "0.00000000015",
+                "totalPreconf": 35850000,
+                "availablePreconf": 19678280,
+                "direction": true,
+                "price": "0.00000000002",
+                "midPrice": "0.00000000015",
                 "status": 1,
-                "slot": 12345,
-                "startTime": 1730193765339,
-                "endTime": 1730193865339
+                "maturityTime": 1751945339000,
+                "trxSubmitTime": 1751945341000,
+                "blockTime": 1751945343000,
+                "finalityTime": 1751946111000,
+                "totalGas": 16171720,
+                "validatorType": 0,
+                "updateDate": 1751945326000
+            },
+            {
+                "marketId": 1000002880222,
+                "slot": 2880222,
+                "instrumentId": "ETH-PC-2880222",
+                "name": "Eth Preconf Inclusion Slot #2880222",
+                "quantityStep": "1",
+                "minQuantity": "1",
+                "maxQuantity": "30000000",
+                "priceStep": "0.00000000001",
+                "minPrice": "0.00000000001",
+                "maxPrice": "0.00001",
+                "collateralPerSlot": "2",
+                "totalPreconf": 36000000,
+                "availablePreconf": 36000000,
+                "direction": true,
+                "price": "0.00000001256",
+                "midPrice": "0.00000001256",
+                "status": 1,
+                "maturityTime": 1730465060000,
+                "trxSubmitTime": 1730465062000,
+                "blockTime": 1730465064000,
+                "finalityTime": 1730465832000,
+                "totalGas": 29952852,
+                "validatorType": 0,
+                "updateDate": 1730465041000
             }
         ]
     }
@@ -673,17 +750,33 @@ print(response.text)
 
 **Response Body**
 
-| Field | Type | Description |
-|-------|------|-------------|
-| success | boolean | Success status of the request |
-| data | object | Response data container |
-| └ markets | array | Array of market information |
-| └└ marketId | integer | Unique market identifier |
-| └└ marketType | integer | Type of market (1 = Inclusion Preconf) |
-| └└ status | integer | Market status code |
-| └└ slot | integer | Slot number for the market |
-| └└ startTime | integer | Market start timestamp |
-| └└ endTime | integer | Market end timestamp |
+| Name | Type | Description |
+|------|------|-------------|
+| markets | object[] | List of Market objects |
+| └ marketId | integer | Preconf market ID |
+| └ slot | integer | Slot number of the block |
+| └ instrumentId | string | Inclusion Preconf Market instrument ID<br/><br/>Use endpoint [GET /api/v1/p/inclusion-preconf/markets] to get a list of all available inclusion preconf markets' instrument IDs |
+| └ name | string | Preconf market name<br/><br/>In format: "ETH-PC-xxxxxx" |
+| └ quantityStep | string | Minimum increment between different order quantities |
+| └ minQuantity | string | Minimum order quantity |
+| └ maxQuantity | string | Maximum order quantity |
+| └ priceStep | string | Minimum increment between valid price levels |
+| └ minPrice | string | Minimum price |
+| └ maxPrice | string | Maximum price |
+| └ collateralPerSlot | string | ETH reserved by validator as collateral for this slot |
+| └ totalPreconf | integer | Total preconf quantity for this slot |
+| └ availablePreconf | integer | Available preconf quantity for trading |
+| └ direction | boolean | The last trading direction (true = buy, false = sell) |
+| └ price | string | Latest traded market price for this market |
+| └ midPrice | string | Mid price of bid and ask |
+| └ status | integer | Market status - see the Market Status Codes section for more information |
+| └ maturityTime | integer | Datetime (in UNIX time) when the market will be closed |
+| └ trxSubmitTime | integer | Datetime (in UNIX time) when the market will be closed for submitting transactions |
+| └ blockTime | integer | Datetime (in UNIX time) when the block starts |
+| └ finalityTime | integer | Datetime (in UNIX time) when the block is being finalized |
+| └ totalGas | integer | Total gas available for sale in this block |
+| └ validatorType | integer | Type of validator (0 for normal validators, 1 for SSV validators) |
+| └ updateDate | integer | Datetime (in UNIX time) when the market orderbook was last updated |
 
 </details>
 
