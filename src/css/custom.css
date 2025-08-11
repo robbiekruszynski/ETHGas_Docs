@@ -590,6 +590,24 @@ details summary {
   color: var(--ifm-color-primary-light);
 }
 
+/* API endpoint dropdown summaries - make description text white in dark mode */
+details summary:not([style*="listStyle"]) {
+  color: #374151;
+}
+
+[data-theme='dark'] details summary:not([style*="listStyle"]) {
+  color: #ffffff;
+}
+
+/* Ensure POST/GET method names stay blue */
+details summary:not([style*="listStyle"]) strong {
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] details summary:not([style*="listStyle"]) strong {
+  color: var(--ifm-color-primary-light);
+}
+
 details summary:hover {
   background: rgba(0, 162, 199, 0.1);
 }

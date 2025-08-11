@@ -22,10 +22,10 @@ Builders may use their own software or the ETHGas-modified rbuilder (preconf-bui
 - **Build compliant blocks** (respect bundle positioning and commitments)
 - **Fill remaining blockspace** with mempool transactions
 
-### Resources
+<!-- ### Resources
 
 - **Preconf Builder (optional)**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/preconf-builder</a>
-- **Builder Scripts**: <a href="https://github.com/ethgas-developer/ethgas-builder-scripts" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/ethgas-builder-scripts</a>
+- **Builder Scripts**: <a href="https://github.com/ethgas-developer/ethgas-builder-scripts" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/ethgas-builder-scripts</a> -->
 
 ## Who Builds the Blocks?
 
@@ -50,10 +50,8 @@ If no trades should be included, block owners can indicate an empty block prefer
 
 ### POST /api/v1/builder/register
 
-**Purpose**: Register builder public keys with the ETHGas platform.
-
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Register builder public keys with the ETHGas platform</summary>
 #### Code Sample
 
 <Tabs>
@@ -153,9 +151,8 @@ print(response.text)
 
 ### GET /api/v1/builder/signingMessage
 
-**Purpose**: Retrieve the message that needs to be signed by the builder's private key for registration verification.
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Retrieve the message that needs to be signed by the builder's private key for registration verification</summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -214,11 +211,9 @@ print(response.text)
 </details>
 
 ### POST /api/v1/builder/deregister
-**Purpose**: Builder deregistering their public keys
-
 
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Builder deregistering their public keys</summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -288,10 +283,8 @@ print(response.text)
 
 ### GET /api/v1/p/builders
 
-**Purpose**: Retrieve a list of builder public keys submitted by a user
-
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -381,10 +374,8 @@ print(response.text)
 
 ### GET /api/v1/user/builder
 
-**Purpose**: Retrieve a list of builder public keys submitted by a user
-
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
 #### Code Sample
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -440,9 +431,8 @@ print(response.text)
 
 ### POST /api/v1/user/delegate/builder
 
-**Purpose**: Delegate or revoke delegation of builder keys by supplying either a comma-separated list of BLS public keys or a builder name (which applies to all keys under that builder).
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Delegate or revoke delegation of builder keys by supplying either a comma-separated list of BLS public keys or a builder name (which applies to all keys under that builder)</summary>
 #### Code Sample
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -510,10 +500,8 @@ Note: User needs to delegate a new builder 2 seconds before the market close in 
 
 ### GET /api/v1/user/delegate/builder
 
-**Purpose**: Retrieve information about the current user's builder delegation settings.
-
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Retrieve information about the current user's builder delegation settings</summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -572,10 +560,8 @@ print(response.text)
 
 ### GET /api/v1/p/builder/\{slot\}
 
-**Purpose**: Retrieve information about the builder assigned to a specific slot.
-
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Retrieve information about the builder assigned to a specific slot</summary>
 #### Code Sample
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -640,10 +626,8 @@ print(response.text)
 
 ### GET /api/v1/builder/delegation
 
-**Purpose**: Retrieve comprehensive information about builder delegations and relationships.
-
 <details>
-<summary style={{listStyle: 'none'}}>View Details</summary>
+<summary style={{listStyle: 'none'}}>Retrieve comprehensive information about builder delegations and relationships</summary>
 #### Code Sample
 
 <Tabs>

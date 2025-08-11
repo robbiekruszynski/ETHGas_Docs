@@ -2,99 +2,290 @@
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Connecting to ETHGas
 
 This guide helps you establish connections to the ETHGas platform. For copy/paste‑ready code examples (HTTP and Python), see the API endpoints below.
 
 ## Prerequisites
 
-- **API Credentials**
-- **Environment Selection** (TestNet or MainNet)
-- **Network Access** to ETHGas endpoints
+- **API Credentials**: You'll need to register an account on ETHGas Exchange
+- **Environment Selection**: Choose between TestNet (Hoodi) or MainNet
+- **Network Access**: Ability to connect to ETHGas endpoints
 
-## Authentication Overview
+## Environments
 
-ETHGas uses Bearer token authentication.
+| Environment | Chain          | RPC URL                                                                                 | Chain ID | API base URL                         | Websocket base URL                | Collateral Deposit Address                    |
+|-------------|----------------|----------------------------------------------------------------------------------------|----------|--------------------------------------|----------------------------------|-----------------------------------------------|
+| MainNet     | Ethereum       | https://eth.llamarpc.com                                                              | 1        | https://mainnet.app.ethgas.com      | wss://mainnet.app.ethgas.com/ws | 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6 |
+| TestNet     | Holesky        | https://ethereum-holesky.publicnode.com                                               | 17000    | https://hoodi.app.ethgas.com        | wss://hoodi.app.ethgas.com/ws   | 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6 |
 
-## Basic Connection Setup
+## Authentication Flow
 
-### Step 1: Choose Your Environment
+ETHGas uses JWT Bearer token authentication. Here's the complete flow:
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+### 1. Login
+
+First, authenticate with your credentials:
 
 <Tabs>
-  <TabItem value="mainnet" label="MainNet" default>
+<TabItem value="http" label="HTTP" default>
 
-<strong>API Endpoints:</strong>
-<ul>
-<li><strong>REST API:</strong> <code>https://api.ethgas.com</code></li>
-<li><strong>WebSocket:</strong> <code>wss://ws.ethgas.com</code></li>
-</ul>
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "your-email@example.com",
+    "password": "your-password"
+  }'
+```
 
-  </TabItem>
-  <TabItem value="testnet" label="TestNet">
+</TabItem>
+<TabItem value="python" label="Python">
 
-<strong>API Endpoints:</strong>
-<ul>
-<li><strong>REST API:</strong> <code>https://testnet-api.ethgas.com</code></li>
-<li><strong>WebSocket:</strong> <code>wss://testnet-ws.ethgas.com</code></li>
-</ul>
+```python
+import requests
 
-  </TabItem>
+url = "https://mainnet.app.ethgas.com/api/v1/user/login"
+payload = {
+    "email": "your-email@example.com",
+    "password": "your-password"
+}
+headers = {
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+</TabItem>
 </Tabs>
 
-### Step 2: Authenticate
+### 2. Verify Login
 
-Use the Authentication endpoints described in the official reference.
+Complete the verification process:
 
-- **POST** `/api/v1/user/login`
-- **POST** `/api/v1/user/login/verify`
-- **POST** `/api/v1/user/login/refresh`
-- **POST** `/api/v1/user/logout`
+<Tabs>
+<TabItem value="http" label="HTTP" default>
 
-See copy/paste examples in the API endpoints below.
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/verify" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "your-email@example.com",
+    "code": "verification-code"
+  }'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/login/verify"
+payload = {
+    "email": "your-email@example.com",
+    "code": "verification-code"
+}
+headers = {
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+### 3. Use Access Token
+
+Include the JWT access token in all subsequent requests:
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/info" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/info"
+headers = {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+    "Content-Type": "application/json"
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+## Authentication Best Practices
+
+:::warning
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
+
+### Token Refresh
+
+When your access token expires, refresh it:
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/refresh" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refreshToken": "your-refresh-token"
+  }'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/login/refresh"
+payload = {
+    "refreshToken": "your-refresh-token"
+}
+headers = {
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+### Logout
+
+When you're done, logout to invalidate your session:
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/logout" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/logout"
+headers = {
+    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
 
 ## WebSocket Connection
 
-For real-time data, establish a WebSocket connection and send commands using the message structure in the official reference.
+For real-time data, establish a WebSocket connection:
 
 <Tabs>
-  <TabItem value="mainnet-ws" label="MainNet WebSocket" default>
+<TabItem value="mainnet-ws" label="MainNet WebSocket" default>
 
 **Connection URL:**
 ```
-wss://ws.ethgas.com
+wss://mainnet.app.ethgas.com/ws
 ```
 
-  </TabItem>
-  <TabItem value="testnet-ws" label="TestNet WebSocket">
+</TabItem>
+<TabItem value="testnet-ws" label="TestNet WebSocket">
 
 **Connection URL:**
 ```
-wss://testnet-ws.ethgas.com
+wss://hoodi.app.ethgas.com/ws
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
-## Message Structure (WebSocket)
+### WebSocket Authentication
 
-Requests follow the format below:
+Authenticate your WebSocket connection:
+
+```json
+{
+  "cmd": "login",
+  "args": {
+    "accessToken": "YOUR_ACCESS_TOKEN"
+  }
+}
+```
+
+### WebSocket Message Structure
+
+All WebSocket messages follow this format:
 
 ```json
 {
   "cmd": "command_name",
   "args": {
-    
+    "parameter1": "value1",
+    "parameter2": "value2"
   }
 }
 ```
 
-Examples of commands (see full list in the official docs): `login`, `subscribe`, `unsubscribe`, `query`.
+### Common WebSocket Commands
+
+- **`login`**: Authenticate the connection
+- **`subscribe`**: Subscribe to real-time updates
+- **`unsubscribe`**: Unsubscribe from updates
+- **`query`**: Request specific data
+
+## Response Structure
+
+All API responses follow this structure:
+
+```json
+{
+  "success": true,
+  "data": {
+    // Response data here
+  },
+  "message": "Optional message"
+}
+```
+
+## Error Handling
+
+ETHGas uses standard HTTP status codes and custom error codes. See the [Error Codes](/docs/reference/error-codes) section for details.
 
 ## Next Steps
 
 - **API Reference (copy/paste code)**: This documentation
 - **REST API Overview**: `/docs/api/overview`
-- **WebSocket Overview**: `/docs/websocket/overview` 
+- **WebSocket Overview**: `/docs/websocket/overview`
+- **Authentication API**: `/docs/api/authentication` 

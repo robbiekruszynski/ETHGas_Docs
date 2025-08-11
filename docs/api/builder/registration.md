@@ -9,11 +9,14 @@ import TabItem from '@theme/TabItem';
 
 This guide provides step-by-step instructions for setting up a builder with ETHGas using the official builder scripts repository.
 
-## Repository Overview
+:::warning
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
 
-The ETHGas Builder Scripts repository contains everything needed to onboard your BLS public keys to the ETHGas Exchange. This repository is essential for builders who want to participate in the ETHGas ecosystem.
+ ## Repository Overview
+The [ETHGas Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts) repository contains everything needed to onboard your BLS public keys to the ETHGas Exchange. This repository is essential for builders who want to participate in the ETHGas ecosystem.
 
-### Repository Structure
+<!-- ### Repository Structure
 
 The ethgas-builder-scripts repository includes:
 
@@ -21,13 +24,12 @@ The ethgas-builder-scripts repository includes:
 - **Environment Templates**: Mainnet and testnet configurations
 - **Build Scripts**: Automated build and deployment
 - **Registration Logic**: Builder registration and management
-- **Monitoring**: Health checks and logging
+- **Monitoring**: Health checks and logging -->
 
 ### Related Repositories
 
 - **Preconf Builder**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">Modified rbuilder for ETHGas integration</a>
-- **ETHGas Contracts**: Smart contract implementations
-- **Commit Boost Module**: Validator integration module
+- **Commit Boost Module**: <a href="https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module" target="_blank" rel="noopener noreferrer">ETHGas preconf commit-boost module</a>
 
 ## Prerequisites
 
@@ -233,19 +235,153 @@ When `ENABLE_REGISTRATION=true`:
 
 ### Manual Registration
 
-For manual registration, use the API directly:
+**POST /api/v1/builder/register**
+
+**Purpose**: Register builder public keys with the ETHGas platform.
+
+#### Code Sample
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
 
 ```bash
-# Register builder via API
-curl -X POST "https://api.ethgas.com/api/v1/builder/register" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/builder/register" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <your-auth-token>" \
   -d '{
-    "blsPublicKey": "0x...",
-    "feeRecipient": "0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6",
-    "builderUrl": "https://builder.example.com"
+    "publicKeys": "0x1234567890abcdef1234567890abcdef12345678,0xabcdef1234567890abcdef1234567890abcdef12345678",
+    "signatures": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890,0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
   }'
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/builder/register"
+payload = {
+    "publicKeys": "0x1234567890abcdef1234567890abcdef12345678,0xabcdef1234567890abcdef1234567890abcdef12345678",
+    "signatures": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890,0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+}
+headers = {
+    "Authorization": "Bearer <your-auth-token>",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, params=payload, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| publicKeys | Yes | string | Comma separated list of builder bls public key in hex |
+| signatures | Yes | string | Comma separated list of bls signatures in hex |
+
+**Response Example**
+
+```json
+{
+    "success": true,
+    "data": {
+        "results": [
+            {
+                "publicKey": "0xa25addc4fc16f72ca667177d7a5533d4287b3574f0127ffc227095e90b0b1fd0dd48c421e04e613d2298fe4dac83a2a5",
+                "result": {
+                    "result": 0,
+                    "description": "Success"
+                }
+            },
+            {
+                "publicKey": "0xaea551245bd0512de5222834db5f3bc9cba1a04a2e8f5de0d4fea843c9fee1af31bb9373ba6b9da08a0820f695c6ab6e",
+                "result": {
+                    "result": 0,
+                    "description": "Success"
+                }
+            }
+        ]
+    }
+}
+```
+
+<!-- ## Monitoring and Logs
+
+### Container Logs
+
+```bash
+# View real-time logs
+docker-compose logs -f
+
+# View specific service logs
+docker-compose logs builder-registration
+
+# View logs with timestamps
+docker-compose logs -f --timestamps
+```
+
+### Health Checks
+
+```bash
+# Check container status
+docker-compose ps
+
+# Check builder registration status
+curl -X GET "https://api.ethgas.com/v1/builder/status" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Registration Failed**
+   - Verify BLS key pair is valid
+   - Check EOA signing key permissions
+   - Ensure account is registered on ETHGas Exchange
+
+2. **Container Won't Start**
+   - Check environment variables are set correctly
+   - Verify Docker and Docker Compose are installed
+   - Check network connectivity to ETHGas APIs
+
+3. **API Authentication Errors**
+   - Verify API key is correct
+   - Check token expiration
+   - Ensure proper Authorization header format
+
+### Debug Mode
+
+Enable debug logging for troubleshooting:
+
+```bash
+# Set debug logging
+LOG_LEVEL=debug
+
+# Restart container
+docker-compose restart
+```
+
+## Security Considerations
+
+### Key Management
+
+- **Secure storage**: Store private keys in hardware security modules (HSM) when possible
+- **Access control**: Limit access to builder keys
+- **Regular rotation**: Consider rotating keys periodically
+- **Backup strategy**: Implement secure backup procedures
+
+### Network Security
+
+- **Firewall configuration**: Restrict access to builder ports
+- **VPN usage**: Use VPN for remote access
+- **Regular updates**: Keep all software updated
+- **Security audits**: Regular security assessments -->
 
 ## Integration with Modified rbuilder
 
@@ -346,7 +482,7 @@ build_duration_deadline_ms = 1500
 #drop_failed_orders = true
 #coinbase_payment = false
 ```
-
+<!-- 
 ## API Integration
 
 ### Authentication
@@ -386,7 +522,7 @@ curl -X POST "https://api.ethgas.com/v1/builder/submit-block" \
     "transactions": ["0x...", "0x..."],
     "commitments_satisfied": ["commitment_123"]
   }'
-```
+``` -->
 
 ## Compliance Requirements
 
@@ -399,9 +535,535 @@ All built blocks must pass validation checks:
 - **Gas limit**: Block must not exceed gas limit
 - **Commitment compliance**: Block must satisfy all trader commitments
 
+## Market Lists
+
+The Market Lists API provides endpoints for retrieving market information and data.
+
+### GET /api/v1/p/wholeblock/markets
+
+<details>
+<summary style={{listStyle: 'none'}}>Retrieve whole block markets</summary>
+### Sample Code
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets" \
+  -H "Authorization: Bearer <your-auth-token>"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets"
+headers = {
+    "Authorization": "Bearer <your-auth-token>"
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| N/A | N/A | N/A | No parameters required |
+
+**Response Example**
+
+```json
+{
+    "success": true,
+    "data": {
+        "markets": [
+            {
+                "marketId": 1,
+                "marketType": 2,
+                "status": 1,
+                "slot": 12345,
+                "startTime": 1730193765339,
+                "endTime": 1730193865339
+            }
+        ]
+    }
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| success | boolean | Success status of the request |
+| data | object | Response data container |
+| └ markets | array | Array of market information |
+| └└ marketId | integer | Unique market identifier |
+| └└ marketType | integer | Type of market (2 = Whole Block) |
+| └└ status | integer | Market status code |
+| └└ slot | integer | Slot number for the market |
+| └└ startTime | integer | Market start timestamp |
+| └└ endTime | integer | Market end timestamp |
+
+</details>
+
+### GET /api/v1/p/inclusion-preconf/markets
+
+<details>
+<summary style={{listStyle: 'none'}}>Retrieve inclusion preconf markets</summary>
+### Sample Code
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/markets" \
+  -H "Authorization: Bearer <your-auth-token>"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/markets"
+headers = {
+    "Authorization": "Bearer <your-auth-token>"
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| N/A | N/A | N/A | No parameters required |
+
+**Response Example**
+
+```json
+{
+    "success": true,
+    "data": {
+        "markets": [
+            {
+                "marketId": 2,
+                "marketType": 1,
+                "status": 1,
+                "slot": 12345,
+                "startTime": 1730193765339,
+                "endTime": 1730193865339
+            }
+        ]
+    }
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| success | boolean | Success status of the request |
+| data | object | Response data container |
+| └ markets | array | Array of market information |
+| └└ marketId | integer | Unique market identifier |
+| └└ marketType | integer | Type of market (1 = Inclusion Preconf) |
+| └└ status | integer | Market status code |
+| └└ slot | integer | Slot number for the market |
+| └└ startTime | integer | Market start timestamp |
+| └└ endTime | integer | Market end timestamp |
+
+</details>
+
+## Slot Bundles
+
+The Slot Bundles API provides endpoints for managing and querying bundle information for specific slots.
+
+### GET /api/v1/slot/bundles
+
+<details>
+<summary style={{listStyle: 'none'}}>Retrieve bundles for a specific slot</summary>
+### Sample Code
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/slot/bundles?slot=123
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/slot/bundles"
+params = {"slot": 1234}
+headers = {
+    "Authorization": "Bearer <your-auth-token>"
+}
+
+response = requests.get(url, params=params, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| slot | Yes | integer | The slot number to query |
+
+**Response Example**
+
+```json
+{
+{
+    "slot": 123,
+    "emptySpace": 0,
+    "isSold": true,
+    "feeRecipient": "0xasdfadflj2lwejf...",
+    "bundles": [
+            {
+                "txs": [
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "createDate": 1730193765339
+                    },
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "createDate": 1730193765339
+                    }
+                ],
+                "uuid": "ab592371-84d6-459e-95e7-5edad485f282",
+                "averageBidPrice": 1.2635975E-8
+            },
+            {
+                "txs": [
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "createDate": 1730366973413
+                    }
+                ],
+                "uuid": "45727106-d37e-4194-93bc-8650bc135c53fg",
+                "averageBidPrice": 1.0E-11
+            },
+            {
+                "txs": [
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "createDate": 1730366973440
+                    }
+                ],
+                "uuid": "19780112-d37e-4194-93bc-8650bc135c53",
+                "averageBidPrice": 1.0E-11
+            }
+        ]
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| slot | integer | Slot ID of the retrieved bundles. |
+| bundles | array | List of bundles associated with the slot. |
+| └ uuid | string | Unique identifier for the bundle |
+| └ averageBidPrice | number | Average bid price for the bundle |
+| └ isSold | boolean | 1: some preconf or wholeblock has been sold, 0: the entire block and preconf still belongs to the validator |
+| └ feeReceipient | byte[] | address where the fees should be paid to, only display after market expired |
+| └ txs | list | List of transactions |
+| └└ trx | string | Signed Transaction |
+| └└ canRevert | boolean | revertable: true, non-revertable : false |
+| └└ status | integer | 0: ok, -1 : conflicted |
+| └└ createDate | date | Date of submitting the transaction |
+
+</details>
+
+### GET /api/v1/account/slot/bundles
+
+<details>
+<summary style={{listStyle: 'none'}}>Retrieve the bundles submitted for a given slot for your inclusion preconf account.</summary>
+### Sample Code
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/slot/bundles?slot=123
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/account/slot/bundles"
+params = {
+    "slot": 1234,
+    "accountId": "account-123"
+}
+headers = {
+    "Authorization": "Bearer <your-auth-token>"
+}
+
+response = requests.get(url, headers=headers, params=params )
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| slot | Yes | integer | The slot number to query |
+| accountId | Yes | string | The account ID to filter bundles |
+
+**Response Example**
+
+```json
+{
+{
+    "slot": 123,
+    "bundles": [
+            {
+                "txs": [
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "status": 0,
+                        "createDate": 1730193765339
+                    },
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "status": 0,
+                        "createDate": 1730193765339
+                    }
+                ],
+                "uuid": "ab592371-84d6-459e-95e7-5edad485f282",
+                "averageBidPrice": 1.2635975E-8
+            },
+            {
+                "txs": [
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "createDate": 1730366973413
+                    }
+                ],
+                "uuid": "45727106-d37e-4194-93bc-8650bc135c53fg",
+                "averageBidPrice": 1.0E-11
+            },
+            {
+                "txs": [
+                    {
+                        "tx": "0x02f86b0180843b9aca00852ecc889a0082520894c87037874aed04e51c29f582394217a0a2b89d808080c080a0a463985c616dd8ee17d7ef9112af4e6e06a27b071525b42182fe7b0b5c8b4925a00af5ca177ffef2ff28449292505d41be578bebb77110dfc09361d2fb56998260",
+                        "canRevert": false,
+                        "status": 0,
+                        "createDate": 1730366973440
+                    }
+                ],
+                "uuid": "19780112-d37e-4194-93bc-8650bc135c53",
+                "averageBidPrice": 1.0E-11
+            }
+        ]
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| slot | integer | Slot ID of the retrieved bundles. |
+| bundles | array | List of bundles associated with the slot. |
+| └ uuid | string | Unique identifier for the bundle |
+| └ averageBidPrice | number | Average bid price for the bundle |
+| └ isSold | boolean | 1: some preconf or wholeblock has been sold, 0: the entire block and preconf still belongs to the validator |
+| └ feeReceipient | byte[] | address where the fees should be paid to, only display after market expired |
+| └ txs | list | List of transactions |
+| └└ trx | string | Signed Transaction |
+| └└ canRevert | boolean | revertable: true, non-revertable : false |
+| └└ status | integer | 0: ok, -1 : conflicted |
+| └└ createDate | date | Date of submitting the transaction |
+
+</details>
+
+### GET /api/v1/slot/forceEmptyBlockSpace
+
+<details>
+### Sample Code
+
+<summary style={{listStyle: 'none'}}>Preconf owner set unused inclusion preconf gas to be empty for a given slot.</summary>
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+GET /api/v1/p/slot/forceEmptyBlockSpace?slot=123&enable=true
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/slot/forceEmptyBlockSpace
+
+params = {
+    'slot': 123,
+    'enable': true
+}
+
+response = requests.get(url, params=params)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| slot | Yes | integer | The slot number to force empty block space |
+| enable | Yes | boolean | True to force empty gas space in the slot |
+
+**Response Example**
+
+```json
+{
+    "success": true,
+    "data": { "success": false }
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| success | boolean | Success status of the request |
+| data | object | Response data container |
+| └ success | boolean | Whether the empty block space was successfully forced |
+
+</details>
+
+### GET /api/v1/p/slot/txs/hash
+
+<details>
+### Sample Code
+
+<summary style={{listStyle: 'none'}}>Retrieve transaction hash information for a specific slot</summary>
+
+<Tabs>
+
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/slot/txs/hash?slot=1234" \
+  -H "Authorization: Bearer <your-auth-token>"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/slot/txs/hash"
+
+params = {
+    'slot': 123
+}
+
+response = requests.get(url, params=params)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| slot | Yes | integer | The slot number to query transaction hashes |
+
+**Response Example**
+
+```json
+{
+    "hash": "0xabc123def456..."
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| hash | string | Hash of the transactions for the slot |
+
+</details>
+
 <!-- ### Performance Requirements
 
 - **Block building time**: Must complete within slot timeframe
 - **Relay submission**: Must submit blocks to relay before deadline
 - **Error handling**: Must handle failures gracefully
-- **Monitoring**: Must provide status and health information  -->
+- **Monitoring**: Must provide status and health information
+
+## Support and Resources
+
+### Documentation
+
+- **ETHGas Documentation**: Complete platform documentation
+- **Builder API Reference**: Detailed API documentation
+- **Registration Guide**: Registration process details
+
+### Community Support
+
+- **GitHub Issues**: Report issues in the builder scripts repository
+- **Discord**: Join our builder community
+- **Email**: Direct support for enterprise users
+
+### Essential Links
+
+- **ETHGas TestNet**: Test your integration
+- **Builder Scripts Repository**: Complete setup code
+- **Preconf Builder Repository**: Modified rbuilder
+- **ETHGas Contracts**: Smart contract implementations
+
+## Next Steps
+
+1. **Complete Setup**: Follow the instructions above to set up your builder
+2. **Test Integration**: Verify connection to ETHGas network
+3. **Monitor Performance**: Set up monitoring and alerting
+4. **Optimize Configuration**: Fine-tune based on performance metrics
+5. **Join Community**: Connect with other builders for support
+
+For additional assistance, contact our support team or join our community channels. -->
