@@ -267,31 +267,84 @@ cp config.example.toml config.toml
 ### Configuration
 
 ```toml
-[ethgas]
-# ETHGas API endpoint
-api_url = "https://api.ethgas.com"
-# Your API credentials
-api_key = "your_api_key_here"
+log_json = false
+log_level = "info,rbuilder=debug"
+#log_file_path = "<project path>/preconf-builder/logs/rbuilder.log"
+redacted_telemetry_server_port = 6061
+redacted_telemetry_server_ip = "0.0.0.0"
+full_telemetry_server_port = 6060
+full_telemetry_server_ip = "0.0.0.0"
 
-[relay]
-# ETHGas relay endpoint
-relay_url = "https://relay.ethgas.com"
-# Relay authentication
-relay_auth = "your_relay_auth_token"
+chain = ""
+reth_datadir = ""
 
-[block_building]
-# Maximum gas limit for blocks
-max_gas_limit = 30000000
-# Minimum gas price for mempool transactions
-min_gas_price = 1000000000
-# Enable preconf transaction inclusion
-enable_preconf = true
+coinbase_secret_key = "env:COINBASE_SECRET_KEY"
+relay_secret_key = "env:RELAY_SECRET_KEY"
+optimistic_relay_secret_key = "env:OPTIMISTIC_RELAY_SECRET_KEY"
 
-[commitments]
-# Commitment validation settings
-validate_commitments = true
-require_all_preconfs = true
-bundle_positioning = true
+
+# cl_node_url can be a single value, array of values, or passed by an environment variables with values separated with a comma
+# cl_node_url = "http://localhost:3500"
+cl_node_url = ["env:CL_NODE_URL"]
+jsonrpc_server_port = 8645
+jsonrpc_server_ip = "0.0.0.0"
+el_node_ipc_path = "/tmp/reth.ipc"
+extra_data = "ETHGas www.ethgas.com"
+
+#blocklist_file_path = "./blocklist.json"
+
+ignore_cancellable_orders = false
+
+# watchdog_timeout_sec = 600
+# simulation_threads = 1
+
+# genesis_fork_version = "0x00112233"
+
+sbundle_mergeabe_signers = []
+live_builders = ["preconf-ordering"]
+
+enabled_relays = ["custom"]
+
+
+# EthGas API domain
+preconf_api_url = "https://"
+# EthGas WebSocket domain
+preconf_ws_url = "wss://"
+fallback_fee_recipient = ""
+
+[[relays]]
+name = "custom"
+url = ""
+priority = 0
+use_ssz_for_submit = false
+use_gzip_for_submit = false
+
+[[builders]]
+name = "preconf-ordering"
+algo = "ordering-builder"
+discard_txs = false
+coinbase_payment = true
+sorting = "preconf"
+failed_order_retries = 1
+drop_failed_orders = true
+build_duration_deadline_ms = 1500
+
+#[[builders]]
+#name = "mgp-ordering"
+#algo = "ordering-builder"
+#discard_txs = true
+#sorting = "mev-gas-price"
+#failed_order_retries = 1
+#drop_failed_orders = true
+#
+#[[builders]]
+#name = "mp-ordering"
+#algo = "ordering-builder"
+#discard_txs = true
+#sorting = "max-profit"
+#failed_order_retries = 1
+#drop_failed_orders = true
+#coinbase_payment = false
 ```
 
 ## API Integration
