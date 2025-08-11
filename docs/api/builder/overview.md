@@ -299,7 +299,7 @@ print(response.text)
 
 ### GET /api/v1/p/builders
 
-Get list of all registered builders.
+**Purpose**: Retrieve a list of builder public keys submitted by a user
 
 <details>
 <summary style={{listStyle: 'none'}}>View Details</summary>
@@ -329,7 +329,7 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-**Purpose**: Retrieve a list of all builders currently registered on the ETHGas platform.
+
 
 #### Response Example
 
@@ -402,8 +402,11 @@ print(response.text)
 {
     "success": true,
     "data": {
-        "publicKey": "0xa25addc4fc16f72ca667177d7a5533d4287b3574f0127ffc227095e90b0b1fd0dd48c421e04e613d2298fe4dac83a2a5",
-        "status": "active"
+        "builders": [
+            "0xa25addc4fc16f72ca667177d7a5533d4287b3574f0127ffc227095e90b0b1fd0dd48c421e04e613d2298fe4dac83a2a5",
+            "0xa6745dd64a0a393497d5a7d4904b613aa386f47eb2e3617cf791f059291f2812683305a4bd562d63ec15990b67795e2a",
+            "0xaea551245bd0512de5222834db5f3bc9cba1a04a2e8f5de0d4fea843c9fee1af31bb9373ba6b9da08a0820f695c6ab6e"
+        ]
     }
 }
 ```
@@ -414,28 +417,22 @@ print(response.text)
 |-------|------|-------------|
 | success | boolean | Success status of the request |
 | data | object | Response data container |
-| └ publicKey | string | User's builder public key |
-| └ status | string | Builder status |
+| └ builders | string[] | List of builder bls keys.
+ |
 
 </details>
 
 ### POST /api/v1/user/delegate/builder
 
-Delegate to a specific builder.
-
+**Purpose**: Delegate or revoke delegation of builder keys by supplying either a comma-separated list of BLS public keys or a builder name (which applies to all keys under that builder).
 <details>
 <summary style={{listStyle: 'none'}}>View Details</summary>
-
+#### Code Sample
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/delegate/builder" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <your-auth-token>" \
-  -d '{
-    "builderPublicKey": "0x123456789abcdef..."
-  }'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/delegate/builder?publicKeys=0x12345...,0x2df345...&enable=true
 ```
 
 </TabItem>
@@ -447,7 +444,8 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/delegate/builder"
 
 payload = {
-    'builderPublicKey': '0x123456789abcdef...'
+    'publicKeys': '0x123456789abcdef...,0x2df345...',
+    'enable': true
 }
 
 headers = {
@@ -463,22 +461,20 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-**Purpose**: Delegate block building responsibilities to a specific registered builder.
 
 #### Request Parameters
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| builderPublicKey | YES | string | Builder's BLS public key to delegate to |
+| publicKeys | No | string | Builder's BLS public key to delegate to |
+| builderName| No | string | Builder name |
+| enable | Yes | boolean | Delegate or revoke builder delegation.| 
 
 #### Response Example
 
 ```json
 {
     "success": true,
-    "data": {
-        "builderPublicKey": "0x123456789abcdef..."
-    }
 }
 ```
 
@@ -488,20 +484,24 @@ print(response.text)
 |-------|------|-------------|
 | success | boolean | Success status of the request |
 | data | object | Response data container |
-| └ builderPublicKey | string | The delegated builder public key |
+| └ delegatedBuilders | string | The delegated builder public key |
+
+:::note
+Note: User needs to delegate a new builder 2 seconds before the market close in order to be effective in that epoch.
+:::
 
 </details>
 
 ### GET /api/v1/user/delegate/builder
 
-Get current user's builder delegation.
+**Purpose**: Retrieve information about the current user's builder delegation settings.
 
 <details>
 <summary style={{listStyle: 'none'}}>View Details</summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
-
+#### Code Sample
 ```bash
 curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/delegate/builder" \
   -H "Authorization: Bearer <your-auth-token>"
@@ -516,7 +516,9 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/delegate/builder"
 
 headers = {
-    'Authorization': 'Bearer <your-auth-token>'
+    'Authorization': 'Bearer <your-auth-token>',
+    'Content-Type': 'application/json'
+
 }
 
 response = requests.get(url, headers=headers)
@@ -527,7 +529,6 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-**Purpose**: Retrieve information about the current user's builder delegation settings.
 
 #### Response Example
 
@@ -535,7 +536,10 @@ print(response.text)
 {
     "success": true,
     "data": {
-        "builderPublicKey": "0x123456789abcdef..."
+        "delegatedBuilders": [
+            "0x123456789abcdef...",
+            "0xfb3456789abcdef..."
+        ]
     }
 }
 ```
@@ -546,7 +550,7 @@ print(response.text)
 |-------|------|-------------|
 | success | boolean | Success status of the request |
 | data | object | Response data container |
-| └ builderPublicKey | string | The delegated builder public key |
+| └ delegatedBuilders | string[] | The delegated builder public key |
 
 </details>
 
@@ -556,7 +560,7 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>View Details</summary>
-
+#### Code Sample
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -573,9 +577,6 @@ import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/p/builder/12345"
 
-headers = {
-    'Authorization': 'Bearer <your-auth-token>'
-}
 
 response = requests.get(url, headers=headers)
 
@@ -590,16 +591,20 @@ print(response.text)
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| slot | YES | integer | The slot number to query |
+| slot | YES | integer | The Slot ID to query the builder |
 
 #### Response Example
 
 ```json
 {
-    "success": true,
+    "success" : true,
     "data": {
-        "slot": 12345,
-        "builderPublicKey": "0x123456789abcdef..."
+        "slot": 123,
+        "builders": [
+            "0x123456789abcdef...",
+            "0x156256789ad4fef..."
+        ],
+        "fallbackBuilder": "0xdsfa56789abcdef..."
     }
 }
 ```
@@ -611,7 +616,9 @@ print(response.text)
 | success | boolean | Success status of the request |
 | data | object | Response data container |
 | └ slot | integer | The slot number |
-| └ builderPublicKey | string | Builder's public key for this slot |
+| └ builders | string[] | List of available builder keys for the queried slot |
+| └ fallbackBuilder | string | Public key of the fallback builder in hexadecimal format|
+
 
 </details>
 
@@ -640,7 +647,9 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/builder/delegation"
 
 headers = {
-    'Authorization': 'Bearer <your-auth-token>'
+    'Authorization': 'Bearer <your-auth-token>',
+    'Content-Type': 'application/json'
+
 }
 
 response = requests.get(url, headers=headers)
