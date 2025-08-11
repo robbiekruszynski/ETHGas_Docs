@@ -29,11 +29,6 @@ Connect with the ETHGas community, stay updated with the latest developments, an
       </div>
       <h3>Website</h3>
       <p>Visit the official ETHGas website for the latest platform updates and features.</p>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto', paddingTop: '1rem' }}>
-        <a href="https://ethgas.com" target="_blank" rel="noopener noreferrer" style={{ color: '#00A2C7', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          Visit Website →
-        </a>
-      </div>
     </div>
   </div>
   <div className="col col--4">
@@ -56,11 +51,6 @@ Connect with the ETHGas community, stay updated with the latest developments, an
       </div>
       <h3>X (Twitter)</h3>
       <p>Follow us for real-time updates, announcements, and insights into the ETHGas ecosystem.</p>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto', paddingTop: '1rem' }}>
-        <a href="https://x.com/ETHGASofficial" target="_blank" rel="noopener noreferrer" style={{ color: '#00A2C7', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          Follow @ETHGASofficial →
-        </a>
-      </div>
     </div>
   </div>
   <div className="col col--4">
@@ -83,11 +73,6 @@ Connect with the ETHGas community, stay updated with the latest developments, an
       </div>
       <h3>Telegram</h3>
       <p>Join our Telegram channel for instant updates, community discussions, and direct support.</p>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto', paddingTop: '1rem' }}>
-        <a href="https://t.me/ethgas" target="_blank" rel="noopener noreferrer" style={{ color: '#00A2C7', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          Join Telegram →
-        </a>
-      </div>
     </div>
   </div>
 </div>
@@ -113,11 +98,6 @@ Connect with the ETHGas community, stay updated with the latest developments, an
       </div>
       <h3>Discord</h3>
       <p>Join our Discord server to connect with developers, get support, and participate in community discussions.</p>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto', paddingTop: '1rem' }}>
-        <a href="https://discord.gg/ethgas" target="_blank" rel="noopener noreferrer" style={{ color: '#00A2C7', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          Join Discord →
-        </a>
-      </div>
     </div>
   </div>
   <div className="col col--4">
@@ -140,11 +120,6 @@ Connect with the ETHGas community, stay updated with the latest developments, an
       </div>
       <h3>YouTube</h3>
       <p>Watch tutorials, demos, and educational content about ETHGas platform features and updates.</p>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto', paddingTop: '1rem' }}>
-        <a href="https://www.youtube.com/channel/UCuGXI-jGz_n5MnMHuBRXsSg" target="_blank" rel="noopener noreferrer" style={{ color: '#00A2C7', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          Subscribe →
-        </a>
-      </div>
     </div>
   </div>
   <div className="col col--4">
@@ -167,11 +142,6 @@ Connect with the ETHGas community, stay updated with the latest developments, an
       </div>
       <h3>GitHub</h3>
       <p>Explore our open-source repositories, contribute to development, and access technical resources.</p>
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'auto', paddingTop: '1rem' }}>
-        <a href="https://github.com/ethgas-developer" target="_blank" rel="noopener noreferrer" style={{ color: '#00A2C7', textDecoration: 'none', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          View Repositories →
-        </a>
-      </div>
     </div>
   </div>
 </div> 
