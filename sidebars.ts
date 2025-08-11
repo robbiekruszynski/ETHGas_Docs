@@ -60,6 +60,11 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'doc',
+          id: 'api/builder/registration',
+          label: 'Setup Guide',
+        },
+        {
+          type: 'doc',
           id: 'api/builder/overview',
           label: 'Builders & Sequencers',
         },

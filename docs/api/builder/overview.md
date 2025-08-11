@@ -24,8 +24,8 @@ Builders may use their own software or the ETHGas-modified rbuilder (preconf-bui
 
 ### Resources
 
-- **Preconf Builder (optional)**: `https://github.com/ethgas-developer/preconf-builder`
-- **Builder Scripts**: `https://github.com/ethgas-developer/ethgas-builder-scripts`
+- **Preconf Builder (optional)**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/preconf-builder</a>
+- **Builder Scripts**: <a href="https://github.com/ethgas-developer/ethgas-builder-scripts" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/ethgas-builder-scripts</a>
 
 ## Who Builds the Blocks?
 
