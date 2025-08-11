@@ -100,8 +100,8 @@ print(response.text)
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| publicKeys | YES | string | Comma separated list of builder bls public key in hex |
-| signatures | YES | string | Comma separated list of bls signatures in hex |
+| publicKeys | Yes | string | Comma separated list of builder bls public key in hex |
+| signatures | Yes | string | Comma separated list of bls signatures in hex |
 
 #### Response Example
 
@@ -214,8 +214,8 @@ print(response.text)
 </details>
 
 ### POST /api/v1/builder/deregister
+**Purpose**: Builder deregistering their public keys
 
-**Purpose**: Deregister builder public keys.
 
 <details>
 <summary style={{listStyle: 'none'}}>View Details</summary>
@@ -262,24 +262,13 @@ print(response.text)
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| publicKeys | YES | string | Comma separated list of builder bls public keys in hex |
+| publicKeys | Yes | string | List of builder bls public keys in hex |
 
 #### Response Example
 
 ```json
 {
-    "success": true,
-    "data": {
-        "results": [
-            {
-                "publicKey": "0xa25addc4fc16f72ca667177d7a5533d4287b3574f0127ffc227095e90b0b1fd0dd48c421e04e613d2298fe4dac83a2a5",
-                "result": {
-                    "result": 0,
-                    "description": "Success"
-                }
-            }
-        ]
-    }
+    "success": true
 }
 ```
 
@@ -288,12 +277,12 @@ print(response.text)
 | Field | Type | Description |
 |-------|------|-------------|
 | success | boolean | Success status of the request |
-| data | object | Response data container |
+<!-- | data | object | Response data container |
 | └ results | object[] | Results of builder public key deregistrations |
 | └└ publicKey | string | Public key in the deregistration |
 | └└ result | object | Builder Registration Result |
 | └└└ result | integer | Builder Registration Result Code |
-| └└└ description | string | Builder Registration Result Description |
+| └└└ description | string | Builder Registration Result Description | -->
 
 </details>
 
@@ -312,6 +301,29 @@ curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/builders" \
   -H "Authorization: Bearer <your-auth-token>"
 ```
 
+#### Response Example
+
+```json
+{
+    "success": true,
+    "data": {
+        "builders": {
+            "whitelistedBuilders": {
+                "btcs": [
+                    "0x123456789abcdef...",
+                    "0xfb3456789abcdef..."
+                ]
+            },
+            "unnamedBuilders": [
+                "0x123456789abcdef...",
+                "0xfb3456789abcdef..."
+            ],
+            "fallbackBuilder": "0xlhadunabcdef..."
+        }
+    }
+}
+```
+
 </TabItem>
 <TabItem value="python" label="Python">
 
@@ -320,16 +332,14 @@ import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/p/builders"
 
+headers = {
+    'Authorization': 'Bearer <your-auth-token>'
+}
 
 response = requests.get(url, headers=headers)
 
 print(response.text)
 ```
-
-</TabItem>
-</Tabs>
-
-
 
 #### Response Example
 
@@ -337,35 +347,45 @@ print(response.text)
 {
     "success": true,
     "data": {
-        "builders": [
-            {
-                "publicKey": "0xa25addc4fc16f72ca667177d7a5533d4287b3574f0127ffc227095e90b0b1fd0dd48c421e04e613d2298fe4dac83a2a5",
-                "status": "active"
-            }
-        ]
+        "builders": {
+            "whitelistedBuilders": {
+                "btcs": [
+                    "0x123456789abcdef...",
+                    "0xfb3456789abcdef..."
+                ]
+            },
+            "unnamedBuilders": [
+                "0x123456789abcdef...",
+                "0xfb3456789abcdef..."
+            ],
+            "fallbackBuilder": "0xlhadunabcdef..."
+        }
     }
 }
 ```
+
+</TabItem>
+</Tabs>
 
 #### Response Body
 
 | Field | Type | Description |
 |-------|------|-------------|
-| success | boolean | Success status of the request |
+| success | boolean | Success status of the request|
 | data | object | Response data container |
-| └ builders | array | Array of builder objects |
-| └└ publicKey | string | Builder's BLS public key |
-| └└ status | string | Builder status (active/inactive) |
+| └ whitelistedBuilders | object | Array of builder objects |
+| └└ unnamedBuilders | list | List of public key of unnamed builder in hex|
+| └└ fallbackBuilder | string | Public key of the ETHGAS fallback builder in hex|
 
 </details>
 
 ### GET /api/v1/user/builder
 
-Get current user's builder information.
+**Purpose**: Retrieve a list of builder public keys submitted by a user
 
 <details>
 <summary style={{listStyle: 'none'}}>View Details</summary>
-
+#### Code Sample
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -382,9 +402,6 @@ import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/user/builder"
 
-headers = {
-    'Authorization': 'Bearer <your-auth-token>'
-}
 
 response = requests.get(url, headers=headers)
 
@@ -394,7 +411,6 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-**Purpose**: Retrieve information about the current user's builder registration and status.
 
 #### Response Example
 
