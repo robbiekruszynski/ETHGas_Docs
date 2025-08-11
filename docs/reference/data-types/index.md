@@ -234,6 +234,6 @@ const formatAddress = (address) => {
 
 ## Related Documentation
 
-- [Error Codes](/docs/reference/error-codes/general) - API error codes
-- [Lookup Tables](/docs/reference/lookup-tables/markets) - Reference data
+- [Error Codes](/docs/reference/error-codes) - API error codes
+- [Lookup Tables](/docs/reference/lookup-tables) - Reference data
 - [API Overview](/docs/api/overview) - API documentation 
