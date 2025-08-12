@@ -5,7 +5,7 @@ sidebar_position: 1
 # Developer Overview
 
 :::info Role scope
-This page focuses on Developers. For Builders see `/docs/api/builder/overview`. For Validators see `/docs/validators/overview`. For copy/paste‑ready code, see the API endpoints below.
+This page focuses on Developers. For Builders see [Builder Overview](/docs/api/builder/overview). For Validators see [Validator Overview](/docs/validators/overview). For copy/paste‑ready code, see the API endpoints below.
 :::
 
 This guide provides a concise overview for developers integrating with the ETHGas ecosystem.
@@ -46,18 +46,22 @@ ETHGas is a platform for trading Ethereum blockspace and acquiring preconfirmati
 
 ## GitHub Repositories
 
-- **Commit Boost Module**: `https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module`
-- **Preconf Builder (modified rbuilder)**: `https://github.com/ethgas-developer/preconf-builder`
-- **Builder Scripts**: `https://github.com/ethgas-developer/ethgas-builder-scripts`
-- **Contracts (AVS for audit)**: `https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit`
+| Repository | Description | Link |
+|------------|-------------|------|
+| **Commit Boost Module** | Preconfirmation commit boost functionality | <a href="https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module" target="_blank" rel="noopener noreferrer">View Repository</a> |
+| **Preconf Builder** | Modified rbuilder for preconfirmation support | <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">View Repository</a> |
+| **Builder Scripts** | Scripts and tools for builders | <a href="https://github.com/ethgas-developer/ethgas-builder-scripts" target="_blank" rel="noopener noreferrer">View Repository</a> |
+| **Contracts (AVS)** | Smart contracts for audit (AVS) | <a href="https://github.com/ethgas-developer/ethgas-contracts-avs-for-audit" target="_blank" rel="noopener noreferrer">View Repository</a> |
 
 ## Development Paths
 
-- **Getting Started**: `/docs/getting-started/welcome`
-- **Environments**: `/docs/getting-started/environments`
-- **Connecting**: `/docs/getting-started/connecting`
-- **API Overview**: `/docs/api/overview`
-- **WebSocket Overview**: `/docs/websocket/overview`
+| Path | Description | Link |
+|------|-------------|------|
+| **Getting Started** | Welcome guide and introduction | [Welcome Guide](/docs/getting-started/welcome) |
+| **Environments** | Set up TestNet and MainNet environments | [Environment Setup](/docs/getting-started/environments) |
+| **Connecting** | Connect to ETHGas platform | [Connection Guide](/docs/getting-started/connecting) |
+| **API Overview** | Complete API documentation | [API Documentation](/docs/api/overview) |
+| **WebSocket Overview** | Real-time WebSocket API docs | [WebSocket Documentation](/docs/websocket/overview) |
 
 ## Market Types
 
@@ -75,5 +79,5 @@ ETHGas is a platform for trading Ethereum blockspace and acquiring preconfirmati
 
 ## Resources for Developers
 
-- **API Reference**: This documentation
-- **GitHub**: `https://github.com/ethgas-developer` 
+- **API Reference**: [This documentation](/docs/api/overview)
+- **GitHub**: <a href="https://github.com/ethgas-developer" target="_blank" rel="noopener noreferrer">ETHGas Developer Organization</a> 

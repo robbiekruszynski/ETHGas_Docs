@@ -57,10 +57,6 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'For Builders',
-      link: {
-        type: 'doc',
-        id: 'api/builder/registration',
-      },
       items: [
         {
           type: 'doc',

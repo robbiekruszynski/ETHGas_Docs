@@ -29,7 +29,7 @@ The ethgas-builder-scripts repository includes:
 ### Related Repositories
 
 - **Preconf Builder**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">Modified rbuilder for ETHGas integration</a>
-- **Commit Boost Module**: <a href="https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module" target="_blank" rel="noopener noreferrer">ETHGas preconf commit-boost module</a>
+<!-- - **Commit Boost Module**: <a href="https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module" target="_blank" rel="noopener noreferrer">ETHGas preconf commit-boost module</a> -->
 
 ## Prerequisites
 

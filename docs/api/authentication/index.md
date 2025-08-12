@@ -32,18 +32,20 @@ sequenceDiagram
     API->>Client: confirmation
 ```
 
-## Endpoints
+## API Endpoints
 
-- POST `/api/v1/user/login`
-- POST `/api/v1/user/login/verify`
-- POST `/api/v1/user/login/refresh`
-- POST `/api/v1/user/logout`
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| **POST** | `/api/v1/user/login` | Authenticate and obtain access/refresh tokens |
+| **POST** | `/api/v1/user/login/verify` | Verify login and complete authentication |
+| **POST** | `/api/v1/user/login/refresh` | Refresh expired access tokens |
+| **POST** | `/api/v1/user/logout` | Invalidate session and clear tokens |
 
-For copy/paste‑ready HTTP/Python examples, see the API endpoints below.
+For copy/paste‑ready HTTP/Python examples, see the detailed API endpoints below.
 
 ## Best Practices
 
-☑️ Store tokens securely
-☑️ Refresh proactively
-☑️ Handle errors gracefully
-☑️ Logout when done 
+- [x] **Store tokens securely** - Keep access tokens in secure storage and never expose them in client-side code
+- [x] **Refresh proactively** - Refresh tokens before they expire to maintain continuous access
+- [x] **Handle errors gracefully** - Implement proper error handling for authentication failures
+- [x] **Logout when done** - Always logout to invalidate sessions and clear tokens 
