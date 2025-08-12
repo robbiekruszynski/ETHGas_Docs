@@ -98,6 +98,30 @@ h3 {
 
 [data-theme='dark'] .navbar__brand,
 [data-theme='dark'] .navbar__item,
+
+/* Full width tables for better readability */
+table {
+  width: 100% !important;
+  margin: 1rem 0;
+  table-layout: auto !important;
+  max-width: none !important;
+}
+
+/* Ensure table cells also use full width */
+table th,
+table td {
+  width: auto !important;
+  max-width: none !important;
+  word-wrap: break-word;
+}
+
+/* Override any Docusaurus table constraints */
+.theme-doc-markdown table,
+.markdown table {
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: auto !important;
+}
 [data-theme='dark'] .navbar__link {
   color: #ffffff;
 }
@@ -2132,4 +2156,67 @@ details > div {
 [data-theme='dark'] .example-info p {
   color: #9ca3af !important;
   line-height: 1.4 !important;
+}
+
+/* Force full width tables - highest priority */
+.theme-doc-markdown table,
+.markdown table,
+article table,
+main table,
+div table {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+  margin: 1rem 0 !important;
+  display: table !important;
+}
+
+/* Force table cells to expand */
+.theme-doc-markdown table th,
+.theme-doc-markdown table td,
+.markdown table th,
+.markdown table td,
+article table th,
+article table td,
+main table th,
+main table td,
+div table th,
+div table td {
+  width: auto !important;
+  max-width: none !important;
+  min-width: auto !important;
+  word-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Override any container constraints */
+.theme-doc-markdown,
+.markdown,
+article,
+main,
+div {
+  max-width: none !important;
+}
+
+/* Specific override for error codes and lookup tables */
+details table {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+}
+
+/* Nuclear option - override everything for tables */
+* table {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+}
+
+* table th,
+* table td {
+  width: auto !important;
+  max-width: none !important;
+  min-width: auto !important;
 }

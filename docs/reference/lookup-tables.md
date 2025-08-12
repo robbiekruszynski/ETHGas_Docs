@@ -1,10 +1,11 @@
 # Lookup Tables
 
-Sourced from the official ETHGas API reference.
 
-Source: Official ETHGas API documentation
 
 ## Markets
+
+<details>
+<summary style={{listStyle: 'none'}}>Market Status Codes</summary>
 
 ### Market Status Codes
 
@@ -16,7 +17,12 @@ Source: Official ETHGas API documentation
 | 3           | TRX_SUBMISSION_ENDED   | Transaction submission time ended |
 | 4           | FINALIED               | Market finalized                  |
 
+</details>
+
 ## Orders
+
+<details>
+<summary style={{listStyle: 'none'}}>Order Sides</summary>
 
 ### Order Sides
 
@@ -24,6 +30,11 @@ Source: Official ETHGas API documentation
 | --------- | ---- |
 | 0 (False) | Sell |
 | 1 (True)  | Buy  |
+
+</details>
+
+<details>
+<summary style={{listStyle: 'none'}}>Order Status Codes</summary>
 
 ### Order Status Codes
 
@@ -38,6 +49,11 @@ Source: Official ETHGas API documentation
 | 14          | STATUS_EXPIRED              | Market expired                        |
 | 99          | STATUS_ERROR                | Error                                 |
 
+</details>
+
+<details>
+<summary style={{listStyle: 'none'}}>Order Types</summary>
+
 ### Order Types
 
 | Type Code | Meaning            |
@@ -46,7 +62,12 @@ Source: Official ETHGas API documentation
 | 2         | Limit Order        |
 | 3         | Fill-Or-Kill Order |
 
+</details>
+
 ## Token IDs
+
+<details>
+<summary style={{listStyle: 'none'}}>Currently Supported Tokens</summary>
 
 Currently supported:
 
@@ -54,7 +75,12 @@ Currently supported:
 | ---- | ---- | -------- | ------------- | ---------------- | ----------- |
 | ETH  | ETH  | 1        | 0.00001       | 0.001            | 0.0001      |
 
+</details>
+
 ## Transaction Types
+
+<details>
+<summary style={{listStyle: 'none'}}>Transaction Type Codes</summary>
 
 | Code | Meaning                            |
 | ---- | ---------------------------------- |
@@ -71,14 +97,24 @@ Currently supported:
 | 14   | Withdrawal Fee                     |
 | 15   | Transaction Fee                    |
 
+</details>
+
 ## Market Types
+
+<details>
+<summary style={{listStyle: 'none'}}>Market Type Codes</summary>
 
 | Code | Market                   |
 | ---- | ------------------------ |
 | 1    | Inclusion Preconf Market |
 | 2    | Whole Block Market       |
 
+</details>
+
 ## Action Types
+
+<details>
+<summary style={{listStyle: 'none'}}>WebSocket Action Types</summary>
 
 Action type returned in some WebSocket messages.
 
@@ -90,7 +126,12 @@ Action type returned in some WebSocket messages.
 | BlockBuilderChanged      |
 | BundleSubmissionDeadline |
 
+</details>
+
 ## Builder
+
+<details>
+<summary style={{listStyle: 'none'}}>Builder Registration Result Codes</summary>
 
 ### Builder Registration Result
 
@@ -100,3 +141,5 @@ Action type returned in some WebSocket messages.
 | 1    | NOT_FOUND          |
 | 2    | SIGNATURE_INVALID  |
 | 3    | ALREADY_REGISTERED |
+
+</details>

@@ -548,7 +548,8 @@ The Market Lists API provides endpoints for retrieving market information and da
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve whole block markets</summary>
-### Sample Code
+
+#### Code Example
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -656,7 +657,9 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve active preconf markets</summary>
-### Sample Code
+
+
+#### Code Example
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -792,8 +795,10 @@ The Slot Bundles API provides endpoints for managing and querying bundle informa
 ### GET /api/v1/slot/bundles
 
 <details>
+
 <summary style={{listStyle: 'none'}}>Retrieve bundles for a specific slot</summary>
-### Sample Code
+
+#### Code Example
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -901,7 +906,7 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve the bundles submitted for a given slot for your inclusion preconf account.</summary>
-### Sample Code
+#### Code Example
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -1012,8 +1017,7 @@ print(response.text)
 ### GET /api/v1/slot/forceEmptyBlockSpace
 
 <details>
-### Sample Code
-
+#### Code Example
 <summary style={{listStyle: 'none'}}>Preconf owner set unused inclusion preconf gas to be empty for a given slot.</summary>
 
 <Tabs>
@@ -1073,7 +1077,7 @@ print(response.text)
 ### GET /api/v1/p/slot/txs/hash
 
 <details>
-### Sample Code
+#### Code Example
 
 <summary style={{listStyle: 'none'}}>Retrieve transaction hash information for a specific slot</summary>
 

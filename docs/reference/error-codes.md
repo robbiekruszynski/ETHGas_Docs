@@ -1,10 +1,9 @@
 # Error Codes
 
-The following codes are sourced from the official ETHGas API reference.
-
-Source: Official ETHGas API documentation
-
 ## General Error Codes
+
+<details>
+<summary style={{listStyle: 'none'}}>General Error Codes</summary>
 
 | Error code | Description                  |
 | ---------- | ---------------------------- |
@@ -21,7 +20,12 @@ Source: Official ETHGas API documentation
 | 10011      | Invalid Token (Withdraw)     |
 | 10012      | Not Enough Funds to Withdraw |
 
+</details>
+
 ## Order API Error Codes
+
+<details>
+<summary style={{listStyle: 'none'}}>Order API Error Codes</summary>
 
 | Error code | Description                       |
 | ---------- | --------------------------------- |
@@ -41,7 +45,12 @@ Source: Official ETHGas API documentation
 | 191        | ORDER_AUTO_CANCELLED              |
 | 192        | ORDER_MANUALLY_CANCELLED          |
 
+</details>
+
 ## Response Codes
+
+<details>
+<summary style={{listStyle: 'none'}}>HTTP Response Codes</summary>
 
 | Code | Description                               |
 | ---- | ----------------------------------------- |
@@ -49,3 +58,5 @@ Source: Official ETHGas API documentation
 | 403  | Forbidden                                 |
 | 500  | Internal Server Error or Invalid Response |
 | 503  | Service Unavailable                       |
+
+</details>
