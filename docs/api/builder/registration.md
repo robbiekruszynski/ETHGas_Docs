@@ -48,14 +48,14 @@ Choose your network and follow all steps for that network:
 <Tabs>
 <TabItem value="mainnet" label="MainNet" default>
 
-### 1. Clone the Repository
+#### Clone the Repository
 
 ```bash
 git clone https://github.com/ethgas-developer/ethgas-builder-scripts
 cd ethgas-builder-scripts
 ```
 
-### 2. Configure Environment 
+#### Configure Environment Variables
 
 ```bash
 cp .env.example.mainnet .env
@@ -74,7 +74,7 @@ ENTITY_NAME="TestBuilder"
 ENABLE_REGISTRATION=true
 ```
 
-### 3. Build and Deploy
+#### Build and Deploy
 
 ```bash
 # Build the Docker image
@@ -87,14 +87,14 @@ docker-compose -f docker-compose.yml up
 </TabItem>
 <TabItem value="testnet" label="TestNet">
 
-### 1. Clone the Repository
+#### Clone the Repository
 
 ```bash
 git clone https://github.com/ethgas-developer/ethgas-builder-scripts
 cd ethgas-builder-scripts
 ```
 
-### 2. Configure Environment
+#### Configure Environment Variables
 
 ```bash
 cp .env.example.hoodi .env
@@ -113,8 +113,7 @@ ENTITY_NAME="TestBuilder"
 ENABLE_REGISTRATION=true
 ```
 
-
-### 3. Build and Deploy
+#### Build and Deploy
 
 ```bash
 # Build the Docker image
@@ -535,7 +534,7 @@ curl -X POST "https://api.ethgas.com/v1/builder/submit-block" \
 
 All built blocks must pass validation checks:
 
-- [x] **Preconf inclusion**: All preconf transactions with <b>canRevert equal to false</b> must be included
+- [x] **Preconf inclusion**: All preconf transactions with canRevert equal to false must be included
 - [x] **Bundle positioning**: Top and bottom bundles must be in correct positions
 - [x] **Empty Space Requirement**: The minimum gas unit of a block needs to be left as empty
 - [x] **Gas limit**: Block must not exceed gas limit

@@ -857,6 +857,8 @@ details[open] summary {
   word-break: break-all !important;
 }
 
+
+
 /* Ensure code blocks don't overflow */
 .api-endpoints-grid details pre,
 .api-endpoints-grid details code {
