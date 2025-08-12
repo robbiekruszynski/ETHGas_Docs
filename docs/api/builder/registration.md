@@ -35,11 +35,11 @@ The ethgas-builder-scripts repository includes:
 
 Before setting up your builder, ensure you have:
 
-- **Docker**: For containerized deployment
-- **BLS Key Pair**: Your BLS public and secret keys
-- **EOA Signing Key**: Your registered or to-be-registered account on ETHGas Exchange
-- **Entity Information**: Your company/entity name for registration
-- **Network Access**: Ability to connect to ETHGas APIs
+- [x] **Docker**: For containerized deployment
+- [x] **BLS Key Pair**: Your BLS public and secret keys
+- [x] **EOA Signing Key**: Your registered or to-be-registered account on ETHGas Exchange
+- [x] **Entity Information**: Your company/entity name for registration
+- [x] **Network Access**: Ability to connect to ETHGas APIs
 
 ## Quick Start
 
@@ -55,7 +55,7 @@ git clone https://github.com/ethgas-developer/ethgas-builder-scripts
 cd ethgas-builder-scripts
 ```
 
-### 2. Configure Environment Variables
+### 2. Configure Environment 
 
 ```bash
 cp .env.example.mainnet .env
@@ -94,7 +94,7 @@ git clone https://github.com/ethgas-developer/ethgas-builder-scripts
 cd ethgas-builder-scripts
 ```
 
-### 2. Environment Configuration
+### 2. Configure Environment
 
 ```bash
 cp .env.example.hoodi .env
@@ -173,23 +173,23 @@ BUILDER_REGISTRY_CONTRACT=0x...
 
 Your BLS key pair is essential for builder identification and block signing:
 
-- **BLS_PUBKEY**: Your BLS public key (required for registration)
-- **BLS_SECRET_KEY**: Your BLS secret key (keep secure, never commit to version control)
+• **BLS_PUBKEY**: Your BLS public key (required for registration)
+• **BLS_SECRET_KEY**: Your BLS secret key (keep secure, never commit to version control)
 
 ### EOA Signing Key
 
 Your EOA signing key is used for authentication and fee collection:
 
-- Must be a registered account or a to-be-registered account on ETHGas Exchange
-- Used for signing registration transactions
-- Required for fee distribution
+• Must be a registered account or a to-be-registered account on ETHGas Exchange
+• Used for signing registration transactions
+• Required for fee distribution
 
 ### Security Best Practices
 
-- **Never commit private keys**: Keep all private keys secure
-- **Use environment variables**: Store keys in `.env` files (not in version control)
-- **Regular key rotation**: Consider rotating keys periodically
-- **Backup keys securely**: Store backups in secure locations
+• **Never commit private keys**: Keep all private keys secure
+• **Use environment variables**: Store keys in `.env` files (not in version control)
+• **Regular key rotation**: Consider rotating keys periodically
+• **Backup keys securely**: Store backups in secure locations
 
 <!-- ## Docker Deployment
 
@@ -228,10 +228,10 @@ The `docker-compose.yml` file configures:
 
 When `ENABLE_REGISTRATION=true`:
 
-1. **Validate keys**: Verify BLS and EOA keys are valid
-2. **Check registration**: Verify if already registered
-3. **Submit registration**: Register with ETHGas Exchange
-4. **Confirm status**: Verify registration was successful
+- [x] **Validate keys**: Verify BLS and EOA keys are valid
+- [x] **Check registration**: Verify if already registered
+- [x] **Submit registration**: Register with ETHGas Exchange
+- [x] **Confirm status**: Verify registration was successful
 
 ## Manual Registration
 

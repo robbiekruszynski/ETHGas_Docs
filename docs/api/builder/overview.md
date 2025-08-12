@@ -7,10 +7,10 @@ sidebar_position: 1
 
 # Builders & Sequencers
 
-:::info Role scope
+<!-- :::info Role scope
 This page focuses on Builders. For Developers see [Developer Overview](/docs/developers/overview). 
 For Validators see [Validator Overview](/docs/validators/overview). 
-:::
+::: -->
 
 ETHGas provides infrastructure for block builders and sequencers to participate in the gas trading ecosystem. This page summarizes roles and integration touchpoints.
 
@@ -161,7 +161,7 @@ print(response.text)
 
 
 :::info
- Note: Please refer to look up table to check the builder registration result enum
+ Note: Please refer to [lookup table](/docs/reference/lookup-tables) to check the builder registration result enum
 :::
 </details>
 
