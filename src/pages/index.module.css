@@ -96,10 +96,42 @@
 }
 
 .quickStart h2 {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--ifm-color-primary);
+}
+
+.quickStartSubtitle {
+  text-align: center;
+  font-size: 1.125rem;
+  color: #6b7280;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[data-theme='dark'] .quickStartSubtitle {
+  color: #9ca3af;
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #00A2C7 0%, #0089A8 100%);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+}
+
+[data-theme='dark'] .stepNumber {
+  background: linear-gradient(135deg, #1AB3D6 0%, #00A2C7 100%);
 }
 
 .features {
@@ -234,12 +266,22 @@
   .buttons .button {
     width: 100%;
     margin-bottom: 1rem;
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
   .quickStart h2,
   .features h2,
   .resources h2 {
     font-size: 2rem;
+  }
+  
+  .stepNumber {
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 1.1rem !important;
   }
 }
 
@@ -262,7 +304,8 @@
     font-size: 1.75rem;
   }
 
-  .communitySubtitle {
+  .communitySubtitle,
+  .quickStartSubtitle {
     font-size: 1rem;
     margin-bottom: 2rem;
   }
@@ -273,5 +316,81 @@
 
   .socialCard {
     margin-bottom: 2rem;
+  }
+  
+  /* Improve mobile touch targets */
+  .cardButton .button {
+    min-height: 44px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .stepNumber {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1rem !important;
+  }
+  
+  /* Stack cards in single column on mobile */
+  .quickStart .row .col,
+  .features .row .col,
+  .resources .row .col,
+  .community .row .col {
+    width: 100% !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .heroBanner {
+    padding: 0.5rem;
+  }
+  
+  .heroBanner h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  .heroBanner p {
+    font-size: 0.9rem !important;
+  }
+  
+  .quickStart h2,
+  .features h2,
+  .resources h2,
+  .community h2 {
+    font-size: 1.5rem;
+  }
+  
+  .communitySubtitle,
+  .quickStartSubtitle {
+    font-size: 0.9rem;
+  }
+  
+  .cardButton .button {
+    font-size: 0.85rem !important;
+    padding: 0.6rem 0.8rem !important;
+  }
+  
+  .stepNumber {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Ensure all interactive elements are touch-friendly */
+@media (pointer: coarse) {
+  .button,
+  .cardButton .button,
+  .socialLink,
+  a {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    -webkit-tap-highlight-color: rgba(0, 162, 199, 0.2) !important;
+    touch-action: manipulation !important;
   }
 }

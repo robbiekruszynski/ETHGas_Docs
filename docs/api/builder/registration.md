@@ -180,7 +180,7 @@ Your BLS key pair is essential for builder identification and block signing:
 
 Your EOA signing key is used for authentication and fee collection:
 
-- Must be a registered account on ETHGas Exchange
+- Must be a registered account or a to-be-registered account on ETHGas Exchange
 - Used for signing registration transactions
 - Required for fee distribution
 
@@ -535,10 +535,11 @@ curl -X POST "https://api.ethgas.com/v1/builder/submit-block" \
 
 All built blocks must pass validation checks:
 
-- **Preconf inclusion**: All preconf transactions for the slot must be included
-- **Bundle positioning**: Top and bottom bundles must be in correct positions
-- **Gas limit**: Block must not exceed gas limit
-- **Commitment compliance**: Block must satisfy all trader commitments
+- [x] **Preconf inclusion**: All preconf transactions with <b>canRevert equal to false</b> must be included
+- [x] **Bundle positioning**: Top and bottom bundles must be in correct positions
+- [x] **Empty Space Requirement**: The minimum gas unit of a block needs to be left as empty
+- [x] **Gas limit**: Block must not exceed gas limit
+- [x] **Commitment compliance**: Block must satisfy all trader commitments
 
 ## Market Lists
 
@@ -902,7 +903,7 @@ print(response.text)
 
 </details>
 
-### GET /api/v1/account/slot/bundles
+<!-- ### GET /api/v1/account/slot/bundles
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve the bundles submitted for a given slot for your inclusion preconf account.</summary>
@@ -1012,9 +1013,9 @@ print(response.text)
 | └└ status | integer | 0: ok, -1 : conflicted |
 | └└ createDate | date | Date of submitting the transaction |
 
-</details>
+</details> -->
 
-### GET /api/v1/slot/forceEmptyBlockSpace
+<!-- ### GET /api/v1/slot/forceEmptyBlockSpace
 
 <details>
 #### Code Example
@@ -1072,9 +1073,9 @@ print(response.text)
 | data | object | Response data container |
 | └ success | boolean | Whether the empty block space was successfully forced |
 
-</details>
+</details> -->
 
-### GET /api/v1/p/slot/txs/hash
+<!-- ### GET /api/v1/p/slot/txs/hash
 
 <details>
 #### Code Example
@@ -1130,7 +1131,7 @@ print(response.text)
 |-------|------|-------------|
 | hash | string | Hash of the transactions for the slot |
 
-</details>
+</details> -->
 
 <!-- ### Performance Requirements
 

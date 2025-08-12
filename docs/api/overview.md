@@ -201,10 +201,10 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">User login, verification, refresh, logout</span>
 </summary>
 
-- **POST** `/api/v1/user/login`
-- **POST** `/api/v1/user/login/verify`
-- **POST** `/api/v1/user/login/refresh`
-- **POST** `/api/v1/user/logout`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/login`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/login/verify`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/login/refresh`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/logout`
 
 </details>
 
@@ -214,10 +214,10 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">User info and profile updates</span>
 </summary>
 
-- **GET** `/api/v1/user/info`
-- **POST** `/api/v1/user/update`
-- **POST** `/api/v1/user/payoutAddress`
-- **POST** `/api/v1/user/collateralPerSlot`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/info`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/update`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/payoutAddress`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/collateralPerSlot`
 
 </details>
 
@@ -227,11 +227,11 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Accounts and transactions</span>
 </summary>
 
-- **GET** `/api/v1/user/accounts`
-- **GET** `/api/v1/user/account/{accountId}`
-- **GET** `/api/v1/user/account/{accountId}/txs`
-- **GET** `/api/v1/user/account/txs`
-- **POST** `/api/v1/user/account/transfer/token`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/accounts`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/account/{accountId}`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/account/{accountId}/txs`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/account/txs`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/account/transfer/token`
 
 </details>
 
@@ -241,12 +241,12 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Deposits and withdrawals</span>
 </summary>
 
-- **GET** `/api/v1/p/funding/contractAddress`
-- **GET** `/api/v1/user/funding/deposits`
-- **POST** `/api/v1/user/funding/withdraw`
-- **GET** `/api/v1/p/funding/withdraw/dailyWithdrawLimits`
-- **GET** `/api/v1/user/funding/withdraw/status`
-- **GET** `/api/v1/user/funding/withdraws`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/funding/contractAddress`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/funding/deposits`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/funding/withdraw`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/funding/withdraw/dailyWithdrawLimits`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/funding/withdraw/status`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/funding/withdraws`
 
 </details>
 
@@ -256,9 +256,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Network info, tokens, fees</span>
 </summary>
 
-- **GET** `/api/v1/p/network`
-- **GET** `/api/v1/p/tokens`
-- **GET** `/api/v1/p/user/fees`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/network`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/tokens`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/user/fees`
 
 </details>
 
@@ -268,10 +268,10 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Public market data</span>
 </summary>
 
-- **GET** `/api/v1/p/wholeblock/markets`
-- **GET** `/api/v1/p/wholeblock/positions`
-- **GET** `/api/v1/p/wholeblock/orders`
-- **GET** `/api/v1/p/wholeblock/trades`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/markets`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/positions`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/orders`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/trades`
 
 </details>
 
@@ -281,10 +281,10 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Public market data</span>
 </summary>
 
-- **GET** `/api/v1/p/inclusion-preconf/markets`
-- **GET** `/api/v1/p/inclusion-preconf/market`
-- **GET** `/api/v1/p/inclusion-preconf/trades`
-- **GET** `/api/v1/p/inclusion-preconf/top-sales`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/markets`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/market`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/trades`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/top-sales`
 
 </details>
 
@@ -294,14 +294,14 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Place/cancel orders and view positions</span>
 </summary>
 
-- **POST** `/api/v1/wholeblock/order`
-- **POST** `/api/v1/wholeblock/cancel-all-orders`
-- **POST** `/api/v1/wholeblock/cancel-batch-orders`
-- **POST** `/api/v1/wholeblock/cancel-order`
-- **GET** `/api/v1/user/wholeblock/all-orders`
-- **GET** `/api/v1/user/wholeblock/orders`
-- **GET** `/api/v1/user/wholeblock/positions`
-- **GET** `/api/v1/user/wholeblock/txs`
+- <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/order`
+- <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-all-orders`
+- <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-batch-orders`
+- <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-order`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/all-orders`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/orders`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/positions`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/txs`
 
 </details>
 
@@ -311,15 +311,15 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Place/cancel orders and view positions</span>
 </summary>
 
-- **POST** `/api/v1/inclusion-preconf/order`
-- **POST** `/api/v1/inclusion-preconf/cancel-all-orders`
-- **POST** `/api/v1/inclusion-preconf/cancel-batch-orders`
-- **POST** `/api/v1/inclusion-preconf/cancel-order`
-- **GET** `/api/v1/user/inclusion-preconf/orders`
-- **GET** `/api/v1/user/inclusion-preconf/all-orders`
-- **GET** `/api/v1/user/inclusion-preconf/positions`
-- **GET** `/api/v1/user/inclusion-preconf/txs`
-- **POST** `/api/v1/user/inclusion-preconf/market/update`
+- <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/order`
+- <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/cancel-all-orders`
+- <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/cancel-batch-orders`
+- <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/cancel-order`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/orders`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/all-orders`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/positions`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/txs`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/inclusion-preconf/market/update`
 
 </details>
 
@@ -329,7 +329,7 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Submit transaction bundles</span>
 </summary>
 
-- **POST** `/api/v1/user/bundle/send`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/bundle/send`
 
 </details>
 
@@ -339,10 +339,10 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Per-slot bundle data</span>
 </summary>
 
-- **GET** `/api/v1/slot/bundles`
-- **GET** `/api/v1/account/slot/bundles`
-- **GET** `/api/v1/slot/forceEmptyBlockSpace`
-- **GET** `/api/v1/p/slot/txs/hash`
+- <span className="api-method-get">**GET**</span> `/api/v1/slot/bundles`
+- <span className="api-method-get">**GET**</span> `/api/v1/account/slot/bundles`
+- <span className="api-method-get">**GET**</span> `/api/v1/slot/forceEmptyBlockSpace`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/slot/txs/hash`
 
 </details>
 

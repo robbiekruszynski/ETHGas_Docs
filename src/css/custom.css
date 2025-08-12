@@ -178,6 +178,8 @@ table td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+
+
 .theme-doc-sidebar-container {
   background: rgba(255, 255, 255, 0.02);
 }
@@ -2219,4 +2221,620 @@ details table {
   width: auto !important;
   max-width: none !important;
   min-width: auto !important;
+}
+
+/* API Method Colors and Dark Mode Readability */
+/* GET method - Green */
+strong:contains("GET"),
+strong:has-text("GET"),
+details strong:first-child:contains("GET") {
+  color: #10B981 !important;
+}
+
+/* POST method - Pink/Red */
+strong:contains("POST"),
+strong:has-text("POST"),
+details strong:first-child:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* Dark mode specific API method colors */
+[data-theme='dark'] strong:contains("GET"),
+[data-theme='dark'] strong:has-text("GET"),
+[data-theme='dark'] details strong:first-child:contains("GET") {
+  color: #34D399 !important;
+}
+
+[data-theme='dark'] strong:contains("POST"),
+[data-theme='dark'] strong:has-text("POST"),
+[data-theme='dark'] details strong:first-child:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* Alternative approach using attribute selectors */
+strong[style*="font-weight: bold"]:contains("GET"),
+strong[style*="font-weight: bold"]:has-text("GET") {
+  color: #10B981 !important;
+}
+
+strong[style*="font-weight: bold"]:contains("POST"),
+strong[style*="font-weight: bold"]:has-text("POST") {
+  color: #EC4899 !important;
+}
+
+[data-theme='dark'] strong[style*="font-weight: bold"]:contains("GET"),
+[data-theme='dark'] strong[style*="font-weight: bold"]:has-text("GET") {
+  color: #34D399 !important;
+}
+
+[data-theme='dark'] strong[style*="font-weight: bold"]:contains("POST"),
+[data-theme='dark'] strong[style*="font-weight: bold"]:has-text("POST") {
+  color: #F472B6 !important;
+}
+
+/* Direct targeting of API method text */
+details li strong:first-child {
+  font-weight: 600 !important;
+}
+
+/* GET methods */
+details li:contains("GET") strong:first-child,
+details li strong:first-child:contains("GET") {
+  color: #10B981 !important;
+}
+
+/* POST methods */
+details li:contains("POST") strong:first-child,
+details li strong:first-child:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* Dark mode GET methods */
+[data-theme='dark'] details li:contains("GET") strong:first-child,
+[data-theme='dark'] details li strong:first-child:contains("GET") {
+  color: #34D399 !important;
+}
+
+/* Dark mode POST methods */
+[data-theme='dark'] details li:contains("POST") strong:first-child,
+[data-theme='dark'] details li strong:first-child:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* More reliable API method styling */
+/* Target all strong elements that contain GET or POST */
+strong {
+  font-weight: 600 !important;
+}
+
+/* Light mode colors */
+strong:contains("GET") {
+  color: #10B981 !important;
+}
+
+strong:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* Dark mode colors */
+[data-theme='dark'] strong:contains("GET") {
+  color: #34D399 !important;
+}
+
+[data-theme='dark'] strong:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* Alternative approach - target by content */
+details li strong:first-of-type {
+  font-weight: 600 !important;
+}
+
+/* GET methods in light mode */
+details li strong:first-of-type:contains("GET") {
+  color: #10B981 !important;
+}
+
+/* POST methods in light mode */
+details li strong:first-of-type:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* GET methods in dark mode */
+[data-theme='dark'] details li strong:first-of-type:contains("GET") {
+  color: #34D399 !important;
+}
+
+/* POST methods in dark mode */
+[data-theme='dark'] details li strong:first-of-type:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* Most reliable approach - target by position and content pattern */
+/* API method styling for better readability */
+details li strong:first-child {
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* GET methods - Green */
+details li strong:first-child:contains("GET") {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #10B981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+}
+
+/* POST methods - Pink/Red */
+details li strong:first-child:contains("POST") {
+  background-color: rgba(236, 72, 153, 0.1) !important;
+  color: #EC4899 !important;
+  border: 1px solid rgba(236, 72, 153, 0.2) !important;
+}
+
+/* Dark mode GET methods - Brighter Green */
+[data-theme='dark'] details li strong:first-child:contains("GET") {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #34D399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+/* Dark mode POST methods - Brighter Pink */
+[data-theme='dark'] details li strong:first-child:contains("POST") {
+  background-color: rgba(244, 114, 182, 0.15) !important;
+  color: #F472B6 !important;
+  border: 1px solid rgba(244, 114, 182, 0.3) !important;
+}
+
+/* Fix homepage title readability */
+.hero__title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme='dark'] .hero__title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Adjust navbar spacing - bring items closer together and to the left */
+.navbar__items--left {
+  gap: 0.5rem !important;
+  margin-right: auto !important;
+}
+
+.navbar__item {
+  margin: 0 0.25rem !important;
+  padding: 0 0.5rem !important;
+}
+
+.navbar__link {
+  padding: 0.5rem 0.75rem !important;
+  margin: 0 !important;
+  font-size: 0.9rem !important;
+}
+
+/* Mobile and Tablet Responsive Design */
+/* Ensure navbar is responsive and clickable on all devices */
+
+/* Tablet styles (768px - 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .navbar__items--left {
+    gap: 0.25rem !important;
+  }
+  
+  .navbar__item {
+    margin: 0 0.125rem !important;
+    padding: 0 0.25rem !important;
+  }
+  
+  .navbar__link {
+    padding: 0.4rem 0.5rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .navbar__brand {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Mobile styles (up to 768px) */
+@media screen and (max-width: 768px) {
+  /* Hide desktop navbar items on mobile */
+  .navbar__items--left {
+    display: none !important;
+  }
+  
+  .navbar__items--right {
+    display: none !important;
+  }
+  
+  /* Show mobile toggle */
+  .navbar__toggle {
+    display: block !important;
+  }
+  
+  /* Ensure brand is visible */
+  .navbar__brand {
+    font-size: 1rem !important;
+  }
+}
+
+/* Small mobile styles (up to 480px) */
+@media screen and (max-width: 480px) {
+  .navbar__brand {
+    font-size: 0.9rem !important;
+  }
+  
+  .navbar__toggle {
+    padding: 0.4rem !important;
+  }
+  
+  .navbar-sidebar__item {
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  .navbar-sidebar__link {
+    font-size: 0.9rem !important;
+  }
+  
+  .navbar-sidebar {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* Let Docusaurus handle mobile navigation natively */
+
+/* Mobile sidebar improvements */
+@media screen and (max-width: 768px) {
+  /* Hide desktop sidebar on mobile */
+  .theme-doc-sidebar-container {
+    display: none !important;
+  }
+  
+  /* Ensure main content takes full width on mobile */
+  .theme-doc-markdown {
+    padding: 1rem !important;
+    max-width: 100% !important;
+  }
+  
+  /* Improve mobile content readability */
+  .theme-doc-markdown h1 {
+    font-size: 1.75rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .theme-doc-markdown h2 {
+    font-size: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .theme-doc-markdown h3 {
+    font-size: 1.25rem !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Improve mobile table readability */
+  .theme-doc-markdown table {
+    font-size: 0.85rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  
+  .theme-doc-markdown th,
+  .theme-doc-markdown td {
+    padding: 0.5rem 0.25rem !important;
+    word-break: break-word !important;
+  }
+  
+  /* Improve mobile code blocks */
+  .theme-doc-markdown pre {
+    font-size: 0.8rem !important;
+    padding: 0.75rem !important;
+    margin: 0.5rem 0 !important;
+    overflow-x: auto !important;
+  }
+  
+  /* Improve mobile navigation toggle */
+  .navbar__toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 4px !important;
+    transition: background-color 0.2s ease !important;
+    background: transparent !important;
+    border: none !important;
+    color: inherit !important;
+    cursor: pointer !important;
+  }
+  
+  .navbar__toggle:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  /* Hamburger menu icon styling */
+  .navbar__toggle .navbar__toggle-icon {
+    width: 20px !important;
+    height: 2px !important;
+    background: currentColor !important;
+    position: relative !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .navbar__toggle .navbar__toggle-icon::before,
+  .navbar__toggle .navbar__toggle-icon::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 20px !important;
+    height: 2px !important;
+    background: currentColor !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .navbar__toggle .navbar__toggle-icon::before {
+    top: -6px !important;
+  }
+  
+  .navbar__toggle .navbar__toggle-icon::after {
+    bottom: -6px !important;
+  }
+  
+  /* Animated hamburger menu */
+  .navbar__toggle--active .navbar__toggle-icon {
+    background: transparent !important;
+  }
+  
+  .navbar__toggle--active .navbar__toggle-icon::before {
+    transform: rotate(45deg) !important;
+    top: 0 !important;
+  }
+  
+  .navbar__toggle--active .navbar__toggle-icon::after {
+    transform: rotate(-45deg) !important;
+    bottom: 0 !important;
+  }
+  
+  /* Ensure mobile navigation is properly positioned */
+  .navbar-sidebar {
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  /* Improve mobile navigation item contrast */
+  .navbar-sidebar__link {
+    color: var(--ifm-color-emphasis-900) !important;
+  }
+  
+  [data-theme='dark'] .navbar-sidebar__link {
+    color: var(--ifm-color-emphasis-100) !important;
+  }
+  
+  .navbar-sidebar__link:hover {
+    color: var(--ifm-color-primary) !important;
+  }
+  
+  .navbar-sidebar__link--active {
+    color: var(--ifm-color-primary) !important;
+  }
+}
+
+/* Ensure all interactive elements are clickable */
+.navbar__link,
+.navbar__brand,
+.navbar__toggle,
+.navbar-sidebar__link,
+button,
+a {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: rgba(0, 162, 199, 0.2) !important;
+  touch-action: manipulation !important;
+}
+
+/* Improve touch targets for mobile */
+@media (pointer: coarse) {
+  .navbar__link,
+  .navbar-sidebar__link,
+  button,
+  a {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Simple mobile improvements */
+@media screen and (max-width: 768px) {
+  /* Hide desktop sidebar on mobile */
+  .theme-doc-sidebar-container {
+    display: none !important;
+  }
+  
+  /* Ensure main content takes full width on mobile */
+  .theme-doc-markdown {
+    padding: 1rem !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Ensure gradient text is readable */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+}
+
+[data-theme='dark'] .gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+}
+
+/* Checklist styling - Green checkboxes only */
+.theme-doc-markdown input[type="checkbox"]:checked {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+}
+
+/* Dark mode checklist styling */
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+}
+
+/* Force green color for checked checkboxes */
+.theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+}
+
+/* Ensure text color remains normal */
+.theme-doc-markdown li:has(input[type="checkbox"]:checked) {
+  color: inherit !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown li:has(input[type="checkbox"]:checked) {
+  color: inherit !important;
+}
+
+/* Force green checkboxes with higher specificity */
+.theme-doc-markdown input[type="checkbox"]:checked,
+.theme-doc-markdown input[type="checkbox"][checked],
+.theme-doc-markdown li input[type="checkbox"]:checked,
+.theme-doc-markdown li input[type="checkbox"][checked] {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid #10B981 !important;
+  border-radius: 3px !important;
+  position: relative !important;
+}
+
+.theme-doc-markdown input[type="checkbox"]:checked::after,
+.theme-doc-markdown input[type="checkbox"][checked]::after,
+.theme-doc-markdown li input[type="checkbox"]:checked::after,
+.theme-doc-markdown li input[type="checkbox"][checked]::after {
+  content: '✓' !important;
+  position: absolute !important;
+  top: 0px !important;
+  left: 1px !important;
+  color: white !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+/* Dark mode */
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked,
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked],
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"]:checked,
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"][checked] {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+  border: 2px solid #34D399 !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked::after,
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked]::after,
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"]:checked::after,
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"][checked]::after {
+  color: white !important;
+}
+
+/* Global checkbox styling for all documentation */
+.theme-doc-markdown ul li,
+.theme-doc-markdown ol li {
+  display: flex !important;
+  align-items: flex-start !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.theme-doc-markdown ul li input[type="checkbox"],
+.theme-doc-markdown ol li input[type="checkbox"] {
+  margin-right: 0.5rem !important;
+  margin-top: 0.125rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure all checkboxes are green when checked */
+.theme-doc-markdown input[type="checkbox"]:checked,
+.theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked,
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+}
+
+/* API method classes for reliable styling */
+.api-method-get {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #10B981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.025em !important;
+}
+
+.api-method-post {
+  background-color: rgba(236, 72, 153, 0.1) !important;
+  color: #EC4899 !important;
+  border: 1px solid rgba(236, 72, 153, 0.2) !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* Dark mode API method classes */
+[data-theme='dark'] .api-method-get {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #34D399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+[data-theme='dark'] .api-method-post {
+  background-color: rgba(244, 114, 182, 0.15) !important;
+  color: #F472B6 !important;
+  border: 1px solid rgba(244, 114, 182, 0.3) !important;
 }

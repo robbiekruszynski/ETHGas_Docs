@@ -48,37 +48,43 @@ function QuickStartSection() {
         <div className="row">
           <div className="col col--12">
             <Heading as="h2" className="text--center">
-              Quick Start
+              Quick Start Guide
             </Heading>
+            <p className={styles.quickStartSubtitle}>
+              Get up and running with ETHGas in three simple steps
+            </p>
             <div className="row">
               <div className="col col--4">
-                <div className="feature-card">
-                  <h3>1. Environment Setup</h3>
-                  <p>Choose between testnet and mainnet environments to get started with ETHGas.</p>
+                <div className="feature-card text--center">
+                  <div className={styles.stepNumber}>1</div>
+                  <h3>Environment Setup</h3>
+                  <p>Configure your development environment with TestNet or MainNet endpoints for ETHGas integration.</p>
                   <div className={styles.cardButton}>
-                    <Link to="/docs/getting-started/environments" className="button button--outline button--sm">
-                      Learn More →
+                    <Link to="/docs/getting-started/environments" className="button button--primary button--sm">
+                      Setup Environment →
                     </Link>
                   </div>
                 </div>
               </div>
               <div className="col col--4">
-                <div className="feature-card">
-                  <h3>2. Authentication</h3>
-                  <p>Set up your API credentials and authentication for secure platform access.</p>
+                <div className="feature-card text--center">
+                  <div className={styles.stepNumber}>2</div>
+                  <h3>Authentication</h3>
+                  <p>Secure your API access with JWT authentication and manage your credentials safely.</p>
                   <div className={styles.cardButton}>
-                    <Link to="/docs/api/authentication" className="button button--outline button--sm">
-                      Get Started →
+                    <Link to="/docs/api/authentication" className="button button--primary button--sm">
+                      Authenticate →
                     </Link>
                   </div>
                 </div>
               </div>
               <div className="col col--4">
-                <div className="feature-card">
-                  <h3>3. Start Trading</h3>
-                  <p>Begin trading on whole block or inclusion preconf markets with our comprehensive APIs.</p>
+                <div className="feature-card text--center">
+                  <div className={styles.stepNumber}>3</div>
+                  <h3>Start Trading</h3>
+                  <p>Begin trading on whole block or inclusion preconf markets using our comprehensive APIs.</p>
                   <div className={styles.cardButton}>
-                    <Link to="/docs/api/overview" className="button button--outline button--sm">
+                    <Link to="/docs/api/overview" className="button button--primary button--sm">
                       Explore Markets →
                     </Link>
                   </div>
