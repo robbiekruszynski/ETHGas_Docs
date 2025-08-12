@@ -846,6 +846,55 @@ details[open] summary {
   margin: 2rem 0;
 }
 
+/* CRITICAL: Fix code overflow in API endpoints */
+.api-endpoints-grid pre,
+.api-endpoints-grid code,
+.api-endpoints-grid .prism-code {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+/* Ensure code blocks don't overflow */
+.api-endpoints-grid details pre,
+.api-endpoints-grid details code {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+/* Force long strings to wrap */
+.api-endpoints-grid .token.string {
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
+}
+
+/* Ensure tabs content doesn't overflow */
+.api-endpoints-grid .tabs__content {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* Fix curl commands specifically */
+.api-endpoints-grid pre code.language-bash {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+/* Force all code in API endpoints to wrap */
+.api-endpoints-grid * pre,
+.api-endpoints-grid * code {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+  overflow-x: auto !important;
+}
+
 .api-category {
   background: var(--ifm-background-surface-color);
   border-radius: 8px;

@@ -7,46 +7,66 @@ sidebar_position: 1
 
 # Builders & Sequencers
 
-<!-- :::info Role scope
-This page focuses on Builders. For Developers see `/docs/developers/overview`. 
-For Validators see `/docs/validators/overview`. 
-::: -->
+:::info Role scope
+This page focuses on Builders. For Developers see [Developer Overview](/docs/developers/overview). 
+For Validators see [Validator Overview](/docs/validators/overview). 
+:::
 
 ETHGas provides infrastructure for block builders and sequencers to participate in the gas trading ecosystem. This page summarizes roles and integration touchpoints.
 
 ## Block Building Package
 
-Builders may use their own software or the ETHGas-modified rbuilder (preconf-builder) for ETHGas-specific flows:
-
-- **Stream preconf transactions**
-- **Build compliant blocks** (respect bundle positioning and commitments)
-- **Fill remaining blockspace** with mempool transactions
+<div className="feature-card">
+  <h3>Builder Software Options</h3>
+  <p>Builders may use their own software or the ETHGas-modified rbuilder (preconf-builder) for ETHGas-specific flows:</p>
+  
+  - [x] **Stream preconf transactions** - Handle preconfirmation transaction streams
+  - [x] **Build compliant blocks** - Respect bundle positioning and commitments
+  - [x] **Fill remaining blockspace** - Add mempool transactions to complete blocks
+</div>
 
 <!-- ### Resources
 
 - **Preconf Builder (optional)**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/preconf-builder</a>
 - **Builder Scripts**: <a href="https://github.com/ethgas-developer/ethgas-builder-scripts" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/ethgas-builder-scripts</a> -->
 
-## Who Builds the Blocks?
+## Building Architecture
 
-Block owners may self-build or delegate to specialist builders. ETHGas can act as a fallback builder when not delegated or if a submitted block is non‑conforming.
-
-## Delegated Building
-
-Block owners can delegate to multiple specialist builders who compete to deliver best value via auction mechanisms (tips/priority fees accrue to the block owner).
-
-## Empty Block
-
-If no trades should be included, block owners can indicate an empty block preference (a minimal self‑transfer may still be required by validators).
+<div className="row">
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Who Builds the Blocks?</h3>
+      <p>Block owners may self-build or delegate to specialist builders. ETHGas can act as a fallback builder when not delegated or if a submitted block is non‑conforming.</p>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Delegated Building</h3>
+      <p>Block owners can delegate to multiple specialist builders who compete to deliver best value via auction mechanisms (tips/priority fees accrue to the block owner).</p>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card">
+      <h3>Empty Block</h3>
+      <p>If no trades should be included, block owners can indicate an empty block preference (a minimal self‑transfer may still be required by validators).</p>
+    </div>
+  </div>
+</div>
 
 ## Integration Requirements
 
-- **Builder software** (own or preconf-builder)
-- **Relay submission**
-- **Commitment compliance** (include preconf bundles, bundle positioning, payout to block owner)
-- **Slot timing performance**
+<div className="feature-card">
+  <h3>Essential Requirements</h3>
+  
+  - [x] **Builder software** - Own implementation or ETHGas preconf-builder
+  - [x] **Relay submission** - Submit blocks to relay infrastructure
+  - [x] **Commitment compliance** - Include preconf bundles, respect positioning, payout to block owner
+  - [x] **Slot timing performance** - Meet strict slot timing requirements
+</div>
 
 ## API Endpoints
+
+<div className="api-endpoints-grid">
 
 ### POST /api/v1/builder/register
 
@@ -684,4 +704,6 @@ print(response.text)
 | └└  | string | Corresponding builder key registered by the user |
 | └└└  | string[] | EOA address who delegated to the builder key |
 
-</details> 
+</details>
+
+</div> 
