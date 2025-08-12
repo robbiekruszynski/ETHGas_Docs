@@ -96,40 +96,6 @@ const config: Config = {
           label: 'Validators',
           position: 'left',
         },
-        {
-          type: 'dropdown',
-          label: 'API',
-          position: 'left',
-          items: [
-            {
-              label: 'API Overview',
-              to: '/docs/api/overview',
-            },
-            {
-              label: 'WebSocket API',
-              to: '/docs/websocket/overview',
-            },
-            {
-              label: 'Error Codes',
-              to: '/docs/reference/error-codes',
-            },
-          ],
-        },
-        {
-          type: 'dropdown',
-          label: 'Reference',
-          position: 'left',
-          items: [
-            {
-              label: 'Data Types',
-              to: '/docs/reference/data-types',
-            },
-            {
-              label: 'Lookup Tables',
-              to: '/docs/reference/lookup-tables',
-            },
-          ],
-        },
       ],
     },
     footer: {

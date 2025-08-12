@@ -98,6 +98,17 @@ h3 {
 
 [data-theme='dark'] .navbar__brand,
 [data-theme='dark'] .navbar__item,
+[data-theme='dark'] .navbar__link {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .navbar__link:hover {
+  color: var(--ifm-color-primary-light);
+}
+
+[data-theme='dark'] .navbar__link--active {
+  color: var(--ifm-color-primary-light);
+}
 
 /* Full width tables for better readability */
 table {
@@ -121,17 +132,6 @@ table td {
   width: 100% !important;
   max-width: 100% !important;
   table-layout: auto !important;
-}
-[data-theme='dark'] .navbar__link {
-  color: #ffffff;
-}
-
-[data-theme='dark'] .navbar__link:hover {
-  color: var(--ifm-color-primary-light);
-}
-
-[data-theme='dark'] .navbar__link--active {
-  color: var(--ifm-color-primary-light);
 }
 
 .theme-doc-sidebar-container .theme-doc-sidebar-item-category-level-1 > .theme-doc-sidebar-item-link,
@@ -168,8 +168,8 @@ table td {
 
 .navbar {
   backdrop-filter: blur(10px);
-  background: #111927;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -2399,42 +2399,13 @@ details li strong:first-child:contains("POST") {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Adjust navbar spacing - bring items closer together and to the left */
-.navbar__items--left {
-  gap: 0.5rem !important;
-  margin-right: auto !important;
-}
-
-.navbar__item {
-  margin: 0 0.25rem !important;
-  padding: 0 0.5rem !important;
-}
-
-.navbar__link {
-  padding: 0.5rem 0.75rem !important;
-  margin: 0 !important;
-  font-size: 0.9rem !important;
-}
+/* Remove all navbar spacing overrides - let it be natural */
 
 /* Mobile and Tablet Responsive Design */
 /* Ensure navbar is responsive and clickable on all devices */
 
 /* Tablet styles (768px - 1024px) */
 @media screen and (max-width: 1024px) and (min-width: 769px) {
-  .navbar__items--left {
-    gap: 0.25rem !important;
-  }
-  
-  .navbar__item {
-    margin: 0 0.125rem !important;
-    padding: 0 0.25rem !important;
-  }
-  
-  .navbar__link {
-    padding: 0.4rem 0.5rem !important;
-    font-size: 0.85rem !important;
-  }
-  
   .navbar__brand {
     font-size: 1.1rem !important;
   }

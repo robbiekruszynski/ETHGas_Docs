@@ -17,10 +17,34 @@ This guide helps you establish connections to the ETHGas platform. For copy/past
 
 ## Environments
 
-| Environment | Chain          | RPC URL                                                                                 | Chain ID | API base URL                         | Websocket base URL                | Collateral Deposit Address                    |
-|-------------|----------------|----------------------------------------------------------------------------------------|----------|--------------------------------------|----------------------------------|-----------------------------------------------|
-| MainNet     | Ethereum       | https://eth.llamarpc.com                                                              | 1        | https://mainnet.app.ethgas.com      | wss://mainnet.app.ethgas.com/ws | 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6 |
-| TestNet     | Holesky        | https://ethereum-holesky.publicnode.com                                               | 17000    | https://hoodi.app.ethgas.com        | wss://hoodi.app.ethgas.com/ws   | 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6 |
+<Tabs>
+<TabItem value="mainnet" label="MainNet" default>
+
+| Parameter | Value |
+|-----------|-------|
+| **Environment** | MainNet |
+| **Chain** | Ethereum |
+| **RPC URL** | `https://eth.llamarpc.com` |
+| **Chain ID** | `1` |
+| **API base URL** | `https://mainnet.app.ethgas.com` |
+| **Websocket base URL** | `wss://mainnet.app.ethgas.com/ws` |
+| **Collateral Deposit Address** | `0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6` |
+
+</TabItem>
+<TabItem value="testnet" label="TestNet">
+
+| Parameter | Value |
+|-----------|-------|
+| **Environment** | TestNet |
+| **Chain** | Holesky |
+| **RPC URL** | `https://ethereum-holesky.publicnode.com` |
+| **Chain ID** | `17000` |
+| **API base URL** | `https://hoodi.app.ethgas.com` |
+| **Websocket base URL** | `wss://hoodi.app.ethgas.com/ws` |
+| **Collateral Deposit Address** | `0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6` |
+
+</TabItem>
+</Tabs>
 
 ## Authentication Flow
 
