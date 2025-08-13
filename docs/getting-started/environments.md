@@ -93,10 +93,37 @@ All API endpoints follow the same pattern across environments:
 
 ### Recommended Migration Path
 
-[x] **Start with TestNet**: Develop and test your integration
-2. **Validate Functionality**: Ensure all features work correctly
-3. **Test with Real Data**: Use TestNet's simulated real data
-4. **Deploy to MainNet**: Move to production when ready
+<div className="row">
+  <div className="col col--12">
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Start with TestNet
+      </h4>
+      <p style={{ marginBottom: '0.5rem' }}>Develop and test your integration</p>
+    </div>
+    
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Validate Functionality
+      </h4>
+      <p style={{ marginBottom: '0.5rem' }}>Ensure all features work correctly</p>
+    </div>
+    
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Test with Real Data
+      </h4>
+      <p style={{ marginBottom: '0.5rem' }}>Use TestNet's simulated real data</p>
+    </div>
+    
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Deploy to MainNet
+      </h4>
+      <p>Move to production when ready</p>
+    </div>
+  </div>
+</div>
 
 ## Infrastructure
 

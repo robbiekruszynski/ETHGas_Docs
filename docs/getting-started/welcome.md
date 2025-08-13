@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+import styles from '@site/src/pages/index.module.css';
+
 # Welcome to ETHGas
 
 Welcome to ETHGas, the premier platform for trading Ethereum Blockspace, and acquiring Realtime confirmations.
@@ -10,14 +12,35 @@ Welcome to ETHGas, the premier platform for trading Ethereum Blockspace, and acq
 
 ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV opportunities through various market types:
 
-### Whole Block Markets
-For Trading or Building Purposes, available up to 64 slots in advance. Trade entire blocks for MEV opportunities. These markets allow you to bid on complete blocks and extract value from transaction ordering and inclusion.
-
-### Rest-of-Block Auction
-For Whole Block owners, submit Top-of-Block bundles and run a realtime auction on the Rest-of-Block, available only for the current slot. This enables dynamic pricing for remaining block space after top-of-block transactions are included.
-
-### Inclusion Preconf Markets
-Trade generic blockspace (i.e. neither top-of-block, nor state contentious) with a conventional CLOB interface. Available up to 32 slots in advance. These markets focus on predicting gas prices and transaction inclusion likelihood.
+<div className="row" style={{ marginTop: '2rem' }}>
+  <div className="col col--4">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div className={styles.stepNumber} style={{ marginBottom: '1rem' }}></div>
+      <h3>Whole Block Markets</h3>
+      <p style={{ flex: 1 }}>
+        For Trading or Building Purposes, available up to 64 slots in advance. Trade entire blocks for MEV opportunities. These markets allow you to bid on complete blocks and extract value from transaction ordering and inclusion.
+      </p>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div className={styles.stepNumber} style={{ marginBottom: '1rem' }}></div>
+      <h3>Rest-of-Block Auction</h3>
+      <p style={{ flex: 1 }}>
+        For Whole Block owners, submit Top-of-Block bundles and run a realtime auction on the Rest-of-Block, available only for the current slot. This enables dynamic pricing for remaining block space after top-of-block transactions are included.
+      </p>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div className={styles.stepNumber} style={{ marginBottom: '1rem' }}></div>
+      <h3>Inclusion Preconf Markets</h3>
+      <p style={{ flex: 1 }}>
+        Trade generic blockspace (i.e. neither top-of-block, nor state contentious) with a conventional CLOB interface. Available up to 32 slots in advance. These markets focus on predicting gas prices and transaction inclusion likelihood.
+      </p>
+    </div>
+  </div>
+</div>
 
 ## Platform Overview
 
@@ -52,7 +75,7 @@ Positions track your current market exposure:
 ## Getting Started Checklist
 
 <div className="row">
-  <div className="col col--4">
+  <div className="col col--6">
     <div className="feature-card text--center">
       <h3>Environment Setup</h3>
       <p>Configure your development environment and API credentials</p>
@@ -61,7 +84,7 @@ Positions track your current market exposure:
       </a>
     </div>
   </div>
-  <div className="col col--4">
+  <div className="col col--6">
     <div className="feature-card text--center">
       <h3>Authentication</h3>
       <p>Set up API credentials and establish secure connections</p>
@@ -70,6 +93,9 @@ Positions track your current market exposure:
       </a>
     </div>
   </div>
+</div>
+
+<div className="row">
   <div className="col col--4">
     <div className="feature-card text--center">
       <h3>API Testing</h3>
@@ -79,9 +105,6 @@ Positions track your current market exposure:
       </a>
     </div>
   </div>
-</div>
-
-<div className="row">
   <div className="col col--4">
     <div className="feature-card text--center">
       <h3>WebSocket Connection</h3>
@@ -111,10 +134,3 @@ Ready to dive deeper? Check out these resources:
 - [WebSocket Guide](/docs/websocket/overview) - Learn about real-time data streaming
 - [Reference Materials](/docs/reference/data-types) - Explore data types and error codes
 
-## Support Resources
-
-- **Documentation**: This documentation
-- **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com)
-- **ETHGas Homepage**: [ethgas.com](https://ethgas.com)
-
-Let's get started with your ETHGas journey! 
