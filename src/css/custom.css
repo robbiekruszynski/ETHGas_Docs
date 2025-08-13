@@ -1217,6 +1217,16 @@ li[role="tab"]::marker,
   content: none !important;
 }
 
+/* Hide breadcrumbs completely */
+.breadcrumbs,
+.breadcrumbs *,
+.breadcrumb_item,
+.breadcrumb_item * {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
 /* Target tab buttons specifically */
 .theme-doc-tabs button,
 .theme-doc-tabs button::before,
