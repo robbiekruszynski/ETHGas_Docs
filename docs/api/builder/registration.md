@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 This guide provides step-by-step instructions for setting up a builder with ETHGas using the official builder scripts repository.
 
-:::warning
+:::info
 The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
 :::
 
@@ -28,7 +28,7 @@ The ethgas-builder-scripts repository includes:
 
 ### Related Repositories
 
-- **Preconf Builder**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">Modified rbuilder for ETHGas integration</a>
+• **Preconf Builder**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">Modified rbuilder for ETHGas integration</a>
 <!-- - **Commit Boost Module**: <a href="https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module" target="_blank" rel="noopener noreferrer">ETHGas preconf commit-boost module</a> -->
 
 ## Prerequisites
@@ -172,23 +172,23 @@ BUILDER_REGISTRY_CONTRACT=0x...
 
 Your BLS key pair is essential for builder identification and block signing:
 
-• **BLS_PUBKEY**: Your BLS public key (required for registration)
-• **BLS_SECRET_KEY**: Your BLS secret key (keep secure, never commit to version control)
+* **BLS_PUBKEY**: Your BLS public key (required for registration)
+* **BLS_SECRET_KEY**: Your BLS secret key (keep secure, never commit to version control)
 
 ### EOA Signing Key
 
 Your EOA signing key is used for authentication and fee collection:
 
-• Must be a registered account or a to-be-registered account on ETHGas Exchange
-• Used for signing registration transactions
-• Required for fee distribution
+* Must be a registered account or a to-be-registered account on ETHGas Exchange
+* Used for signing registration transactions
+* Required for fee distribution
 
 ### Security Best Practices
 
-• **Never commit private keys**: Keep all private keys secure
-• **Use environment variables**: Store keys in `.env` files (not in version control)
-• **Regular key rotation**: Consider rotating keys periodically
-• **Backup keys securely**: Store backups in secure locations
+* **Never commit private keys**: Keep all private keys secure
+* **Use environment variables**: Store keys in ` .env ` files (not in version control)
+* **Regular key rotation**: Consider rotating keys periodically
+* **Backup keys securely**: Store backups in secure locations
 
 <!-- ## Docker Deployment
 
@@ -534,7 +534,7 @@ curl -X POST "https://api.ethgas.com/v1/builder/submit-block" \
 
 All built blocks must pass validation checks:
 
-- [x] **Preconf inclusion**: All preconf transactions with canRevert equal to false must be included
+- [x] **Preconf inclusion**: All preconf transactions with ` canRevert ` equal to false must be included
 - [x] **Bundle positioning**: Top and bottom bundles must be in correct positions
 - [x] **Empty Space Requirement**: The minimum gas unit of a block needs to be left as empty
 - [x] **Gas limit**: Block must not exceed gas limit

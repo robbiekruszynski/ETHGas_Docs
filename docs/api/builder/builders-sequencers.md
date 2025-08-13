@@ -2,7 +2,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <!-- ---
-sidebar_position: 1
+sidebar_position: 2
 --- -->
 
 # Builders & Sequencers

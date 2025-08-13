@@ -87,7 +87,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/docs/api/builder/overview',
+          to: '/docs/api/builder/registration',
           label: 'Builders',
           position: 'left',
         },

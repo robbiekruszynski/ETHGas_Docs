@@ -955,6 +955,87 @@ details[open] summary {
   margin: 0;
 }
 
+/* Ensure bullet points are visible in markdown lists */
+.markdown ul,
+.theme-doc-markdown ul,
+article ul,
+.theme-doc-markdown article ul,
+.markdown article ul {
+  list-style: disc !important;
+  padding-left: 1.5rem !important;
+}
+
+.markdown ul li,
+.theme-doc-markdown ul li,
+article ul li,
+.theme-doc-markdown article ul li,
+.markdown article ul li {
+  margin-bottom: 0.5rem !important;
+  list-style: disc !important;
+}
+
+/* Override any list-style: none that might be applied */
+.markdown ul li::before,
+.theme-doc-markdown ul li::before {
+  display: none !important;
+}
+
+/* Force bullet points for all unordered lists in documentation */
+.theme-doc-markdown ul,
+.markdown ul,
+article ul,
+div[class*="markdown"] ul,
+div[class*="theme-doc"] ul {
+  list-style-type: disc !important;
+  list-style: disc !important;
+  padding-left: 2rem !important;
+}
+
+.theme-doc-markdown ul li,
+.markdown ul li,
+article ul li,
+div[class*="markdown"] ul li,
+div[class*="theme-doc"] ul li {
+  display: list-item !important;
+  list-style-type: disc !important;
+  list-style: disc !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Remove any custom bullets that might be interfering */
+.theme-doc-markdown ul li::before,
+.markdown ul li::before,
+article ul li::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Remove bullet points ONLY for checkmark lists (items with [x]) */
+.theme-doc-markdown ul li:has(input[type="checkbox"]:checked),
+.markdown ul li:has(input[type="checkbox"]:checked),
+article ul li:has(input[type="checkbox"]:checked),
+div[class*="markdown"] ul li:has(input[type="checkbox"]:checked),
+div[class*="theme-doc"] ul li:has(input[type="checkbox"]:checked) {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+/* Alternative approach for checkmark lists - target by content pattern */
+.theme-doc-markdown ul li,
+.markdown ul li,
+article ul li {
+  list-style: disc !important;
+  list-style-type: disc !important;
+}
+
+/* Remove bullets for checkmark items specifically */
+.theme-doc-markdown ul li:has([class*="checkbox"]),
+.markdown ul li:has([class*="checkbox"]),
+article ul li:has([class*="checkbox"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
 .api-category li {
   padding: 0.75rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);

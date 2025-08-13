@@ -65,7 +65,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
-          id: 'api/builder/overview',
+          id: 'api/builder/builders-sequencers',
           label: 'Builders & Sequencers',
         },
       ],
