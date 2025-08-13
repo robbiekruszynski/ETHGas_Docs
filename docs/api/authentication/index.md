@@ -4,107 +4,48 @@ sidebar_position: 1
 
 # Authentication
 
-ETHGas API uses token-based authentication for secure access to all endpoints.
+ETHGas API uses Bearer token authentication.
 
 ## Overview
 
-All API requests require authentication using access tokens obtained through the login process. The authentication flow consists of:
+Authentication involves:
 
-1. **Login** - Obtain access and refresh tokens
-2. **Token Verification** - Verify token validity
-3. **Token Refresh** - Get new tokens when expired
-4. **Logout** - Invalidate tokens
+1. Login – obtain tokens
+2. Verify – check token validity
+3. Refresh – rotate tokens
+4. Logout – invalidate session
 
-## Authentication Flow
+## Flow
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant API
-    
     Client->>API: POST /api/v1/user/login
-    API->>Client: Access Token + Refresh Token
-    
+    API->>Client: access/refresh tokens
     Client->>API: POST /api/v1/user/login/verify
-    API->>Client: Token validity status
-    
-    Note over Client,API: Token expires
+    API->>Client: validity
+    Note over Client,API: token expiry
     Client->>API: POST /api/v1/user/login/refresh
-    API->>Client: New Access Token + Refresh Token
-    
+    API->>Client: new tokens
     Client->>API: POST /api/v1/user/logout
-    API->>Client: Logout confirmation
+    API->>Client: confirmation
 ```
 
-## Endpoints
+## API Endpoints
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/v1/user/login` | POST | Authenticate and get tokens |
-| `/api/v1/user/login/verify` | POST | Verify token validity |
-| `/api/v1/user/login/refresh` | POST | Refresh expired tokens |
-| `/api/v1/user/logout` | POST | Logout and invalidate tokens |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| **POST** | `/api/v1/user/login` | Authenticate and obtain access/refresh tokens |
+| **POST** | `/api/v1/user/login/verify` | Verify login and complete authentication |
+| **POST** | `/api/v1/user/login/refresh` | Refresh expired access tokens |
+| **POST** | `/api/v1/user/logout` | Invalidate session and clear tokens |
 
-## Quick Start
+For copy/paste‑ready HTTP/Python examples, see the detailed API endpoints below.
 
-### 1. Login
+## Best Practices
 
-```bash
-curl -X POST "https://api.ethgas.com/api/v1/user/login" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "username": "your_username",
-    "password": "your_password"
-  }'
-```
-
-### 2. Use Access Token
-
-```bash
-curl -X GET "https://api.ethgas.com/api/v1/user/info" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
-```
-
-### 3. Refresh Token
-
-```bash
-curl -X POST "https://api.ethgas.com/api/v1/user/login/refresh" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "refreshToken": "YOUR_REFRESH_TOKEN"
-  }'
-```
-
-## Token Management
-
-### Access Tokens
-- **Lifetime**: 1 hour (3600 seconds)
-- **Usage**: Include in `Authorization` header
-- **Format**: `Bearer YOUR_ACCESS_TOKEN`
-
-### Refresh Tokens
-- **Lifetime**: 30 days
-- **Usage**: Obtain new access tokens
-- **Storage**: Secure storage recommended
-
-## Security Best Practices
-
-1. **Store tokens securely** - Use environment variables or secure storage
-2. **Refresh proactively** - Refresh tokens before they expire
-3. **Handle errors gracefully** - Implement proper error handling
-4. **Logout properly** - Always logout when done
-
-## Error Handling
-
-| Error Code | Description | Action |
-|------------|-------------|--------|
-| 401 | Unauthorized | Re-authenticate or refresh token |
-| 403 | Forbidden | Check permissions |
-| 429 | Rate Limited | Wait and retry |
-
-## Related Documentation
-
-- [Login](/docs/api/authentication/login) - Initial authentication
-- [Verify](/docs/api/authentication/verify) - Token verification
-- [Refresh](/docs/api/authentication/refresh) - Token refresh
-- [Logout](/docs/api/authentication/logout) - Session termination 
+- [x] **Store tokens securely** - Keep access tokens in secure storage and never expose them in client-side code
+- [x] **Refresh proactively** - Refresh tokens before they expire to maintain continuous access
+- [x] **Handle errors gracefully** - Implement proper error handling for authentication failures
+- [x] **Logout when done** - Always logout to invalidate sessions and clear tokens 

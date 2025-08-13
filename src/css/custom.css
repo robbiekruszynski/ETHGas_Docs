@@ -70,13 +70,13 @@ h3 {
 
 .navbar {
   backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.95);
+  background: #111927;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 [data-theme='dark'] .navbar {
-  background: rgba(0, 0, 0, 0.95);
+  background: #111927;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -108,6 +108,30 @@ h3 {
 
 [data-theme='dark'] .navbar__link--active {
   color: var(--ifm-color-primary-light);
+}
+
+/* Full width tables for better readability */
+table {
+  width: 100% !important;
+  margin: 1rem 0;
+  table-layout: auto !important;
+  max-width: none !important;
+}
+
+/* Ensure table cells also use full width */
+table th,
+table td {
+  width: auto !important;
+  max-width: none !important;
+  word-wrap: break-word;
+}
+
+/* Override any Docusaurus table constraints */
+.theme-doc-markdown table,
+.markdown table {
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: auto !important;
 }
 
 .theme-doc-sidebar-container .theme-doc-sidebar-item-category-level-1 > .theme-doc-sidebar-item-link,
@@ -144,15 +168,17 @@ h3 {
 
 .navbar {
   backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.95);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 [data-theme='dark'] .navbar {
-  background: rgba(0, 0, 0, 0.95);
+  background: #111927;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+
 
 .theme-doc-sidebar-container {
   background: rgba(255, 255, 255, 0.02);
@@ -497,6 +523,11 @@ blockquote {
   align-self: center;
 }
 
+
+
+
+
+
 /* Enhanced hover styling for buttons within feature cards */
 .feature-card .button--outline:hover {
   background: var(--ifm-color-primary);
@@ -582,6 +613,24 @@ details summary {
 }
 
 [data-theme='dark'] details summary {
+  color: var(--ifm-color-primary-light);
+}
+
+/* API endpoint dropdown summaries - make description text white in dark mode */
+details summary:not([style*="listStyle"]) {
+  color: #374151;
+}
+
+[data-theme='dark'] details summary:not([style*="listStyle"]) {
+  color: #ffffff;
+}
+
+/* Ensure POST/GET method names stay blue */
+details summary:not([style*="listStyle"]) strong {
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] details summary:not([style*="listStyle"]) strong {
   color: var(--ifm-color-primary-light);
 }
 
@@ -797,6 +846,57 @@ details[open] summary {
   margin: 2rem 0;
 }
 
+/* CRITICAL: Fix code overflow in API endpoints */
+.api-endpoints-grid pre,
+.api-endpoints-grid code,
+.api-endpoints-grid .prism-code {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+
+
+/* Ensure code blocks don't overflow */
+.api-endpoints-grid details pre,
+.api-endpoints-grid details code {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+/* Force long strings to wrap */
+.api-endpoints-grid .token.string {
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
+}
+
+/* Ensure tabs content doesn't overflow */
+.api-endpoints-grid .tabs__content {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* Fix curl commands specifically */
+.api-endpoints-grid pre code.language-bash {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+/* Force all code in API endpoints to wrap */
+.api-endpoints-grid * pre,
+.api-endpoints-grid * code {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+  overflow-x: auto !important;
+}
+
 .api-category {
   background: var(--ifm-background-surface-color);
   border-radius: 8px;
@@ -853,6 +953,434 @@ details[open] summary {
   list-style: none;
   padding: 1.5rem;
   margin: 0;
+}
+
+/* Ensure bullet points are visible in markdown lists */
+.markdown ul,
+.theme-doc-markdown ul,
+article ul,
+.theme-doc-markdown article ul,
+.markdown article ul {
+  list-style: disc !important;
+  padding-left: 1.5rem !important;
+}
+
+.markdown ul li,
+.theme-doc-markdown ul li,
+article ul li,
+.theme-doc-markdown article ul li,
+.markdown article ul li {
+  margin-bottom: 0.5rem !important;
+  list-style: disc !important;
+}
+
+/* Override any list-style: none that might be applied */
+.markdown ul li::before,
+.theme-doc-markdown ul li::before {
+  display: none !important;
+}
+
+/* Force bullet points for all unordered lists in documentation */
+.theme-doc-markdown ul,
+.markdown ul,
+article ul,
+div[class*="markdown"] ul,
+div[class*="theme-doc"] ul {
+  list-style-type: disc !important;
+  list-style: disc !important;
+  padding-left: 2rem !important;
+}
+
+.theme-doc-markdown ul li,
+.markdown ul li,
+article ul li,
+div[class*="markdown"] ul li,
+div[class*="theme-doc"] ul li {
+  display: list-item !important;
+  list-style-type: disc !important;
+  list-style: disc !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Remove any custom bullets that might be interfering */
+.theme-doc-markdown ul li::before,
+.markdown ul li::before,
+article ul li::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Remove bullet points ONLY for checkmark lists (items with [x]) */
+.theme-doc-markdown ul li:has(input[type="checkbox"]:checked),
+.markdown ul li:has(input[type="checkbox"]:checked),
+article ul li:has(input[type="checkbox"]:checked),
+div[class*="markdown"] ul li:has(input[type="checkbox"]:checked),
+div[class*="theme-doc"] ul li:has(input[type="checkbox"]:checked) {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+/* Alternative approach for checkmark lists - target by content pattern */
+.theme-doc-markdown ul li,
+.markdown ul li,
+article ul li {
+  list-style: disc !important;
+  list-style-type: disc !important;
+}
+
+/* Remove bullets for checkmark items specifically */
+.theme-doc-markdown ul li:has([class*="checkbox"]),
+.markdown ul li:has([class*="checkbox"]),
+article ul li:has([class*="checkbox"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+/* Remove bullet points for API method badges (POST, GET, etc.) */
+.theme-doc-markdown ul li:has([class*="api-method"]),
+.markdown ul li:has([class*="api-method"]),
+article ul li:has([class*="api-method"]),
+.theme-doc-markdown ul li:has([class*="method"]),
+.markdown ul li:has([class*="method"]),
+article ul li:has([class*="method"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Improve API method badge visibility in dark mode */
+.api-method-post,
+.api-method-get,
+.api-method-put,
+.api-method-delete,
+.method.post,
+.method.get,
+.method.put,
+.method.delete {
+  display: inline-block !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  margin-right: 0.5rem !important;
+  color: white !important;
+  text-shadow: none !important;
+}
+
+/* Ensure bright colors in dark mode */
+[data-theme='dark'] .api-method-post,
+[data-theme='dark'] .method.post {
+  background: #2563eb !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+[data-theme='dark'] .api-method-get,
+[data-theme='dark'] .method.get {
+  background: #059669 !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+[data-theme='dark'] .api-method-put,
+[data-theme='dark'] .method.put {
+  background: #d97706 !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+[data-theme='dark'] .api-method-delete,
+[data-theme='dark'] .method.delete {
+  background: #dc2626 !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+/* Add spacing between method badges and API paths */
+.api-method-post,
+.api-method-get,
+.api-method-put,
+.api-method-delete,
+.method.post,
+.method.get,
+.method.put,
+.method.delete {
+  margin-right: 12px !important;
+}
+
+/* Ensure API paths have proper spacing */
+.api-endpoints-grid .api-method + span,
+.api-endpoints-grid .method + span,
+.theme-doc-markdown .api-method + span,
+.theme-doc-markdown .method + span {
+  margin-left: 8px !important;
+}
+
+/* Remove custom tab list-style overrides to use default Docusaurus tabs */
+
+/* Remove bullet points from Docusaurus tabs - more aggressive approach */
+.theme-doc-tabs__tab-list,
+.theme-doc-tabs__tab-list *,
+.theme-doc-tabs__tab-list li,
+.theme-doc-tabs__tab-list li * {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+.theme-doc-tabs__tab-list li::before,
+.theme-doc-tabs__tab-list li::after,
+.theme-doc-tabs__tab-list *::before,
+.theme-doc-tabs__tab-list *::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Target any potential bullet points in tabs */
+.theme-doc-tabs ul,
+.theme-doc-tabs ol,
+.theme-doc-tabs li {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+.theme-doc-tabs ul::before,
+.theme-doc-tabs ul::after,
+.theme-doc-tabs ol::before,
+.theme-doc-tabs ol::after,
+.theme-doc-tabs li::before,
+.theme-doc-tabs li::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Additional targeting for tab items */
+.theme-doc-tabs__item,
+.theme-doc-tabs__item * {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+.theme-doc-tabs__item::before,
+.theme-doc-tabs__item::after,
+.theme-doc-tabs__item *::before,
+.theme-doc-tabs__item *::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Nuclear option - target everything in tabs */
+.theme-doc-tabs *,
+.theme-doc-tabs *::before,
+.theme-doc-tabs *::after {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+/* Target specific bullet point classes that might exist */
+.theme-doc-tabs .bullet,
+.theme-doc-tabs .bullet::before,
+.theme-doc-tabs .bullet::after,
+.theme-doc-tabs [class*="bullet"],
+.theme-doc-tabs [class*="bullet"]::before,
+.theme-doc-tabs [class*="bullet"]::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Force remove any pseudo-elements that might be bullets */
+.theme-doc-tabs li::marker {
+  display: none !important;
+  content: none !important;
+}
+
+/* Target the specific li elements with role="tab" */
+.tabs__item::marker,
+li[role="tab"]::marker,
+.tabs__item--active::marker {
+  display: none !important;
+  content: none !important;
+}
+
+/* Target all li elements in tabs */
+.theme-doc-tabs li::marker,
+.tabs li::marker,
+[class*="tabs"] li::marker {
+  display: none !important;
+  content: none !important;
+}
+
+/* Hide breadcrumbs completely */
+.breadcrumbs,
+.breadcrumbs *,
+.breadcrumb_item,
+.breadcrumb_item * {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Reduce font size ONLY for Endpoint code blocks to fit on single line */
+/* Target only the Endpoint section specifically */
+.theme-doc-markdown h3:contains("Endpoint") + pre code,
+.markdown h3:contains("Endpoint") + pre code,
+article h3:contains("Endpoint") + pre code,
+.theme-doc-markdown h4:contains("Endpoint") + pre code,
+.markdown h4:contains("Endpoint") + pre code,
+article h4:contains("Endpoint") + pre code {
+  font-size: 0.6rem !important;
+  line-height: 0.95 !important;
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
+}
+
+/* Alternative targeting for Endpoint code blocks */
+.theme-doc-markdown pre code:contains("https://"),
+.markdown pre code:contains("https://"),
+article pre code:contains("https://") {
+  font-size: 0.6rem !important;
+  line-height: 0.95 !important;
+}
+
+/* Make GET and POST blocks uniform in size and improve text rendering */
+.api-method-get,
+.api-method-post {
+  min-width: 80px !important;
+  width: 80px !important;
+  text-align: center !important;
+  display: inline-block !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.2 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+}
+
+/* Make colors much brighter for dark mode */
+[data-theme='dark'] .api-method-get {
+  background: #00ff88 !important; /* Bright neon green */
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .api-method-post {
+  background: #ff0066 !important; /* Bright neon red/pink */
+  color: #ffffff !important;
+}
+
+/* Light mode - black text */
+.api-method-get,
+.api-method-post,
+.api-method-get *,
+.api-method-post * {
+  color: #000000 !important;
+}
+
+/* Dark mode - white text */
+[data-theme='dark'] .api-method-get,
+[data-theme='dark'] .api-method-post,
+[data-theme='dark'] .api-method-get *,
+[data-theme='dark'] .api-method-post * {
+  color: #ffffff !important;
+}
+
+/* Target tab buttons specifically */
+.theme-doc-tabs button,
+.theme-doc-tabs button::before,
+.theme-doc-tabs button::after,
+.theme-doc-tabs [role="tab"],
+.theme-doc-tabs [role="tab"]::before,
+.theme-doc-tabs [role="tab"]::after {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+/* Remove any potential bullet points from tab content */
+.theme-doc-tabs__content *,
+.theme-doc-tabs__content *::before,
+.theme-doc-tabs__content *::after {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+/* Remove custom tab styling to use default Docusaurus tabs */
+
+/* Changelog category styling */
+.changelog-category {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .changelog-category {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.changelog-category-header {
+  background: rgba(0, 162, 199, 0.1);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.changelog-category-header:hover {
+  background: rgba(0, 162, 199, 0.2);
+}
+
+.changelog-category-header strong {
+  color: var(--ifm-color-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.changelog-category-desc {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+[data-theme='dark'] .changelog-category-header {
+  background: rgba(26, 179, 214, 0.1);
+}
+
+[data-theme='dark'] .changelog-category-header:hover {
+  background: rgba(26, 179, 214, 0.2);
+}
+
+[data-theme='dark'] .changelog-category-header strong {
+  color: var(--ifm-color-primary-light);
+}
+
+[data-theme='dark'] .changelog-category-desc {
+  color: var(--ifm-color-emphasis-300);
+}
+
+.changelog-category[open] .changelog-category-header {
+  background: var(--ifm-color-primary);
+}
+
+.changelog-category[open] .changelog-category-header strong,
+.changelog-category[open] .changelog-category-header .changelog-category-desc {
+  color: white;
+}
+
+.changelog-category > div {
+  padding: 1.5rem;
 }
 
 .api-category li {
@@ -975,103 +1503,7 @@ details[open] summary {
   border-left: 3px solid var(--ifm-color-primary);
 }
 
-.network-tabs {
-  margin: 2rem 0;
-  border: 1px solid rgba(0, 162, 199, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.tab-buttons {
-  display: flex;
-  background: rgba(0, 162, 199, 0.05);
-  border-bottom: 1px solid rgba(0, 162, 199, 0.2);
-}
-
-.tab-button {
-  flex: 1;
-  padding: 1rem 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  color: #6b7280;
-  transition: all 0.2s ease;
-  border-right: 1px solid rgba(0, 162, 199, 0.1);
-}
-
-.tab-button:last-child {
-  border-right: none;
-}
-
-.tab-button:hover {
-  background: rgba(0, 162, 199, 0.1);
-  color: #374151;
-}
-
-.tab-button.active {
-  background: #00A2C7;
-  color: white;
-  font-weight: 600;
-}
-
-.tab-content {
-  padding: 2rem;
-  background: white;
-}
-
-[data-theme='dark'] .tab-content {
-  background: var(--ifm-background-surface-color);
-}
-
-.tab-pane {
-  display: none;
-}
-
-.tab-pane.active {
-  display: block;
-}
-
-.tab-pane h4 {
-  margin-top: 0;
-  color: var(--ifm-color-primary);
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.tab-pane h5 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #374151;
-}
-
-[data-theme='dark'] .tab-pane h5 {
-  color: #f3f4f6;
-}
-
-.tab-pane ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-}
-
-.tab-pane li {
-  margin-bottom: 0.5rem;
-}
-
-.tab-pane code {
-  background: rgba(0, 162, 199, 0.1);
-  color: #00A2C7;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-}
-
-[data-theme='dark'] .tab-pane code {
-  background: rgba(26, 179, 214, 0.2);
-  color: #1AB3D6;
-}
+/* Remove custom network-tabs styling to use default Docusaurus tabs */
 
 .feature-card {
   border: none !important;
@@ -1083,4 +1515,1647 @@ details[open] summary {
   border: none !important;
   box-shadow: none !important;
   transform: none !important;
+}
+
+/* Typography improvements for better readability */
+:root {
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Monaco', 'Cascadia Code', monospace;
+  --ifm-line-height-base: 1.4;
+  --ifm-line-height-base-em: 1.4em;
+}
+
+/* Reduce spacing in documentation content */
+.theme-doc-markdown {
+  line-height: 1.4;
+}
+
+.theme-doc-markdown h1 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.theme-doc-markdown h2 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+}
+
+.theme-doc-markdown h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.theme-doc-markdown h4 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.theme-doc-markdown h5 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.theme-doc-markdown h6 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Reduce paragraph spacing */
+.theme-doc-markdown p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Reduce list spacing */
+.theme-doc-markdown ul,
+.theme-doc-markdown ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.theme-doc-markdown li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+/* Reduce blockquote spacing */
+.theme-doc-markdown blockquote {
+  margin: 0.75rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid var(--ifm-color-primary);
+  background: rgba(0, 162, 199, 0.05);
+}
+
+/* Reduce table spacing */
+.theme-doc-markdown table {
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+}
+
+.theme-doc-markdown th,
+.theme-doc-markdown td {
+  padding: 0.5rem 0.75rem;
+  line-height: 1.3;
+}
+
+/* Reduce code block spacing */
+.theme-doc-markdown pre {
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.theme-doc-markdown code {
+  font-size: 0.9em;
+  padding: 0.2rem 0.4rem;
+}
+
+/* Reduce feature card spacing */
+.feature-card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.feature-card h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.feature-card p {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Reduce quick navigation spacing */
+.quick-nav .feature-card {
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.quick-nav .feature-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.quick-nav .feature-card p {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.quick-nav .feature-card .button {
+  margin-top: 0.5rem;
+}
+
+/* Reduce API overview spacing */
+.api-category {
+  margin-bottom: 1rem;
+}
+
+.api-category-header {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.api-category-desc {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Reduce details/summary spacing */
+details {
+  margin: 0.5rem 0;
+}
+
+summary {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+}
+
+details > div {
+  padding: 0.5rem 0.75rem;
+}
+
+/* Remove custom tabs-container styling to use default Docusaurus tabs */
+
+
+
+.example-info {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.example-info h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.example-info p {
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+/* Reduce sidebar spacing */
+.theme-doc-sidebar-item-category-level-1 {
+  margin-bottom: 0.5rem;
+}
+
+.theme-doc-sidebar-item-category-level-1 > div {
+  padding: 0.5rem 0.75rem;
+}
+
+.theme-doc-sidebar-item-category-level-2 {
+  margin-bottom: 0.25rem;
+}
+
+.theme-doc-sidebar-item-category-level-2 > div {
+  padding: 0.25rem 0.5rem;
+}
+
+.theme-doc-sidebar-item-category-level-3 {
+  margin-bottom: 0.25rem;
+}
+
+.theme-doc-sidebar-item-category-level-3 > div {
+  padding: 0.25rem 0.75rem;
+}
+
+/* Reduce TOC spacing */
+.theme-doc-toc-desktop {
+  padding: 0.5rem 0;
+}
+
+.theme-doc-toc-desktop ul {
+  margin: 0.25rem 0;
+  padding-left: 1rem;
+}
+
+.theme-doc-toc-desktop li {
+  margin: 0.25rem 0;
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+/* Reduce navbar spacing */
+.navbar__item {
+  padding: 0.5rem 0.75rem;
+}
+
+.navbar__link {
+  font-size: 0.9rem;
+}
+
+/* Reduce footer spacing */
+.footer {
+  padding: 1rem 0;
+}
+
+.footer__links {
+  margin: 0.5rem 0;
+}
+
+.footer__link-item {
+  margin: 0.25rem 0;
+}
+
+/* Reduce homepage spacing */
+.heroBanner {
+  padding: 2rem 0;
+}
+
+.heroBanner h1 {
+  margin-bottom: 1rem;
+}
+
+.heroBanner p {
+  margin-bottom: 1.5rem;
+}
+
+.buttons {
+  margin-top: 1rem;
+}
+
+/* Reduce section spacing */
+.quickStart,
+.features,
+.resources,
+.community {
+  padding: 2rem 0;
+}
+
+.quickStart h2,
+.features h2,
+.resources h2,
+.community h2 {
+  margin-bottom: 1rem;
+}
+
+/* Reduce card spacing in sections */
+.row {
+  margin-bottom: 1rem;
+}
+
+.row .col {
+  margin-bottom: 0.75rem;
+}
+
+/* Reduce button spacing */
+.button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.button--lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Reduce alert spacing */
+.alert {
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+}
+
+.alert--info,
+.alert--warning,
+.alert--danger,
+.alert--success {
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+}
+
+/* Reduce admonition spacing */
+.admonition {
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+}
+
+.admonition-heading {
+  margin-bottom: 0.5rem;
+}
+
+.admonition-content {
+  margin-top: 0.5rem;
+}
+
+/* Reduce mermaid diagram spacing */
+.mermaid {
+  margin: 0.75rem 0;
+}
+
+/* Reduce callout spacing */
+.callout {
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+}
+
+.callout-header {
+  margin-bottom: 0.5rem;
+}
+
+.callout-content {
+  margin-top: 0.5rem;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .theme-doc-markdown {
+  line-height: 1.4;
+}
+
+[data-theme='dark'] .theme-doc-markdown p {
+  line-height: 1.5;
+}
+
+[data-theme='dark'] .theme-doc-markdown li {
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-doc-markdown h1 {
+    font-size: 1.75rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .theme-doc-markdown h2 {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .theme-doc-markdown h3 {
+    font-size: 1.1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-card {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .quick-nav .feature-card {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Dark mode adjustments for API overview */
+[data-theme='dark'] .api-category {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+[data-theme='dark'] .api-category-header {
+  background: #374151;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid #4b5563;
+}
+
+[data-theme='dark'] .api-category-header:hover {
+  background: #4b5563;
+}
+
+[data-theme='dark'] .api-category-desc {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-left: 0.5rem;
+}
+
+[data-theme='dark'] .api-category > div {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 6px 6px;
+}
+
+[data-theme='dark'] .api-category ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+[data-theme='dark'] .api-category li {
+  color: #e5e7eb;
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+[data-theme='dark'] .api-category strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .api-category code {
+  background: #374151;
+  color: #fbbf24;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+[data-theme='dark'] .api-category pre {
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  border-radius: 6px;
+}
+
+[data-theme='dark'] .api-category pre code {
+  background: transparent;
+  color: #e5e7eb;
+  padding: 0;
+}
+
+/* Dark mode for details/summary elements */
+[data-theme='dark'] details {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+}
+
+[data-theme='dark'] summary {
+  background: #374151;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid #4b5563;
+}
+
+[data-theme='dark'] summary:hover {
+  background: #4b5563;
+}
+
+[data-theme='dark'] details > div {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 0.75rem 1rem;
+  border-radius: 0 0 6px 6px;
+}
+
+[data-theme='dark'] details ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+[data-theme='dark'] details li {
+  color: #e5e7eb;
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+[data-theme='dark'] details strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+[data-theme='dark'] details code {
+  background: #374151;
+  color: #fbbf24;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+[data-theme='dark'] details pre {
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  border-radius: 6px;
+}
+
+[data-theme='dark'] details pre code {
+  background: transparent;
+  color: #e5e7eb;
+  padding: 0;
+}
+
+/* Dark mode for API endpoints grid */
+[data-theme='dark'] .api-endpoints-grid {
+  background: #1f2937;
+}
+
+/* Dark mode for quick navigation cards */
+[data-theme='dark'] .quick-nav .feature-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #f9fafb;
+}
+
+[data-theme='dark'] .quick-nav .feature-card h3 {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .quick-nav .feature-card p {
+  color: #d1d5db;
+}
+
+[data-theme='dark'] .quick-nav .feature-card .button--outline {
+  color: #60a5fa;
+  border-color: #60a5fa;
+}
+
+[data-theme='dark'] .quick-nav .feature-card .button--outline:hover {
+  background: #60a5fa;
+  color: #ffffff;
+}
+
+/* Dark mode for code blocks in API overview */
+[data-theme='dark'] .theme-doc-markdown pre {
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+[data-theme='dark'] .theme-doc-markdown code {
+  background: #374151;
+  color: #fbbf24;
+}
+
+/* Dark mode for tables in API overview */
+[data-theme='dark'] .theme-doc-markdown table {
+  background: #1f2937;
+  border: 1px solid #374151;
+}
+
+[data-theme='dark'] .theme-doc-markdown th {
+  background: #374151;
+  color: #ffffff;
+  border-bottom: 1px solid #4b5563;
+}
+
+[data-theme='dark'] .theme-doc-markdown td {
+  color: #e5e7eb;
+  border-bottom: 1px solid #374151;
+}
+
+[data-theme='dark'] .theme-doc-markdown tr:hover {
+  background: #374151;
+}
+
+/* Dark mode for blockquotes in API overview */
+[data-theme='dark'] .theme-doc-markdown blockquote {
+  background: rgba(59, 130, 246, 0.1);
+  border-left: 4px solid #3b82f6;
+  color: #e5e7eb;
+}
+
+/* Remove custom dark mode tab styling to use default Docusaurus tabs */
+
+/* Dark mode for JSON syntax highlighting */
+[data-theme='dark'] .theme-doc-markdown pre code {
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code .token.string {
+  color: #a7f3d0;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code .token.number {
+  color: #fbbf24;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code .token.boolean {
+  color: #fbbf24;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code .token.null {
+  color: #f87171;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code .token.punctuation {
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code .token.property {
+  color: #60a5fa;
+}
+
+/* Dark mode for bash syntax highlighting */
+[data-theme='dark'] .theme-doc-markdown pre code.language-bash {
+  color: #e5e7eb;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code.language-bash .token.function {
+  color: #fbbf24;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code.language-bash .token.string {
+  color: #a7f3d0;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code.language-bash .token.keyword {
+  color: #60a5fa;
+}
+
+/* Dark mode for curl commands */
+[data-theme='dark'] .theme-doc-markdown pre code.language-bash .token.operator {
+  color: #f87171;
+}
+
+[data-theme='dark'] .theme-doc-markdown pre code.language-bash .token.comment {
+  color: #6b7280;
+}
+
+/* Dark mode for CodeSandbox */
+[data-theme='dark'] .unified-sandbox-container {
+  background: #1f2937;
+  border: 1px solid #374151;
+}
+
+[data-theme='dark'] .sandbox-content {
+  background: #1f2937;
+}
+
+[data-theme='dark'] .sandbox-tabs {
+  background: #374151;
+  border-bottom-color: #4b5563;
+}
+
+[data-theme='dark'] .sandbox-tabs button {
+  color: #d1d5db;
+  background: transparent;
+}
+
+[data-theme='dark'] .sandbox-tabs button:hover {
+  background: rgba(0, 162, 199, 0.2);
+}
+
+[data-theme='dark'] .sandbox-tabs button.active {
+  background: #00A2C7;
+  color: #ffffff;
+}
+
+[data-theme='dark'] .example-info {
+  background: rgba(0, 162, 199, 0.1);
+  border-color: rgba(0, 162, 199, 0.25);
+}
+
+[data-theme='dark'] .example-info h4 {
+  color: #00A2C7;
+}
+
+[data-theme='dark'] .example-info p {
+  color: #9ca3af;
+}
+
+[data-theme='dark'] .example-info div {
+  background: rgba(255, 193, 7, 0.15) !important;
+  border-color: rgba(255, 193, 7, 0.4) !important;
+  color: #fbbf24 !important;
+}
+
+[data-theme='dark'] .example-info ul {
+  color: #fbbf24 !important;
+}
+
+[data-theme='dark'] .example-info li {
+  color: #fbbf24 !important;
+}
+
+/* Dark mode for Sandpack components */
+[data-theme='dark'] .sandpack-code-viewer {
+  background: #111827 !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-editor {
+  background: #111827 !important;
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-content {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-line {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-gutters {
+  background: #1f2937 !important;
+  color: #9ca3af !important;
+}
+
+[data-theme='dark'] .sandpack-console {
+  background: #111827 !important;
+  color: #d1d5db !important;
+  border-top-color: #374151 !important;
+}
+
+[data-theme='dark'] .sandpack-preview {
+  background: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+/* Dark mode for syntax highlighting in sandbox */
+[data-theme='dark'] .sandpack-code-viewer .cm-token {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-token.cm-string {
+  color: #a7f3d0 !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-token.cm-number {
+  color: #fbbf24 !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-token.cm-keyword {
+  color: #60a5fa !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-token.cm-operator {
+  color: #f87171 !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-token.cm-comment {
+  color: #6b7280 !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-token.cm-variable {
+  color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .sandpack-code-viewer .cm-token.cm-property {
+  color: #60a5fa !important;
+}
+
+/* Light mode for CodeSandbox */
+[data-theme='light'] .unified-sandbox-container {
+  background: #ffffff;
+  border: 1px solid #e1e5e9;
+}
+
+[data-theme='light'] .sandbox-content {
+  background: #ffffff;
+}
+
+[data-theme='light'] .sandbox-tabs {
+  background: #f8f9fa;
+  border-bottom-color: #e1e5e9;
+}
+
+[data-theme='light'] .sandbox-tabs button {
+  color: #374151;
+  background: transparent;
+}
+
+[data-theme='light'] .sandbox-tabs button:hover {
+  background: rgba(0, 162, 199, 0.1);
+}
+
+[data-theme='light'] .sandbox-tabs button.active {
+  background: #00A2C7;
+  color: #ffffff;
+}
+
+[data-theme='light'] .example-info {
+  background: linear-gradient(135deg, rgba(0, 162, 199, 0.1) 0%, rgba(0, 137, 168, 0.1) 100%);
+  border-color: rgba(0, 162, 199, 0.2);
+}
+
+[data-theme='light'] .example-info h4 {
+  color: #00A2C7;
+}
+
+[data-theme='light'] .example-info p {
+  color: #374151;
+}
+
+[data-theme='light'] .example-info div {
+  background: rgba(255, 193, 7, 0.1) !important;
+  border-color: rgba(255, 193, 7, 0.3) !important;
+  color: #856404 !important;
+}
+
+[data-theme='light'] .example-info ul {
+  color: #856404 !important;
+}
+
+[data-theme='light'] .example-info li {
+  color: #856404 !important;
+}
+
+/* Light mode for Sandpack components */
+[data-theme='light'] .sandpack-code-viewer {
+  background: #ffffff !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-editor {
+  background: #ffffff !important;
+  color: #374151 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-content {
+  color: #374151 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-line {
+  color: #374151 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-gutters {
+  background: #f8f9fa !important;
+  color: #6b7280 !important;
+}
+
+[data-theme='light'] .sandpack-console {
+  background: #f8f9fa !important;
+  color: #374151 !important;
+  border-top-color: #e1e5e9 !important;
+}
+
+[data-theme='light'] .sandpack-preview {
+  background: #ffffff !important;
+  border-color: #e1e5e9 !important;
+}
+
+/* Light mode for syntax highlighting in sandbox */
+[data-theme='light'] .sandpack-code-viewer .cm-token {
+  color: #374151 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-token.cm-string {
+  color: #059669 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-token.cm-number {
+  color: #d97706 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-token.cm-keyword {
+  color: #2563eb !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-token.cm-operator {
+  color: #dc2626 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-token.cm-comment {
+  color: #6b7280 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-token.cm-variable {
+  color: #374151 !important;
+}
+
+[data-theme='light'] .sandpack-code-viewer .cm-token.cm-property {
+  color: #2563eb !important;
+}
+
+/* Ensure sandbox is editable and has run button */
+.sandpack-layout {
+  position: relative;
+}
+
+.sandpack-layout .sp-run-button {
+  background: #00A2C7 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.sandpack-layout .sp-run-button:hover {
+  background: #0089A8 !important;
+}
+
+[data-theme='dark'] .sandpack-layout .sp-run-button {
+  background: #00A2C7 !important;
+  color: white !important;
+}
+
+[data-theme='dark'] .sandpack-layout .sp-run-button:hover {
+  background: #0089A8 !important;
+}
+
+/* Neutral hover colors for sandbox elements */
+.sandbox-header {
+  transition: all 0.2s ease;
+}
+
+
+
+.sandbox-tabs button {
+  transition: all 0.2s ease;
+}
+
+.sandbox-tabs button:hover {
+  background: rgba(0, 162, 199, 0.1) !important;
+}
+
+.sandbox-tabs button.active {
+  background: #00A2C7 !important;
+  color: white !important;
+}
+
+/* Ensure proper contrast for all text elements */
+[data-theme='light'] .sandbox-header h3,
+[data-theme='light'] .sandbox-header p {
+  color: white !important;
+}
+
+[data-theme='dark'] .sandbox-header h3,
+[data-theme='dark'] .sandbox-header p {
+  color: white !important;
+}
+
+/* Ensure proper contrast for example info */
+[data-theme='light'] .example-info h4 {
+  color: #00A2C7 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='dark'] .example-info h4 {
+  color: #00A2C7 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='light'] .example-info p {
+  color: #374151 !important;
+  line-height: 1.4 !important;
+}
+
+[data-theme='dark'] .example-info p {
+  color: #9ca3af !important;
+  line-height: 1.4 !important;
+}
+
+/* Force full width tables - highest priority */
+.theme-doc-markdown table,
+.markdown table,
+article table,
+main table,
+div table {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+  margin: 1rem 0 !important;
+  display: table !important;
+}
+
+/* Force table cells to expand */
+.theme-doc-markdown table th,
+.theme-doc-markdown table td,
+.markdown table th,
+.markdown table td,
+article table th,
+article table td,
+main table th,
+main table td,
+div table th,
+div table td {
+  width: auto !important;
+  max-width: none !important;
+  min-width: auto !important;
+  word-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Override any container constraints */
+.theme-doc-markdown,
+.markdown,
+article,
+main,
+div {
+  max-width: none !important;
+}
+
+/* Specific override for error codes and lookup tables */
+details table {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+}
+
+/* Nuclear option - override everything for tables */
+* table {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+}
+
+* table th,
+* table td {
+  width: auto !important;
+  max-width: none !important;
+  min-width: auto !important;
+}
+
+/* API Method Colors and Dark Mode Readability */
+/* GET method - Green */
+strong:contains("GET"),
+strong:has-text("GET"),
+details strong:first-child:contains("GET") {
+  color: #10B981 !important;
+}
+
+/* POST method - Pink/Red */
+strong:contains("POST"),
+strong:has-text("POST"),
+details strong:first-child:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* Dark mode specific API method colors */
+[data-theme='dark'] strong:contains("GET"),
+[data-theme='dark'] strong:has-text("GET"),
+[data-theme='dark'] details strong:first-child:contains("GET") {
+  color: #34D399 !important;
+}
+
+[data-theme='dark'] strong:contains("POST"),
+[data-theme='dark'] strong:has-text("POST"),
+[data-theme='dark'] details strong:first-child:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* Alternative approach using attribute selectors */
+strong[style*="font-weight: bold"]:contains("GET"),
+strong[style*="font-weight: bold"]:has-text("GET") {
+  color: #10B981 !important;
+}
+
+strong[style*="font-weight: bold"]:contains("POST"),
+strong[style*="font-weight: bold"]:has-text("POST") {
+  color: #EC4899 !important;
+}
+
+[data-theme='dark'] strong[style*="font-weight: bold"]:contains("GET"),
+[data-theme='dark'] strong[style*="font-weight: bold"]:has-text("GET") {
+  color: #34D399 !important;
+}
+
+[data-theme='dark'] strong[style*="font-weight: bold"]:contains("POST"),
+[data-theme='dark'] strong[style*="font-weight: bold"]:has-text("POST") {
+  color: #F472B6 !important;
+}
+
+/* Direct targeting of API method text */
+details li strong:first-child {
+  font-weight: 600 !important;
+}
+
+/* GET methods */
+details li:contains("GET") strong:first-child,
+details li strong:first-child:contains("GET") {
+  color: #10B981 !important;
+}
+
+/* POST methods */
+details li:contains("POST") strong:first-child,
+details li strong:first-child:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* Dark mode GET methods */
+[data-theme='dark'] details li:contains("GET") strong:first-child,
+[data-theme='dark'] details li strong:first-child:contains("GET") {
+  color: #34D399 !important;
+}
+
+/* Dark mode POST methods */
+[data-theme='dark'] details li:contains("POST") strong:first-child,
+[data-theme='dark'] details li strong:first-child:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* More reliable API method styling */
+/* Target all strong elements that contain GET or POST */
+strong {
+  font-weight: 600 !important;
+}
+
+/* Light mode colors */
+strong:contains("GET") {
+  color: #10B981 !important;
+}
+
+strong:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* Dark mode colors */
+[data-theme='dark'] strong:contains("GET") {
+  color: #34D399 !important;
+}
+
+[data-theme='dark'] strong:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* Alternative approach - target by content */
+details li strong:first-of-type {
+  font-weight: 600 !important;
+}
+
+/* GET methods in light mode */
+details li strong:first-of-type:contains("GET") {
+  color: #10B981 !important;
+}
+
+/* POST methods in light mode */
+details li strong:first-of-type:contains("POST") {
+  color: #EC4899 !important;
+}
+
+/* GET methods in dark mode */
+[data-theme='dark'] details li strong:first-of-type:contains("GET") {
+  color: #34D399 !important;
+}
+
+/* POST methods in dark mode */
+[data-theme='dark'] details li strong:first-of-type:contains("POST") {
+  color: #F472B6 !important;
+}
+
+/* Most reliable approach - target by position and content pattern */
+/* API method styling for better readability */
+details li strong:first-child {
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* GET methods - Green */
+details li strong:first-child:contains("GET") {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #10B981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+}
+
+/* POST methods - Pink/Red */
+details li strong:first-child:contains("POST") {
+  background-color: rgba(236, 72, 153, 0.1) !important;
+  color: #EC4899 !important;
+  border: 1px solid rgba(236, 72, 153, 0.2) !important;
+}
+
+/* Dark mode GET methods - Brighter Green */
+[data-theme='dark'] details li strong:first-child:contains("GET") {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #34D399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+/* Dark mode POST methods - Brighter Pink */
+[data-theme='dark'] details li strong:first-child:contains("POST") {
+  background-color: rgba(244, 114, 182, 0.15) !important;
+  color: #F472B6 !important;
+  border: 1px solid rgba(244, 114, 182, 0.3) !important;
+}
+
+/* Fix homepage title readability */
+.hero__title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme='dark'] .hero__title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Remove all navbar spacing overrides - let it be natural */
+
+/* Mobile and Tablet Responsive Design */
+/* Ensure navbar is responsive and clickable on all devices */
+
+/* Tablet styles (768px - 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .navbar__brand {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Mobile styles (up to 768px) */
+@media screen and (max-width: 768px) {
+  /* Hide desktop navbar items on mobile */
+  .navbar__items--left {
+    display: none !important;
+  }
+  
+  .navbar__items--right {
+    display: none !important;
+  }
+  
+  /* Show mobile toggle */
+  .navbar__toggle {
+    display: block !important;
+  }
+  
+  /* Ensure brand is visible */
+  .navbar__brand {
+    font-size: 1rem !important;
+  }
+}
+
+/* Small mobile styles (up to 480px) */
+@media screen and (max-width: 480px) {
+  .navbar__brand {
+    font-size: 0.9rem !important;
+  }
+  
+  .navbar__toggle {
+    padding: 0.4rem !important;
+  }
+  
+  .navbar-sidebar__item {
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  .navbar-sidebar__link {
+    font-size: 0.9rem !important;
+  }
+  
+  .navbar-sidebar {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+}
+
+/* Let Docusaurus handle mobile navigation natively */
+
+/* Mobile sidebar improvements */
+@media screen and (max-width: 768px) {
+  /* Hide desktop sidebar on mobile */
+  .theme-doc-sidebar-container {
+    display: none !important;
+  }
+  
+  /* Ensure main content takes full width on mobile */
+  .theme-doc-markdown {
+    padding: 1rem !important;
+    max-width: 100% !important;
+  }
+  
+  /* Improve mobile content readability */
+  .theme-doc-markdown h1 {
+    font-size: 1.75rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .theme-doc-markdown h2 {
+    font-size: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .theme-doc-markdown h3 {
+    font-size: 1.25rem !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Improve mobile table readability */
+  .theme-doc-markdown table {
+    font-size: 0.85rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  
+  .theme-doc-markdown th,
+  .theme-doc-markdown td {
+    padding: 0.5rem 0.25rem !important;
+    word-break: break-word !important;
+  }
+  
+  /* Improve mobile code blocks */
+  .theme-doc-markdown pre {
+    font-size: 0.8rem !important;
+    padding: 0.75rem !important;
+    margin: 0.5rem 0 !important;
+    overflow-x: auto !important;
+  }
+  
+  /* Improve mobile navigation toggle */
+  .navbar__toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 4px !important;
+    transition: background-color 0.2s ease !important;
+    background: transparent !important;
+    border: none !important;
+    color: inherit !important;
+    cursor: pointer !important;
+  }
+  
+  .navbar__toggle:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  /* Hamburger menu icon styling */
+  .navbar__toggle .navbar__toggle-icon {
+    width: 20px !important;
+    height: 2px !important;
+    background: currentColor !important;
+    position: relative !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .navbar__toggle .navbar__toggle-icon::before,
+  .navbar__toggle .navbar__toggle-icon::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 20px !important;
+    height: 2px !important;
+    background: currentColor !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .navbar__toggle .navbar__toggle-icon::before {
+    top: -6px !important;
+  }
+  
+  .navbar__toggle .navbar__toggle-icon::after {
+    bottom: -6px !important;
+  }
+  
+  /* Animated hamburger menu */
+  .navbar__toggle--active .navbar__toggle-icon {
+    background: transparent !important;
+  }
+  
+  .navbar__toggle--active .navbar__toggle-icon::before {
+    transform: rotate(45deg) !important;
+    top: 0 !important;
+  }
+  
+  .navbar__toggle--active .navbar__toggle-icon::after {
+    transform: rotate(-45deg) !important;
+    bottom: 0 !important;
+  }
+  
+  /* Ensure mobile navigation is properly positioned */
+  .navbar-sidebar {
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  /* Improve mobile navigation item contrast */
+  .navbar-sidebar__link {
+    color: var(--ifm-color-emphasis-900) !important;
+  }
+  
+  [data-theme='dark'] .navbar-sidebar__link {
+    color: var(--ifm-color-emphasis-100) !important;
+  }
+  
+  .navbar-sidebar__link:hover {
+    color: var(--ifm-color-primary) !important;
+  }
+  
+  .navbar-sidebar__link--active {
+    color: var(--ifm-color-primary) !important;
+  }
+}
+
+/* Ensure all interactive elements are clickable */
+.navbar__link,
+.navbar__brand,
+.navbar__toggle,
+.navbar-sidebar__link,
+button,
+a {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: rgba(0, 162, 199, 0.2) !important;
+  touch-action: manipulation !important;
+}
+
+/* Improve touch targets for mobile */
+@media (pointer: coarse) {
+  .navbar__link,
+  .navbar-sidebar__link,
+  button,
+  a {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Simple mobile improvements */
+@media screen and (max-width: 768px) {
+  /* Hide desktop sidebar on mobile */
+  .theme-doc-sidebar-container {
+    display: none !important;
+  }
+  
+  /* Ensure main content takes full width on mobile */
+  .theme-doc-markdown {
+    padding: 1rem !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Ensure gradient text is readable */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+}
+
+[data-theme='dark'] .gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: none !important;
+}
+
+/* Checklist styling - Green checkboxes only */
+.theme-doc-markdown input[type="checkbox"]:checked {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+}
+
+/* Dark mode checklist styling */
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+}
+
+/* Force green color for checked checkboxes */
+.theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+}
+
+/* Ensure text color remains normal */
+.theme-doc-markdown li:has(input[type="checkbox"]:checked) {
+  color: inherit !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown li:has(input[type="checkbox"]:checked) {
+  color: inherit !important;
+}
+
+/* Force green checkboxes with higher specificity */
+.theme-doc-markdown input[type="checkbox"]:checked,
+.theme-doc-markdown input[type="checkbox"][checked],
+.theme-doc-markdown li input[type="checkbox"]:checked,
+.theme-doc-markdown li input[type="checkbox"][checked] {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid #10B981 !important;
+  border-radius: 3px !important;
+  position: relative !important;
+}
+
+.theme-doc-markdown input[type="checkbox"]:checked::after,
+.theme-doc-markdown input[type="checkbox"][checked]::after,
+.theme-doc-markdown li input[type="checkbox"]:checked::after,
+.theme-doc-markdown li input[type="checkbox"][checked]::after {
+  content: '✓' !important;
+  position: absolute !important;
+  top: 0px !important;
+  left: 1px !important;
+  color: white !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+/* Dark mode */
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked,
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked],
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"]:checked,
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"][checked] {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+  border: 2px solid #34D399 !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked::after,
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked]::after,
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"]:checked::after,
+[data-theme='dark'] .theme-doc-markdown li input[type="checkbox"][checked]::after {
+  color: white !important;
+}
+
+/* Global checkbox styling for all documentation */
+.theme-doc-markdown ul li,
+.theme-doc-markdown ol li {
+  display: flex !important;
+  align-items: flex-start !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.theme-doc-markdown ul li input[type="checkbox"],
+.theme-doc-markdown ol li input[type="checkbox"] {
+  margin-right: 0.5rem !important;
+  margin-top: 0.125rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure all checkboxes are green when checked */
+.theme-doc-markdown input[type="checkbox"]:checked,
+.theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #10B981 !important;
+  background-color: #10B981 !important;
+  border-color: #10B981 !important;
+  color: #10B981 !important;
+}
+
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked,
+[data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked] {
+  accent-color: #34D399 !important;
+  background-color: #34D399 !important;
+  border-color: #34D399 !important;
+  color: #34D399 !important;
+}
+
+/* API method classes for reliable styling */
+.api-method-get {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #10B981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.025em !important;
+}
+
+.api-method-post {
+  background-color: rgba(236, 72, 153, 0.1) !important;
+  color: #EC4899 !important;
+  border: 1px solid rgba(236, 72, 153, 0.2) !important;
+  font-weight: 600 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* Dark mode API method classes */
+[data-theme='dark'] .api-method-get {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #34D399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
+}
+
+[data-theme='dark'] .api-method-post {
+  background-color: rgba(244, 114, 182, 0.15) !important;
+  color: #F472B6 !important;
+  border: 1px solid rgba(244, 114, 182, 0.3) !important;
 }

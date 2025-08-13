@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'ETHGas Documentation',
   tagline: 'Complete API documentation for ETHGas platform - Ethereum gas trading and MEV opportunities',
-  favicon: 'img/ETHGas_logo.png',
+  favicon: 'img/EG.svg',
 
   future: {
     v4: true,
@@ -87,7 +87,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/docs/api/builder/overview',
+          to: '/docs/api/builder/registration',
           label: 'Builders',
           position: 'left',
         },
@@ -118,7 +118,7 @@ const config: Config = {
             },
             {
               label: 'Error Codes',
-              to: '/docs/reference/error-codes/general',
+              to: '/docs/reference/error-codes',
             },
           ],
         },
@@ -126,16 +126,8 @@ const config: Config = {
           title: 'Platform',
           items: [
             {
-              label: 'TestNet App',
-              href: 'https://testnet.ethgas.com',
-            },
-            {
               label: 'ETHGas Homepage',
               href: 'https://ethgas.com',
-            },
-            {
-              label: 'Original Docs',
-              href: 'https://developers.ethgas.com',
             },
           ],
         },
@@ -168,7 +160,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
   } satisfies Preset.ThemeConfig,
 };

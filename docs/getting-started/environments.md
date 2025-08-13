@@ -6,13 +6,15 @@ sidebar_position: 2
 
 ETHGas provides multiple environments for development, testing, and production use. Understanding these environments is crucial for proper integration.
 
-## Available Environments
+## Environment Overview
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="testnet" label="TestNet" default>
+<TabItem value="testnet" label="TestNet (Hoodi)" default>
+
+### TestNet Environment
 
 **Base URL**: `https://testnet-api.ethgas.com`
 
@@ -24,15 +26,17 @@ The TestNet environment is designed for development and testing purposes:
 - **Features**: Full API functionality with test data
 - **Recommended for**: Initial development, API testing, and learning
 
-### TestNet Configuration
+### Configuration
 
 ```bash
 # TestNet Configuration
 ETHGAS_API_URL=https://testnet-api.ethgas.com
 ETHGAS_WS_URL=wss://testnet-ws.ethgas.com
+ETHGAS_NETWORK=testnet
+ETHGAS_CHAIN_ID=17000
 ```
 
-### TestNet Considerations
+### Considerations
 - **Authentication**: Test credentials provided
 - **Data**: Simulated market conditions
 - **Limits**: Higher rate limits for testing
@@ -40,6 +44,8 @@ ETHGAS_WS_URL=wss://testnet-ws.ethgas.com
 
 </TabItem>
 <TabItem value="mainnet" label="MainNet">
+
+### MainNet Environment
 
 **Base URL**: `https://api.ethgas.com`
 
@@ -51,84 +57,7 @@ The MainNet environment is for production use:
 - **Features**: Complete production functionality
 - **Recommended for**: Production applications and live trading
 
-### MainNet Configuration
-
-```bash
-# MainNet Configuration
-ETHGAS_API_URL=https://api.ethgas.com
-ETHGAS_WS_URL=wss://ws.ethgas.com
-```
-
-### MainNet Considerations
-- **Authentication**: Production credentials required
-- **Data**: Real market data and conditions
-- **Limits**: Production rate limits apply
-- **Support**: Production support channels
-
-</TabItem>
-</Tabs>
-
-## Environment Configuration
-
-<Tabs>
-<TabItem value="testnet-config" label="TestNet" default>
-
-### API Endpoints
-
-All API endpoints follow the same pattern across environments:
-
-```
-{ENVIRONMENT_BASE_URL}/api/v1/{ENDPOINT}
-```
-
-**TestNet Examples:**
-- User Info: `https://testnet-api.ethgas.com/api/v1/user/info`
-- Authentication: `https://testnet-api.ethgas.com/api/v1/user/login`
-- Market Data: `https://testnet-api.ethgas.com/api/v1/market/data`
-
-### WebSocket Connections
-
-**TestNet WebSocket URL**: `wss://testnet-ws.ethgas.com`
-
-### TestNet Environment Variables
-
-```bash
-# TestNet Configuration
-ETHGAS_API_URL=https://testnet-api.ethgas.com
-ETHGAS_WS_URL=wss://testnet-ws.ethgas.com
-ETHGAS_NETWORK=testnet
-ETHGAS_CHAIN_ID=17000
-```
-
-### TestNet Considerations
-
-- **Authentication**: Test credentials provided
-- **Data**: Simulated market conditions
-- **Limits**: Higher rate limits for testing
-- **Support**: Dedicated testnet support
-- **Risk**: No real funds or actual trading
-
-</TabItem>
-<TabItem value="mainnet-config" label="MainNet">
-
-### API Endpoints
-
-All API endpoints follow the same pattern across environments:
-
-```
-{ENVIRONMENT_BASE_URL}/api/v1/{ENDPOINT}
-```
-
-**MainNet Examples:**
-- User Info: `https://api.ethgas.com/api/v1/user/info`
-- Authentication: `https://api.ethgas.com/api/v1/user/login`
-- Market Data: `https://api.ethgas.com/api/v1/market/data`
-
-### WebSocket Connections
-
-**MainNet WebSocket URL**: `wss://ws.ethgas.com`
-
-### MainNet Environment Variables
+### Configuration
 
 ```bash
 # MainNet Configuration
@@ -138,38 +67,88 @@ ETHGAS_NETWORK=mainnet
 ETHGAS_CHAIN_ID=1
 ```
 
-### MainNet Considerations
-
+### Considerations
 - **Authentication**: Production credentials required
 - **Data**: Real market data and conditions
 - **Limits**: Production rate limits apply
 - **Support**: Production support channels
-- **Risk**: Real funds and actual trading
 
 </TabItem>
 </Tabs>
 
-## Environment Selection
+## API Endpoints
 
-### For Development
-Start with the TestNet environment:
-- No risk of losing real funds
-- Full API functionality for testing
-- Simulated market data
-- Faster iteration and debugging
+All API endpoints follow the same pattern across environments:
 
-### For Production
-Use the MainNet environment:
-- Real trading and market data
-- Actual financial transactions
-- Production-grade reliability
-- Full market access
+```
+{ENVIRONMENT_BASE_URL}/api/v1/{ENDPOINT}
+```
 
-## Migration Path
+**Examples:**
+- User Info: `{BASE_URL}/api/v1/user/info`
+- Authentication: `{BASE_URL}/api/v1/user/login`
+- Market Data: `{BASE_URL}/api/v1/market/data`
 
-Recommended development workflow:
+## Development Workflow
 
-1. **Start with TestNet**: Develop and test your integration
-2. **Validate Functionality**: Ensure all features work correctly
-3. **Test with Real Data**: Use TestNet's simulated real data
-4. **Deploy to MainNet**: Move to production when ready 
+### Recommended Migration Path
+
+<div className="row">
+  <div className="col col--12">
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Start with TestNet
+      </h4>
+      <p style={{ marginBottom: '0.5rem' }}>Develop and test your integration</p>
+    </div>
+    
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Validate Functionality
+      </h4>
+      <p style={{ marginBottom: '0.5rem' }}>Ensure all features work correctly</p>
+    </div>
+    
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Test with Real Data
+      </h4>
+      <p style={{ marginBottom: '0.5rem' }}>Use TestNet's simulated real data</p>
+    </div>
+    
+    <div style={{ marginBottom: '1rem' }}>
+      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
+        ✅ Deploy to MainNet
+      </h4>
+      <p>Move to production when ready</p>
+    </div>
+  </div>
+</div>
+
+## Infrastructure
+
+### Collateral Contract (EthgasPool)
+
+| Environment | Contract Address |
+|-------------|------------------|
+| **Mainnet** | `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88` |
+| **Hoodi (Test)** | `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8` |
+
+:::tip Recommendation
+Deposit collateral via the website for the best user experience.
+:::
+
+### Relay Endpoints
+
+Official relay endpoints by region:
+
+| Region | Environment | Endpoint |
+|--------|-------------|----------|
+| **Tokyo** | Mainnet | `https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com` |
+| **Tokyo** | Hoodi | `https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com` |
+| **Frankfurt** | Mainnet | `https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com` |
+| **Virginia** | Mainnet | `https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com` |
+
+:::info Relay Usage
+Prepend the key as shown in the endpoint URLs for authentication.
+::: 
