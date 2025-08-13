@@ -14,22 +14,6 @@ For Validators see [Validator Overview](/docs/validators/overview).
 
 ETHGas provides infrastructure for block builders and sequencers to participate in the gas trading ecosystem. This page summarizes roles and integration touchpoints.
 
-## Block Building Package
-
-<div className="feature-card">
-  <h3>Builder Software Options</h3>
-  <p>Builders may use their own software or the ETHGas-modified rbuilder (preconf-builder) for ETHGas-specific flows:</p>
-  
-  - [x] **Stream preconf transactions** - Handle preconfirmation transaction streams
-  - [x] **Build compliant blocks** - Respect bundle positioning and commitments
-  - [x] **Fill remaining blockspace** - Add mempool transactions to complete blocks
-</div>
-
-<!-- ### Resources
-
-- **Preconf Builder (optional)**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/preconf-builder</a>
-- **Builder Scripts**: <a href="https://github.com/ethgas-developer/ethgas-builder-scripts" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/ethgas-builder-scripts</a> -->
-
 ## Building Architecture
 
 <div className="row">
@@ -52,6 +36,24 @@ ETHGas provides infrastructure for block builders and sequencers to participate 
     </div>
   </div>
 </div>
+
+
+## Block Building Package
+
+<div className="feature-card">
+  <h3>Builder Software Options</h3>
+  <p>Builders may use their own software or the ETHGas-modified rbuilder (preconf-builder) for ETHGas-specific flows:</p>
+  
+  - [x] **Stream preconf transactions** - Handle preconfirmation transaction streams
+  - [x] **Build compliant blocks** - Respect bundle positioning and commitments
+  - [x] **Fill remaining blockspace** - Add mempool transactions to complete blocks
+</div>
+
+<!-- ### Resources
+
+- **Preconf Builder (optional)**: <a href="https://github.com/ethgas-developer/preconf-builder" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/preconf-builder</a>
+- **Builder Scripts**: <a href="https://github.com/ethgas-developer/ethgas-builder-scripts" target="_blank" rel="noopener noreferrer">https://github.com/ethgas-developer/ethgas-builder-scripts</a> -->
+
 
 ## Integration Requirements
 

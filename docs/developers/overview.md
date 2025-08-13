@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Developer Overview
 
-:::info Role scope
+<!-- :::info Role scope
 This page focuses on Developers. For Builders see [Builder Overview](/docs/api/builder/builders-sequencers). For Validators see [Validator Overview](/docs/validators/overview). For copy/paste‑ready code, see the API endpoints below.
-:::
+::: -->
 
 This guide provides a concise overview for developers integrating with the ETHGas ecosystem.
 

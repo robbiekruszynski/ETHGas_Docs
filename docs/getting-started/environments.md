@@ -93,7 +93,7 @@ All API endpoints follow the same pattern across environments:
 
 ### Recommended Migration Path
 
-1. **Start with TestNet**: Develop and test your integration
+[x] **Start with TestNet**: Develop and test your integration
 2. **Validate Functionality**: Ensure all features work correctly
 3. **Test with Real Data**: Use TestNet's simulated real data
 4. **Deploy to MainNet**: Move to production when ready

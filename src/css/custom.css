@@ -1036,6 +1036,276 @@ article ul li:has([class*="checkbox"]) {
   list-style-type: none !important;
 }
 
+/* Remove bullet points for API method badges (POST, GET, etc.) */
+.theme-doc-markdown ul li:has([class*="api-method"]),
+.markdown ul li:has([class*="api-method"]),
+article ul li:has([class*="api-method"]),
+.theme-doc-markdown ul li:has([class*="method"]),
+.markdown ul li:has([class*="method"]),
+article ul li:has([class*="method"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Improve API method badge visibility in dark mode */
+.api-method-post,
+.api-method-get,
+.api-method-put,
+.api-method-delete,
+.method.post,
+.method.get,
+.method.put,
+.method.delete {
+  display: inline-block !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  margin-right: 0.5rem !important;
+  color: white !important;
+  text-shadow: none !important;
+}
+
+/* Ensure bright colors in dark mode */
+[data-theme='dark'] .api-method-post,
+[data-theme='dark'] .method.post {
+  background: #2563eb !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+[data-theme='dark'] .api-method-get,
+[data-theme='dark'] .method.get {
+  background: #059669 !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+[data-theme='dark'] .api-method-put,
+[data-theme='dark'] .method.put {
+  background: #d97706 !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+[data-theme='dark'] .api-method-delete,
+[data-theme='dark'] .method.delete {
+  background: #dc2626 !important;
+  color: white !important;
+  margin-right: 12px !important;
+}
+
+/* Add spacing between method badges and API paths */
+.api-method-post,
+.api-method-get,
+.api-method-put,
+.api-method-delete,
+.method.post,
+.method.get,
+.method.put,
+.method.delete {
+  margin-right: 12px !important;
+}
+
+/* Ensure API paths have proper spacing */
+.api-endpoints-grid .api-method + span,
+.api-endpoints-grid .method + span,
+.theme-doc-markdown .api-method + span,
+.theme-doc-markdown .method + span {
+  margin-left: 8px !important;
+}
+
+/* Improve tab styling - remove bullets and add spacing */
+.theme-doc-markdown ul li:has([class*="tabs"]),
+.markdown ul li:has([class*="tabs"]),
+article ul li:has([class*="tabs"]),
+.theme-doc-markdown ul li:has([class*="tab"]),
+.markdown ul li:has([class*="tab"]),
+article ul li:has([class*="tab"]),
+/* Target all tab containers more broadly */
+.theme-doc-markdown ul li:has(.theme-doc-tabs),
+.markdown ul li:has(.theme-doc-tabs),
+article ul li:has(.theme-doc-tabs),
+.theme-doc-markdown ul li:has([class*="theme-doc-tabs"]),
+.markdown ul li:has([class*="theme-doc-tabs"]),
+article ul li:has([class*="theme-doc-tabs"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove bullets from any list items containing tabs */
+.theme-doc-markdown ul li:has(summary),
+.markdown ul li:has(summary),
+article ul li:has(summary) {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+/* Target Docusaurus Tabs component specifically */
+.theme-doc-markdown ul li:has(.tabs),
+.markdown ul li:has(.tabs),
+article ul li:has(.tabs),
+.theme-doc-markdown ul li:has([class*="tabs"]),
+.markdown ul li:has([class*="tabs"]),
+article ul li:has([class*="tabs"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Target any list items that contain tab components */
+.theme-doc-markdown ul li:has([class*="theme-doc-tabs"]),
+.markdown ul li:has([class*="theme-doc-tabs"]),
+article ul li:has([class*="theme-doc-tabs"]),
+.theme-doc-markdown ul li:has([class*="tabs"]),
+.markdown ul li:has([class*="tabs"]),
+article ul li:has([class*="tabs"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Style the tab buttons for better visibility and spacing */
+.theme-doc-tabs__item,
+.tabs__item,
+[class*="tabs__item"] {
+  margin-right: 16px !important;
+  margin-bottom: 8px !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Ensure tab containers have no bullets */
+.tabs,
+.theme-doc-tabs,
+[class*="tabs"] {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove bullets from any parent elements containing tabs */
+ul:has(.tabs),
+ul:has(.theme-doc-tabs),
+ul:has([class*="tabs"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+[data-theme='dark'] .theme-doc-tabs__item {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.theme-doc-tabs__item:hover {
+  background-color: rgba(0, 162, 199, 0.1) !important;
+  border-color: var(--ifm-color-primary) !important;
+}
+
+.theme-doc-tabs__item--active {
+  background-color: var(--ifm-color-primary) !important;
+  color: white !important;
+  border-color: var(--ifm-color-primary) !important;
+}
+
+/* Improve tab container spacing */
+.theme-doc-tabs {
+  margin: 1.5rem 0 !important;
+  padding: 0 !important;
+}
+
+.theme-doc-tabs__tab-list {
+  margin-bottom: 1rem !important;
+  padding: 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme='dark'] .theme-doc-tabs__tab-list {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Changelog category styling */
+.changelog-category {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .changelog-category {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.changelog-category-header {
+  background: rgba(0, 162, 199, 0.1);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.changelog-category-header:hover {
+  background: rgba(0, 162, 199, 0.2);
+}
+
+.changelog-category-header strong {
+  color: var(--ifm-color-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.changelog-category-desc {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+[data-theme='dark'] .changelog-category-header {
+  background: rgba(26, 179, 214, 0.1);
+}
+
+[data-theme='dark'] .changelog-category-header:hover {
+  background: rgba(26, 179, 214, 0.2);
+}
+
+[data-theme='dark'] .changelog-category-header strong {
+  color: var(--ifm-color-primary-light);
+}
+
+[data-theme='dark'] .changelog-category-desc {
+  color: var(--ifm-color-emphasis-300);
+}
+
+.changelog-category[open] .changelog-category-header {
+  background: var(--ifm-color-primary);
+}
+
+.changelog-category[open] .changelog-category-header strong,
+.changelog-category[open] .changelog-category-header .changelog-category-desc {
+  color: white;
+}
+
+.changelog-category > div {
+  padding: 1.5rem;
+}
+
 .api-category li {
   padding: 0.75rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);

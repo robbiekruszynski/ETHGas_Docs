@@ -154,6 +154,6 @@ import TabItem from '@theme/TabItem';
 | 1003 | Rate limit exceeded |
 | 1004 | Connection timeout |
 
-## References
+<!-- ## References
 
-- WebSocket section: This documentation 
+- WebSocket section: This documentation  -->
