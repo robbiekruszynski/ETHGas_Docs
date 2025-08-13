@@ -103,41 +103,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, 100);
 
-  // Network tabs functionality
-  function initializeNetworkTabs() {
-    const tabButtons = document.querySelectorAll('.tab-button[data-tab]');
-    
-    tabButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const tabId = this.getAttribute('data-tab');
-        const tabContainer = this.closest('.network-tabs');
-        
-        // Remove active class from all buttons and panes in this container
-        const buttons = tabContainer.querySelectorAll('.tab-button');
-        const panes = tabContainer.querySelectorAll('.tab-pane');
-        
-        buttons.forEach(btn => btn.classList.remove('active'));
-        panes.forEach(pane => pane.classList.remove('active'));
-        
-        // Add active class to clicked button and corresponding pane
-        this.classList.add('active');
-        
-        const targetPane = document.getElementById(tabId);
-        if (targetPane) {
-          targetPane.classList.add('active');
-        }
-      });
-    });
-  }
-
-  // Initialize network tabs when DOM is ready
-  initializeNetworkTabs();
-  
-  // Also initialize on navigation (for SPA behavior)
-  document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('tab-button')) {
-      // Re-initialize tabs if new ones are added dynamically
-      setTimeout(initializeNetworkTabs, 100);
-    }
-  });
+  // Remove custom network tabs functionality to use default Docusaurus tabs
 }); 

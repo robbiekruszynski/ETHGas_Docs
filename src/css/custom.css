@@ -1118,123 +1118,9 @@ article ul li:has([class*="method"]) {
   margin-left: 8px !important;
 }
 
-/* Improve tab styling - remove bullets and add spacing */
-.theme-doc-markdown ul li:has([class*="tabs"]),
-.markdown ul li:has([class*="tabs"]),
-article ul li:has([class*="tabs"]),
-.theme-doc-markdown ul li:has([class*="tab"]),
-.markdown ul li:has([class*="tab"]),
-article ul li:has([class*="tab"]),
-/* Target all tab containers more broadly */
-.theme-doc-markdown ul li:has(.theme-doc-tabs),
-.markdown ul li:has(.theme-doc-tabs),
-article ul li:has(.theme-doc-tabs),
-.theme-doc-markdown ul li:has([class*="theme-doc-tabs"]),
-.markdown ul li:has([class*="theme-doc-tabs"]),
-article ul li:has([class*="theme-doc-tabs"]) {
-  list-style: none !important;
-  list-style-type: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
+/* Remove custom tab list-style overrides to use default Docusaurus tabs */
 
-/* Remove bullets from any list items containing tabs */
-.theme-doc-markdown ul li:has(summary),
-.markdown ul li:has(summary),
-article ul li:has(summary) {
-  list-style: none !important;
-  list-style-type: none !important;
-}
-
-/* Target Docusaurus Tabs component specifically */
-.theme-doc-markdown ul li:has(.tabs),
-.markdown ul li:has(.tabs),
-article ul li:has(.tabs),
-.theme-doc-markdown ul li:has([class*="tabs"]),
-.markdown ul li:has([class*="tabs"]),
-article ul li:has([class*="tabs"]) {
-  list-style: none !important;
-  list-style-type: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Target any list items that contain tab components */
-.theme-doc-markdown ul li:has([class*="theme-doc-tabs"]),
-.markdown ul li:has([class*="theme-doc-tabs"]),
-article ul li:has([class*="theme-doc-tabs"]),
-.theme-doc-markdown ul li:has([class*="tabs"]),
-.markdown ul li:has([class*="tabs"]),
-article ul li:has([class*="tabs"]) {
-  list-style: none !important;
-  list-style-type: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Style the tab buttons for better visibility and spacing */
-.theme-doc-tabs__item,
-.tabs__item,
-[class*="tabs__item"] {
-  margin-right: 16px !important;
-  margin-bottom: 8px !important;
-  padding: 8px 16px !important;
-  border-radius: 6px !important;
-  font-weight: 500 !important;
-  transition: all 0.2s ease !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Ensure tab containers have no bullets */
-.tabs,
-.theme-doc-tabs,
-[class*="tabs"] {
-  list-style: none !important;
-  list-style-type: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Remove bullets from any parent elements containing tabs */
-ul:has(.tabs),
-ul:has(.theme-doc-tabs),
-ul:has([class*="tabs"]) {
-  list-style: none !important;
-  list-style-type: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-[data-theme='dark'] .theme-doc-tabs__item {
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-.theme-doc-tabs__item:hover {
-  background-color: rgba(0, 162, 199, 0.1) !important;
-  border-color: var(--ifm-color-primary) !important;
-}
-
-.theme-doc-tabs__item--active {
-  background-color: var(--ifm-color-primary) !important;
-  color: white !important;
-  border-color: var(--ifm-color-primary) !important;
-}
-
-/* Improve tab container spacing */
-.theme-doc-tabs {
-  margin: 1.5rem 0 !important;
-  padding: 0 !important;
-}
-
-.theme-doc-tabs__tab-list {
-  margin-bottom: 1rem !important;
-  padding: 0 !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
-
-[data-theme='dark'] .theme-doc-tabs__tab-list {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
+/* Remove custom tab styling to use default Docusaurus tabs */
 
 /* Changelog category styling */
 .changelog-category {
@@ -1426,103 +1312,7 @@ ul:has([class*="tabs"]) {
   border-left: 3px solid var(--ifm-color-primary);
 }
 
-.network-tabs {
-  margin: 2rem 0;
-  border: 1px solid rgba(0, 162, 199, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.tab-buttons {
-  display: flex;
-  background: rgba(0, 162, 199, 0.05);
-  border-bottom: 1px solid rgba(0, 162, 199, 0.2);
-}
-
-.tab-button {
-  flex: 1;
-  padding: 1rem 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  color: #6b7280;
-  transition: all 0.2s ease;
-  border-right: 1px solid rgba(0, 162, 199, 0.1);
-}
-
-.tab-button:last-child {
-  border-right: none;
-}
-
-.tab-button:hover {
-  background: rgba(0, 162, 199, 0.1);
-  color: #374151;
-}
-
-.tab-button.active {
-  background: #00A2C7;
-  color: white;
-  font-weight: 600;
-}
-
-.tab-content {
-  padding: 2rem;
-  background: white;
-}
-
-[data-theme='dark'] .tab-content {
-  background: var(--ifm-background-surface-color);
-}
-
-.tab-pane {
-  display: none;
-}
-
-.tab-pane.active {
-  display: block;
-}
-
-.tab-pane h4 {
-  margin-top: 0;
-  color: var(--ifm-color-primary);
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.tab-pane h5 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #374151;
-}
-
-[data-theme='dark'] .tab-pane h5 {
-  color: #f3f4f6;
-}
-
-.tab-pane ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-}
-
-.tab-pane li {
-  margin-bottom: 0.5rem;
-}
-
-.tab-pane code {
-  background: rgba(0, 162, 199, 0.1);
-  color: #00A2C7;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-size: 0.875rem;
-}
-
-[data-theme='dark'] .tab-pane code {
-  background: rgba(26, 179, 214, 0.2);
-  color: #1AB3D6;
-}
+/* Remove custom network-tabs styling to use default Docusaurus tabs */
 
 .feature-card {
   border: none !important;
@@ -1708,19 +1498,7 @@ details > div {
   padding: 0.5rem 0.75rem;
 }
 
-/* Reduce tab spacing */
-.tabs-container {
-  margin: 0.75rem 0;
-}
-
-.tabs-container .tabs__item {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
-.tabs-container .tabs__content {
-  padding: 0.75rem 0;
-}
+/* Remove custom tabs-container styling to use default Docusaurus tabs */
 
 
 
@@ -2156,28 +1934,7 @@ details > div {
   color: #e5e7eb;
 }
 
-/* Dark mode for tabs in API overview */
-[data-theme='dark'] .tabs-container {
-  background: #1f2937;
-}
-
-[data-theme='dark'] .tabs__item {
-  background: #374151;
-  color: #d1d5db;
-  border: 1px solid #4b5563;
-}
-
-[data-theme='dark'] .tabs__item--active {
-  background: #3b82f6;
-  color: #ffffff;
-  border-color: #3b82f6;
-}
-
-[data-theme='dark'] .tabs__content {
-  background: #1f2937;
-  color: #f9fafb;
-  border: 1px solid #374151;
-}
+/* Remove custom dark mode tab styling to use default Docusaurus tabs */
 
 /* Dark mode for JSON syntax highlighting */
 [data-theme='dark'] .theme-doc-markdown pre code {
