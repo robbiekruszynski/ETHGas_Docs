@@ -76,10 +76,9 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
+          to: '/docs/getting-started/welcome',
           label: 'Overview',
+          position: 'left',
         },
         {
           to: '/docs/developers/overview',
@@ -97,6 +96,7 @@ const config: Config = {
           position: 'left',
         },
       ],
+      hideOnScroll: false,
     },
     footer: {
       style: 'dark',

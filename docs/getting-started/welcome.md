@@ -99,9 +99,8 @@ The ETHGas platform consists of several key components:
   <div className="col col--4">
     <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', padding: '2rem' }}>
       <h3 style={{ color: 'var(--ifm-color-primary)', marginBottom: '1.5rem', fontSize: '1.75rem', fontWeight: '600', textAlign: 'center' }}>Positions</h3>
-            <p style={{ marginBottom: '1.5rem', minHeight: '4rem' }}>
+      <p style={{ marginBottom: '1.5rem', minHeight: '4rem' }}>
         Positions track your current market exposure and potential profit/loss scenarios.
-         
       </p>
       <ul style={{ textAlign: 'left', margin: 0, paddingLeft: '1.5rem' }}>
         <li style={{ marginBottom: '0.75rem' }}>
