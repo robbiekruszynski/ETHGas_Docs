@@ -1227,6 +1227,69 @@ li[role="tab"]::marker,
   opacity: 0 !important;
 }
 
+/* Reduce font size ONLY for Endpoint code blocks to fit on single line */
+/* Target only the Endpoint section specifically */
+.theme-doc-markdown h3:contains("Endpoint") + pre code,
+.markdown h3:contains("Endpoint") + pre code,
+article h3:contains("Endpoint") + pre code,
+.theme-doc-markdown h4:contains("Endpoint") + pre code,
+.markdown h4:contains("Endpoint") + pre code,
+article h4:contains("Endpoint") + pre code {
+  font-size: 0.6rem !important;
+  line-height: 0.95 !important;
+  word-break: break-all !important;
+  white-space: pre-wrap !important;
+}
+
+/* Alternative targeting for Endpoint code blocks */
+.theme-doc-markdown pre code:contains("https://"),
+.markdown pre code:contains("https://"),
+article pre code:contains("https://") {
+  font-size: 0.6rem !important;
+  line-height: 0.95 !important;
+}
+
+/* Make GET and POST blocks uniform in size and improve text rendering */
+.api-method-get,
+.api-method-post {
+  min-width: 80px !important;
+  width: 80px !important;
+  text-align: center !important;
+  display: inline-block !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.2 !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+}
+
+/* Make colors much brighter for dark mode */
+[data-theme='dark'] .api-method-get {
+  background: #00ff88 !important; /* Bright neon green */
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .api-method-post {
+  background: #ff0066 !important; /* Bright neon red/pink */
+  color: #ffffff !important;
+}
+
+/* Light mode - black text */
+.api-method-get,
+.api-method-post,
+.api-method-get *,
+.api-method-post * {
+  color: #000000 !important;
+}
+
+/* Dark mode - white text */
+[data-theme='dark'] .api-method-get,
+[data-theme='dark'] .api-method-post,
+[data-theme='dark'] .api-method-get *,
+[data-theme='dark'] .api-method-post * {
+  color: #ffffff !important;
+}
+
 /* Target tab buttons specifically */
 .theme-doc-tabs button,
 .theme-doc-tabs button::before,
