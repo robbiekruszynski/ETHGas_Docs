@@ -1120,6 +1120,124 @@ article ul li:has([class*="method"]) {
 
 /* Remove custom tab list-style overrides to use default Docusaurus tabs */
 
+/* Remove bullet points from Docusaurus tabs - more aggressive approach */
+.theme-doc-tabs__tab-list,
+.theme-doc-tabs__tab-list *,
+.theme-doc-tabs__tab-list li,
+.theme-doc-tabs__tab-list li * {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+.theme-doc-tabs__tab-list li::before,
+.theme-doc-tabs__tab-list li::after,
+.theme-doc-tabs__tab-list *::before,
+.theme-doc-tabs__tab-list *::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Target any potential bullet points in tabs */
+.theme-doc-tabs ul,
+.theme-doc-tabs ol,
+.theme-doc-tabs li {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+.theme-doc-tabs ul::before,
+.theme-doc-tabs ul::after,
+.theme-doc-tabs ol::before,
+.theme-doc-tabs ol::after,
+.theme-doc-tabs li::before,
+.theme-doc-tabs li::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Additional targeting for tab items */
+.theme-doc-tabs__item,
+.theme-doc-tabs__item * {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+.theme-doc-tabs__item::before,
+.theme-doc-tabs__item::after,
+.theme-doc-tabs__item *::before,
+.theme-doc-tabs__item *::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Nuclear option - target everything in tabs */
+.theme-doc-tabs *,
+.theme-doc-tabs *::before,
+.theme-doc-tabs *::after {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+/* Target specific bullet point classes that might exist */
+.theme-doc-tabs .bullet,
+.theme-doc-tabs .bullet::before,
+.theme-doc-tabs .bullet::after,
+.theme-doc-tabs [class*="bullet"],
+.theme-doc-tabs [class*="bullet"]::before,
+.theme-doc-tabs [class*="bullet"]::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Force remove any pseudo-elements that might be bullets */
+.theme-doc-tabs li::marker {
+  display: none !important;
+  content: none !important;
+}
+
+/* Target the specific li elements with role="tab" */
+.tabs__item::marker,
+li[role="tab"]::marker,
+.tabs__item--active::marker {
+  display: none !important;
+  content: none !important;
+}
+
+/* Target all li elements in tabs */
+.theme-doc-tabs li::marker,
+.tabs li::marker,
+[class*="tabs"] li::marker {
+  display: none !important;
+  content: none !important;
+}
+
+/* Target tab buttons specifically */
+.theme-doc-tabs button,
+.theme-doc-tabs button::before,
+.theme-doc-tabs button::after,
+.theme-doc-tabs [role="tab"],
+.theme-doc-tabs [role="tab"]::before,
+.theme-doc-tabs [role="tab"]::after {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
+/* Remove any potential bullet points from tab content */
+.theme-doc-tabs__content *,
+.theme-doc-tabs__content *::before,
+.theme-doc-tabs__content *::after {
+  list-style: none !important;
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+
 /* Remove custom tab styling to use default Docusaurus tabs */
 
 /* Changelog category styling */
