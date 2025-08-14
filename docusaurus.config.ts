@@ -69,11 +69,6 @@ const config: Config = {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'ETHGas Docs',
-      logo: {
-        alt: 'ETHGas Logo',
-        src: 'img/ETHGas_logo.png',
-        srcDark: 'img/ETHGas_logo.png',
-      },
       items: [
         {
           to: '/docs/getting-started/welcome',

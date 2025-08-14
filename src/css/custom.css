@@ -2948,6 +2948,18 @@ details li strong:first-child:contains("POST") {
   .navbar__title {
     display: none !important;
   }
+  
+  /* Hide color mode toggle on mobile */
+  .clean-btn[aria-label*="theme"],
+  .clean-btn[aria-label*="Theme"],
+  .clean-btn[aria-label*="light"],
+  .clean-btn[aria-label*="dark"],
+  .navbar__item:has(.clean-btn[aria-label*="theme"]),
+  .navbar__item:has(.clean-btn[aria-label*="Theme"]),
+  .navbar__item:has(.clean-btn[aria-label*="light"]),
+  .navbar__item:has(.clean-btn[aria-label*="dark"]) {
+    display: none !important;
+  }
 }
 
 /* Create a target for cookbook button placement */
