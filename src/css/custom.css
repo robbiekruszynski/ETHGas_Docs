@@ -2960,6 +2960,79 @@ details li strong:first-child:contains("POST") {
   .navbar__item:has(.clean-btn[aria-label*="dark"]) {
     display: none !important;
   }
+  
+  /* Hide navbar items from top navbar on mobile, but allow them in sidebar */
+  .navbar__items--left .navbar__item {
+    display: none !important;
+  }
+  
+  /* Show hamburger menu button */
+  .navbar__toggle {
+    display: block !important;
+  }
+  
+  /* Ensure mobile sidebar shows navbar items */
+  .navbar-sidebar .navbar__item {
+    display: block !important;
+  }
+  
+  .navbar-sidebar .navbar__link {
+    display: block !important;
+    padding: 1rem 1.5rem !important;
+    color: white !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    margin: 0.5rem 0 !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  .navbar-sidebar .navbar__link:hover {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
+  }
+  
+  .navbar-sidebar .navbar__link--active {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
+  }
+  
+  /* Target the specific sidebar structure */
+  .theme-layout-navbar-sidebar .navbar-sidebar__items {
+    display: block !important;
+    padding: 1rem !important;
+  }
+  
+  .theme-layout-navbar-sidebar .navbar-sidebar__item {
+    display: block !important;
+    margin: 0.5rem 0 !important;
+  }
+  
+  .theme-layout-navbar-sidebar .navbar-sidebar__link {
+    display: block !important;
+    padding: 1rem 1.5rem !important;
+    color: white !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  .theme-layout-navbar-sidebar .navbar-sidebar__link:hover {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
+    border-color: rgba(0, 162, 199, 0.3) !important;
+  }
+  
+  .theme-layout-navbar-sidebar .navbar-sidebar__link--active {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
+    border-color: #00A2C7 !important;
+  }
 }
 
 /* Create a target for cookbook button placement */
@@ -2985,5 +3058,61 @@ details li strong:first-child:contains("POST") {
 @media screen and (max-width: 768px) {
   .navbar__title {
     display: none !important;
+  }
+}
+
+/* Mobile styles - hide navbar title on mobile */
+@media screen and (max-width: 768px) {
+  .navbar__title {
+    display: none !important;
+  }
+  
+  /* Hide color mode toggle on mobile */
+  .clean-btn[aria-label*="theme"],
+  .clean-btn[aria-label*="Theme"],
+  .clean-btn[aria-label*="light"],
+  .clean-btn[aria-label*="dark"],
+  .navbar__item:has(.clean-btn[aria-label*="theme"]),
+  .navbar__item:has(.clean-btn[aria-label*="Theme"]),
+  .navbar__item:has(.clean-btn[aria-label*="light"]),
+  .navbar__item:has(.clean-btn[aria-label*="dark"]) {
+    display: none !important;
+  }
+  
+  /* Hide navbar items from top navbar on mobile, but allow them in sidebar */
+  .navbar__items--left .navbar__item {
+    display: none !important;
+  }
+  
+  /* Show hamburger menu button */
+  .navbar__toggle {
+    display: block !important;
+  }
+  
+  /* Ensure mobile sidebar shows navbar items */
+  .navbar-sidebar .navbar__item {
+    display: block !important;
+  }
+  
+  .navbar-sidebar .navbar__link {
+    display: block !important;
+    padding: 1rem 1.5rem !important;
+    color: white !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    margin: 0.5rem 0 !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  .navbar-sidebar .navbar__link:hover {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
+  }
+  
+  .navbar-sidebar .navbar__link--active {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
   }
 }

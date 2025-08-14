@@ -93,6 +93,18 @@ const config: Config = {
       ],
       hideOnScroll: false,
     },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
+    // Ensure mobile sidebar works properly
+    mobileNavbar: {
+      show: true,
+    },
+    // Enable mobile sidebar with navbar items
+    mobileSidebarCollapsible: true,
     footer: {
       style: 'dark',
       links: [
