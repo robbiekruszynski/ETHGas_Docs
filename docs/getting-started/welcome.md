@@ -12,35 +12,14 @@ Welcome to ETHGas, the premier platform for trading Ethereum Blockspace, and acq
 
 ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV opportunities through various market types:
 
-<div className="row" style={{ marginTop: '2rem' }}>
-  <div className="col col--4">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div className={styles.stepNumber} style={{ marginBottom: '1rem' }}></div>
-      <h3>Whole Block Markets</h3>
-      <p style={{ flex: 1 }}>
-        For Trading or Building Purposes, available up to 64 slots in advance. Trade entire blocks for MEV opportunities. These markets allow you to bid on complete blocks and extract value from transaction ordering and inclusion.
-      </p>
-    </div>
-  </div>
-  <div className="col col--4">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div className={styles.stepNumber} style={{ marginBottom: '1rem' }}></div>
-      <h3>Rest-of-Block Auction</h3>
-      <p style={{ flex: 1 }}>
-        For Whole Block owners, submit Top-of-Block bundles and run a realtime auction on the Rest-of-Block, available only for the current slot. This enables dynamic pricing for remaining block space after top-of-block transactions are included.
-      </p>
-    </div>
-  </div>
-  <div className="col col--4">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div className={styles.stepNumber} style={{ marginBottom: '1rem' }}></div>
-      <h3>Inclusion Preconf Markets</h3>
-      <p style={{ flex: 1 }}>
-        Trade generic blockspace (i.e. neither top-of-block, nor state contentious) with a conventional CLOB interface. Available up to 32 slots in advance. These markets focus on predicting gas prices and transaction inclusion likelihood.
-      </p>
-    </div>
-  </div>
-</div>
+### Whole Block Markets
+For Trading or Building Purposes, available up to 64 slots in advance. Trade entire blocks for MEV opportunities. These markets allow you to bid on complete blocks and extract value from transaction ordering and inclusion.
+
+### Rest-of-Block Auction
+For Whole Block owners, submit Top-of-Block bundles and run a realtime auction on the Rest-of-Block, available only for the current slot. This enables dynamic pricing for remaining block space after top-of-block transactions are included.
+
+### Inclusion Preconf Markets
+Trade generic blockspace (i.e. neither top-of-block, nor state contentious) with a conventional CLOB interface. Available up to 32 slots in advance. These markets focus on predicting gas prices and transaction inclusion likelihood.
 
 ## Platform Overview
 
@@ -119,22 +98,33 @@ The ETHGas platform consists of several key components:
 
 ## Getting Started Checklist
 
+Follow these steps to get started with ETHGas:
+
 <div className="row">
-  <div className="col col--6">
+  <div className="col col--4">
     <div className="feature-card text--center">
-      <h3>Environment Setup</h3>
+      <h3>1. Environment Setup</h3>
       <p>Configure your development environment and API credentials</p>
       <a href="/docs/getting-started/environments" className="button button--outline button--sm">
         Configure Environment →
       </a>
     </div>
   </div>
-  <div className="col col--6">
+  <div className="col col--4">
     <div className="feature-card text--center">
-      <h3>Authentication</h3>
+      <h3>2. Authentication</h3>
       <p>Set up API credentials and establish secure connections</p>
       <a href="/docs/getting-started/connecting" className="button button--outline button--sm">
         Set Up Auth →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card text--center">
+      <h3>3. API Testing</h3>
+      <p>Test basic API calls and verify your integration</p>
+      <a href="/docs/api/overview" className="button button--outline button--sm">
+        Test APIs →
       </a>
     </div>
   </div>
@@ -143,16 +133,7 @@ The ETHGas platform consists of several key components:
 <div className="row">
   <div className="col col--4">
     <div className="feature-card text--center">
-      <h3>API Testing</h3>
-      <p>Test basic API calls and verify your integration</p>
-      <a href="/docs/api/overview" className="button button--outline button--sm">
-        Test APIs →
-      </a>
-    </div>
-  </div>
-  <div className="col col--4">
-    <div className="feature-card text--center">
-      <h3>WebSocket Connection</h3>
+      <h3>4. WebSocket Connection</h3>
       <p>Connect to real-time data streams for live updates</p>
       <a href="/docs/websocket/overview" className="button button--outline button--sm">
         Connect WebSocket →
@@ -161,10 +142,19 @@ The ETHGas platform consists of several key components:
   </div>
   <div className="col col--4">
     <div className="feature-card text--center">
-      <h3>First Trade</h3>
+      <h3>5. First Trade</h3>
       <p>Place your first order and start trading</p>
       <a href="/docs/api/trading/whole-block" className="button button--outline button--sm">
         Start Trading →
+      </a>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card text--center">
+      <h3>6. Explore More</h3>
+      <p>Dive deeper into advanced features and reference materials</p>
+      <a href="/docs/reference/data-types" className="button button--outline button--sm">
+        View Reference →
       </a>
     </div>
   </div>

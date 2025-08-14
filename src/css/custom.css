@@ -2765,12 +2765,8 @@ details li strong:first-child:contains("POST") {
 
 
 
-/* Mobile navbar - hide text, keep logo */
-@media screen and (max-width: 768px) {
-  .navbar__title {
-    display: none !important;
-  }
-}
+
+
 
 /* Ensure gradient text is readable */
 .gradient-text {
@@ -2945,4 +2941,37 @@ details li strong:first-child:contains("POST") {
   background-color: rgba(244, 114, 182, 0.15) !important;
   color: #F472B6 !important;
   border: 1px solid rgba(244, 114, 182, 0.3) !important;
+}
+
+/* Mobile styles - hide navbar title on mobile */
+@media screen and (max-width: 768px) {
+  .navbar__title {
+    display: none !important;
+  }
+}
+
+/* Create a target for cookbook button placement */
+.navbar__items--right {
+  position: relative;
+}
+
+.navbar__items--right::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  margin: 0 8px;
+  background-color: var(--ifm-color-emphasis-300);
+}
+
+/* Target for cookbook button - place before theme toggle */
+.navbar__items--right .navbar__item:last-child {
+  position: relative;
+}
+
+/* Mobile styles - hide navbar title on mobile */
+@media screen and (max-width: 768px) {
+  .navbar__title {
+    display: none !important;
+  }
 }
