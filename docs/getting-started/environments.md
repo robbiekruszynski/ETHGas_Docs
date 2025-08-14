@@ -85,9 +85,12 @@ All API endpoints follow the same pattern across environments:
 ```
 
 **Examples:**
-- User Info: `{BASE_URL}/api/v1/user/info`
-- Authentication: `{BASE_URL}/api/v1/user/login`
-- Market Data: `{BASE_URL}/api/v1/market/data`
+
+| Endpoint | URL |
+|----------|-----|
+| **User Info** | `{BASE_URL}/api/v1/user/info` |
+| **Authentication** | `{BASE_URL}/api/v1/user/login` |
+| **Market Data** | `{BASE_URL}/api/v1/market/data` |
 
 ## Development Workflow
 
@@ -95,32 +98,36 @@ All API endpoints follow the same pattern across environments:
 
 <div className="row">
   <div className="col col--12">
-    <div style={{ marginBottom: '1rem' }}>
-      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
-        ✅ Start with TestNet
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Start with TestNet
       </h4>
-      <p style={{ marginBottom: '0.5rem' }}>Develop and test your integration</p>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Develop and test your integration</span>
     </div>
     
-    <div style={{ marginBottom: '1rem' }}>
-      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
-        ✅ Validate Functionality
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Validate Functionality
       </h4>
-      <p style={{ marginBottom: '0.5rem' }}>Ensure all features work correctly</p>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Ensure all features work correctly</span>
     </div>
     
-    <div style={{ marginBottom: '1rem' }}>
-      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
-        ✅ Test with Real Data
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Test with Real Data
       </h4>
-      <p style={{ marginBottom: '0.5rem' }}>Use TestNet's simulated real data</p>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Use TestNet's simulated real data</span>
     </div>
     
-    <div style={{ marginBottom: '1rem' }}>
-      <h4 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.25rem' }}>
-        ✅ Deploy to MainNet
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Deploy to MainNet
       </h4>
-      <p>Move to production when ready</p>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Move to production when ready</span>
     </div>
   </div>
 </div>
@@ -151,4 +158,4 @@ Official relay endpoints by region:
 
 :::info Relay Usage
 Prepend the key as shown in the endpoint URLs for authentication.
-::: 
+:::
