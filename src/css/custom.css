@@ -2985,22 +2985,21 @@ details li strong:first-child:contains("POST") {
     align-items: center !important;
   }
   
-  /* Mobile sidebar items container */
+  /* Mobile sidebar items container - just move it to center */
   .navbar-sidebar .navbar-sidebar__items {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-    width: 90% !important;
-    max-width: 300px !important;
-    padding: 0 !important;
-    margin: 0 auto !important;
+    padding: 2rem 1rem !important;
+    display: block !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 80% !important;
   }
   
   /* Individual navbar items in mobile sidebar */
   .navbar-sidebar .navbar-sidebar__item {
     display: block !important;
-    margin: 0 !important;
-    width: 100% !important;
+    margin: 0.75rem 0 !important;
   }
   
   /* Navbar links in mobile sidebar - large touch targets */
