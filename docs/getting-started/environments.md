@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 ### TestNet Environment
 
-**Base URL**: `https://testnet-api.ethgas.com`
+**Base URL**: `https://hoodi.app.ethgas.com/ `
 
 The TestNet environment is designed for development and testing purposes:
 
@@ -32,8 +32,6 @@ The TestNet environment is designed for development and testing purposes:
 # TestNet Configuration
 ETHGAS_API_URL= https://hoodi.app.ethgas.com/ 
 ETHGAS_WS_URL= wss://hoodi.app.ethgas.com/ws
-ETHGAS_NETWORK=testnet
-ETHGAS_CHAIN_ID=17000
 ```
 
 ### Considerations
@@ -63,8 +61,6 @@ The MainNet environment is for production use:
 # MainNet Configuration
 ETHGAS_API_URL=https://api.ethgas.com
 ETHGAS_WS_URL=wss://ws.ethgas.com
-ETHGAS_NETWORK=mainnet
-ETHGAS_CHAIN_ID=1
 ```
 
 ### Considerations

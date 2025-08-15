@@ -24,7 +24,7 @@ This guide helps you establish connections to the ETHGas platform. For copy/past
 |-----------|-------|
 | **Environment** | MainNet |
 | **Chain** | Ethereum |
-| **RPC URL** | `https://eth.llamarpc.com` |
+| **RPC URL** | `https://ethereum-rpc.publicnode.com` |
 | **Chain ID** | `1` |
 | **API base URL** | `https://mainnet.app.ethgas.com` |
 | **Websocket base URL** | `wss://mainnet.app.ethgas.com/ws` |
@@ -37,7 +37,7 @@ This guide helps you establish connections to the ETHGas platform. For copy/past
 |-----------|-------|
 | **Environment** | TestNet |
 | **Chain** | Holesky |
-| **RPC URL** | `https://ethereum-holesky.publicnode.com` |
+| **RPC URL** | `https://ethereum-hoodi-rpc.publicnode.com ` |
 | **Chain ID** | `17000` |
 | **API base URL** | `https://hoodi.app.ethgas.com` |
 | **Websocket base URL** | `wss://hoodi.app.ethgas.com/ws` |
