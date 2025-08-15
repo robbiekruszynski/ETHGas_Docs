@@ -2985,21 +2985,55 @@ details li strong:first-child:contains("POST") {
     align-items: center !important;
   }
   
-  /* Mobile sidebar items container - just move it to center */
+  /* Hide documentation sidebar content and "Back to main menu" */
+  .navbar-sidebar .theme-doc-sidebar-container,
+  .navbar-sidebar .theme-doc-sidebar-menu,
+  .navbar-sidebar .menu,
+  .navbar-sidebar .navbar-sidebar__back {
+    display: none !important;
+  }
+  
+  /* Position close button in top right */
+  .navbar-sidebar .navbar-sidebar__close {
+    position: absolute !important;
+    top: 2rem !important;
+    right: 2rem !important;
+    z-index: 1001 !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .navbar-sidebar .navbar-sidebar__close:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  /* Mobile sidebar items container - center with perfect spacing */
   .navbar-sidebar .navbar-sidebar__items {
-    padding: 2rem 1rem !important;
-    display: block !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-    width: 80% !important;
+    width: 85% !important;
+    max-width: 320px !important;
+    gap: 1.5rem !important;
   }
   
-  /* Individual navbar items in mobile sidebar */
+  /* Individual navbar items in mobile sidebar - equal spacing */
   .navbar-sidebar .navbar-sidebar__item {
     display: block !important;
-    margin: 0.75rem 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
   }
   
   /* Navbar links in mobile sidebar - large touch targets */
