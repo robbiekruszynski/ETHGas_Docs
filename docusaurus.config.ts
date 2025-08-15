@@ -35,6 +35,7 @@ const config: Config = {
       src: '/js/sidebar-tabs.js',
       type: 'text/javascript',
     },
+
   ],
 
   presets: [

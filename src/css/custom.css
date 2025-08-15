@@ -2985,12 +2985,64 @@ details li strong:first-child:contains("POST") {
     align-items: center !important;
   }
   
-  /* Hide documentation sidebar content and "Back to main menu" */
+  /* Hide only the documentation sidebar content, keep main navbar items */
   .navbar-sidebar .theme-doc-sidebar-container,
   .navbar-sidebar .theme-doc-sidebar-menu,
-  .navbar-sidebar .menu,
   .navbar-sidebar .navbar-sidebar__back {
     display: none !important;
+  }
+  
+  /* Ensure main navbar items are visible in mobile sidebar */
+  .navbar-sidebar .navbar__item {
+    display: block !important;
+  }
+  
+  /* Fix the menu structure to make links clickable */
+  .navbar-sidebar .menu__list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .navbar-sidebar .menu__list-item {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    pointer-events: none !important; /* Allow clicks to pass through to the link */
+  }
+  
+  .navbar-sidebar .menu__link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.5rem 2rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    min-height: 60px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    pointer-events: auto !important; /* Make sure the link itself is clickable */
+    position: relative !important;
+    z-index: 1002 !important;
+  }
+  
+  .navbar-sidebar .menu__link:hover {
+    background: rgba(0, 162, 199, 0.3) !important;
+    border-color: rgba(0, 162, 199, 0.5) !important;
+    color: #00A2C7 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 162, 199, 0.2) !important;
   }
   
   /* Position close button in top right */
@@ -3022,11 +3074,12 @@ details li strong:first-child:contains("POST") {
     flex-direction: column !important;
     position: absolute !important;
     left: 50% !important;
-    top: 50% !important;
+    top: 60% !important;
     transform: translate(-50%, -50%) !important;
     width: 85% !important;
     max-width: 320px !important;
     gap: 1.5rem !important;
+    z-index: 1000 !important;
   }
   
   /* Individual navbar items in mobile sidebar - equal spacing */
@@ -3036,9 +3089,11 @@ details li strong:first-child:contains("POST") {
     width: 100% !important;
   }
   
-  /* Navbar links in mobile sidebar - large touch targets */
+  /* Navbar links in mobile sidebar - large touch targets and clickable */
   .navbar-sidebar .navbar-sidebar__link {
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     padding: 1.5rem 2rem !important;
     background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -3050,11 +3105,12 @@ details li strong:first-child:contains("POST") {
     text-align: center !important;
     transition: all 0.3s ease !important;
     min-height: 60px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 1001 !important;
   }
   
   .navbar-sidebar .navbar-sidebar__link:hover,
