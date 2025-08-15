@@ -2957,8 +2957,11 @@ details li strong:first-child:contains("POST") {
     display: none !important;
   }
   
-  /* Hide navbar items from top navbar on mobile only */
-  .navbar__items--left {
+  /* Hide the specific navbar items shown in dev tools */
+  .navbar__item.navbar__link[href="/docs/getting-started/welcome"],
+  .navbar__item.navbar__link[href="/docs/developers/overview"],
+  .navbar__item.navbar__link[href="/docs/api/builder/registration"],
+  .navbar__item.navbar__link[href="/docs/validators/overview"] {
     display: none !important;
   }
   
