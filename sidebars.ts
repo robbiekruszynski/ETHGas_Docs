@@ -7,7 +7,6 @@ const sidebars: SidebarsConfig = {
       label: 'Overview',
       items: [
         'getting-started/welcome',
-        'getting-started/environments',
         'getting-started/connecting',
       ],
     },

@@ -60,7 +60,7 @@ function QuickStartSection() {
                   <h3>Environment Setup</h3>
                   <p>Configure your development environment with TestNet or MainNet endpoints for ETHGas integration.</p>
                   <div className={styles.cardButton}>
-                    <Link to="/docs/getting-started/environments" className="button button--primary button--sm">
+                    <Link to="/docs/getting-started/connecting" className="button button--primary button--sm">
                       Setup Environment →
                     </Link>
                   </div>

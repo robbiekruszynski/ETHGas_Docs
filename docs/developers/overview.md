@@ -58,7 +58,7 @@ ETHGas is a platform for trading Ethereum blockspace and acquiring preconfirmati
 | Path | Description | Link |
 |------|-------------|------|
 | **Getting Started** | Welcome guide and introduction | [Welcome Guide](/docs/getting-started/welcome) |
-| **Environments** | Set up TestNet and MainNet environments | [Environment Setup](/docs/getting-started/environments) |
+| **Environments** | Set up TestNet and MainNet environments | [Environment Setup](/docs/getting-started/connecting) |
 | **Connecting** | Connect to ETHGas platform | [Connection Guide](/docs/getting-started/connecting) |
 | **API Overview** | Complete API documentation | [API Documentation](/docs/api/overview) |
 | **WebSocket Overview** | Real-time WebSocket API docs | [WebSocket Documentation](/docs/websocket/overview) |

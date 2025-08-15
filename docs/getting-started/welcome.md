@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+sidebar_label: Welcome
 ---
 
 import styles from '@site/src/pages/index.module.css';
@@ -105,7 +106,7 @@ Follow these steps to get started with ETHGas:
     <div className="feature-card text--center">
       <h3>1. Environment Setup</h3>
       <p>Configure your development environment and API credentials</p>
-      <a href="/docs/getting-started/environments" className="button button--outline button--sm">
+      <a href="/docs/getting-started/connecting" className="button button--outline button--sm">
         Configure Environment →
       </a>
     </div>
@@ -164,7 +165,7 @@ Follow these steps to get started with ETHGas:
 
 Ready to dive deeper? Check out these resources:
 
-- [Environment Setup](/docs/getting-started/environments) - Configure your development environment
+- [Environment Setup](/docs/getting-started/connecting) - Configure your development environment
 - [API Overview](/docs/api/overview) - Understand the REST API structure
 - [WebSocket Guide](/docs/websocket/overview) - Learn about real-time data streaming
 - [Reference Materials](/docs/reference/data-types) - Explore data types and error codes

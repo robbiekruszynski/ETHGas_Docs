@@ -90,6 +90,10 @@ const config: Config = {
           label: 'Validators',
           position: 'left',
         },
+        {
+          type: 'search',
+          position: 'right',
+        },
       ],
       hideOnScroll: false,
     },

@@ -2943,7 +2943,7 @@ details li strong:first-child:contains("POST") {
   border: 1px solid rgba(244, 114, 182, 0.3) !important;
 }
 
-/* Mobile styles - hide navbar title on mobile */
+/* Mobile styles - responsive navbar */
 @media screen and (max-width: 768px) {
   .navbar__title {
     display: none !important;
@@ -2953,85 +2953,64 @@ details li strong:first-child:contains("POST") {
   .clean-btn[aria-label*="theme"],
   .clean-btn[aria-label*="Theme"],
   .clean-btn[aria-label*="light"],
-  .clean-btn[aria-label*="dark"],
-  .navbar__item:has(.clean-btn[aria-label*="theme"]),
-  .navbar__item:has(.clean-btn[aria-label*="Theme"]),
-  .navbar__item:has(.clean-btn[aria-label*="light"]),
-  .navbar__item:has(.clean-btn[aria-label*="dark"]) {
+  .clean-btn[aria-label*="dark"] {
     display: none !important;
   }
   
-  /* Hide navbar items from top navbar on mobile, but allow them in sidebar */
-  .navbar__items--left .navbar__item {
+  /* Hide navbar items from top navbar on mobile only */
+  .navbar__items--left {
     display: none !important;
   }
   
-  /* Show hamburger menu button */
+  /* Ensure hamburger menu button is visible */
   .navbar__toggle {
     display: block !important;
   }
   
-  /* Ensure mobile sidebar shows navbar items */
-  .navbar-sidebar .navbar__item {
+  /* Mobile sidebar styling */
+  .navbar-sidebar {
+    background: rgba(17, 25, 39, 0.98) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  
+  /* Mobile sidebar items container */
+  .navbar-sidebar .navbar-sidebar__items {
+    padding: 2rem 1rem !important;
     display: block !important;
   }
   
-  .navbar-sidebar .navbar__link {
+  /* Individual navbar items in mobile sidebar */
+  .navbar-sidebar .navbar-sidebar__item {
+    display: block !important;
+    margin: 0.75rem 0 !important;
+  }
+  
+  /* Navbar links in mobile sidebar */
+  .navbar-sidebar .navbar-sidebar__link {
     display: block !important;
     padding: 1rem 1.5rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
     color: white !important;
     font-size: 1.1rem !important;
     font-weight: 500 !important;
     text-decoration: none !important;
-    border-radius: 8px !important;
-    margin: 0.5rem 0 !important;
-    transition: all 0.2s ease !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
   }
   
-  .navbar-sidebar .navbar__link:hover {
+  .navbar-sidebar .navbar-sidebar__link:hover {
     background: rgba(0, 162, 199, 0.2) !important;
+    border-color: rgba(0, 162, 199, 0.4) !important;
     color: #00A2C7 !important;
+    transform: translateY(-1px) !important;
   }
   
-  .navbar-sidebar .navbar__link--active {
-    background: rgba(0, 162, 199, 0.2) !important;
-    color: #00A2C7 !important;
-  }
-  
-  /* Target the specific sidebar structure */
-  .theme-layout-navbar-sidebar .navbar-sidebar__items {
-    display: block !important;
-    padding: 1rem !important;
-  }
-  
-  .theme-layout-navbar-sidebar .navbar-sidebar__item {
-    display: block !important;
-    margin: 0.5rem 0 !important;
-  }
-  
-  .theme-layout-navbar-sidebar .navbar-sidebar__link {
-    display: block !important;
-    padding: 1rem 1.5rem !important;
-    color: white !important;
-    font-size: 1.1rem !important;
-    font-weight: 500 !important;
-    text-decoration: none !important;
-    border-radius: 8px !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    transition: all 0.2s ease !important;
-  }
-  
-  .theme-layout-navbar-sidebar .navbar-sidebar__link:hover {
-    background: rgba(0, 162, 199, 0.2) !important;
-    color: #00A2C7 !important;
-    border-color: rgba(0, 162, 199, 0.3) !important;
-  }
-  
-  .theme-layout-navbar-sidebar .navbar-sidebar__link--active {
-    background: rgba(0, 162, 199, 0.2) !important;
-    color: #00A2C7 !important;
+  .navbar-sidebar .navbar-sidebar__link--active {
+    background: rgba(0, 162, 199, 0.25) !important;
     border-color: #00A2C7 !important;
+    color: #00A2C7 !important;
   }
 }
 
