@@ -545,7 +545,7 @@ blockquote {
   margin-top: 0;
   padding-top: 0;
 }
-
+/* 
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible {
   background: rgba(0, 162, 199, 0.05);
   border-radius: 8px;
@@ -554,7 +554,7 @@ blockquote {
 
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible:hover {
   background: rgba(0, 162, 199, 0.1);
-}
+} */
 
 .breadcrumbs {
   margin-bottom: 1rem;
@@ -2995,6 +2995,13 @@ details li strong:first-child:contains("POST") {
     display: none !important;
   }
   
+
+  
+  /* Hide the first div with the non-functional menu */
+  .navbar-sidebar .theme-layout-navbar-sidebar-panel.navbar-sidebar__item.menu:first-of-type {
+    display: none !important;
+  }
+  
   /* Ensure main navbar items are visible in mobile sidebar */
   .navbar-sidebar .navbar__item {
     display: block !important;
@@ -3010,12 +3017,12 @@ details li strong:first-child:contains("POST") {
     margin: 0 !important;
   }
   
-  .navbar-sidebar .menu__list-item {
+  /* .navbar-sidebar .menu__list-item {
     display: block !important;
     width: 100% !important;
     margin: 0 !important;
-    pointer-events: none !important; /* Allow clicks to pass through to the link */
-  }
+    pointer-events: none !important; 
+  } */
   
   .navbar-sidebar .menu__link {
     display: flex !important;
