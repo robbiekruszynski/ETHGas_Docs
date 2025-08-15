@@ -30,8 +30,8 @@ The TestNet environment is designed for development and testing purposes:
 
 ```bash
 # TestNet Configuration
-ETHGAS_API_URL=https://testnet-api.ethgas.com
-ETHGAS_WS_URL=wss://testnet-ws.ethgas.com
+ETHGAS_API_URL= https://hoodi.app.ethgas.com/ 
+ETHGAS_WS_URL= wss://hoodi.app.ethgas.com/ws
 ETHGAS_NETWORK=testnet
 ETHGAS_CHAIN_ID=17000
 ```
