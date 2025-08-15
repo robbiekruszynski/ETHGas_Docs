@@ -24,8 +24,6 @@ This guide helps you establish connections to the ETHGas platform. For copy/past
 |-----------|-------|
 | **Environment** | MainNet |
 | **Chain** | Ethereum |
-| **RPC URL** | `https://ethereum-rpc.publicnode.com` |
-| **Chain ID** | `1` |
 | **API base URL** | `https://mainnet.app.ethgas.com` |
 | **Websocket base URL** | `wss://mainnet.app.ethgas.com/ws` |
 | **Collateral Deposit Address** | `0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6` |
@@ -36,9 +34,7 @@ This guide helps you establish connections to the ETHGas platform. For copy/past
 | Parameter | Value |
 |-----------|-------|
 | **Environment** | TestNet |
-| **Chain** | Holesky |
-| **RPC URL** | `https://ethereum-hoodi-rpc.publicnode.com ` |
-| **Chain ID** | `17000` |
+| **Chain** | Hoodi |
 | **API base URL** | `https://hoodi.app.ethgas.com` |
 | **Websocket base URL** | `wss://hoodi.app.ethgas.com/ws` |
 | **Collateral Deposit Address** | `0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6` |
