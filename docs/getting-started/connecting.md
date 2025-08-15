@@ -24,9 +24,9 @@ This guide helps you establish connections to the ETHGas platform. For copy/past
 |-----------|-------|
 | **Environment** | MainNet |
 | **Chain** | Ethereum |
-| **API base URL** | `https://mainnet.app.ethgas.com` |
+| **API base URL** | `https://mainnet.app.ethgas.com/api` |
 | **Websocket base URL** | `wss://mainnet.app.ethgas.com/ws` |
-| **Collateral Deposit Address** | `0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6` |
+| **Collateral Deposit Address** | `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88` |
 
 </TabItem>
 <TabItem value="testnet" label="TestNet">
@@ -35,9 +35,9 @@ This guide helps you establish connections to the ETHGas platform. For copy/past
 |-----------|-------|
 | **Environment** | TestNet |
 | **Chain** | Hoodi |
-| **API base URL** | `https://hoodi.app.ethgas.com` |
+| **API base URL** | `https://hoodi.app.ethgas.com/api` |
 | **Websocket base URL** | `wss://hoodi.app.ethgas.com/ws` |
-| **Collateral Deposit Address** | `0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6` |
+| **Collateral Deposit Address** | `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8` |
 
 </TabItem>
 </Tabs>
