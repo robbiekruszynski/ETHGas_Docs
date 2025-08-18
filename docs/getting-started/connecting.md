@@ -18,14 +18,61 @@ ETHGas provides multiple environments for development, testing, and production u
 
 ## Connecting to ETHGas
 
-Endpoints are divided into two categories: 
-`/api/v1/p` and `/api/v1`.
+<div style={{
+  border: '1px solid var(--ifm-border-color)',
+  borderRadius: '8px',
+  padding: '1.5rem',
+  margin: '1rem 0',
+  textAlign: 'center'
+}}>
+  <div style={{
+    display: 'flex',
+    gap: '1.5rem',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap'
+  }}>
+    <div style={{
+      border: '2px solid var(--ifm-color-primary-light)',
+      borderRadius: '8px',
+      padding: '1.25rem 1.5rem',
+      minWidth: '180px',
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+    }}>
+      <strong style={{ color: 'var(--ifm-color-primary)' }}>/api/v1/p</strong>
+      <br />
+      <small style={{ color: 'var(--ifm-color-emphasis-600)' }}>Public - No Auth Required</small>
+    </div>
+    <div style={{
+      border: '2px solid var(--ifm-color-primary-light)',
+      borderRadius: '8px',
+      padding: '1.25rem 1.5rem',
+      minWidth: '180px',
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+    }}>
+      <strong style={{ color: 'var(--ifm-color-primary)' }}>/api/v1</strong>
+      <br />
+      <small style={{ color: 'var(--ifm-color-emphasis-600)' }}>Private - Authentication Required</small>
+    </div>
+  </div>
+</div>
 
-### Public Endpoints (`/api/v1/p`)
+<Tabs>
+<TabItem value="general" label="General" default>
+
+<!-- :::tip Important: Two Endpoint Categories
+Endpoints are divided into **two distinct categories**: 
+
+**`/api/v1/p`** (Public) and **`/api/v1`** (Private)
+::: -->
+
+
+
+### Public Endpoints:  `/api/v1/p`
 
 These endpoints provide access to market data, order book snapshots, trade history, and more; information that is available to all users. These endpoints are open and do not require authentication, allowing developers to retrieve real-time market data for analysis or display purposes.
 
-### Private Endpoints (`/api/v1`)
+### Private Endpoints: `/api/v1`
 
 These endpoints require authentication and provide access to account-specific information and trading functionality.
 
@@ -53,6 +100,114 @@ For interacting with `/api/v1` endpoints, a login is required. The login workflo
     <strong>Refresh Token</strong>: Before the access token expires, call `/api/v1/user/login/refresh` to get a new access token.
   </div>
 </div>
+
+:::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
+
+</TabItem>
+<TabItem value="python" label="Using Python">
+
+### Overview
+
+The `python-ethgas` package is a Python3 connector that allows you to interact with the EthGas. The package utilizes threads to handle concurrent execution of REST API requests and WebSocket subscriptions. This allows for efficient handling of multiple requests and real-time data streams without blocking the main execution thread.
+
+The connector provides a **REST client** that allows you to make requests to all the available REST API endpoints of the EthGas. It also includes a **WebSocket client** that enables you to subscribe to real-time data streams from EthGas. You can subscribe to channels like preconf market data, transaction data etc.
+
+To access private endpoints and perform actions on behalf of a user, both API and Websocket client classes handle the login process and manage the authentication using the **JWT access token**.
+
+:::warning
+This is an unofficial Python project and should be used at your own risk. It is NOT affiliated with EthGas and does NOT provide financial or investment advice.
+:::
+
+### Installation
+
+```bash
+pip install python-ethgas
+```
+
+### Example Usage
+
+```python
+import logging
+from ethgas.utils import helper
+from ethgas.rest.api_client import APIClient
+from ethgas.websocket.ws_client import WsClient
+
+# Create logger
+logger = helper.create_logger(logger_level=logging.INFO, logger_name="ethgas_client")
+
+# For public endpoints
+rest_url = "<EthGas REST API URL>"
+rest = APIClient(rest_url=rest_url, logger=logger)
+
+# For private endpoints (requires account)
+address = "<Account Address>"
+private_key = "<Account Private Key>"
+rest = APIClient(rest_url=rest_url, 
+                 account_address=address, private_key=private_key,
+                 logger=logger)
+
+# WebSocket client
+ws_url = "<EthGas Websocket URL>"
+ws = WsClient(ws_url=ws_url, api_client=rest, auto_reconnect_retries=5, logger=logger)
+```
+
+### Repository
+
+For complete documentation and examples, visit the [python-ethgas repository](https://github.com/gaspy503/python-ethgas).
+
+:::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
+
+
+
+
+
+</TabItem>
+</Tabs>
+
+## Development Workflow
+
+### Recommended Migration Path
+
+<div className="row">
+  <div className="col col--12">
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Start with TestNet
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Develop and test your integration</span>
+    </div>
+    
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Validate Functionality
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Ensure all features work correctly</span>
+    </div>
+    
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Test with Real Data
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Use TestNet's simulated real data</span>
+    </div>
+    
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Deploy to MainNet
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Move to production when ready</span>
+    </div>
+  </div>
+</div>
+
 
 ## Environment Overview
 
@@ -137,45 +292,6 @@ All API endpoints follow the same pattern across environments:
 | **Authentication** | `{BASE_URL}/api/v1/user/login` |
 | **Market Data** | `{BASE_URL}/api/v1/market/data` |
 
-## Development Workflow
-
-### Recommended Migration Path
-
-<div className="row">
-  <div className="col col--12">
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Start with TestNet
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Develop and test your integration</span>
-    </div>
-    
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Validate Functionality
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Ensure all features work correctly</span>
-    </div>
-    
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Test with Real Data
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Use TestNet's simulated real data</span>
-    </div>
-    
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Deploy to MainNet
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Move to production when ready</span>
-    </div>
-  </div>
-</div>
 
 ## Authentication Flow
 
@@ -289,11 +405,6 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-## Authentication Best Practices
-
-:::warning
-The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
-:::
 
 ### Token Refresh
 
