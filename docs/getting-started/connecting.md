@@ -58,42 +58,55 @@ ETHGas provides multiple environments for development, testing, and production u
 
 ## Connecting to ETHGas
 
+
 <div style={{
-  border: '1px solid var(--ifm-border-color)',
-  borderRadius: '8px',
-  padding: '1.5rem',
-  margin: '1rem 0',
-  textAlign: 'center'
+  display: 'flex',
+  gap: '2rem',
+  margin: '2rem 0',
+  flexWrap: 'wrap'
 }}>
   <div style={{
-    display: 'flex',
-    gap: '1.5rem',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap'
+    flex: '1',
+    minWidth: '300px',
+    border: '2px solid var(--ifm-color-primary-light)',
+    borderRadius: '12px',
+    padding: '1.5rem',
+    background: 'transparent'
   }}>
-    <div style={{
-      border: '2px solid var(--ifm-color-primary-light)',
-      borderRadius: '8px',
-      padding: '1.25rem 1.5rem',
-      minWidth: '180px',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+    <h3 style={{
+      color: 'var(--ifm-color-primary)',
+      margin: '0 0 1rem 0',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem'
     }}>
-      <strong style={{ color: 'var(--ifm-color-primary)' }}>/api/v1/p</strong>
-      <br />
-      <small style={{ color: 'var(--ifm-color-emphasis-600)' }}>Public - No Auth Required</small>
-    </div>
-    <div style={{
-      border: '2px solid var(--ifm-color-primary-light)',
-      borderRadius: '8px',
-      padding: '1.25rem 1.5rem',
-      minWidth: '180px',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+      🔓 Public Endpoints: <code>/api/v1/p</code>
+    </h3>
+    <p style={{ margin: '0', lineHeight: '1.6' }}>
+      These endpoints provide access to market data, order book snapshots, trade history, and more; information that is available to all users. These endpoints are <strong>open and do not require authentication</strong>, allowing developers to retrieve real-time market data for analysis or display purposes.
+    </p>
+  </div>
+
+  <div style={{
+    flex: '1',
+    minWidth: '300px',
+    border: '2px solid var(--ifm-color-primary-light)',
+    borderRadius: '12px',
+    padding: '1.5rem',
+    background: 'transparent'
+  }}>
+    <h3 style={{
+      color: 'var(--ifm-color-primary)',
+      margin: '0 0 1rem 0',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem'
     }}>
-      <strong style={{ color: 'var(--ifm-color-primary)' }}>/api/v1</strong>
-      <br />
-      <small style={{ color: 'var(--ifm-color-emphasis-600)' }}>Private - Authentication Required</small>
-    </div>
+      🔒 Private Endpoints: <code>/api/v1</code>
+    </h3>
+    <p style={{ margin: '0', lineHeight: '1.6' }}>
+      These endpoints <strong>require authentication</strong> and provide access to account-specific information and trading functionality.
+    </p>
   </div>
 </div>
 
@@ -108,13 +121,6 @@ Endpoints are divided into **two distinct categories**:
 
 
 
-### Public Endpoints:  `/api/v1/p`
-
-These endpoints provide access to market data, order book snapshots, trade history, and more; information that is available to all users. These endpoints are open and do not require authentication, allowing developers to retrieve real-time market data for analysis or display purposes.
-
-### Private Endpoints: `/api/v1`
-
-These endpoints require authentication and provide access to account-specific information and trading functionality.
 
 #### Authentication Workflow
 
@@ -254,7 +260,6 @@ The JWT access token is valid for 1 hour, after each hour an access token refres
 
 
 
-
 </TabItem>
 </Tabs>
 
@@ -342,33 +347,29 @@ ETHGAS_CHAIN_ID=1 -->
 </TabItem>
 </Tabs>
 
-## API Endpoints
+## REST API
 
-All API endpoints follow the same pattern across environments:
+### Response Structure
 
-```
-{ENVIRONMENT_BASE_URL}/api/v1/{ENDPOINT}
-```
+Every API response contains a success flag and a response body.
 
-**Examples:**
-
-| Endpoint | URL |
-|----------|-----|
-| **User Info** | `{BASE_URL}/api/v1/user/info` |
-| **Authentication** | `{BASE_URL}/api/v1/user/login` |
-| **Market Data** | `{BASE_URL}/api/v1/market/data` |
+| Name | Type | Description |
+|------|------|-------------|
+| `success` | boolean | API call is successful or unsuccessful |
+| `data` | object | Response body |
 
 
 ## Authentication Flow
 
-ETHGas uses JWT Bearer token authentication. Here's the complete flow:
+ETHGas uses JWT Bearer token authentication as mentioned above. Here's the complete flow:
+
+<details>
+<summary><strong>1. Login</strong></summary>
+
+First, authenticate with your credentials to get the EIP712 message for signing.
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
-
-### 1. Login
-
-First, authenticate with your credentials:
 
 ```bash
 curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login" \
@@ -379,89 +380,8 @@ curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login" \
   }'
 ```
 
-**Example Response:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "status": "verify",
-        "eip712Message": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"data\":[{\"name\":\"hash\",\"type\":\"string\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"domain\",\"type\":\"string\"}]},\"primaryType\":\"data\",\"message\":{\"hash\":\"52a90c73\",\"message\":\"Please sign this message to verify account ownership\",\"domain\":\"ethgas.com\"},\"domain\":{\"name\":\"ETHGas Login\",\"version\":\"1\",\"chainId\":32382,\"verifyingContract\":\"0x0000000000000000000000000000000000000000\"}}",
-        "nonceHash": "52a90c73"
-    }
-}
-```
-
-**Request Parameters:**
-
-| Parameter | Required | Type | Description |
-|-----------|----------|------|-------------|
-| `addr` | YES | string | User's EOA account (account) address |
-| `name` | NO | string | Display name |
-
-**Response Body:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `status` | string | Login status |
-| `eip712Message` | object | EIP712 message |
-| `nonceHash` | string | A unique four-byte nonce to identify this particular login request |
-
-**Usage:**
-
-Get the response from `/api/v1/user/login` and sign the `eip712Message` and send the signed message through `/api/v1/user/login/verify`
-
-### 2. Verify Login
-
-Complete the verification process:
-
-```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/verify" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "your-email@example.com",
-    "code": "verification-code"
-  }'
-```
-
-### 3. Use Access Token
-
-Include the JWT access token in all subsequent requests:
-
-```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/info" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
-```
-
-### Token Refresh
-
-When your access token expires, refresh it:
-
-```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/refresh" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "refreshToken": "your-refresh-token"
-  }'
-```
-
-### Logout
-
-When you're done, logout to invalidate your session:
-
-```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/logout" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
-```
-
 </TabItem>
 <TabItem value="python" label="Python">
-
-### 1. Login
-
-First, authenticate with your credentials:
 
 ```python
 import requests
@@ -478,9 +398,11 @@ headers = {
 }
 
 response = requests.post(url, headers=headers, params=payload)
-
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 **Example Response:**
 
@@ -514,29 +436,129 @@ print(response.text)
 
 Get the response from `/api/v1/user/login` and sign the `eip712Message` and send the signed message through `/api/v1/user/login/verify`
 
-### 2. Verify Login
+</details>
 
-Complete the verification process:
+<details>
+<summary><strong>2. Verify Login</strong></summary>
+
+Complete the verification process by sending the signed message.
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X POST /api/v1/user/login/verify?addr=0xe61f536f031f77C854b21652aB0F4fBe7CF3196F&nonceHash=517d9272&signature=0xc046037ec795f4cfe7aca33a0c283c0152bae91008b3e14b84be50f91f0e2db714054dee85b840e3edf0e26480231a684447f48337de64ea6697a3552aa9351a1b
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/user/login/verify"
-payload = {
-    "email": "your-email@example.com",
-    "code": "verification-code"
-}
-headers = {
-    "Content-Type": "application/json"
+params = {
+    "addr": "0xe61f536f031f77C854b21652aB0F4fBe7CF3196F",
+    "nonceHash": "517d9272",
+    "signature": "0xc046037ec795f4cfe7aca33a0c283c0152bae91008b3e14b84be50f91f0e2db714054dee85b840e3edf0e26480231a684447f48337de64ea6697a3552aa9351a1b"
 }
 
-response = requests.post(url, json=payload, headers=headers)
+response = requests.post(url, params=params)
 print(response.text)
 ```
 
-### 3. Use Access Token
+</TabItem>
+</Tabs>
 
-Include the JWT access token in all subsequent requests:
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "user": {
+            "userId": 78,
+            "address": "0xe61f536f031f77c854b21652ab0f4fbe7cf3196f",
+            "status": 1,
+            "userType": 1,
+            "userClass": 1,
+            "accounts": [
+                {
+                    "accountId": 242,
+                    "userId": 78,
+                    "type": 1,
+                    "name": "Current",
+                    "status": 1,
+                    "updateDate": 1698127521000
+                },
+                {
+                    "accountId": 243,
+                    "userId": 78,
+                    "type": 2,
+                    "name": "Preconf",
+                    "status": 1,
+                    "updateDate": 1698127521000
+                }
+            ]
+        },
+        "accessToken": {
+            "data": {
+                "header": {
+                    "alg": "ES256",
+                    "typ": "JWT"
+                },
+                "payload": {
+                    "user": {
+                        "userId": 78,
+                        "address": "0xe61f536f031f77c854b21652ab0f4fbe7cf3196f",
+                        "roles": [
+                            "ROLE_USER"
+                        ]
+                    },
+                    "access_type": "access_token",
+                    "iat": 1698633225,
+                    "exp": 1698636825
+                }
+            },
+            "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6NzgsImFkZHJlc3MiOiIweGU2MWY1MzZmMDMxZjc3Yzg1NGIyMTY1MmFiMGY0ZmJlN2NmMzE5NmYiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk4NjMzMjI1LCJleHAiOjE2OTg2MzY4MjV9.E3aIKqqFsHVBYedAuqn6Jw6bymsWy6RQ6gf_lDXnYNorjngA05uFLaTM0A2ZrN4kJ8nTXEjlrdhLU8crisJcdA"
+        }
+    }
+}
+```
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `addr` | YES | string | User's EOA account (account) address |
+| `nonceHash` | YES | string | Nonce Hash |
+| `signature` | YES | string | Signature |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `user` | User | User details |
+| `accessToken` | string | Access token |
+
+</details>
+
+<details>
+<summary><strong>3. Use Access Token</strong></summary>
+
+Include the JWT access token in all subsequent requests to access private endpoints.
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/info" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -551,9 +573,29 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-### Token Refresh
+</TabItem>
+</Tabs>
 
-When your access token expires, refresh it:
+</details>
+
+<details>
+<summary><strong>Token Refresh</strong></summary>
+
+When your access token expires, refresh it to maintain your session.
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/refresh" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refreshToken": "your-refresh-token"
+  }'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -570,9 +612,27 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-### Logout
+</TabItem>
+</Tabs>
 
-When you're done, logout to invalidate your session:
+</details>
+
+<details>
+<summary><strong>Logout</strong></summary>
+
+When you're done, logout to invalidate your session and clean up.
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/logout" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -589,6 +649,8 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+</details>
 
 ## WebSocket Connection
 

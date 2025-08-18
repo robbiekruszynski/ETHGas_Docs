@@ -3508,3 +3508,41 @@ details li strong:first-child:contains("POST") {
 [data-theme='dark'] .step-content strong {
   color: var(--ifm-color-primary-light);
 }
+
+/* Collapsible details arrow alignment */
+details > summary {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::marker {
+  display: none;
+}
+
+/* Remove the custom arrow we added */
+details > summary::before {
+  display: none;
+}
+
+/* Style the existing arrow to be closer to the text and properly colored */
+details > summary strong::before {
+  content: '▶ ';
+  color: var(--ifm-color-primary);
+  transition: transform 0.2s ease;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+details[open] > summary strong::before {
+  transform: rotate(90deg);
+}
+
+[data-theme='dark'] details > summary strong::before {
+  color: var(--ifm-color-primary-light);
+}
