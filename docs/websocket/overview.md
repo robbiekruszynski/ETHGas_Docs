@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# WebSocket API Overview
+# WebSocket
 
 The ETHGas WebSocket API provides real-time data streaming for market and account updates. Use the command/message structure described in the official API.
 

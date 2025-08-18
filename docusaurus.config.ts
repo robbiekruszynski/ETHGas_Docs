@@ -25,7 +25,6 @@ const config: Config = {
     locales: ['en'],
   },
 
-  // Add Google Fonts for better typography
   scripts: [
     {
       src: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap',
@@ -106,11 +105,9 @@ const config: Config = {
         autoCollapseCategories: true,
       },
     },
-    // Ensure mobile sidebar works properly
     mobileNavbar: {
       show: true,
     },
-    // Enable mobile sidebar with navbar items
     mobileSidebarCollapsible: true,
     footer: {
       style: 'dark',
@@ -170,7 +167,6 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['bash', 'json', 'typescript'],
     },
-    // Add color mode toggle
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,

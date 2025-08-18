@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Validator Deposits
+# Deposits
 
 Manage ETH collateral deposits as documented in the official ETHGas docs.
 

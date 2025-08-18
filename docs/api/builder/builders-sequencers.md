@@ -8,7 +8,7 @@ sidebar_position: 2
 # Builders & Sequencers
 
 <!-- :::info Role scope
-This page focuses on Builders. For Developers see [Developer Overview](/docs/developers/overview). 
+This page focuses on Builders. For Developers see [Overview](/docs/developers/overview). 
 For Validators see [Validator Overview](/docs/validators/overview). 
 ::: -->
 

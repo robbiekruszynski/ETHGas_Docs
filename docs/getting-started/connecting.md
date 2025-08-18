@@ -16,6 +16,44 @@ ETHGas provides multiple environments for development, testing, and production u
 - **Environment Selection**: Choose between TestNet (Hoodi) or MainNet
 - **Network Access**: Ability to connect to ETHGas endpoints
 
+## Connecting to ETHGas
+
+Endpoints are divided into two categories: 
+`/api/v1/p` and `/api/v1`.
+
+### Public Endpoints (`/api/v1/p`)
+
+These endpoints provide access to market data, order book snapshots, trade history, and more; information that is available to all users. These endpoints are open and do not require authentication, allowing developers to retrieve real-time market data for analysis or display purposes.
+
+### Private Endpoints (`/api/v1`)
+
+These endpoints require authentication and provide access to account-specific information and trading functionality.
+
+#### Authentication Workflow
+
+For interacting with `/api/v1` endpoints, a login is required. The login workflow is as follows:
+
+<div className="step-item">
+  <div className="step-circle">1</div>
+  <div className="step-content">
+    <strong>Get Login Message</strong>: Call the endpoint `/api/v1/user/login` with the appropriate `addr` to get the login sign message.
+  </div>
+</div>
+
+<div className="step-item">
+  <div className="step-circle">2</div>
+  <div className="step-content">
+    <strong>Sign and Verify</strong>: Sign the login message and call the endpoint `/api/v1/user/login/verify` with the `addr`, `nonceHash`, and `signature`. You will receive the JWT access token, as well as user-related data, and can now call any private endpoints.
+  </div>
+</div>
+
+<div className="step-item">
+  <div className="step-circle">3</div>
+  <div className="step-content">
+    <strong>Refresh Token</strong>: Before the access token expires, call `/api/v1/user/login/refresh` to get a new access token.
+  </div>
+</div>
+
 ## Environment Overview
 
 <Tabs>

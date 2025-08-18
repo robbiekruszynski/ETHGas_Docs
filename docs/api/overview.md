@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# REST API Overview
+# REST API
 
 The ETHGas REST API provides access to authentication, user management, funding, markets, trading, builder, pricer, validator, bundles, and more.
 
