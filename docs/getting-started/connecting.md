@@ -543,43 +543,10 @@ print(response.text)
 
 </details>
 
-<details>
-<summary><strong>3. Use Access Token</strong></summary>
 
-Include the JWT access token in all subsequent requests to access private endpoints.
-
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/info" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/user/info"
-headers = {
-    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-    "Content-Type": "application/json"
-}
-
-response = requests.get(url, headers=headers)
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-</details>
 
 <details>
-<summary><strong>Token Refresh</strong></summary>
+<summary><strong>3. Token Refresh</strong></summary>
 
 When your access token expires, refresh it to maintain your session.
 
@@ -587,11 +554,8 @@ When your access token expires, refresh it to maintain your session.
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/refresh" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "refreshToken": "your-refresh-token"
-  }'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/login/refresh?refreshToken=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoicmVmcmVzaF90b2tlbiIsImlhdCI6MTY5NzQyNDM0MCwiZXhwIjoxNjk4MDI5MTQwfQ.Y5dtx_VXGDZ4EDt4e6qtaVd811XumXjtDtVMiQeibNCai5zvV1PJJ3R8WCTSZb6NbbxAtFsTglYRD10aigDECA
+
 ```
 
 </TabItem>
@@ -601,34 +565,103 @@ curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/refresh" \
 import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/user/login/refresh"
+
 payload = {
-    "refreshToken": "your-refresh-token"
-}
-headers = {
-    "Content-Type": "application/json"
+    'refreshToken': 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoicmVmcmVzaF90b2tlbiIsImlhdCI6MTY5NzQyNDM0MCwiZXhwIjoxNjk4MDI5MTQwfQ.Y5dtx_VXGDZ4EDt4e6qtaVd811XumXjtDtVMiQeibNCai5zvV1PJJ3R8WCTSZb6NbbxAtFsTglYRD10aigDECA'
 }
 
-response = requests.post(url, json=payload, headers=headers)
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ1MjQyLCJleHAiOjE2OTc0NDg4NDJ9.iPUK1f8QWZLnKPt-fdo-dlrakxSPyo041J5xnIKVLtsOsBIR8gu2hEv8a7S18CtRfViRchT4xhSQfSJj-SxleQ'
+}
+
+response = requests.post(url, headers=headers, params=payload)
+
 print(response.text)
 ```
 
 </TabItem>
 </Tabs>
 
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "user": {
+            "userId": 31,
+            "address": "0x5c812c9a67e6900eb20f3f31d0ecce523d6a5c03",
+            "userType": 1,
+            "status": 1,
+            "accounts": [
+                {
+                    "accountId": 127,
+                    "type": 1,
+                    "cashTokenIds": [
+                        1
+                    ]
+                },
+                {
+                    "accountId": 128,
+                    "type": 2,
+                    "cashTokenIds": [
+                        1
+                    ]
+                }
+            ]
+        },
+        "accessToken": {
+            "data": {
+                "header": {
+                    "alg": "ES256",
+                    "typ": "JWT"
+                },
+                "payload": {
+                    "user": {
+                        "userId": 31,
+                        "address": "0x5c812c9a67e6900eb20f3f31d0ecce523d6a5c03",
+                        "roles": [
+                            "ROLE_USER"
+                        ]
+                    },
+                    "access_type": "access_token",
+                    "iat": 1697449134,
+                    "exp": 1697452734
+                }
+            },
+            "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w"
+        }
+    }
+}
+```
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `refreshToken` | YES | string | Refresh token |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `user` | User | User details |
+| `accessToken` | object | Access token used for authentication |
+
 </details>
 
 <details>
 <summary><strong>Logout</strong></summary>
 
-When you're done, logout to invalidate your session and clean up.
+When you're done, logout.
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/logout" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/login/refresh?refreshToken=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoicmVmcmVzaF90b2tlbiIsImlhdCI6MTY5NzQyNDM0MCwiZXhwIjoxNjk4MDI5MTQwfQ.Y5dtx_VXGDZ4EDt4e6qtaVd811XumXjtDtVMiQeibNCai5zvV1PJJ3R8WCTSZb6NbbxAtFsTglYRD10aigDECA
+
 ```
 
 </TabItem>
@@ -638,17 +671,24 @@ curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/logout" \
 import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/user/logout"
+
 headers = {
-    "Authorization": "Bearer YOUR_ACCESS_TOKEN",
-    "Content-Type": "application/json"
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
 }
 
 response = requests.post(url, headers=headers)
+
 print(response.text)
 ```
 
 </TabItem>
 </Tabs>
+
+**Example Response:**
+
+```json
+{}
+```
 
 </details>
 
