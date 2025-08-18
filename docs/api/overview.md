@@ -145,16 +145,18 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="testnet" label="TestNet" default>
 
-**Base URL:** `https://testnet-api.ethgas.com`
-
-**WebSocket URL:** `wss://testnet-ws.ethgas.com`
+| Type | URL |
+|------|-----|
+| **REST API Base URL** | `https://hoodi.app.ethgas.com/api	` |
+| **WebSocket URL** | `wss://hoodi.app.ethgas.com/ws	` |
 
 </TabItem>
 <TabItem value="mainnet" label="MainNet">
 
-**Base URL:** `https://api.ethgas.com`
-
-**WebSocket URL:** `wss://ws.ethgas.com`
+| Type | URL |
+|------|-----|
+| **REST API Base URL** | `https://mainnet.app.ethgas.com/api` |
+| **WebSocket URL** | `wss://mainnet.app.ethgas.com/ws	` |
 
 </TabItem>
 </Tabs>

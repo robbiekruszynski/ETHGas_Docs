@@ -13,86 +13,39 @@ Welcome to ETHGas, the premier platform for trading Ethereum Blockspace, and acq
 
 ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV opportunities through various market types:
 
-### Whole Block Markets
-For Trading or Building Purposes, available up to 64 slots in advance. Trade entire blocks for MEV opportunities. These markets allow you to bid on complete blocks and extract value from transaction ordering and inclusion.
+### Market Types
 
-### Rest-of-Block Auction
-For Whole Block owners, submit Top-of-Block bundles and run a realtime auction on the Rest-of-Block, available only for the current slot. This enables dynamic pricing for remaining block space after top-of-block transactions are included.
+**Whole Block Markets** - Trade entire blocks for MEV opportunities. Available up to 64 slots in advance for maximum planning flexibility.
 
-### Inclusion Preconf Markets
-Trade generic blockspace (i.e. neither top-of-block, nor state contentious) with a conventional CLOB interface. Available up to 32 slots in advance. These markets focus on predicting gas prices and transaction inclusion likelihood.
+**Rest-of-Block Auction** - Dynamic real-time auction for remaining block space. Available only for the current slot.
 
-## Platform Overview
+**Inclusion Preconf Markets** - Trade generic blockspace with conventional CLOB interface. Available up to 32 slots in advance.
 
-The ETHGas platform consists of several key components:
+### Platform Components
 
 - **REST API**: Complete HTTP API for all platform operations
 - **WebSocket API**: Real-time data streaming for live market updates
 - **Authentication System**: Secure user authentication and session management
-- **Market Management**: Tools for creating and managing trading markets
-- **Order Management**: Comprehensive order placement and management
-- **Position Tracking**: Real-time position monitoring and updates
+- **Trading Tools**: Advanced order management and position tracking
 
-## Key Concepts
+## Key Trading Concepts
 
 <div className="row">
-  <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', padding: '2rem' }}>
-      <h3 style={{ color: 'var(--ifm-color-primary)', marginBottom: '1.5rem', fontSize: '1.75rem', fontWeight: '600', textAlign: 'center' }}>Markets</h3>
-      <p style={{ marginBottom: '1.5rem' }}>
-        Markets are the core trading venues on ETHGas where you can trade Ethereum blockspace and MEV opportunities.
-      </p>
-      <ul style={{ textAlign: 'left', margin: 0, paddingLeft: '1.5rem' }}>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Whole Block Markets:</strong> Available up to 64 slots in advance
-        </li>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Rest-of-Block Auction:</strong> Real-time auction for current slot
-        </li>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Inclusion Preconf Markets:</strong> Available up to 32 slots in advance
-        </li>
-      </ul>
+  <div className="col col--6">
+    <div className="feature-card">
+      <h3>Order Types</h3>
+      <p><strong>Market Orders</strong> - Execute immediately at current market price</p>
+      <p><strong>Limit Orders</strong> - Execute only at specified price or better</p>
+      <p><strong>Fill-Or-Kill Orders</strong> - Execute completely or not at all</p>
     </div>
   </div>
   
-  <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', padding: '2rem' }}>
-      <h3 style={{ color: 'var(--ifm-color-primary)', marginBottom: '1.5rem', fontSize: '1.75rem', fontWeight: '600', textAlign: 'center' }}>Orders</h3>
-      <p style={{ marginBottom: '1.5rem' }}>
-        Orders represent your trading intentions and how you want to execute trades on the platform.
-      </p>
-      <ul style={{ textAlign: 'left', margin: 0, paddingLeft: '1.5rem' }}>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Market Orders:</strong> Execute immediately at current market price
-        </li>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Limit Orders:</strong> Execute only at specified price or better
-        </li>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Fill-Or-Kill Orders:</strong> Execute completely or not at all
-        </li>
-      </ul>
-    </div>
-  </div>
-  
-  <div className="col col--4">
-    <div className="feature-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', padding: '2rem' }}>
-      <h3 style={{ color: 'var(--ifm-color-primary)', marginBottom: '1.5rem', fontSize: '1.75rem', fontWeight: '600', textAlign: 'center' }}>Positions</h3>
-      <p style={{ marginBottom: '1.5rem', minHeight: '4rem' }}>
-        Positions track your current market exposure and potential profit/loss scenarios.
-      </p>
-      <ul style={{ textAlign: 'left', margin: 0, paddingLeft: '1.5rem' }}>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Long Positions:</strong> Profitable when prices increase
-        </li>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Short Positions:</strong> Profitable when prices decrease
-        </li>
-        <li style={{ marginBottom: '0.75rem' }}>
-          <strong>Real-time tracking and updates</strong>
-        </li>
-      </ul>
+  <div className="col col--6">
+    <div className="feature-card">
+      <h3>Position Management</h3>
+      <p><strong>Long Positions</strong> - Profitable when market prices increase</p>
+      <p><strong>Short Positions</strong> - Profitable when market prices decrease</p>
+      <p><strong>Real-time Tracking</strong> - Live updates on position status and P&L</p>
     </div>
   </div>
 </div>

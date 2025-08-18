@@ -274,7 +274,7 @@ The JWT access token is valid for 1 hour, after each hour an access token refres
 
 ### TestNet Environment
 
-**Base URL**: `https://hoodi.app.ethgas.com/api`
+<!-- **Base URL**: `https://hoodi.app.ethgas.com/api` -->
 
 The TestNet environment is designed for development and testing purposes:
 
@@ -311,7 +311,7 @@ ETHGAS_CHAIN_ID=17000 -->
 
 ### MainNet Environment
 
-**Base URL**: `https://mainnet.app.ethgas.com/api`
+<!-- **Base URL**: `https://mainnet.app.ethgas.com/api` -->
 
 The MainNet environment is for production use:
 
@@ -366,8 +366,9 @@ ETHGas uses JWT Bearer token authentication as mentioned above. Here's the compl
 <details>
 <summary><strong>1. Login</strong></summary>
 
+:::Info
 First, authenticate with your credentials to get the EIP712 message for signing.
-
+:::
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -697,7 +698,7 @@ print(response.text)
 For real-time data, establish a WebSocket connection:
 
 <Tabs>
-<TabItem value="mainnet-ws" label="MainNet WebSocket" default>
+<TabItem value="mainnet-ws" label="MainNet" default>
 
 **Connection URL:**
 ```
@@ -705,7 +706,7 @@ wss://mainnet.app.ethgas.com/ws
 ```
 
 </TabItem>
-<TabItem value="testnet-ws" label="TestNet WebSocket">
+<TabItem value="testnet-ws" label="TestNet">
 
 **Connection URL:**
 ```
