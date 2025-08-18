@@ -16,6 +16,46 @@ ETHGas provides multiple environments for development, testing, and production u
 - **Environment Selection**: Choose between TestNet (Hoodi) or MainNet
 - **Network Access**: Ability to connect to ETHGas endpoints
 
+
+## Development Workflow
+
+
+<div className="row">
+  <div className="col col--12">
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Start with TestNet
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Develop and test your integration</span>
+    </div>
+    
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Validate Functionality
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Ensure all features work correctly</span>
+    </div>
+    
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Test with Real Data
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Use TestNet's simulated real data</span>
+    </div>
+    
+    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
+      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
+        Deploy to MainNet
+      </h4>
+      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Move to production when ready</span>
+    </div>
+  </div>
+</div>
+
 ## Connecting to ETHGas
 
 <div style={{
@@ -129,28 +169,78 @@ pip install python-ethgas
 ### Example Usage
 
 ```python
-import logging
-from ethgas.utils import helper
-from ethgas.rest.api_client import APIClient
-from ethgas.websocket.ws_client import WsClient
+from eth_account import messages
+import json
+import requests
+from web3.auto import w3
 
-# Create logger
-logger = helper.create_logger(logger_level=logging.INFO, logger_name="ethgas_client")
 
-# For public endpoints
-rest_url = "<EthGas REST API URL>"
-rest = APIClient(rest_url=rest_url, logger=logger)
+domain = 'ADD_THE_DOMAIN_HERE'
+account_address = 'ADD_YOUR_ETHEREUM_account_ADDRESS_HERE'
+private_key = 'ADD_YOUR_PRIVATE_KEY_HERE'
+chain_id = 'ADD_THE_CHAIN_ID_HERE'
 
-# For private endpoints (requires account)
-address = "<Account Address>"
-private_key = "<Account Private Key>"
-rest = APIClient(rest_url=rest_url, 
-                 account_address=address, private_key=private_key,
-                 logger=logger)
 
-# WebSocket client
-ws_url = "<EthGas Websocket URL>"
-ws = WsClient(ws_url=ws_url, api_client=rest, auto_reconnect_retries=5, logger=logger)
+###########################################
+#   STEP 1. Get the login sign message.   #
+###########################################
+
+# Login
+body = {'addr': account_address}
+response = requests.post(domain + '/api/v1/user/login', data=body)
+print(response.status_code)
+print(response.text)
+
+# Retrieve nonce & response message
+nonce = response.json()['data']['nonceHash']
+eip712_message = json.loads(response.json()['data']['eip712Message'])
+
+print(eip712_message)
+# Make signature
+encoded_message = messages.encode_typed_data(full_message=eip712_message)
+
+# Sign message
+signed_message = w3.eth.account.sign_message(encoded_message, private_key=private_key)
+
+# Verify login
+body = {'addr': account_address, 'nonceHash': nonce, 'signature': w3.to_hex(signed_message.signature)}
+response = requests.post(domain + '/api/v1/user/login/verify', data=body)
+
+# Was login successful?
+print(f"Login successful? {response.json()['success']}")
+
+#####################################
+#   STEP 2. Get the access token.   #
+#####################################
+
+# Get access token etc
+access_token = response.json()['data']['accessToken']['token']
+headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + access_token}
+response_cookies = response.cookies
+
+# Test calling a private endpoint
+response = requests.get(url=domain + '/api/v1/user/accounts', headers=headers)
+print("Here is your list of Ethgas accounts etc:\n")
+print(json.dumps(response.json()['data']['accounts'], indent=2))
+
+
+###########################################################
+#   STEP 3. Refresh the access token before it expires.   #
+###########################################################
+
+# Refresh token
+body = {'refreshToken': access_token}
+response = requests.post(domain + '/api/v1/user/login/refresh', cookies=response_cookies, data=body)
+
+# Get latest access token etc
+access_token = response.json()['data']['accessToken']['token']
+headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + access_token}
+response_cookies = response.cookies
+
+# Test calling a private endpoint again
+response = requests.get(url=domain + '/api/v1/user/accounts', headers=headers)
+print("Here is your list of Ethgas accounts etc:\n")
+print(json.dumps(response.json()['data']['accounts'], indent=2))
 ```
 
 ### Repository
@@ -168,48 +258,11 @@ The JWT access token is valid for 1 hour, after each hour an access token refres
 </TabItem>
 </Tabs>
 
-## Development Workflow
-
-### Recommended Migration Path
-
-<div className="row">
-  <div className="col col--12">
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Start with TestNet
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Develop and test your integration</span>
-    </div>
-    
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Validate Functionality
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Ensure all features work correctly</span>
-    </div>
-    
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Test with Real Data
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Use TestNet's simulated real data</span>
-    </div>
-    
-    <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-      <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1.2rem', marginRight: '0.5rem' }}>✅</span>
-      <h4 style={{ color: 'var(--ifm-color-primary)', margin: '0 0.5rem 0 0', fontSize: '1.1rem' }}>
-        Deploy to MainNet
-      </h4>
-      <span style={{ color: 'var(--ifm-color-text)', fontSize: '0.95rem' }}>Move to production when ready</span>
-    </div>
-  </div>
-</div>
 
 
 ## Environment Overview
+
+
 
 <Tabs>
 <TabItem value="testnet" label="TestNet (Hoodi)" default>
@@ -226,6 +279,12 @@ The TestNet environment is designed for development and testing purposes:
 - **Features**: Full API functionality with test data
 - **Recommended for**: Initial development, API testing, and learning
 
+### Environment Details
+
+| Environment | Chain | API Base URL | WebSocket Base URL | Collateral Contract |
+|-------------|-------|--------------|-------------------|-------------------|
+| Testnet | Hoodi Chain | `https://hoodi.app.ethgas.com/api` | `wss://hoodi.app.ethgas.com/ws` | `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8` |
+
 ### Configuration
 
 ```bash
@@ -236,11 +295,11 @@ ETHGAS_WS_URL=wss://hoodi.app.ethgas.com/ws
 ```
 <!-- ETHGAS_NETWORK=testnet
 ETHGAS_CHAIN_ID=17000 -->
-### Considerations
+<!-- ### Considerations
 - **Authentication**: Test credentials provided
 - **Data**: Simulated market conditions
 - **Limits**: Higher rate limits for testing
-- **Support**: Dedicated testnet support
+- **Support**: Dedicated testnet support -->
 
 </TabItem>
 <TabItem value="mainnet" label="MainNet">
@@ -257,6 +316,12 @@ The MainNet environment is for production use:
 - **Features**: Complete production functionality
 - **Recommended for**: Production applications and live trading
 
+### Environment Details
+
+| Environment | Chain | API Base URL | WebSocket Base URL | Collateral Contract |
+|-------------|-------|--------------|-------------------|-------------------|
+| Mainnet | Ethereum  | `https://mainnet.app.ethgas.com/api` | `wss://mainnet.app.ethgas.com/ws` | `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88` |
+
 ### Configuration
 
 ```bash
@@ -267,11 +332,12 @@ ETHGAS_WS_URL=wss://mainnet.app.ethgas.com/ws
 ```
 <!-- ETHGAS_NETWORK=mainnet
 ETHGAS_CHAIN_ID=1 -->
-### Considerations
+
+<!-- ### Considerations
 - **Authentication**: Production credentials required
 - **Data**: Real market data and conditions
 - **Limits**: Production rate limits apply
-- **Support**: Production support channels
+- **Support**: Production support channels -->
 
 </TabItem>
 </Tabs>
@@ -297,12 +363,12 @@ All API endpoints follow the same pattern across environments:
 
 ETHGas uses JWT Bearer token authentication. Here's the complete flow:
 
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
 ### 1. Login
 
 First, authenticate with your credentials:
-
-<Tabs>
-<TabItem value="http" label="HTTP" default>
 
 ```bash
 curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login" \
@@ -313,34 +379,41 @@ curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login" \
   }'
 ```
 
-</TabItem>
-<TabItem value="python" label="Python">
+**Example Response:**
 
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/user/login"
-payload = {
-    "email": "your-email@example.com",
-    "password": "your-password"
+```json
+{
+    "success": true,
+    "data": {
+        "status": "verify",
+        "eip712Message": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"data\":[{\"name\":\"hash\",\"type\":\"string\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"domain\",\"type\":\"string\"}]},\"primaryType\":\"data\",\"message\":{\"hash\":\"52a90c73\",\"message\":\"Please sign this message to verify account ownership\",\"domain\":\"ethgas.com\"},\"domain\":{\"name\":\"ETHGas Login\",\"version\":\"1\",\"chainId\":32382,\"verifyingContract\":\"0x0000000000000000000000000000000000000000\"}}",
+        "nonceHash": "52a90c73"
+    }
 }
-headers = {
-    "Content-Type": "application/json"
-}
-
-response = requests.post(url, json=payload, headers=headers)
-print(response.text)
 ```
 
-</TabItem>
-</Tabs>
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `addr` | YES | string | User's EOA account (account) address |
+| `name` | NO | string | Display name |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `status` | string | Login status |
+| `eip712Message` | object | EIP712 message |
+| `nonceHash` | string | A unique four-byte nonce to identify this particular login request |
+
+**Usage:**
+
+Get the response from `/api/v1/user/login` and sign the `eip712Message` and send the signed message through `/api/v1/user/login/verify`
 
 ### 2. Verify Login
 
 Complete the verification process:
-
-<Tabs>
-<TabItem value="http" label="HTTP" default>
 
 ```bash
 curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/verify" \
@@ -351,8 +424,99 @@ curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/verify" \
   }'
 ```
 
+### 3. Use Access Token
+
+Include the JWT access token in all subsequent requests:
+
+```bash
+curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/info" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
+### Token Refresh
+
+When your access token expires, refresh it:
+
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/refresh" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refreshToken": "your-refresh-token"
+  }'
+```
+
+### Logout
+
+When you're done, logout to invalidate your session:
+
+```bash
+curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/logout" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json"
+```
+
 </TabItem>
 <TabItem value="python" label="Python">
+
+### 1. Login
+
+First, authenticate with your credentials:
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/login"
+
+payload = {
+    'addr': '0x5eF1B2c02f5E39C0fF667611C5d7EfFb0E7df305',
+    'name': 'username'    
+}
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, params=payload)
+
+print(response.text)
+```
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "status": "verify",
+        "eip712Message": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"data\":[{\"name\":\"hash\",\"type\":\"string\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"domain\",\"type\":\"string\"}]},\"primaryType\":\"data\",\"message\":{\"hash\":\"52a90c73\",\"message\":\"Please sign this message to verify account ownership\",\"domain\":\"ethgas.com\"},\"domain\":{\"name\":\"ETHGas Login\",\"version\":\"1\",\"chainId\":32382,\"verifyingContract\":\"0x0000000000000000000000000000000000000000\"}}",
+        "nonceHash": "52a90c73"
+    }
+}
+```
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `addr` | YES | string | User's EOA account (account) address |
+| `name` | NO | string | Display name |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `status` | string | Login status |
+| `eip712Message` | object | EIP712 message |
+| `nonceHash` | string | A unique four-byte nonce to identify this particular login request |
+
+**Usage:**
+
+Get the response from `/api/v1/user/login` and sign the `eip712Message` and send the signed message through `/api/v1/user/login/verify`
+
+### 2. Verify Login
+
+Complete the verification process:
 
 ```python
 import requests
@@ -370,24 +534,9 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
-
 ### 3. Use Access Token
 
 Include the JWT access token in all subsequent requests:
-
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/info" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -402,27 +551,9 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
-
-
 ### Token Refresh
 
 When your access token expires, refresh it:
-
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login/refresh" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "refreshToken": "your-refresh-token"
-  }'
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -439,24 +570,9 @@ response = requests.post(url, json=payload, headers=headers)
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
-
 ### Logout
 
 When you're done, logout to invalidate your session:
-
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/logout" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -532,17 +648,6 @@ All WebSocket messages follow this format:
 - **`query`**: Request specific data
 
 ## Infrastructure
-
-### Collateral Contract (EthgasPool)
-
-| Environment | Contract Address |
-|-------------|------------------|
-| **Mainnet** | `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88` |
-| **Hoodi (Test)** | `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8` |
-
-:::tip Recommendation
-Deposit collateral via the website for the best user experience.
-:::
 
 ### Relay Endpoints
 
