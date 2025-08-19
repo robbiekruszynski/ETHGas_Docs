@@ -9,9 +9,6 @@ import TabItem from '@theme/TabItem';
 
 This guide provides step-by-step instructions for setting up a builder with ETHGas using the official builder scripts repository.
 
-:::info
-The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
-:::
 
  ## Repository Overview
 The [ETHGas Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts) repository contains everything needed to onboard your BLS public keys to the ETHGas Exchange. This repository is essential for builders who want to participate in the ETHGas ecosystem.
@@ -40,6 +37,10 @@ Before setting up your builder, ensure you have:
 - [x] **EOA Signing Key**: Your registered or to-be-registered account on ETHGas Exchange
 - [x] **Entity Information**: Your company/entity name for registration
 - [x] **Network Access**: Ability to connect to ETHGas APIs
+
+:::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
 
 ## Quick Start
 
