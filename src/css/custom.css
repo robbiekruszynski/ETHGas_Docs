@@ -883,6 +883,92 @@ pre:has(code.language-bash) {
   overflow-x: auto !important;
 }
 
+/* Responsive table styling for tables with long URLs (Environment Details and Relay Endpoints) */
+.theme-doc-markdown table:has(td code[class*="language"]),
+.theme-doc-markdown table:has(th:contains("Endpoint")),
+.theme-doc-markdown table:has(th:contains("API Base URL")),
+.theme-doc-markdown table:has(th:contains("WebSocket Base URL")),
+.theme-doc-markdown table:has(th:contains("Collateral Contract")) {
+  width: 100%;
+  table-layout: auto;
+  overflow-x: auto;
+  display: block;
+  white-space: nowrap;
+}
+
+.theme-doc-markdown table:has(td code[class*="language"]) thead,
+.theme-doc-markdown table:has(td code[class*="language"]) tbody,
+.theme-doc-markdown table:has(td code[class*="language"]) tr,
+.theme-doc-markdown table:has(th:contains("Endpoint")) thead,
+.theme-doc-markdown table:has(th:contains("Endpoint")) tbody,
+.theme-doc-markdown table:has(th:contains("Endpoint")) tr,
+.theme-doc-markdown table:has(th:contains("API Base URL")) thead,
+.theme-doc-markdown table:has(th:contains("API Base URL")) tbody,
+.theme-doc-markdown table:has(th:contains("API Base URL")) tr {
+  display: table;
+  width: max-content;
+  min-width: 100%;
+}
+
+.theme-doc-markdown table:has(td code[class*="language"]) th,
+.theme-doc-markdown table:has(td code[class*="language"]) td,
+.theme-doc-markdown table:has(th:contains("Endpoint")) th,
+.theme-doc-markdown table:has(th:contains("Endpoint")) td,
+.theme-doc-markdown table:has(th:contains("API Base URL")) th,
+.theme-doc-markdown table:has(th:contains("API Base URL")) td {
+  white-space: nowrap !important;
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+}
+
+/* Ensure URLs in specific tables stay on single lines */
+.theme-doc-markdown table:has(th:contains("Endpoint")) td code,
+.theme-doc-markdown table:has(th:contains("API Base URL")) td code {
+  white-space: nowrap !important;
+  display: inline-block;
+}
+
+/* Set minimum widths for URL tables only */
+.theme-doc-markdown table:has(th:contains("API Base URL")) th:first-child,
+.theme-doc-markdown table:has(th:contains("API Base URL")) td:first-child {
+  min-width: 100px;
+}
+
+.theme-doc-markdown table:has(th:contains("API Base URL")) th:nth-child(2),
+.theme-doc-markdown table:has(th:contains("API Base URL")) td:nth-child(2) {
+  min-width: 120px;
+}
+
+.theme-doc-markdown table:has(th:contains("API Base URL")) th:nth-child(3),
+.theme-doc-markdown table:has(th:contains("API Base URL")) td:nth-child(3) {
+  min-width: 250px;
+}
+
+.theme-doc-markdown table:has(th:contains("API Base URL")) th:nth-child(4),
+.theme-doc-markdown table:has(th:contains("API Base URL")) td:nth-child(4) {
+  min-width: 250px;
+}
+
+.theme-doc-markdown table:has(th:contains("API Base URL")) th:last-child,
+.theme-doc-markdown table:has(th:contains("API Base URL")) td:last-child {
+  min-width: 300px;
+}
+
+.theme-doc-markdown table:has(th:contains("Endpoint")) th:first-child,
+.theme-doc-markdown table:has(th:contains("Endpoint")) td:first-child {
+  min-width: 100px;
+}
+
+.theme-doc-markdown table:has(th:contains("Endpoint")) th:nth-child(2),
+.theme-doc-markdown table:has(th:contains("Endpoint")) td:nth-child(2) {
+  min-width: 120px;
+}
+
+.theme-doc-markdown table:has(th:contains("Endpoint")) th:last-child,
+.theme-doc-markdown table:has(th:contains("Endpoint")) td:last-child {
+  min-width: 400px;
+}
+
 
 .api-endpoints-grid * pre,
 .api-endpoints-grid * code {
