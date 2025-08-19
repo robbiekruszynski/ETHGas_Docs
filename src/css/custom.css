@@ -842,9 +842,6 @@ details[open] summary {
 .api-endpoints-grid .prism-code {
   max-width: 100% !important;
   overflow-x: auto !important;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
 }
 
 
@@ -854,9 +851,6 @@ details[open] summary {
 .api-endpoints-grid details code {
   max-width: 100% !important;
   overflow-x: auto !important;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
 }
 
 
@@ -873,17 +867,25 @@ details[open] summary {
 
 
 .api-endpoints-grid pre code.language-bash {
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
+  white-space: nowrap !important;
+  overflow-x: auto !important;
+}
+
+/* Ensure bash commands can scroll horizontally like JSON responses */
+pre code.language-bash {
+  white-space: nowrap !important;
+  overflow-x: auto !important;
+  display: block !important;
+}
+
+/* Ensure parent pre container allows scrolling */
+pre:has(code.language-bash) {
+  overflow-x: auto !important;
 }
 
 
 .api-endpoints-grid * pre,
 .api-endpoints-grid * code {
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
   overflow-x: auto !important;
 }
 
