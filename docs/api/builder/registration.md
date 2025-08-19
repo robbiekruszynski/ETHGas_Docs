@@ -237,19 +237,13 @@ When `ENABLE_REGISTRATION=true`:
 <details>
 <summary style={{listStyle: 'none'}}>Manual registration process for builder public keys</summary>
 
-#### Code Sample
+#### Code Example::
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/builder/register" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <your-auth-token>" \
-  -d '{
-    "publicKeys": "0x1234567890abcdef1234567890abcdef12345678,0xabcdef1234567890abcdef1234567890abcdef12345678",
-    "signatures": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890,0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-  }'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
 ```
 
 </TabItem>
@@ -549,7 +543,7 @@ The Market Lists API provides endpoints for retrieving market information and da
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve whole block markets</summary>
 
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -659,7 +653,7 @@ print(response.text)
 <summary style={{listStyle: 'none'}}>Retrieve active preconf markets</summary>
 
 
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -798,7 +792,7 @@ The Slot Bundles API provides endpoints for managing and querying bundle informa
 
 <summary style={{listStyle: 'none'}}>Retrieve bundles for a specific slot</summary>
 
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -906,7 +900,7 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve the bundles submitted for a given slot for your inclusion preconf account.</summary>
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -1017,8 +1011,9 @@ print(response.text)
 <!-- ### GET /api/v1/slot/forceEmptyBlockSpace
 
 <details>
-#### Code Example
 <summary style={{listStyle: 'none'}}>Preconf owner set unused inclusion preconf gas to be empty for a given slot.</summary>
+
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -1077,9 +1072,9 @@ print(response.text)
 <!-- ### GET /api/v1/p/slot/txs/hash
 
 <details>
-#### Code Example
-
 <summary style={{listStyle: 'none'}}>Retrieve transaction hash information for a specific slot</summary>
+
+#### Code Example:
 
 <Tabs>
 

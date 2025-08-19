@@ -5,6 +5,7 @@ sidebar_label: Connect
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
 # Connecting to ETHGas
 
@@ -371,14 +372,9 @@ First, authenticate with your credentials to get the EIP712 message for signing.
 :::
 <Tabs>
 <TabItem value="http" label="HTTP" default>
-
+Example Code:
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/user/login" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "your-email@example.com",
-    "password": "your-password"
-  }'
+curl -X POST /api/v1/user/login?addr=0x8F02425B5f3c522b7EF8EA124162645F0397c478&name=username
 ```
 
 </TabItem>
@@ -446,25 +442,31 @@ Complete the verification process by sending the signed message.
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
-
+Example Code:
 ```bash
 curl -X POST /api/v1/user/login/verify?addr=0xe61f536f031f77C854b21652aB0F4fBe7CF3196F&nonceHash=517d9272&signature=0xc046037ec795f4cfe7aca33a0c283c0152bae91008b3e14b84be50f91f0e2db714054dee85b840e3edf0e26480231a684447f48337de64ea6697a3552aa9351a1b
 ```
 
 </TabItem>
 <TabItem value="python" label="Python">
-
+Example Code:
 ```python
 import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/user/login/verify"
-params = {
+
+payload = {
     "addr": "0xe61f536f031f77C854b21652aB0F4fBe7CF3196F",
     "nonceHash": "517d9272",
-    "signature": "0xc046037ec795f4cfe7aca33a0c283c0152bae91008b3e14b84be50f91f0e2db714054dee85b840e3edf0e26480231a684447f48337de64ea6697a3552aa9351a1b"
+    "signature": "0xc046037ec795f4cfe7aca33a0c283c0152bae91008b3e14b84be50f91f0e2db714054dee85b840e3edf0e26480231a684447f48337de64ea6697a3552aa9351a1b"  
 }
 
-response = requests.post(url, params=params)
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, params=payload)
+
 print(response.text)
 ```
 
@@ -551,6 +553,7 @@ print(response.text)
 
 When your access token expires, refresh it to maintain your session.
 
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -657,12 +660,12 @@ print(response.text)
 
 When you're done, logout.
 
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/login/refresh?refreshToken=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoicmVmcmVzaF90b2tlbiIsImlhdCI6MTY5NzQyNDM0MCwiZXhwIjoxNjk4MDI5MTQwfQ.Y5dtx_VXGDZ4EDt4e6qtaVd811XumXjtDtVMiQeibNCai5zvV1PJJ3R8WCTSZb6NbbxAtFsTglYRD10aigDECA
-
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/logout
 ```
 
 </TabItem>

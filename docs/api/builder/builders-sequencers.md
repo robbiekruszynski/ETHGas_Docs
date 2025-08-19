@@ -74,19 +74,12 @@ ETHGas provides infrastructure for block builders and sequencers to participate 
 
 <details>
 <summary style={{listStyle: 'none'}}>Register builder public keys with the ETHGas platform</summary>
-#### Code Sample
-
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/builder/register" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <your-auth-token>" \
-  -d '{
-    "publicKeys": "0x1234567890abcdef1234567890abcdef12345678,0xabcdef1234567890abcdef1234567890abcdef12345678",
-    "signatures": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890,0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-  }'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
 ```
 
 </TabItem>
@@ -176,13 +169,13 @@ print(response.text)
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve the message that needs to be signed by the builder's private key for registration verification</summary>
 
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/builder/signingMessage" \
-  -H "Authorization: Bearer <your-auth-token>"
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/signingMessage
 ```
 
 </TabItem>
@@ -237,16 +230,12 @@ print(response.text)
 <details>
 <summary style={{listStyle: 'none'}}>Builder deregistering their public keys</summary>
 
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/builder/deregister" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <your-auth-token>" \
-  -d '{
-    "publicKeys": "0x123456789abcdef...,0x234134..."
-  }'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/validator/deregister?publicKey=0x123423qtdgasdg...
 ```
 
 </TabItem>
@@ -308,12 +297,12 @@ print(response.text)
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
 
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/builders" \
-  -H "Authorization: Bearer <your-auth-token>"
+GET /api/v1/p/builders
 ```
 
 #### Response Example
@@ -388,9 +377,10 @@ print(response.text)
 |-------|------|-------------|
 | success | boolean | Success status of the request|
 | data | object | Response data container |
-| └ whitelistedBuilders | object | Array of builder objects |
-| └└ unnamedBuilders | list | List of public key of unnamed builder in hex|
-| └└ fallbackBuilder | string | Public key of the ETHGAS fallback builder in hex|
+| └ builders | object | List of builder objects |
+| └└ whitelistedBuilders | object | Array of builder objects |
+| └└└ unnamedBuilders | list | List of public key of unnamed builder in hex|
+| └└└ fallbackBuilder | string | Public key of the ETHGAS fallback builder in hex|
 
 </details>
 
@@ -398,13 +388,12 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
-#### Code Sample
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/builder" \
-  -H "Authorization: Bearer <your-auth-token>"
+GET /api/v1/user/builder
 ```
 
 </TabItem>
@@ -455,7 +444,8 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Delegate or revoke delegation of builder keys by supplying either a comma-separated list of BLS public keys or a builder name (which applies to all keys under that builder)</summary>
-#### Code Sample
+
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -502,7 +492,7 @@ print(response.text)
 
 ```json
 {
-    "success": true,
+    "success": true
 }
 ```
 
@@ -511,8 +501,7 @@ print(response.text)
 | Field | Type | Description |
 |-------|------|-------------|
 | success | boolean | Success status of the request |
-| data | object | Response data container |
-| └ delegatedBuilders | string | The delegated builder public key |
+
 
 :::note
 Note: User needs to delegate a new builder 2 seconds before the market close in order to be effective in that epoch.
@@ -525,12 +514,11 @@ Note: User needs to delegate a new builder 2 seconds before the market close in 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve information about the current user's builder delegation settings</summary>
 
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
-#### Code Sample
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/user/delegate/builder" \
-  -H "Authorization: Bearer <your-auth-token>"
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/delegate/builder
 ```
 
 </TabItem>
@@ -584,13 +572,13 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve information about the builder assigned to a specific slot</summary>
-#### Code Sample
+
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/builder/12345" \
-  -H "Authorization: Bearer <your-auth-token>"
+GET /api/v1/p/builder/123
 ```
 
 </TabItem>
@@ -599,7 +587,7 @@ curl -X GET "https://mainnet.app.ethgas.com/api/v1/p/builder/12345" \
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/p/builder/12345"
+url = "https://mainnet.app.ethgas.com/api/v1/p/builder/123"
 
 
 response = requests.get(url, headers=headers)
@@ -650,14 +638,13 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve comprehensive information about builder delegations and relationships</summary>
-#### Code Sample
 
+#### Code Example:
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET "https://mainnet.app.ethgas.com/api/v1/builder/delegation" \
-  -H "Authorization: Bearer <your-auth-token>"
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/builder/delegation
 ```
 
 </TabItem>

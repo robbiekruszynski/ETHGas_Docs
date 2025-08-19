@@ -177,7 +177,7 @@ All API requests require authentication using Bearer tokens.
 
 ## Error Handling
 
-API errors return appropriate HTTP status codes and error messages.
+API errors return appropriate HTTP status codes and error messages. For detailed error codes, descriptions, and troubleshooting guidance, see the [Error Codes Reference](/docs/reference/error-codes).
 
 ## Rate Limiting
 
@@ -354,15 +354,15 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Builder registration and delegation</span>
 </summary>
 
-- **POST** `/api/v1/builder/register`
-- **GET** `/api/v1/builder/signingMessage`
-- **POST** `/api/v1/builder/deregister`
-- **GET** `/api/v1/p/builders`
-- **GET** `/api/v1/user/builder`
-- **POST** `/api/v1/user/delegate/builder`
-- **GET** `/api/v1/user/delegate/builder`
-- **GET** `/api/v1/p/builder/{slot}`
-- **GET** `/api/v1/builder/delegation`
+- <span className="api-method-post">**POST**</span> `/api/v1/builder/register`
+- <span className="api-method-get">**GET**</span> `/api/v1/builder/signingMessage`
+- <span className="api-method-post">**POST**</span> `/api/v1/builder/deregister`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/builders`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/builder`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/delegate/builder`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/delegate/builder`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/builder/{slot}`
+- <span className="api-method-get">**GET**</span> `/api/v1/builder/delegation`
 
 </details>
 
@@ -372,14 +372,14 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Delegation and active markets</span>
 </summary>
 
-- **POST** `/api/v1/user/delegate/pricer`
-- **GET** `/api/v1/user/pricer`
-- **GET** `/api/v1/pricer/account-tokens`
-- **GET** `/api/v1/pricer/inclusion-preconf/orders`
-- **GET** `/api/v1/pricer/inclusion-preconf/positions`
-- **GET** `/api/v1/pricer/wholeblock/orders`
-- **GET** `/api/v1/pricer/wholeblock/positions`
-- **GET** `/api/v1/pricer/markets/active`
+- <span className="api-method-post">**POST**</span> `/api/v1/user/delegate/pricer`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/pricer`
+- <span className="api-method-get">**GET**</span> `/api/v1/pricer/account-tokens`
+- <span className="api-method-get">**GET**</span> `/api/v1/pricer/inclusion-preconf/orders`
+- <span className="api-method-get">**GET**</span> `/api/v1/pricer/inclusion-preconf/positions`
+- <span className="api-method-get">**GET**</span> `/api/v1/pricer/wholeblock/orders`
+- <span className="api-method-get">**GET**</span> `/api/v1/pricer/wholeblock/positions`
+- <span className="api-method-get">**GET**</span> `/api/v1/pricer/markets/active`
 
 </details>
 
@@ -389,14 +389,14 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
   <span className="api-category-desc">Registration, settings, payouts</span>
 </summary>
 
-- **GET** `/api/v1/user/validators`
-- **GET** `/api/v1/p/validators`
-- **POST** `/api/v1/validator/register`
-- **POST** `/api/v1/validator/verify`
-- **POST** `/api/v1/validator/settings`
-- **POST** `/api/v1/validator/deregister`
-- **GET** `/api/v1/validator/fees`
-- **GET** `/api/v1/validator/onchain/payout`
+- <span className="api-method-get">**GET**</span> `/api/v1/user/validators`
+- <span className="api-method-get">**GET**</span> `/api/v1/p/validators`
+- <span className="api-method-post">**POST**</span> `/api/v1/validator/register`
+- <span className="api-method-post">**POST**</span> `/api/v1/validator/verify`
+- <span className="api-method-post">**POST**</span> `/api/v1/validator/settings`
+- <span className="api-method-post">**POST**</span> `/api/v1/validator/deregister`
+- <span className="api-method-get">**GET**</span> `/api/v1/validator/fees`
+- <span className="api-method-get">**GET**</span> `/api/v1/validator/onchain/payout`
 
 </details>
 
