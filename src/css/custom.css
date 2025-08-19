@@ -110,7 +110,7 @@ h3 {
   color: var(--ifm-color-primary-light);
 }
 
-/* Full width tables for better readability */
+
 table {
   width: 100% !important;
   margin: 1rem 0;
@@ -118,7 +118,7 @@ table {
   max-width: none !important;
 }
 
-/* Ensure table cells also use full width */
+
 table th,
 table td {
   width: auto !important;
@@ -126,7 +126,7 @@ table td {
   word-wrap: break-word;
 }
 
-/* Override any Docusaurus table constraints */
+
 .theme-doc-markdown table,
 .markdown table {
   width: 100% !important;
@@ -288,13 +288,13 @@ table td {
   color: white !important;
 }
 
-/* Ensure white text on hover for outline buttons in light mode */
+
 [data-theme='light'] .button--outline:hover {
   color: white !important;
   background: var(--ifm-color-primary);
 }
 
-/* Ensure white text on hover for outline buttons in dark mode */
+
 [data-theme='dark'] .button--outline:hover {
   color: white !important;
   background: var(--ifm-color-primary);
@@ -326,7 +326,7 @@ table td {
   box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Light mode navbar styling */
+
 [data-theme='light'] .navbar {
   background: rgba(255, 255, 255, 0.95) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
@@ -528,7 +528,7 @@ blockquote {
 
 
 
-/* Enhanced hover styling for buttons within feature cards */
+
 .feature-card .button--outline:hover {
   background: var(--ifm-color-primary);
   color: white !important;
@@ -544,16 +544,6 @@ blockquote {
 .theme-doc-markdown h1:first-child {
   margin-top: 0;
   padding-top: 0;
-}
-
-.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible {
-  background: rgba(0, 162, 199, 0.05);
-  border-radius: 8px;
-  margin: 0.5rem 0;
-}
-
-.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible:hover {
-  background: rgba(0, 162, 199, 0.1);
 }
 
 .breadcrumbs {
@@ -616,7 +606,7 @@ details summary {
   color: var(--ifm-color-primary-light);
 }
 
-/* API endpoint dropdown summaries - make description text white in dark mode */
+
 details summary:not([style*="listStyle"]) {
   color: #374151;
 }
@@ -625,7 +615,7 @@ details summary:not([style*="listStyle"]) {
   color: #ffffff;
 }
 
-/* Ensure POST/GET method names stay blue */
+
 details summary:not([style*="listStyle"]) strong {
   color: var(--ifm-color-primary);
 }
@@ -846,54 +836,56 @@ details[open] summary {
   margin: 2rem 0;
 }
 
-/* CRITICAL: Fix code overflow in API endpoints */
+
 .api-endpoints-grid pre,
 .api-endpoints-grid code,
 .api-endpoints-grid .prism-code {
   max-width: 100% !important;
   overflow-x: auto !important;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
 }
 
 
 
-/* Ensure code blocks don't overflow */
+
 .api-endpoints-grid details pre,
 .api-endpoints-grid details code {
   max-width: 100% !important;
   overflow-x: auto !important;
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
 }
 
-/* Force long strings to wrap */
+
 .api-endpoints-grid .token.string {
   word-break: break-all !important;
   white-space: pre-wrap !important;
 }
 
-/* Ensure tabs content doesn't overflow */
+
 .api-endpoints-grid .tabs__content {
   max-width: 100% !important;
   overflow-x: auto !important;
 }
 
-/* Fix curl commands specifically */
+
 .api-endpoints-grid pre code.language-bash {
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
+  white-space: nowrap !important;
+  overflow-x: auto !important;
 }
 
-/* Force all code in API endpoints to wrap */
+/* Ensure bash commands can scroll horizontally like JSON responses */
+pre code.language-bash {
+  white-space: nowrap !important;
+  overflow-x: auto !important;
+  display: block !important;
+}
+
+/* Ensure parent pre container allows scrolling */
+pre:has(code.language-bash) {
+  overflow-x: auto !important;
+}
+
+
 .api-endpoints-grid * pre,
 .api-endpoints-grid * code {
-  white-space: pre-wrap !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
   overflow-x: auto !important;
 }
 
@@ -955,7 +947,7 @@ details[open] summary {
   margin: 0;
 }
 
-/* Ensure bullet points are visible in markdown lists */
+
 .markdown ul,
 .theme-doc-markdown ul,
 article ul,
@@ -974,13 +966,13 @@ article ul li,
   list-style: disc !important;
 }
 
-/* Override any list-style: none that might be applied */
+
 .markdown ul li::before,
 .theme-doc-markdown ul li::before {
   display: none !important;
 }
 
-/* Force bullet points for all unordered lists in documentation */
+
 .theme-doc-markdown ul,
 .markdown ul,
 article ul,
@@ -1002,7 +994,7 @@ div[class*="theme-doc"] ul li {
   margin-bottom: 0.5rem !important;
 }
 
-/* Remove any custom bullets that might be interfering */
+
 .theme-doc-markdown ul li::before,
 .markdown ul li::before,
 article ul li::before {
@@ -1010,7 +1002,7 @@ article ul li::before {
   display: none !important;
 }
 
-/* Remove bullet points ONLY for checkmark lists (items with [x]) */
+
 .theme-doc-markdown ul li:has(input[type="checkbox"]:checked),
 .markdown ul li:has(input[type="checkbox"]:checked),
 article ul li:has(input[type="checkbox"]:checked),
@@ -1020,7 +1012,7 @@ div[class*="theme-doc"] ul li:has(input[type="checkbox"]:checked) {
   list-style-type: none !important;
 }
 
-/* Alternative approach for checkmark lists - target by content pattern */
+
 .theme-doc-markdown ul li,
 .markdown ul li,
 article ul li {
@@ -1028,7 +1020,7 @@ article ul li {
   list-style-type: disc !important;
 }
 
-/* Remove bullets for checkmark items specifically */
+
 .theme-doc-markdown ul li:has([class*="checkbox"]),
 .markdown ul li:has([class*="checkbox"]),
 article ul li:has([class*="checkbox"]) {
@@ -1036,7 +1028,7 @@ article ul li:has([class*="checkbox"]) {
   list-style-type: none !important;
 }
 
-/* Remove bullet points for API method badges (POST, GET, etc.) */
+
 .theme-doc-markdown ul li:has([class*="api-method"]),
 .markdown ul li:has([class*="api-method"]),
 article ul li:has([class*="api-method"]),
@@ -1049,7 +1041,7 @@ article ul li:has([class*="method"]) {
   padding: 0 !important;
 }
 
-/* Improve API method badge visibility in dark mode */
+
 .api-method-post,
 .api-method-get,
 .api-method-put,
@@ -1069,7 +1061,7 @@ article ul li:has([class*="method"]) {
   text-shadow: none !important;
 }
 
-/* Ensure bright colors in dark mode */
+
 [data-theme='dark'] .api-method-post,
 [data-theme='dark'] .method.post {
   background: #2563eb !important;
@@ -1098,7 +1090,7 @@ article ul li:has([class*="method"]) {
   margin-right: 12px !important;
 }
 
-/* Add spacing between method badges and API paths */
+
 .api-method-post,
 .api-method-get,
 .api-method-put,
@@ -1110,7 +1102,7 @@ article ul li:has([class*="method"]) {
   margin-right: 12px !important;
 }
 
-/* Ensure API paths have proper spacing */
+
 .api-endpoints-grid .api-method + span,
 .api-endpoints-grid .method + span,
 .theme-doc-markdown .api-method + span,
@@ -1118,9 +1110,9 @@ article ul li:has([class*="method"]) {
   margin-left: 8px !important;
 }
 
-/* Remove custom tab list-style overrides to use default Docusaurus tabs */
 
-/* Remove bullet points from Docusaurus tabs - more aggressive approach */
+
+
 .theme-doc-tabs__tab-list,
 .theme-doc-tabs__tab-list *,
 .theme-doc-tabs__tab-list li,
@@ -1138,7 +1130,7 @@ article ul li:has([class*="method"]) {
   content: none !important;
 }
 
-/* Target any potential bullet points in tabs */
+
 .theme-doc-tabs ul,
 .theme-doc-tabs ol,
 .theme-doc-tabs li {
@@ -1157,7 +1149,7 @@ article ul li:has([class*="method"]) {
   content: none !important;
 }
 
-/* Additional targeting for tab items */
+
 .theme-doc-tabs__item,
 .theme-doc-tabs__item * {
   list-style: none !important;
@@ -1173,7 +1165,7 @@ article ul li:has([class*="method"]) {
   content: none !important;
 }
 
-/* Nuclear option - target everything in tabs */
+
 .theme-doc-tabs *,
 .theme-doc-tabs *::before,
 .theme-doc-tabs *::after {
@@ -1182,7 +1174,7 @@ article ul li:has([class*="method"]) {
   list-style-image: none !important;
 }
 
-/* Target specific bullet point classes that might exist */
+
 .theme-doc-tabs .bullet,
 .theme-doc-tabs .bullet::before,
 .theme-doc-tabs .bullet::after,
@@ -1195,13 +1187,13 @@ article ul li:has([class*="method"]) {
   opacity: 0 !important;
 }
 
-/* Force remove any pseudo-elements that might be bullets */
+
 .theme-doc-tabs li::marker {
   display: none !important;
   content: none !important;
 }
 
-/* Target the specific li elements with role="tab" */
+
 .tabs__item::marker,
 li[role="tab"]::marker,
 .tabs__item--active::marker {
@@ -1209,7 +1201,7 @@ li[role="tab"]::marker,
   content: none !important;
 }
 
-/* Target all li elements in tabs */
+
 .theme-doc-tabs li::marker,
 .tabs li::marker,
 [class*="tabs"] li::marker {
@@ -1217,7 +1209,7 @@ li[role="tab"]::marker,
   content: none !important;
 }
 
-/* Hide breadcrumbs completely */
+
 .breadcrumbs,
 .breadcrumbs *,
 .breadcrumb_item,
@@ -1227,8 +1219,8 @@ li[role="tab"]::marker,
   opacity: 0 !important;
 }
 
-/* Reduce font size ONLY for Endpoint code blocks to fit on single line */
-/* Target only the Endpoint section specifically */
+
+
 .theme-doc-markdown h3:contains("Endpoint") + pre code,
 .markdown h3:contains("Endpoint") + pre code,
 article h3:contains("Endpoint") + pre code,
@@ -1241,7 +1233,7 @@ article h4:contains("Endpoint") + pre code {
   white-space: pre-wrap !important;
 }
 
-/* Alternative targeting for Endpoint code blocks */
+
 .theme-doc-markdown pre code:contains("https://"),
 .markdown pre code:contains("https://"),
 article pre code:contains("https://") {
@@ -1249,7 +1241,7 @@ article pre code:contains("https://") {
   line-height: 0.95 !important;
 }
 
-/* Make GET and POST blocks uniform in size and improve text rendering */
+
 .api-method-get,
 .api-method-post {
   min-width: 80px !important;
@@ -1263,18 +1255,18 @@ article pre code:contains("https://") {
   border-radius: 4px !important;
 }
 
-/* Make colors much brighter for dark mode */
+
 [data-theme='dark'] .api-method-get {
-  background: #00ff88 !important; /* Bright neon green */
+  background: #00ff88 !important; 
   color: #ffffff !important;
 }
 
 [data-theme='dark'] .api-method-post {
-  background: #ff0066 !important; /* Bright neon red/pink */
+  background: #ff0066 !important; 
   color: #ffffff !important;
 }
 
-/* Light mode - black text */
+
 .api-method-get,
 .api-method-post,
 .api-method-get *,
@@ -1282,7 +1274,7 @@ article pre code:contains("https://") {
   color: #000000 !important;
 }
 
-/* Dark mode - white text */
+
 [data-theme='dark'] .api-method-get,
 [data-theme='dark'] .api-method-post,
 [data-theme='dark'] .api-method-get *,
@@ -1290,7 +1282,7 @@ article pre code:contains("https://") {
   color: #ffffff !important;
 }
 
-/* Target tab buttons specifically */
+
 .theme-doc-tabs button,
 .theme-doc-tabs button::before,
 .theme-doc-tabs button::after,
@@ -1302,7 +1294,7 @@ article pre code:contains("https://") {
   list-style-image: none !important;
 }
 
-/* Remove any potential bullet points from tab content */
+
 .theme-doc-tabs__content *,
 .theme-doc-tabs__content *::before,
 .theme-doc-tabs__content *::after {
@@ -1311,9 +1303,9 @@ article pre code:contains("https://") {
   list-style-image: none !important;
 }
 
-/* Remove custom tab styling to use default Docusaurus tabs */
 
-/* Changelog category styling */
+
+
 .changelog-category {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -1503,7 +1495,7 @@ article pre code:contains("https://") {
   border-left: 3px solid var(--ifm-color-primary);
 }
 
-/* Remove custom network-tabs styling to use default Docusaurus tabs */
+
 
 .feature-card {
   border: none !important;
@@ -1517,7 +1509,7 @@ article pre code:contains("https://") {
   transform: none !important;
 }
 
-/* Typography improvements for better readability */
+
 :root {
   --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', 'Monaco', 'Cascadia Code', monospace;
@@ -1525,7 +1517,7 @@ article pre code:contains("https://") {
   --ifm-line-height-base-em: 1.4em;
 }
 
-/* Reduce spacing in documentation content */
+
 .theme-doc-markdown {
   line-height: 1.4;
 }
@@ -1566,14 +1558,14 @@ article pre code:contains("https://") {
   font-size: 0.9rem;
 }
 
-/* Reduce paragraph spacing */
+
 .theme-doc-markdown p {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   line-height: 1.5;
 }
 
-/* Reduce list spacing */
+
 .theme-doc-markdown ul,
 .theme-doc-markdown ol {
   margin-top: 0.5rem;
@@ -1587,7 +1579,7 @@ article pre code:contains("https://") {
   line-height: 1.4;
 }
 
-/* Reduce blockquote spacing */
+
 .theme-doc-markdown blockquote {
   margin: 0.75rem 0;
   padding: 0.5rem 1rem;
@@ -1595,7 +1587,7 @@ article pre code:contains("https://") {
   background: rgba(0, 162, 199, 0.05);
 }
 
-/* Reduce table spacing */
+
 .theme-doc-markdown table {
   margin: 0.75rem 0;
   font-size: 0.9rem;
@@ -1607,7 +1599,7 @@ article pre code:contains("https://") {
   line-height: 1.3;
 }
 
-/* Reduce code block spacing */
+
 .theme-doc-markdown pre {
   margin: 0.75rem 0;
   padding: 0.75rem;
@@ -1620,7 +1612,7 @@ article pre code:contains("https://") {
   padding: 0.2rem 0.4rem;
 }
 
-/* Reduce feature card spacing */
+
 .feature-card {
   margin-bottom: 1rem;
   padding: 1rem;
@@ -1639,7 +1631,7 @@ article pre code:contains("https://") {
   line-height: 1.4;
 }
 
-/* Reduce quick navigation spacing */
+
 .quick-nav .feature-card {
   padding: 0.75rem;
   margin-bottom: 0.75rem;
@@ -1659,7 +1651,7 @@ article pre code:contains("https://") {
   margin-top: 0.5rem;
 }
 
-/* Reduce API overview spacing */
+
 .api-category {
   margin-bottom: 1rem;
 }
@@ -1675,7 +1667,7 @@ article pre code:contains("https://") {
   line-height: 1.4;
 }
 
-/* Reduce details/summary spacing */
+
 details {
   margin: 0.5rem 0;
 }
@@ -1689,7 +1681,7 @@ details > div {
   padding: 0.5rem 0.75rem;
 }
 
-/* Remove custom tabs-container styling to use default Docusaurus tabs */
+
 
 
 
@@ -1708,7 +1700,7 @@ details > div {
   line-height: 1.3;
 }
 
-/* Reduce sidebar spacing */
+
 .theme-doc-sidebar-item-category-level-1 {
   margin-bottom: 0.5rem;
 }
@@ -1733,7 +1725,7 @@ details > div {
   padding: 0.25rem 0.75rem;
 }
 
-/* Reduce TOC spacing */
+
 .theme-doc-toc-desktop {
   padding: 0.5rem 0;
 }
@@ -1749,7 +1741,7 @@ details > div {
   line-height: 1.3;
 }
 
-/* Reduce navbar spacing */
+
 .navbar__item {
   padding: 0.5rem 0.75rem;
 }
@@ -1758,7 +1750,7 @@ details > div {
   font-size: 0.9rem;
 }
 
-/* Reduce footer spacing */
+
 .footer {
   padding: 1rem 0;
 }
@@ -1771,7 +1763,7 @@ details > div {
   margin: 0.25rem 0;
 }
 
-/* Reduce homepage spacing */
+
 .heroBanner {
   padding: 2rem 0;
 }
@@ -1788,7 +1780,7 @@ details > div {
   margin-top: 1rem;
 }
 
-/* Reduce section spacing */
+
 .quickStart,
 .features,
 .resources,
@@ -1803,7 +1795,7 @@ details > div {
   margin-bottom: 1rem;
 }
 
-/* Reduce card spacing in sections */
+
 .row {
   margin-bottom: 1rem;
 }
@@ -1812,7 +1804,7 @@ details > div {
   margin-bottom: 0.75rem;
 }
 
-/* Reduce button spacing */
+
 .button {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
@@ -1823,7 +1815,7 @@ details > div {
   font-size: 1rem;
 }
 
-/* Reduce alert spacing */
+
 .alert {
   margin: 0.75rem 0;
   padding: 0.75rem 1rem;
@@ -1837,7 +1829,7 @@ details > div {
   padding: 0.75rem 1rem;
 }
 
-/* Reduce admonition spacing */
+
 .admonition {
   margin: 0.75rem 0;
   padding: 0.75rem 1rem;
@@ -1851,12 +1843,12 @@ details > div {
   margin-top: 0.5rem;
 }
 
-/* Reduce mermaid diagram spacing */
+
 .mermaid {
   margin: 0.75rem 0;
 }
 
-/* Reduce callout spacing */
+
 .callout {
   margin: 0.75rem 0;
   padding: 0.75rem 1rem;
@@ -1870,7 +1862,7 @@ details > div {
   margin-top: 0.5rem;
 }
 
-/* Dark mode adjustments */
+
 [data-theme='dark'] .theme-doc-markdown {
   line-height: 1.4;
 }
@@ -1883,7 +1875,7 @@ details > div {
   line-height: 1.4;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .theme-doc-markdown h1 {
     font-size: 1.75rem;
@@ -1914,7 +1906,7 @@ details > div {
   }
 }
 
-/* Dark mode adjustments for API overview */
+
 [data-theme='dark'] .api-category {
   background: #1f2937;
   border: 1px solid #374151;
@@ -1988,7 +1980,7 @@ details > div {
   padding: 0;
 }
 
-/* Dark mode for details/summary elements */
+
 [data-theme='dark'] details {
   background: #1f2937;
   border: 1px solid #374151;
@@ -2055,12 +2047,12 @@ details > div {
   padding: 0;
 }
 
-/* Dark mode for API endpoints grid */
+
 [data-theme='dark'] .api-endpoints-grid {
   background: #1f2937;
 }
 
-/* Dark mode for quick navigation cards */
+
 [data-theme='dark'] .quick-nav .feature-card {
   background: #1f2937;
   border: 1px solid #374151;
@@ -2085,7 +2077,7 @@ details > div {
   color: #ffffff;
 }
 
-/* Dark mode for code blocks in API overview */
+
 [data-theme='dark'] .theme-doc-markdown pre {
   background: #111827;
   color: #e5e7eb;
@@ -2097,7 +2089,7 @@ details > div {
   color: #fbbf24;
 }
 
-/* Dark mode for tables in API overview */
+
 [data-theme='dark'] .theme-doc-markdown table {
   background: #1f2937;
   border: 1px solid #374151;
@@ -2118,16 +2110,16 @@ details > div {
   background: #374151;
 }
 
-/* Dark mode for blockquotes in API overview */
+
 [data-theme='dark'] .theme-doc-markdown blockquote {
   background: rgba(59, 130, 246, 0.1);
   border-left: 4px solid #3b82f6;
   color: #e5e7eb;
 }
 
-/* Remove custom dark mode tab styling to use default Docusaurus tabs */
 
-/* Dark mode for JSON syntax highlighting */
+
+
 [data-theme='dark'] .theme-doc-markdown pre code {
   color: #e5e7eb;
 }
@@ -2156,7 +2148,7 @@ details > div {
   color: #60a5fa;
 }
 
-/* Dark mode for bash syntax highlighting */
+
 [data-theme='dark'] .theme-doc-markdown pre code.language-bash {
   color: #e5e7eb;
 }
@@ -2173,7 +2165,7 @@ details > div {
   color: #60a5fa;
 }
 
-/* Dark mode for curl commands */
+
 [data-theme='dark'] .theme-doc-markdown pre code.language-bash .token.operator {
   color: #f87171;
 }
@@ -2182,7 +2174,7 @@ details > div {
   color: #6b7280;
 }
 
-/* Dark mode for CodeSandbox */
+
 [data-theme='dark'] .unified-sandbox-container {
   background: #1f2937;
   border: 1px solid #374151;
@@ -2238,7 +2230,7 @@ details > div {
   color: #fbbf24 !important;
 }
 
-/* Dark mode for Sandpack components */
+
 [data-theme='dark'] .sandpack-code-viewer {
   background: #111827 !important;
 }
@@ -2272,7 +2264,7 @@ details > div {
   border-color: #374151 !important;
 }
 
-/* Dark mode for syntax highlighting in sandbox */
+
 [data-theme='dark'] .sandpack-code-viewer .cm-token {
   color: #e5e7eb !important;
 }
@@ -2305,7 +2297,7 @@ details > div {
   color: #60a5fa !important;
 }
 
-/* Light mode for CodeSandbox */
+
 [data-theme='light'] .unified-sandbox-container {
   background: #ffffff;
   border: 1px solid #e1e5e9;
@@ -2361,7 +2353,7 @@ details > div {
   color: #856404 !important;
 }
 
-/* Light mode for Sandpack components */
+
 [data-theme='light'] .sandpack-code-viewer {
   background: #ffffff !important;
 }
@@ -2395,7 +2387,7 @@ details > div {
   border-color: #e1e5e9 !important;
 }
 
-/* Light mode for syntax highlighting in sandbox */
+
 [data-theme='light'] .sandpack-code-viewer .cm-token {
   color: #374151 !important;
 }
@@ -2428,7 +2420,7 @@ details > div {
   color: #2563eb !important;
 }
 
-/* Ensure sandbox is editable and has run button */
+
 .sandpack-layout {
   position: relative;
 }
@@ -2458,7 +2450,7 @@ details > div {
   background: #0089A8 !important;
 }
 
-/* Neutral hover colors for sandbox elements */
+
 .sandbox-header {
   transition: all 0.2s ease;
 }
@@ -2478,7 +2470,7 @@ details > div {
   color: white !important;
 }
 
-/* Ensure proper contrast for all text elements */
+
 [data-theme='light'] .sandbox-header h3,
 [data-theme='light'] .sandbox-header p {
   color: white !important;
@@ -2489,7 +2481,7 @@ details > div {
   color: white !important;
 }
 
-/* Ensure proper contrast for example info */
+
 [data-theme='light'] .example-info h4 {
   color: #00A2C7 !important;
   font-weight: 600 !important;
@@ -2510,7 +2502,7 @@ details > div {
   line-height: 1.4 !important;
 }
 
-/* Force full width tables - highest priority */
+
 .theme-doc-markdown table,
 .markdown table,
 article table,
@@ -2524,7 +2516,7 @@ div table {
   display: table !important;
 }
 
-/* Force table cells to expand */
+
 .theme-doc-markdown table th,
 .theme-doc-markdown table td,
 .markdown table th,
@@ -2542,7 +2534,7 @@ div table td {
   white-space: normal !important;
 }
 
-/* Override any container constraints */
+
 .theme-doc-markdown,
 .markdown,
 article,
@@ -2551,14 +2543,14 @@ div {
   max-width: none !important;
 }
 
-/* Specific override for error codes and lookup tables */
+
 details table {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 100% !important;
 }
 
-/* Nuclear option - override everything for tables */
+
 * table {
   width: 100% !important;
   max-width: 100% !important;
@@ -2573,22 +2565,22 @@ details table {
   min-width: auto !important;
 }
 
-/* API Method Colors and Dark Mode Readability */
-/* GET method - Green */
+
+
 strong:contains("GET"),
 strong:has-text("GET"),
 details strong:first-child:contains("GET") {
   color: #10B981 !important;
 }
 
-/* POST method - Pink/Red */
+
 strong:contains("POST"),
 strong:has-text("POST"),
 details strong:first-child:contains("POST") {
   color: #EC4899 !important;
 }
 
-/* Dark mode specific API method colors */
+
 [data-theme='dark'] strong:contains("GET"),
 [data-theme='dark'] strong:has-text("GET"),
 [data-theme='dark'] details strong:first-child:contains("GET") {
@@ -2601,7 +2593,7 @@ details strong:first-child:contains("POST") {
   color: #F472B6 !important;
 }
 
-/* Alternative approach using attribute selectors */
+
 strong[style*="font-weight: bold"]:contains("GET"),
 strong[style*="font-weight: bold"]:has-text("GET") {
   color: #10B981 !important;
@@ -2622,42 +2614,42 @@ strong[style*="font-weight: bold"]:has-text("POST") {
   color: #F472B6 !important;
 }
 
-/* Direct targeting of API method text */
+
 details li strong:first-child {
   font-weight: 600 !important;
 }
 
-/* GET methods */
+
 details li:contains("GET") strong:first-child,
 details li strong:first-child:contains("GET") {
   color: #10B981 !important;
 }
 
-/* POST methods */
+
 details li:contains("POST") strong:first-child,
 details li strong:first-child:contains("POST") {
   color: #EC4899 !important;
 }
 
-/* Dark mode GET methods */
+
 [data-theme='dark'] details li:contains("GET") strong:first-child,
 [data-theme='dark'] details li strong:first-child:contains("GET") {
   color: #34D399 !important;
 }
 
-/* Dark mode POST methods */
+
 [data-theme='dark'] details li:contains("POST") strong:first-child,
 [data-theme='dark'] details li strong:first-child:contains("POST") {
   color: #F472B6 !important;
 }
 
-/* More reliable API method styling */
-/* Target all strong elements that contain GET or POST */
+
+
 strong {
   font-weight: 600 !important;
 }
 
-/* Light mode colors */
+
 strong:contains("GET") {
   color: #10B981 !important;
 }
@@ -2666,7 +2658,7 @@ strong:contains("POST") {
   color: #EC4899 !important;
 }
 
-/* Dark mode colors */
+
 [data-theme='dark'] strong:contains("GET") {
   color: #34D399 !important;
 }
@@ -2675,33 +2667,33 @@ strong:contains("POST") {
   color: #F472B6 !important;
 }
 
-/* Alternative approach - target by content */
+
 details li strong:first-of-type {
   font-weight: 600 !important;
 }
 
-/* GET methods in light mode */
+
 details li strong:first-of-type:contains("GET") {
   color: #10B981 !important;
 }
 
-/* POST methods in light mode */
+
 details li strong:first-of-type:contains("POST") {
   color: #EC4899 !important;
 }
 
-/* GET methods in dark mode */
+
 [data-theme='dark'] details li strong:first-of-type:contains("GET") {
   color: #34D399 !important;
 }
 
-/* POST methods in dark mode */
+
 [data-theme='dark'] details li strong:first-of-type:contains("POST") {
   color: #F472B6 !important;
 }
 
-/* Most reliable approach - target by position and content pattern */
-/* API method styling for better readability */
+
+
 details li strong:first-child {
   font-weight: 600 !important;
   padding: 0.25rem 0.5rem !important;
@@ -2710,35 +2702,35 @@ details li strong:first-child {
   letter-spacing: 0.025em !important;
 }
 
-/* GET methods - Green */
+
 details li strong:first-child:contains("GET") {
   background-color: rgba(16, 185, 129, 0.1) !important;
   color: #10B981 !important;
   border: 1px solid rgba(16, 185, 129, 0.2) !important;
 }
 
-/* POST methods - Pink/Red */
+
 details li strong:first-child:contains("POST") {
   background-color: rgba(236, 72, 153, 0.1) !important;
   color: #EC4899 !important;
   border: 1px solid rgba(236, 72, 153, 0.2) !important;
 }
 
-/* Dark mode GET methods - Brighter Green */
+
 [data-theme='dark'] details li strong:first-child:contains("GET") {
   background-color: rgba(52, 211, 153, 0.15) !important;
   color: #34D399 !important;
   border: 1px solid rgba(52, 211, 153, 0.3) !important;
 }
 
-/* Dark mode POST methods - Brighter Pink */
+
 [data-theme='dark'] details li strong:first-child:contains("POST") {
   background-color: rgba(244, 114, 182, 0.15) !important;
   color: #F472B6 !important;
   border: 1px solid rgba(244, 114, 182, 0.3) !important;
 }
 
-/* Fix homepage title readability */
+
 .hero__title {
   color: #ffffff !important;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
@@ -2749,243 +2741,102 @@ details li strong:first-child:contains("POST") {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Remove all navbar spacing overrides - let it be natural */
 
-/* Mobile and Tablet Responsive Design */
-/* Ensure navbar is responsive and clickable on all devices */
 
-/* Tablet styles (768px - 1024px) */
+
+
+
+
+@media screen and (max-width: 1200px) {
+  
+  article [class*="row"] [class*="col"],
+  .markdown [class*="row"] [class*="col"],
+  .theme-doc-markdown [class*="row"] [class*="col"] {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+
+@media screen and (max-width: 996px) and (min-width: 769px) {
+  article [class*="row"] [class*="col"],
+  .markdown [class*="row"] [class*="col"],
+  .theme-doc-markdown [class*="row"] [class*="col"] {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 1rem !important;
+  }
+}
+
+
+@media screen and (max-width: 1200px) and (min-width: 997px) {
+  
+  .theme-doc-markdown .row .col,
+  .theme-doc-markdown .row .col.col--4,
+  .theme-doc-markdown .row .col.col--3,
+  .theme-doc-markdown .row .col.col--6,
+  .markdown .row .col,
+  .markdown .row .col.col--4,
+  .markdown .row .col.col--3,
+  .markdown .row .col.col--6,
+  div.row .col,
+  div.row .col.col--4,
+  div.row .col.col--3,
+  div.row .col.col--6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .feature-card {
+    padding: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.3rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .feature-card .button {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 0.75rem 1rem !important;
+  }
+}
+
+
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   .navbar__brand {
     font-size: 1.1rem !important;
   }
 }
 
-/* Mobile styles (up to 768px) */
-@media screen and (max-width: 768px) {
-  /* Hide desktop navbar items on mobile */
-  .navbar__items--left {
-    display: none !important;
-  }
-  
-  .navbar__items--right {
-    display: none !important;
-  }
-  
-  /* Show mobile toggle */
-  .navbar__toggle {
-    display: block !important;
-  }
-  
-  /* Ensure brand is visible */
-  .navbar__brand {
-    font-size: 1rem !important;
-  }
-}
 
-/* Small mobile styles (up to 480px) */
-@media screen and (max-width: 480px) {
-  .navbar__brand {
-    font-size: 0.9rem !important;
-  }
-  
-  .navbar__toggle {
-    padding: 0.4rem !important;
-  }
-  
-  .navbar-sidebar__item {
-    padding: 0.5rem 0.75rem !important;
-  }
-  
-  .navbar-sidebar__link {
-    font-size: 0.9rem !important;
-  }
-  
-  .navbar-sidebar {
-    width: 100vw !important;
-    max-width: 100vw !important;
-  }
-}
 
-/* Let Docusaurus handle mobile navigation natively */
 
-/* Mobile sidebar improvements */
-@media screen and (max-width: 768px) {
-  /* Hide desktop sidebar on mobile */
-  .theme-doc-sidebar-container {
-    display: none !important;
-  }
-  
-  /* Ensure main content takes full width on mobile */
-  .theme-doc-markdown {
-    padding: 1rem !important;
-    max-width: 100% !important;
-  }
-  
-  /* Improve mobile content readability */
-  .theme-doc-markdown h1 {
-    font-size: 1.75rem !important;
-    margin-top: 1rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-  
-  .theme-doc-markdown h2 {
-    font-size: 1.5rem !important;
-    margin-top: 1rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  
-  .theme-doc-markdown h3 {
-    font-size: 1.25rem !important;
-    margin-top: 0.75rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  
-  /* Improve mobile table readability */
-  .theme-doc-markdown table {
-    font-size: 0.85rem !important;
-    margin: 0.5rem 0 !important;
-  }
-  
-  .theme-doc-markdown th,
-  .theme-doc-markdown td {
-    padding: 0.5rem 0.25rem !important;
-    word-break: break-word !important;
-  }
-  
-  /* Improve mobile code blocks */
-  .theme-doc-markdown pre {
-    font-size: 0.8rem !important;
-    padding: 0.75rem !important;
-    margin: 0.5rem 0 !important;
-    overflow-x: auto !important;
-  }
-  
-  /* Improve mobile navigation toggle */
-  .navbar__toggle {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 4px !important;
-    transition: background-color 0.2s ease !important;
-    background: transparent !important;
-    border: none !important;
-    color: inherit !important;
-    cursor: pointer !important;
-  }
-  
-  .navbar__toggle:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-  }
-  
-  /* Hamburger menu icon styling */
-  .navbar__toggle .navbar__toggle-icon {
-    width: 20px !important;
-    height: 2px !important;
-    background: currentColor !important;
-    position: relative !important;
-    transition: all 0.3s ease !important;
-  }
-  
-  .navbar__toggle .navbar__toggle-icon::before,
-  .navbar__toggle .navbar__toggle-icon::after {
-    content: '' !important;
-    position: absolute !important;
-    width: 20px !important;
-    height: 2px !important;
-    background: currentColor !important;
-    transition: all 0.3s ease !important;
-  }
-  
-  .navbar__toggle .navbar__toggle-icon::before {
-    top: -6px !important;
-  }
-  
-  .navbar__toggle .navbar__toggle-icon::after {
-    bottom: -6px !important;
-  }
-  
-  /* Animated hamburger menu */
-  .navbar__toggle--active .navbar__toggle-icon {
-    background: transparent !important;
-  }
-  
-  .navbar__toggle--active .navbar__toggle-icon::before {
-    transform: rotate(45deg) !important;
-    top: 0 !important;
-  }
-  
-  .navbar__toggle--active .navbar__toggle-icon::after {
-    transform: rotate(-45deg) !important;
-    bottom: 0 !important;
-  }
-  
-  /* Ensure mobile navigation is properly positioned */
-  .navbar-sidebar {
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  /* Improve mobile navigation item contrast */
-  .navbar-sidebar__link {
-    color: var(--ifm-color-emphasis-900) !important;
-  }
-  
-  [data-theme='dark'] .navbar-sidebar__link {
-    color: var(--ifm-color-emphasis-100) !important;
-  }
-  
-  .navbar-sidebar__link:hover {
-    color: var(--ifm-color-primary) !important;
-  }
-  
-  .navbar-sidebar__link--active {
-    color: var(--ifm-color-primary) !important;
-  }
-}
 
-/* Ensure all interactive elements are clickable */
-.navbar__link,
-.navbar__brand,
-.navbar__toggle,
-.navbar-sidebar__link,
-button,
-a {
-  cursor: pointer !important;
-  -webkit-tap-highlight-color: rgba(0, 162, 199, 0.2) !important;
-  touch-action: manipulation !important;
-}
 
-/* Improve touch targets for mobile */
-@media (pointer: coarse) {
-  .navbar__link,
-  .navbar-sidebar__link,
-  button,
-  a {
-    min-height: 44px !important;
-    min-width: 44px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-}
 
-/* Simple mobile improvements */
-@media screen and (max-width: 768px) {
-  /* Hide desktop sidebar on mobile */
-  .theme-doc-sidebar-container {
-    display: none !important;
-  }
-  
-  /* Ensure main content takes full width on mobile */
-  .theme-doc-markdown {
-    padding: 1rem !important;
-    max-width: 100% !important;
-  }
-}
 
-/* Ensure gradient text is readable */
+
 .gradient-text {
   background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%) !important;
   -webkit-background-clip: text !important;
@@ -3002,7 +2853,7 @@ a {
   text-shadow: none !important;
 }
 
-/* Checklist styling - Green checkboxes only */
+
 .theme-doc-markdown input[type="checkbox"]:checked {
   accent-color: #10B981 !important;
   background-color: #10B981 !important;
@@ -3010,7 +2861,7 @@ a {
   color: #10B981 !important;
 }
 
-/* Dark mode checklist styling */
+
 [data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked {
   accent-color: #34D399 !important;
   background-color: #34D399 !important;
@@ -3018,7 +2869,7 @@ a {
   color: #34D399 !important;
 }
 
-/* Force green color for checked checkboxes */
+
 .theme-doc-markdown input[type="checkbox"][checked] {
   accent-color: #10B981 !important;
   background-color: #10B981 !important;
@@ -3033,7 +2884,7 @@ a {
   color: #34D399 !important;
 }
 
-/* Ensure text color remains normal */
+
 .theme-doc-markdown li:has(input[type="checkbox"]:checked) {
   color: inherit !important;
 }
@@ -3042,7 +2893,7 @@ a {
   color: inherit !important;
 }
 
-/* Force green checkboxes with higher specificity */
+
 .theme-doc-markdown input[type="checkbox"]:checked,
 .theme-doc-markdown input[type="checkbox"][checked],
 .theme-doc-markdown li input[type="checkbox"]:checked,
@@ -3073,7 +2924,7 @@ a {
   font-weight: bold !important;
 }
 
-/* Dark mode */
+
 [data-theme='dark'] .theme-doc-markdown input[type="checkbox"]:checked,
 [data-theme='dark'] .theme-doc-markdown input[type="checkbox"][checked],
 [data-theme='dark'] .theme-doc-markdown li input[type="checkbox"]:checked,
@@ -3092,7 +2943,7 @@ a {
   color: white !important;
 }
 
-/* Global checkbox styling for all documentation */
+
 .theme-doc-markdown ul li,
 .theme-doc-markdown ol li {
   display: flex !important;
@@ -3107,7 +2958,7 @@ a {
   flex-shrink: 0 !important;
 }
 
-/* Ensure all checkboxes are green when checked */
+
 .theme-doc-markdown input[type="checkbox"]:checked,
 .theme-doc-markdown input[type="checkbox"][checked] {
   accent-color: #10B981 !important;
@@ -3124,7 +2975,7 @@ a {
   color: #34D399 !important;
 }
 
-/* API method classes for reliable styling */
+
 .api-method-get {
   background-color: rgba(16, 185, 129, 0.1) !important;
   color: #10B981 !important;
@@ -3147,7 +2998,7 @@ a {
   letter-spacing: 0.025em !important;
 }
 
-/* Dark mode API method classes */
+
 [data-theme='dark'] .api-method-get {
   background-color: rgba(52, 211, 153, 0.15) !important;
   color: #34D399 !important;
@@ -3158,4 +3009,542 @@ a {
   background-color: rgba(244, 114, 182, 0.15) !important;
   color: #F472B6 !important;
   border: 1px solid rgba(244, 114, 182, 0.3) !important;
+}
+
+
+@media screen and (max-width: 996px) and (min-width: 769px) {
+  
+  .theme-doc-markdown .row .col,
+  .theme-doc-markdown .row .col.col--4,
+  .theme-doc-markdown .row .col.col--3,
+  .markdown .row .col,
+  .markdown .row .col.col--4,
+  .markdown .row .col.col--3,
+  div.row .col,
+  div.row .col.col--4,
+  div.row .col.col--3 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  
+  .theme-doc-markdown .row .col.col--6,
+  .markdown .row .col.col--6,
+  div.row .col.col--6 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  
+  .theme-doc-markdown .row .col.col--8,
+  .theme-doc-markdown .row .col.col--12,
+  .markdown .row .col.col--8,
+  .markdown .row .col.col--12,
+  div.row .col.col--8,
+  div.row .col.col--12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+  }
+  
+  
+  .feature-card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.2rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  
+  .feature-card .button {
+    min-height: 44px !important;
+    padding: 0.75rem 1rem !important;
+    width: 100% !important;
+  }
+}
+
+
+@media screen and (max-width: 768px) and (min-width: 481px) {
+  
+  .theme-doc-markdown .row .col,
+  .theme-doc-markdown .row .col.col--4,
+  .theme-doc-markdown .row .col.col--3,
+  .theme-doc-markdown .row .col.col--6,
+  .theme-doc-markdown .row .col.col--8,
+  .theme-doc-markdown .row .col.col--12,
+  .markdown .row .col,
+  .markdown .row .col.col--4,
+  .markdown .row .col.col--3,
+  .markdown .row .col.col--6,
+  .markdown .row .col.col--8,
+  .markdown .row .col.col--12,
+  div.row .col,
+  div.row .col.col--4,
+  div.row .col.col--3,
+  div.row .col.col--6,
+  div.row .col.col--8,
+  div.row .col.col--12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+  }
+  
+  
+  .feature-card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.25rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .feature-card .button {
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 0.75rem 1rem !important;
+  }
+  
+  
+  .heroBanner .row .col.col--8,
+  .heroBanner .row .col.col--4 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .navbar__title {
+    display: none !important;
+  }
+  
+  
+  .theme-doc-markdown .row .col,
+  .theme-doc-markdown .row .col.col--4,
+  .theme-doc-markdown .row .col.col--3,
+  .theme-doc-markdown .row .col.col--6,
+  .theme-doc-markdown .row .col.col--8,
+  .theme-doc-markdown .row .col.col--12,
+  .markdown .row .col,
+  .markdown .row .col.col--4,
+  .markdown .row .col.col--3,
+  .markdown .row .col.col--6,
+  .markdown .row .col.col--8,
+  .markdown .row .col.col--12,
+  div.row .col,
+  div.row .col.col--4,
+  div.row .col.col--3,
+  div.row .col.col--6,
+  div.row .col.col--8,
+  div.row .col.col--12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+  }
+  
+  
+  .feature-card {
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 2rem !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+  }
+  
+  .feature-card p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+  }
+  
+  .feature-card .button {
+    width: 100% !important;
+    min-height: 50px !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+  }
+  
+  
+  .clean-btn[aria-label*="theme"],
+  .clean-btn[aria-label*="Theme"],
+  .clean-btn[aria-label*="light"],
+  .clean-btn[aria-label*="dark"] {
+    display: none !important;
+  }
+  
+  
+  .navbar__item.navbar__link[href="/docs/getting-started/welcome"],
+  .navbar__item.navbar__link[href="/docs/developers/overview"],
+  .navbar__item.navbar__link[href="/docs/api/builder/registration"],
+  .navbar__item.navbar__link[href="/docs/validators/overview"] {
+    display: none !important;
+  }
+  
+  
+  .navbar__toggle {
+    display: block !important;
+  }
+  
+  
+  .navbar-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(17, 25, 39, 0.98) !important;
+    backdrop-filter: blur(10px) !important;
+    z-index: 1000 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  
+  .navbar-sidebar .theme-doc-sidebar-container,
+  .navbar-sidebar .theme-doc-sidebar-menu,
+  .navbar-sidebar .navbar-sidebar__back {
+    display: none !important;
+  }
+  
+
+  
+  
+  .navbar-sidebar .theme-layout-navbar-sidebar-panel.navbar-sidebar__item.menu:first-of-type {
+    display: none !important;
+  }
+  
+  
+  .navbar-sidebar .navbar__item {
+    display: block !important;
+  }
+  
+  
+  .navbar-sidebar .menu__list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  
+  .navbar-sidebar .menu__link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.5rem 2rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    min-height: 60px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    pointer-events: auto !important; 
+    position: relative !important;
+    z-index: 1002 !important;
+  }
+  
+  .navbar-sidebar .menu__link:hover {
+    background: rgba(0, 162, 199, 0.3) !important;
+    border-color: rgba(0, 162, 199, 0.5) !important;
+    color: #00A2C7 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 162, 199, 0.2) !important;
+  }
+  
+  
+  .navbar-sidebar .navbar-sidebar__close {
+    position: absolute !important;
+    top: 2rem !important;
+    right: 2rem !important;
+    z-index: 1001 !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .navbar-sidebar .navbar-sidebar__close:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  
+  .navbar-sidebar .navbar-sidebar__items {
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 60% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 85% !important;
+    max-width: 320px !important;
+    gap: 1.5rem !important;
+    z-index: 1000 !important;
+  }
+  
+  
+  .navbar-sidebar .navbar-sidebar__item {
+    display: block !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  
+  
+  .navbar-sidebar .navbar-sidebar__link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.5rem 2rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+    min-height: 60px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 1001 !important;
+  }
+  
+  .navbar-sidebar .navbar-sidebar__link:hover,
+  .navbar-sidebar .navbar-sidebar__link:active,
+  .navbar-sidebar .navbar-sidebar__link:focus {
+    background: rgba(0, 162, 199, 0.3) !important;
+    border-color: rgba(0, 162, 199, 0.5) !important;
+    color: #00A2C7 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 162, 199, 0.2) !important;
+  }
+  
+  .navbar-sidebar .navbar-sidebar__link--active {
+    background: rgba(0, 162, 199, 0.3) !important;
+    border-color: #00A2C7 !important;
+    color: #00A2C7 !important;
+  }
+}
+
+
+.navbar__items--right {
+  position: relative;
+}
+
+.navbar__items--right::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  margin: 0 8px;
+  background-color: var(--ifm-color-emphasis-300);
+}
+
+
+.navbar__items--right .navbar__item:last-child {
+  position: relative;
+}
+
+
+@media screen and (max-width: 768px) {
+  .navbar__title {
+    display: none !important;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .navbar__title {
+    display: none !important;
+  }
+  
+  
+  .clean-btn[aria-label*="theme"],
+  .clean-btn[aria-label*="Theme"],
+  .clean-btn[aria-label*="light"],
+  .clean-btn[aria-label*="dark"],
+  .navbar__item:has(.clean-btn[aria-label*="theme"]),
+  .navbar__item:has(.clean-btn[aria-label*="Theme"]),
+  .navbar__item:has(.clean-btn[aria-label*="light"]),
+  .navbar__item:has(.clean-btn[aria-label*="dark"]) {
+    display: none !important;
+  }
+  
+  
+  .navbar__items--left .navbar__item {
+    display: none !important;
+  }
+  
+  
+  .navbar__toggle {
+    display: block !important;
+  }
+  
+  
+  .navbar-sidebar .navbar__item {
+    display: block !important;
+  }
+  
+  .navbar-sidebar .navbar__link {
+    display: block !important;
+    padding: 1rem 1.5rem !important;
+    color: white !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    margin: 0.5rem 0 !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  .navbar-sidebar .navbar__link:hover {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
+  }
+  
+  .navbar-sidebar .navbar__link--active {
+    background: rgba(0, 162, 199, 0.2) !important;
+    color: #00A2C7 !important;
+  }
+}
+
+.step-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-right: 0.75rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .step-circle {
+  background: var(--ifm-color-primary-light);
+  color: white;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content strong {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .step-content strong {
+  color: var(--ifm-color-primary-light);
+}
+
+/* Collapsible details arrow alignment */
+details > summary {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::marker {
+  display: none;
+}
+
+/* Remove the custom arrow we added */
+details > summary::before {
+  display: none;
+}
+
+/* Style the existing arrow to be closer to the text and properly colored */
+details > summary strong::before {
+  content: '▶ ';
+  color: var(--ifm-color-primary);
+  transition: transform 0.2s ease;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+details[open] > summary strong::before {
+  transform: rotate(90deg);
+}
+
+[data-theme='dark'] details > summary strong::before {
+  color: var(--ifm-color-primary-light);
 }

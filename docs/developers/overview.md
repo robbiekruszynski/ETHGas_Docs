@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Developer Overview
+# Overview
 
 <!-- :::info Role scope
 This page focuses on Developers. For Builders see [Builder Overview](/docs/api/builder/builders-sequencers). For Validators see [Validator Overview](/docs/validators/overview). For copy/paste‑ready code, see the API endpoints below.
@@ -58,7 +58,7 @@ ETHGas is a platform for trading Ethereum blockspace and acquiring preconfirmati
 | Path | Description | Link |
 |------|-------------|------|
 | **Getting Started** | Welcome guide and introduction | [Welcome Guide](/docs/getting-started/welcome) |
-| **Environments** | Set up TestNet and MainNet environments | [Environment Setup](/docs/getting-started/environments) |
+| **Environments** | Set up TestNet and MainNet environments | [Environment Setup](/docs/getting-started/connecting) |
 | **Connecting** | Connect to ETHGas platform | [Connection Guide](/docs/getting-started/connecting) |
 | **API Overview** | Complete API documentation | [API Documentation](/docs/api/overview) |
 | **WebSocket Overview** | Real-time WebSocket API docs | [WebSocket Documentation](/docs/websocket/overview) |

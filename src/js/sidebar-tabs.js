@@ -1,9 +1,6 @@
-// Sidebar tab-like behavior
 document.addEventListener('DOMContentLoaded', function() {
-  // Store the current active category
   let currentActiveCategory = null;
 
-  // Function to collapse all categories
   function collapseAllCategories() {
     const categories = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1');
     categories.forEach(category => {
@@ -12,12 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Function to expand only one category
   function expandOnlyCategory(categoryName) {
-    // First collapse all categories
     collapseAllCategories();
     
-    // Find and expand the target category
     const categories = document.querySelectorAll('.theme-doc-sidebar-item-category-level-1');
     categories.forEach(category => {
       const categoryLabel = category.querySelector('.theme-doc-sidebar-item-category-label');
@@ -26,13 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
         category.classList.add('theme-doc-sidebar-item-category-level-1--active');
         currentActiveCategory = categoryName;
         
-        // Store in session storage
         sessionStorage.setItem('activeSidebarCategory', categoryName);
       }
     });
   }
 
-  // Function to get category name for a given path
   function getCategoryForPath(path) {
     if (path.includes('/docs/validators/') || path.includes('validators')) {
       return 'For Validators';
@@ -48,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     return null;
   }
 
-  // Handle navbar link clicks with aggressive collapse
   function handleNavbarClick(href) {
     let targetCategory = null;
     
@@ -65,14 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (targetCategory) {
-      // Use a longer delay to ensure Docusaurus has finished its navigation
       setTimeout(() => {
         expandOnlyCategory(targetCategory);
       }, 300);
     }
   }
 
-  // Add click listeners to navbar links
   const navbarLinks = document.querySelectorAll('.navbar__item a, .navbar__link');
   navbarLinks.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -83,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Handle browser back/forward navigation
   window.addEventListener('popstate', function() {
     const currentPath = window.location.pathname;
     const targetCategory = getCategoryForPath(currentPath);
@@ -94,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Initialize on page load
   setTimeout(() => {
     const currentPath = window.location.pathname;
     const targetCategory = getCategoryForPath(currentPath);
@@ -102,6 +89,4 @@ document.addEventListener('DOMContentLoaded', function() {
       expandOnlyCategory(targetCategory);
     }
   }, 100);
-
-  // Remove custom network tabs functionality to use default Docusaurus tabs
 }); 

@@ -9,9 +9,6 @@ import TabItem from '@theme/TabItem';
 
 This guide provides step-by-step instructions for setting up a builder with ETHGas using the official builder scripts repository.
 
-:::info
-The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
-:::
 
  ## Repository Overview
 The [ETHGas Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts) repository contains everything needed to onboard your BLS public keys to the ETHGas Exchange. This repository is essential for builders who want to participate in the ETHGas ecosystem.
@@ -40,6 +37,10 @@ Before setting up your builder, ensure you have:
 - [x] **EOA Signing Key**: Your registered or to-be-registered account on ETHGas Exchange
 - [x] **Entity Information**: Your company/entity name for registration
 - [x] **Network Access**: Ability to connect to ETHGas APIs
+
+:::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
 
 ## Quick Start
 
@@ -237,19 +238,13 @@ When `ENABLE_REGISTRATION=true`:
 <details>
 <summary style={{listStyle: 'none'}}>Manual registration process for builder public keys</summary>
 
-#### Code Sample
+#### Code Example::
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X POST "https://mainnet.app.ethgas.com/api/v1/builder/register" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <your-auth-token>" \
-  -d '{
-    "publicKeys": "0x1234567890abcdef1234567890abcdef12345678,0xabcdef1234567890abcdef1234567890abcdef12345678",
-    "signatures": "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890,0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-  }'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
 ```
 
 </TabItem>
@@ -549,7 +544,7 @@ The Market Lists API provides endpoints for retrieving market information and da
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve whole block markets</summary>
 
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -659,7 +654,7 @@ print(response.text)
 <summary style={{listStyle: 'none'}}>Retrieve active preconf markets</summary>
 
 
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -798,7 +793,7 @@ The Slot Bundles API provides endpoints for managing and querying bundle informa
 
 <summary style={{listStyle: 'none'}}>Retrieve bundles for a specific slot</summary>
 
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -906,7 +901,7 @@ print(response.text)
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve the bundles submitted for a given slot for your inclusion preconf account.</summary>
-#### Code Example
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -1017,8 +1012,9 @@ print(response.text)
 <!-- ### GET /api/v1/slot/forceEmptyBlockSpace
 
 <details>
-#### Code Example
 <summary style={{listStyle: 'none'}}>Preconf owner set unused inclusion preconf gas to be empty for a given slot.</summary>
+
+#### Code Example:
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
@@ -1077,9 +1073,9 @@ print(response.text)
 <!-- ### GET /api/v1/p/slot/txs/hash
 
 <details>
-#### Code Example
-
 <summary style={{listStyle: 'none'}}>Retrieve transaction hash information for a specific slot</summary>
+
+#### Code Example:
 
 <Tabs>
 

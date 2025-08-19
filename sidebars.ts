@@ -7,13 +7,12 @@ const sidebars: SidebarsConfig = {
       label: 'Overview',
       items: [
         'getting-started/welcome',
-        'getting-started/environments',
         'getting-started/connecting',
       ],
     },
     {
       type: 'category',
-      label: 'For Developers',
+      label: 'Developers',
       items: [
         'developers/overview',
         'api/overview',
@@ -31,7 +30,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'For Validators',
+      label: 'Validators',
       items: [
         'validators/overview',
         {
@@ -56,7 +55,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'For Builders',
+      label: 'Builders',
       items: [
         {
           type: 'doc',

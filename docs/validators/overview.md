@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Validator Overview
+# Overview
 
 <!-- :::info Role scope
 This page focuses on Validators. For Developers see `/docs/developers/overview`. For Builders see `/docs/api/builder/builders-sequencers`. For copy/paste‑ready code, see the API endpoints below.
@@ -41,7 +41,7 @@ Validators earn from:
 
 <div className="row">
   <div className="col col--4">
-    <div className="feature-card">
+    <div className="feature-card" style={{ textAlign: 'left' }}>
       <h3>1. Setup Environment</h3>
       <p>Configure your validator environment with the ETHGas Commit Boost module.</p>
       <a href="/docs/validators/setup" className="button button--outline button--sm">
@@ -50,7 +50,7 @@ Validators earn from:
     </div>
   </div>
   <div className="col col--4">
-    <div className="feature-card">
+    <div className="feature-card" style={{ textAlign: 'left' }}>
       <h3>2. Register Validators</h3>
       <p>Register your validator public keys with ETHGas Exchange.</p>
       <a href="/docs/validators/registration" className="button button--outline button--sm">
@@ -59,7 +59,7 @@ Validators earn from:
     </div>
   </div>
   <div className="col col--4">
-    <div className="feature-card">
+    <div className="feature-card" style={{ textAlign: 'left' }}>
       <h3>3. Deposit Collateral</h3>
       <p>Deposit ETH as collateral to secure preconfirmation commitments.</p>
       <a href="/docs/validators/deposits" className="button button--outline button--sm">

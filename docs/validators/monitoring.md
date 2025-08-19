@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Validator Monitoring
+# Monitoring
 
 Monitor validator performance and health.
 

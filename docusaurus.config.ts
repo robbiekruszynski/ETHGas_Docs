@@ -25,7 +25,6 @@ const config: Config = {
     locales: ['en'],
   },
 
-  // Add Google Fonts for better typography
   scripts: [
     {
       src: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap',
@@ -35,6 +34,9 @@ const config: Config = {
       src: '/js/sidebar-tabs.js',
       type: 'text/javascript',
     },
+
+
+
   ],
 
   presets: [
@@ -69,17 +71,11 @@ const config: Config = {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'ETHGas Docs',
-      logo: {
-        alt: 'ETHGas Logo',
-        src: 'img/ETHGas_logo.png',
-        srcDark: 'img/ETHGas_logo.png',
-      },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
+          to: '/docs/getting-started/welcome',
           label: 'Overview',
+          position: 'left',
         },
         {
           to: '/docs/developers/overview',
@@ -96,8 +92,23 @@ const config: Config = {
           label: 'Validators',
           position: 'left',
         },
+        {
+          type: 'search',
+          position: 'right',
+        },
       ],
+      hideOnScroll: false,
     },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
+    mobileNavbar: {
+      show: true,
+    },
+    mobileSidebarCollapsible: true,
     footer: {
       style: 'dark',
       links: [
@@ -156,7 +167,6 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['bash', 'json', 'typescript'],
     },
-    // Add color mode toggle
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
