@@ -32,7 +32,7 @@ import TabItem from '@theme/TabItem';
 
 | Contract Address |
 |------------------|
-| <code style={{ fontSize: '1rem' }}>`0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`</code> |
+| <code style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>`0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`</code> |
 
 <!-- **Recommendation**: Deposit collateral via the [ETHGas TestNet](https://testnet.ethgas.com) -->
 
@@ -41,7 +41,7 @@ import TabItem from '@theme/TabItem';
 
 | Contract Address |
 |------------------|
-| <code style={{ fontSize: '1rem' }}>`0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`</code> |
+| <code style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>`0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`</code> |
 
 <!-- **Recommendation**: Deposit collateral via the [ETHGas website](https://ethgas.com) -->
 
@@ -56,27 +56,35 @@ import TabItem from '@theme/TabItem';
 <TabItem value="testnet-relays" label="TestNet Relays" default>
 
 **Hoodi Relay**:
+<code style={{ color: 'var(--ifm-color-primary)' }}>
 ```
 https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com
 ```
+</code>
 
 </TabItem>
 <TabItem value="mainnet-relays" label="MainNet Relays">
 
 **Tokyo Relay**:
+<code style={{ color: 'var(--ifm-color-primary)' }}>
 ```
 https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com
 ```
+</code>
 
 **Frankfurt Relay**:
+<code style={{ color: 'var(--ifm-color-primary)' }}>
 ```
 https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com
 ```
+</code>
 
 **Virginia Relay**:
+<code style={{ color: 'var(--ifm-color-primary)' }}>
 ```
 https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com
 ```
+</code>
 
 </TabItem>
 </Tabs>

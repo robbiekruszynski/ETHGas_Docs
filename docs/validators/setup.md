@@ -50,10 +50,13 @@ nano .env
 ```
 
 **Key Configuration Variables:**
-- `ETHGAS_API_URL`: API endpoint URL
-- `ETHGAS_WS_URL`: WebSocket endpoint URL
-- `VALIDATOR_KEYS`: Your validator keys
-- `NETWORK`: MainNet or TestNet selection
+
+| Variable | Description |
+|----------|-------------|
+| `ETHGAS_API_URL` | API endpoint URL |
+| `ETHGAS_WS_URL` | WebSocket endpoint URL |
+| `VALIDATOR_KEYS` | Your validator keys |
+| `NETWORK` | MainNet or TestNet selection |
 
 ### 3. Consensus Client Selection
 
@@ -125,7 +128,7 @@ See the API endpoints below for complete monitoring and management capabilities.
 
 ### Getting Help
 
-- **Documentation**: This documentation
+<!-- - **Documentation**: This documentation -->
 - **GitHub Issues**: [Repository Issues](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module/issues)
 - **Community**: [ETHGas Community](/docs/community)
 
@@ -135,9 +138,9 @@ See the API endpoints below for complete monitoring and management capabilities.
 
 | Resource | URL | Description |
 |----------|-----|-------------|
-| **ETHGas Platform** | https://www.ethgas.com/ | Main platform website |
+| **ETHGas Platform** | https://app.ethgas.com/my-portfolio/accounts | Main platform website |
 | **TestNet** | https://testnet.ethgas.com/ | Test environment |
-| **Technical Integration** | https://docs.ethgas.com/technical-integration | Technical documentation |
+| **Technical Integration** | [Infrastructure Documentation](/docs/getting-started/connecting#infrastructure) | Technical documentation |
 | **API Reference** | This documentation | Complete API documentation |
 
 ### Next Steps
