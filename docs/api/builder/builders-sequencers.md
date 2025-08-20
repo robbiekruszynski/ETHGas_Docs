@@ -70,7 +70,7 @@ ETHGas provides infrastructure for block builders and sequencers to participate 
 
 <div className="api-endpoints-grid">
 
-### POST /api/v1/builder/register
+### POST /v1/builder/register
 
 <details>
 <summary style={{listStyle: 'none'}}>Register builder public keys with the ETHGas platform</summary>
@@ -79,7 +79,7 @@ ETHGas provides infrastructure for block builders and sequencers to participate 
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
 ```
 
 </TabItem>
@@ -164,7 +164,7 @@ print(response.text)
 
 
 
-### GET /api/v1/builder/signingMessage
+### GET /v1/builder/signingMessage
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve the message that needs to be signed by the builder's private key for registration verification</summary>
@@ -175,7 +175,7 @@ print(response.text)
 
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/signingMessage
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/signingMessage
 ```
 
 </TabItem>
@@ -225,7 +225,7 @@ print(response.text)
 
 </details>
 
-### POST /api/v1/builder/deregister
+### POST /v1/builder/deregister
 
 <details>
 <summary style={{listStyle: 'none'}}>Builder deregistering their public keys</summary>
@@ -235,7 +235,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/validator/deregister?publicKey=0x123423qtdgasdg...
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/deregister?publicKey=0x123423qtdgasdg...
 ```
 
 </TabItem>
@@ -292,7 +292,7 @@ print(response.text)
 
 </details>
 
-### GET /api/v1/p/builders
+### GET /v1/p/builders
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
@@ -302,7 +302,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-GET /api/v1/p/builders
+GET /v1/p/builders
 ```
 
 #### Response Example
@@ -384,7 +384,7 @@ print(response.text)
 
 </details>
 
-### GET /api/v1/user/builder
+### GET /v1/user/builder
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
@@ -393,7 +393,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-GET /api/v1/user/builder
+GET /v1/user/builder
 ```
 
 </TabItem>
@@ -440,7 +440,7 @@ print(response.text)
 
 </details>
 
-### POST /api/v1/user/delegate/builder
+### POST /v1/user/delegate/builder
 
 <details>
 <summary style={{listStyle: 'none'}}>Delegate or revoke delegation of builder keys by supplying either a comma-separated list of BLS public keys or a builder name (which applies to all keys under that builder)</summary>
@@ -450,7 +450,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/delegate/builder?publicKeys=0x12345...,0x2df345...&enable=true
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/delegate/builder?publicKeys=0x12345...,0x2df345...&enable=true
 ```
 
 </TabItem>
@@ -509,7 +509,7 @@ Note: User needs to delegate a new builder 2 seconds before the market close in 
 
 </details>
 
-### GET /api/v1/user/delegate/builder
+### GET /v1/user/delegate/builder
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve information about the current user's builder delegation settings</summary>
@@ -518,7 +518,7 @@ Note: User needs to delegate a new builder 2 seconds before the market close in 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/delegate/builder
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/delegate/builder
 ```
 
 </TabItem>
@@ -568,7 +568,7 @@ print(response.text)
 
 </details>
 
-### GET /api/v1/p/builder/\{slot\}
+### GET /v1/p/builder/\{slot\}
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve information about the builder assigned to a specific slot</summary>
@@ -578,7 +578,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-GET /api/v1/p/builder/123
+GET /v1/p/builder/123
 ```
 
 </TabItem>
@@ -634,7 +634,7 @@ print(response.text)
 
 </details>
 
-### GET /api/v1/builder/delegation
+### GET /v1/builder/delegation
 
 <details>
 <summary style={{listStyle: 'none'}}>Retrieve comprehensive information about builder delegations and relationships</summary>

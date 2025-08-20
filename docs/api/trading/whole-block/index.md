@@ -8,14 +8,14 @@ Whole-block trading endpoints as defined in the official API.
 
 ## Endpoints
 
-- POST `/api/v1/wholeblock/order`
-- POST `/api/v1/wholeblock/cancel-all-orders`
-- POST `/api/v1/wholeblock/cancel-batch-orders`
-- POST `/api/v1/wholeblock/cancel-order`
-- GET `/api/v1/user/wholeblock/all-orders`
-- GET `/api/v1/user/wholeblock/orders`
-- GET `/api/v1/user/wholeblock/positions`
-- GET `/api/v1/user/wholeblock/txs`
+- POST `/v1/wholeblock/order`
+- POST `/v1/wholeblock/cancel-all-orders`
+- POST `/v1/wholeblock/cancel-batch-orders`
+- POST `/v1/wholeblock/cancel-order`
+- GET `/v1/user/wholeblock/all-orders`
+- GET `/v1/user/wholeblock/orders`
+- GET `/v1/user/wholeblock/positions`
+- GET `/v1/user/wholeblock/txs`
 
 ## Authorization Header
 
@@ -29,4 +29,4 @@ For copy/paste‑ready examples (HTTP/Python), use the official API reference:
 
 ## Related
 
-- Markets (Whole Block): see public markets endpoints in the official API: `/api/v1/p/wholeblock/*` 
+- Markets (Whole Block): see public markets endpoints in the official API: `/v1/p/wholeblock/*` 

@@ -36,10 +36,10 @@ sequenceDiagram
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| **POST** | `/api/v1/user/login` | Authenticate and obtain access/refresh tokens |
-| **POST** | `/api/v1/user/login/verify` | Verify login and complete authentication |
-| **POST** | `/api/v1/user/login/refresh` | Refresh expired access tokens |
-| **POST** | `/api/v1/user/logout` | Invalidate session and clear tokens |
+| **POST** | `/v1/user/login` | Authenticate and obtain access/refresh tokens |
+| **POST** | `/v1/user/login/verify` | Verify login and complete authentication |
+| **POST** | `/v1/user/login/refresh` | Refresh expired access tokens |
+| **POST** | `/v1/user/logout` | Invalidate session and clear tokens |
 
 For copy/paste‑ready HTTP/Python examples, see the detailed API endpoints below.
 

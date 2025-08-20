@@ -81,7 +81,9 @@ ETHGas provides multiple environments for development, testing, and production u
       alignItems: 'center',
       gap: '0.5rem'
     }}>
-      🔓 Public Endpoints: <code>/api/v1/p</code>
+      🔓 Public Endpoints: <code>/v1/p</code>
+      <!-- 🔓 Public Endpoints: <code>/api/v1/p</code> -->
+      
     </h3>
     <p style={{ margin: '0', lineHeight: '1.6' }}>
       These endpoints provide access to market data, order book snapshots, trade history, and more; information that is available to all users. These endpoints are <strong>open and do not require authentication</strong>, allowing developers to retrieve real-time market data for analysis or display purposes.
@@ -103,13 +105,18 @@ ETHGas provides multiple environments for development, testing, and production u
       alignItems: 'center',
       gap: '0.5rem'
     }}>
-      🔒 Private Endpoints: <code>/api/v1</code>
+      <!-- 🔒 Private Endpoints: <code>/api/v1</code> -->
+      🔒 Private Endpoints: <code>/v1</code>
+
     </h3>
     <p style={{ margin: '0', lineHeight: '1.6' }}>
       These endpoints <strong>require authentication</strong> and provide access to account-specific information and trading functionality.
     </p>
   </div>
 </div>
+:::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
 
 <Tabs>
 <TabItem value="general" label="General" default>
@@ -125,26 +132,26 @@ Endpoints are divided into **two distinct categories**:
 
 #### Authentication Workflow
 
-For interacting with `/api/v1` endpoints, a login is required. The login workflow is as follows:
+For interacting with `/v1` endpoints, a login is required. The login workflow is as follows:
 
 <div className="step-item">
   <div className="step-circle">1</div>
   <div className="step-content">
-    <strong>Get Login Message</strong>: Call the endpoint `/api/v1/user/login` with the appropriate `addr` to get the login sign message.
+    <strong>Get Login Message</strong>: Call the endpoint `/v1/user/login` with the appropriate `addr` to get the login sign message.
   </div>
 </div>
 
 <div className="step-item">
   <div className="step-circle">2</div>
   <div className="step-content">
-    <strong>Sign and Verify</strong>: Sign the login message and call the endpoint `/api/v1/user/login/verify` with the `addr`, `nonceHash`, and `signature`. You will receive the JWT access token, as well as user-related data, and can now call any private endpoints.
+    <strong>Sign and Verify</strong>: Sign the login message and call the endpoint `/v1/user/login/verify` with the `addr`, `nonceHash`, and `signature`. You will receive the JWT access token, as well as user-related data, and can now call any private endpoints.
   </div>
 </div>
 
 <div className="step-item">
   <div className="step-circle">3</div>
   <div className="step-content">
-    <strong>Refresh Token</strong>: Before the access token expires, call `/api/v1/user/login/refresh` to get a new access token.
+    <strong>Refresh Token</strong>: Before the access token expires, call `/v1/user/login/refresh` to get a new access token.
   </div>
 </div>
 
@@ -374,7 +381,7 @@ First, authenticate with your credentials to get the EIP712 message for signing.
 <TabItem value="http" label="HTTP" default>
 Example Code:
 ```bash
-curl -X POST /api/v1/user/login?addr=0x8F02425B5f3c522b7EF8EA124162645F0397c478&name=username
+curl -X POST /v1/user/login?addr=0x8F02425B5f3c522b7EF8EA124162645F0397c478&name=username
 ```
 
 </TabItem>
@@ -431,7 +438,7 @@ print(response.text)
 
 **Usage:**
 
-Get the response from `/api/v1/user/login` and sign the `eip712Message` and send the signed message through `/api/v1/user/login/verify`
+Get the response from `/v1/user/login` and sign the `eip712Message` and send the signed message through `/v1/user/login/verify`
 
 </details>
 
@@ -444,7 +451,7 @@ Complete the verification process by sending the signed message.
 <TabItem value="http" label="HTTP" default>
 Example Code:
 ```bash
-curl -X POST /api/v1/user/login/verify?addr=0xe61f536f031f77C854b21652aB0F4fBe7CF3196F&nonceHash=517d9272&signature=0xc046037ec795f4cfe7aca33a0c283c0152bae91008b3e14b84be50f91f0e2db714054dee85b840e3edf0e26480231a684447f48337de64ea6697a3552aa9351a1b
+curl -X POST /v1/user/login/verify?addr=0xe61f536f031f77C854b21652aB0F4fBe7CF3196F&nonceHash=517d9272&signature=0xc046037ec795f4cfe7aca33a0c283c0152bae91008b3e14b84be50f91f0e2db714054dee85b840e3edf0e26480231a684447f48337de64ea6697a3552aa9351a1b
 ```
 
 </TabItem>
@@ -558,7 +565,7 @@ When your access token expires, refresh it to maintain your session.
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/login/refresh?refreshToken=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoicmVmcmVzaF90b2tlbiIsImlhdCI6MTY5NzQyNDM0MCwiZXhwIjoxNjk4MDI5MTQwfQ.Y5dtx_VXGDZ4EDt4e6qtaVd811XumXjtDtVMiQeibNCai5zvV1PJJ3R8WCTSZb6NbbxAtFsTglYRD10aigDECA
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/login/refresh?refreshToken=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoicmVmcmVzaF90b2tlbiIsImlhdCI6MTY5NzQyNDM0MCwiZXhwIjoxNjk4MDI5MTQwfQ.Y5dtx_VXGDZ4EDt4e6qtaVd811XumXjtDtVMiQeibNCai5zvV1PJJ3R8WCTSZb6NbbxAtFsTglYRD10aigDECA
 
 ```
 

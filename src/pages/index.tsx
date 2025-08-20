@@ -19,7 +19,7 @@ function HomepageHeader() {
               {siteConfig.title}
             </Heading>
             <p className="hero__subtitle">
-              Complete API documentation for the ETHGas platform - your gateway to Ethereum gas trading and MEV opportunities
+              Complete API documentation for the ETHGas platform - your gateway to Ethereum gas trading
             </p>
             <div className={styles.buttons}>
               <Link
@@ -32,7 +32,7 @@ function HomepageHeader() {
           </div>
           <div className="col col--4">
             <div className={styles.heroImage}>
-              <img src="/img/ETHGas_logo.png" alt="ETHGas Logo" />
+              <img src="/img/ETHGas_logo_wb.png" alt="ETHGas Logo" />
             </div>
           </div>
         </div>
