@@ -94,7 +94,7 @@ For typical Ethereum validators using standard infrastructure:
 - [Registration Process](/docs/validators/registration/standard) - How to register
 - [Collateral Management](/docs/validators/deposits) - Managing deposits
 
-## Next Steps
+<!-- ## Next Steps
 
 - Official API Reference: This documentation
-- ETHGas Repos: `https://github.com/ethgas-developer` 
+- ETHGas Repos: `https://github.com/ethgas-developer`  -->

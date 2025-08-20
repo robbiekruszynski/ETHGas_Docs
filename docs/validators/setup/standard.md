@@ -39,5 +39,5 @@ timeout_get_header_ms = 1950
 
 ## Notes
 
-- For API endpoints and copy/paste examples: See API endpoints below
+<!-- - For API endpoints and copy/paste examples: See API endpoints below -->
 - For contract addresses and relays: https://docs.ethgas.com/technical-integration 

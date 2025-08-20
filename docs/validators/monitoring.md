@@ -29,6 +29,6 @@ For officially supported endpoints and copy/paste examples, use:
 
 ## Related Documentation
 
-- Setup: `/docs/validators/setup`
-- Registration: `/docs/validators/registration`
-- Deposits: `/docs/validators/deposits` 
+- **[Setup](/docs/validators/setup)** - Configure your validator environment
+- **[Registration](/docs/validators/registration)** - Register your validators with ETHGas
+- **[Deposits](/docs/validators/deposits)** - Manage your ETH collateral deposits 

@@ -28,18 +28,22 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="mainnet" label="MainNet" default>
+<TabItem value="testnet" label="TestNet" default>
 
-**MainNet Contract Address**: `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`
+| Contract Address |
+|------------------|
+| <code style={{ fontSize: '1rem' }}>`0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`</code> |
 
-**Recommendation**: Deposit collateral via the [ETHGas website](https://ethgas.com)
+<!-- **Recommendation**: Deposit collateral via the [ETHGas TestNet](https://testnet.ethgas.com) -->
 
 </TabItem>
-<TabItem value="testnet" label="TestNet (Hoodi)">
+<TabItem value="mainnet" label="MainNet">
 
-**TestNet Contract Address**: `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`
+| Contract Address |
+|------------------|
+| <code style={{ fontSize: '1rem' }}>`0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`</code> |
 
-**Recommendation**: Deposit collateral via the [ETHGas TestNet](https://testnet.ethgas.com)
+<!-- **Recommendation**: Deposit collateral via the [ETHGas website](https://ethgas.com) -->
 
 </TabItem>
 </Tabs>
@@ -49,7 +53,15 @@ import TabItem from '@theme/TabItem';
 ### Available Relays
 
 <Tabs>
-<TabItem value="mainnet-relays" label="MainNet Relays" default>
+<TabItem value="testnet-relays" label="TestNet Relays" default>
+
+**Hoodi Relay**:
+```
+https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com
+```
+
+</TabItem>
+<TabItem value="mainnet-relays" label="MainNet Relays">
 
 **Tokyo Relay**:
 ```
@@ -64,14 +76,6 @@ https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a40205
 **Virginia Relay**:
 ```
 https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com
-```
-
-</TabItem>
-<TabItem value="testnet-relays" label="TestNet Relays">
-
-**Hoodi Relay**:
-```
-https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com
 ```
 
 </TabItem>
