@@ -38,7 +38,6 @@ const sidebars: SidebarsConfig = {
           label: 'Setup',
           items: [
             'validators/setup',
-            'validators/setup/standard',
           ],
         },
         {
@@ -46,7 +45,6 @@ const sidebars: SidebarsConfig = {
           label: 'Registration',
           items: [
             'validators/registration',
-            'validators/registration/standard',
           ],
         },
         'validators/deposits',

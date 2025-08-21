@@ -20,10 +20,10 @@ docker compose up -d
 
 Before setting up your validator, ensure you have:
 
-- **Docker & Docker Compose** installed and running
-- **Validator Keys** ready for registration
-- **Network Access** to ETHGas endpoints
-- **Environment Configuration** completed
+- [x] **Docker & Docker Compose** installed and running
+- [x] **Validator Keys** ready for registration
+- [x] **Network Access** to ETHGas endpoints
+- [x] **Environment Configuration** completed
 
 ## Setup Process
 
@@ -72,6 +72,16 @@ Choose your preferred consensus client:
 Choose a client based on your technical expertise and infrastructure requirements.
 :::
 
+### Lighthouse Configuration
+
+If you're using Lighthouse, add this configuration to your `commitboost.toml`:
+
+```toml
+[timeouts]
+# Lighthouse specific guidance
+timeout_get_header_ms = 1950
+```
+
 ### 4. Deployment
 
 ```bash
@@ -97,7 +107,7 @@ Monitor your validator using the official API endpoints:
 
 ### API Integration
 
-Use the official API documentation for:
+
 - Service monitoring endpoints
 - Performance tracking
 - Configuration management
@@ -111,20 +121,26 @@ See the API endpoints below for complete monitoring and management capabilities.
 
 ### Common Issues
 
+<div style={{ marginBottom: '1rem' }}>
 1. **Service Won't Start**
    - Check Docker installation
    - Verify environment configuration
    - Review container logs
+</div>
 
+<div style={{ marginBottom: '1rem' }}>
 2. **Connection Issues**
    - Verify network connectivity
    - Check API endpoint URLs
    - Validate authentication credentials
+</div>
 
+<div style={{ marginBottom: '1rem' }}>
 3. **Performance Problems**
    - Monitor system resources
    - Check consensus client logs
    - Review validator configuration
+</div>
 
 ### Getting Help
 

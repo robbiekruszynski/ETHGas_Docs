@@ -6,6 +6,28 @@ sidebar_position: 2
 
 Register your validators with ETHGas to start earning rewards through preconfirmation commitments and gas trading opportunities.
 
+## Prerequisites
+
+<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+  <input type="checkbox" checked readOnly style={{ marginRight: '1rem', margin: 0 }} />
+  <span><strong>Validator setup completed</strong></span>
+</div>
+
+<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+  <input type="checkbox" checked readOnly style={{ marginRight: '1rem', margin: 0 }} />
+  <span><strong>ETHGas account</strong></span>
+</div>
+
+<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+  <input type="checkbox" checked readOnly style={{ marginRight: '1rem', margin: 0 }} />
+  <span><strong>Validator BLS key(s)</strong></span>
+</div>
+
+<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
+  <input type="checkbox" checked readOnly style={{ marginRight: '1rem', margin: 0 }} />
+  <span><strong>API access</strong></span>
+</div>
+
 ## Registration Overview
 
 Validator registration is required to participate in the ETHGas ecosystem. This process involves:
@@ -53,38 +75,20 @@ import TabItem from '@theme/TabItem';
 ### Available Relays
 
 <Tabs>
-<TabItem value="testnet-relays" label="TestNet Relays" default>
+<TabItem value="testnet-relays" label="TestNet " default>
 
-**Hoodi Relay**:
-<code style={{ color: 'var(--ifm-color-primary)' }}>
-```
-https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com
-```
-</code>
+| Region | Endpoint |
+|--------|----------|
+| **Hoodi** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com`</code> |
 
 </TabItem>
-<TabItem value="mainnet-relays" label="MainNet Relays">
+<TabItem value="mainnet-relays" label="MainNet">
 
-**Tokyo Relay**:
-<code style={{ color: 'var(--ifm-color-primary)' }}>
-```
-https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com
-```
-</code>
-
-**Frankfurt Relay**:
-<code style={{ color: 'var(--ifm-color-primary)' }}>
-```
-https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com
-```
-</code>
-
-**Virginia Relay**:
-<code style={{ color: 'var(--ifm-color-primary)' }}>
-```
-https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com
-```
-</code>
+| Region | Endpoint |
+|--------|----------|
+| **Tokyo** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com`</code> |
+| **Frankfurt** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com`</code> |
+| **Virginia** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com`</code> |
 
 </TabItem>
 </Tabs>
@@ -120,7 +124,7 @@ Deposit ETH as collateral to secure your preconfirmation commitments:
 
 **MainNet Deposit**:
 - **Contract**: `0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`
-- **Method**: Deposit via [ETHGas website](https://ethgas.com)
+- **Method**: Deposit via [ETHGas Dashboard](https://app.ethgas.com/my-portfolio/accounts)
 - **Minimum**: 1 ETH per validator
 - **Purpose**: Secure preconfirmation commitments
 
@@ -129,7 +133,7 @@ Deposit ETH as collateral to secure your preconfirmation commitments:
 
 **TestNet Deposit**:
 - **Contract**: `0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`
-- **Method**: Deposit via [ETHGas TestNet](https://testnet.ethgas.com)
+- **Method**: Deposit via [ETHGas Dashboard](https://app.ethgas.com/my-portfolio/accounts)
 - **Minimum**: 0.1 ETH per validator (testnet)
 - **Purpose**: Test preconfirmation commitments
 
@@ -192,5 +196,38 @@ After completing registration:
 - Use the recommended deposit method via the website
 - Verify contract addresses for your chosen network
 - Ensure sufficient ETH balance for deposits
+
+## Status Codes
+
+Validator registration follows a specific lifecycle with different status codes indicating the current state of your registration.
+
+<div style={{ 
+  display: 'flex', 
+  alignItems: 'center', 
+  justifyContent: 'space-between',
+  background: 'var(--ifm-color-emphasis-100)',
+  padding: '1rem',
+  borderRadius: '8px',
+  margin: '1rem 0'
+}}>
+  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-warning)' }}>pending</div>
+  <div style={{ fontSize: '1.5rem' }}>→</div>
+  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-info)' }}>registered</div>
+  <div style={{ fontSize: '1.5rem' }}>→</div>
+  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-success)' }}>active</div>
+  <div style={{ fontSize: '1.5rem' }}>→</div>
+  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-warning)' }}>suspended</div>
+  <div style={{ fontSize: '1.5rem' }}>→</div>
+  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-danger)' }}>deregistered</div>
+</div>
+
+**Status Descriptions:**
+- **pending**: Registration submitted, awaiting verification
+- **registered**: Validator successfully registered with ETHGas
+- **active**: Validator is actively participating in the network
+- **suspended**: Validator temporarily suspended (can be reactivated)
+- **deregistered**: Validator permanently removed from the system
+
+## Notes
 
 For additional support, visit the [ETHGas Community](https://discord.gg/ethgas) or check the [GitHub repositories](https://github.com/ethgas-developer) for the latest updates and troubleshooting guides. 

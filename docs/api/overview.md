@@ -125,14 +125,10 @@ The ETHGas REST API provides access to authentication, user management, funding,
 
 ## Technical Specifications
 
-### Exchange Performance
-- **TPS**: 100k TPS
-- **Latency**: 3-5ms (colo or direct EC2)
-- **Location**: AWS - Asia Pacific (Tokyo) / ap-northeast-1
 
 ### Integration Resources
 
-- **API Documentation**: This documentation
+- **API Documentation**: See Below
 - **Commit Boost Module**: `https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module`
 - **Modified rbuilder (preconf-builder)**: `https://github.com/ethgas-developer/preconf-builder`
 - **Builder Scripts**: `https://github.com/ethgas-developer/ethgas-builder-scripts`
