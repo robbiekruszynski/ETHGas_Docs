@@ -129,9 +129,9 @@ The ETHGas REST API provides access to authentication, user management, funding,
 ### Integration Resources
 
 - **API Documentation**: See Below
-- **Commit Boost Module**: `https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module`
-- **Modified rbuilder (preconf-builder)**: `https://github.com/ethgas-developer/preconf-builder`
-- **Builder Scripts**: `https://github.com/ethgas-developer/ethgas-builder-scripts`
+- **[Commit Boost Module](https://github.com/ethgas-developer/ethgas-preconf-commit-boost-module)** - Validator integration module
+- **[Modified rbuilder (preconf-builder)](https://github.com/ethgas-developer/preconf-builder)** - Enhanced block builder
+- **[Builder Scripts](https://github.com/ethgas-developer/ethgas-builder-scripts)** - Builder registration and management
 
 ## Base URLs
 
@@ -159,7 +159,7 @@ import TabItem from '@theme/TabItem';
 
 ## Authentication
 
-All API requests require authentication using Bearer tokens.
+Authentication is required for all private API endpoints. See the authentication endpoints below for login, verification, refresh, and logout functionality.
 
 ## Response Format
 
@@ -193,62 +193,409 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 <div className="api-endpoints-grid">
 
-<details className="api-category">
+## Authentication
+
+<details className="api-category" id="authentication">
 <summary className="api-category-header">
   <strong>Authentication</strong>
   <span className="api-category-desc">User login, verification, refresh, logout</span>
 </summary>
 
-- <span className="api-method-post">**POST**</span> `/v1/user/login`
-- <span className="api-method-post">**POST**</span> `/v1/user/login/verify`
-- <span className="api-method-post">**POST**</span> `/v1/user/login/refresh`
-- <span className="api-method-post">**POST**</span> `/v1/user/logout`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/login`
+</summary>
+
+Code Example:
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `addr` | YES | string | User's EOA account (account) address |
+| `name` | NO | string | Display name |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `status` | string | Login status |
+| `eip712Message` | object | EIP712 message |
+| `nonceHash` | string | A unique four-byte nonce to identify this particular login request |
+
+**Usage:**
+
+Get the response from `/v1/user/login` and sign the `eip712Message` and send the signed message through `/v1/user/login/verify`
 
 </details>
 
-<details className="api-category">
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/login/verify`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `addr` | YES | string | User's EOA account (account) address |
+| `nonceHash` | YES | string | Nonce Hash |
+| `signature` | YES | string | Signature |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `user` | User | User details |
+| `accessToken` | string | Access token |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/login/refresh`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `refreshToken` | YES | string | Refresh token |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `user` | User | User details |
+| `accessToken` | object | Access token used for authentication |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/logout`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+```json
+{}
+```
+
+</details>
+
+</details>
+
+## User
+
+<details className="api-category" id="user">
 <summary className="api-category-header">
   <strong>User</strong>
   <span className="api-category-desc">User info and profile updates</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/user/info`
-- <span className="api-method-post">**POST**</span> `/v1/user/update`
-- <span className="api-method-post">**POST**</span> `/v1/user/payoutAddress`
-- <span className="api-method-post">**POST**</span> `/v1/user/collateralPerSlot`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/info`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `user` | User | User information and details |
 
 </details>
 
-<details className="api-category">
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/update`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `name` | NO | string | User display name |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `success` | boolean | Update operation status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/payoutAddress`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `payoutAddress` | YES | string | User's payout address |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `success` | boolean | Update operation status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/collateralPerSlot`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `collateralPerSlot` | YES | number | Collateral amount per slot |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `success` | boolean | Update operation status |
+
+</details>
+
+</details>
+
+## Account
+
+<details className="api-category" id="account">
 <summary className="api-category-header">
   <strong>Account</strong>
   <span className="api-category-desc">Accounts and transactions</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/user/accounts`
-- <span className="api-method-get">**GET**</span> `/v1/user/account/{accountId}`
-- <span className="api-method-get">**GET**</span> `/v1/user/account/{accountId}/txs`
-- <span className="api-method-get">**GET**</span> `/v1/user/account/txs`
-- <span className="api-method-post">**POST**</span> `/v1/user/account/transfer/token`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/accounts`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `accounts` | array | List of user accounts |
 
 </details>
 
-<details className="api-category">
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/account/{accountId}`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `accountId` | YES | string | Account identifier |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `account` | Account | Account details |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/account/{accountId}/txs`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `accountId` | YES | string | Account identifier |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `transactions` | array | List of account transactions |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/account/txs`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `transactions` | array | List of all user transactions |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/account/transfer/token`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `fromAccountId` | YES | string | Source account ID |
+| `toAccountId` | YES | string | Destination account ID |
+| `tokenId` | YES | number | Token identifier |
+| `amount` | YES | number | Transfer amount |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `success` | boolean | Transfer operation status |
+
+</details>
+
+</details>
+
+## Funding
+
+<details className="api-category" id="funding">
 <summary className="api-category-header">
   <strong>Funding</strong>
   <span className="api-category-desc">Deposits and withdrawals</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/p/funding/contractAddress`
-- <span className="api-method-get">**GET**</span> `/v1/user/funding/deposits`
-- <span className="api-method-post">**POST**</span> `/v1/user/funding/withdraw`
-- <span className="api-method-get">**GET**</span> `/v1/p/funding/withdraw/dailyWithdrawLimits`
-- <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraw/status`
-- <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraws`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/funding/contractAddress`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `contractAddress` | string | Funding contract address |
 
 </details>
 
-<details className="api-category">
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/deposits`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `deposits` | array | List of user deposits |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/funding/withdraw`
+</summary>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `accountId` | YES | string | Account identifier |
+| `tokenId` | YES | number | Token identifier |
+| `amount` | YES | number | Withdrawal amount |
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `success` | boolean | Withdrawal operation status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/funding/withdraw/dailyWithdrawLimits`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `dailyLimits` | object | Daily withdrawal limits |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraw/status`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `withdrawStatus` | object | Current withdrawal status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraws`
+</summary>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `withdrawals` | array | List of user withdrawals |
+
+</details>
+
+</details>
+
+## Network & Tokens
+
+<details className="api-category" id="network-tokens">
 <summary className="api-category-header">
   <strong>Network & Tokens</strong>
   <span className="api-category-desc">Network info, tokens, fees</span>
@@ -260,7 +607,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Whole Block Markets
+
+<details className="api-category" id="whole-block-markets">
 <summary className="api-category-header">
   <strong>Whole Block Markets</strong>
   <span className="api-category-desc">Public market data</span>
@@ -273,7 +622,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Inclusion Preconf Markets
+
+<details className="api-category" id="inclusion-preconf-markets">
 <summary className="api-category-header">
   <strong>Inclusion Preconf Markets</strong>
   <span className="api-category-desc">Public market data</span>
@@ -286,7 +637,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category"> 
+## Whole Block Trading
+
+<details className="api-category" id="whole-block-trading">
 <summary className="api-category-header">
   <strong>Whole Block Trading</strong>
   <span className="api-category-desc">Place/cancel orders and view positions</span>
@@ -303,7 +656,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Inclusion Preconf Trading
+
+<details className="api-category" id="inclusion-preconf-trading">
 <summary className="api-category-header">
   <strong>Inclusion Preconf Trading</strong>
   <span className="api-category-desc">Place/cancel orders and view positions</span>
@@ -321,7 +676,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Bundle Submission
+
+<details className="api-category" id="bundle-submission">
 <summary className="api-category-header">
   <strong>Bundle Submission</strong>
   <span className="api-category-desc">Submit transaction bundles</span>
@@ -331,7 +688,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Slot Bundles
+
+<details className="api-category" id="slot-bundles">
 <summary className="api-category-header">
   <strong>Slot Bundles</strong>
   <span className="api-category-desc">Per-slot bundle data</span>
@@ -344,7 +703,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Builder
+
+<details className="api-category" id="builder">
 <summary className="api-category-header">
   <strong>Builder</strong>
   <span className="api-category-desc">Builder registration and delegation</span>
@@ -362,7 +723,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Pricer
+
+<details className="api-category" id="pricer">
 <summary className="api-category-header">
   <strong>Pricer</strong>
   <span className="api-category-desc">Delegation and active markets</span>
@@ -379,7 +742,9 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 </details>
 
-<details className="api-category">
+## Validator
+
+<details className="api-category" id="validator">
 <summary className="api-category-header">
   <strong>Validator</strong>
   <span className="api-category-desc">Registration, settings, payouts</span>
@@ -400,6 +765,5 @@ For copy/paste‑ready HTTP and Python examples, see the API endpoints below.
 
 ## Essential Resources
 
-- **API Reference**: This documentation
-- **GitHub Organization**: `https://github.com/ethgas-developer`
-- **WebSocket API**: See WebSocket section in this documentation 
+- **[GitHub Organization](https://github.com/ethgas-developer)** - All source code and tools
+- **[WebSocket API](/docs/websocket/overview)** - Real-time data streaming documentation 
