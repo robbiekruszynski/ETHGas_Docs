@@ -72,9 +72,12 @@ ETHGas provides infrastructure for block builders and sequencers to participate 
 
 ### POST /v1/builder/register
 
-<details>
-<summary style={{listStyle: 'none'}}>Register builder public keys with the ETHGas platform</summary>
-#### Code Example:
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/builder/register` - Register builder public keys with the ETHGas platform
+</summary>
+
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -166,10 +169,12 @@ print(response.text)
 
 ### GET /v1/builder/signingMessage
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve the message that needs to be signed by the builder's private key for registration verification</summary>
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/builder/signingMessage` - Retrieve the message that needs to be signed by the builder's private key for registration verification
+</summary>
 
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -227,10 +232,12 @@ print(response.text)
 
 ### POST /v1/builder/deregister
 
-<details>
-<summary style={{listStyle: 'none'}}>Builder deregistering their public keys</summary>
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/builder/deregister` - Builder deregistering their public keys
+</summary>
 
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -294,10 +301,12 @@ print(response.text)
 
 ### GET /v1/p/builders
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/builders` - Retrieve a list of builder public keys submitted by a user
+</summary>
 
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -384,11 +393,12 @@ print(response.text)
 
 </details>
 
-### GET /v1/user/builder
+<details className="api-endpoint" id="get-user-builder">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/builder` - Retrieve a list of builder public keys submitted by a user
+</summary>
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve a list of builder public keys submitted by a user</summary>
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -440,12 +450,12 @@ print(response.text)
 
 </details>
 
-### POST /v1/user/delegate/builder
+<details className="api-endpoint" id="post-user-delegate-builder">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/delegate/builder` - Delegate or revoke delegation of builder keys by supplying either a comma-separated list of BLS public keys or a builder name (which applies to all keys under that builder)
+</summary>
 
-<details>
-<summary style={{listStyle: 'none'}}>Delegate or revoke delegation of builder keys by supplying either a comma-separated list of BLS public keys or a builder name (which applies to all keys under that builder)</summary>
-
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -509,12 +519,12 @@ Note: User needs to delegate a new builder 2 seconds before the market close in 
 
 </details>
 
-### GET /v1/user/delegate/builder
+<details className="api-endpoint" id="get-user-delegate-builder">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/delegate/builder` - Retrieve information about the current user's builder delegation settings
+</summary>
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve information about the current user's builder delegation settings</summary>
-
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 ```bash
@@ -568,12 +578,12 @@ print(response.text)
 
 </details>
 
-### GET /v1/p/builder/\{slot\}
+<details className="api-endpoint" id="get-p-builder-slot">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/builder/{slot}` - Retrieve information about the builder assigned to a specific slot
+</summary>
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve information about the builder assigned to a specific slot</summary>
-
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -634,17 +644,17 @@ print(response.text)
 
 </details>
 
-### GET /v1/builder/delegation
+<details className="api-endpoint" id="get-builder-delegation">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/builder/delegation` - Retrieve comprehensive information about builder delegations and relationships
+</summary>
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve comprehensive information about builder delegations and relationships</summary>
-
-#### Code Example:
+**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/builder/delegation
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/builder/delegation
 ```
 
 </TabItem>
