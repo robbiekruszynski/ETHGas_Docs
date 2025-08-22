@@ -27,7 +27,7 @@ Connect with the ETHGas community, stay updated with the latest developments, an
           transition: 'all 0.3s ease',
           cursor: 'pointer'
         }}>
-          <img src="/img/ETHGas_logo.png" alt="ETHGas Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+          <img src="/img/ETHGas_logo_wb.png" alt="ETHGas Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
         </div>
       </a>
       <h3>ETHGas</h3>

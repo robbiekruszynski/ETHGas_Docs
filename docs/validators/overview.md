@@ -90,8 +90,8 @@ Validators earn from:
 
 ### Standard Validators
 For typical Ethereum validators using standard infrastructure:
-- [Standard Setup](/docs/validators/setup/standard) - Complete setup guide
-- [Registration Process](/docs/validators/registration/standard) - How to register
+- [Setup Guide](/docs/validators/setup) - Complete setup guide
+- [Registration Process](/docs/validators/registration) - How to register
 - [Collateral Management](/docs/validators/deposits) - Managing deposits
 
 <!-- ## Next Steps

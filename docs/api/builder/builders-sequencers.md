@@ -70,7 +70,7 @@ ETHGas provides infrastructure for block builders and sequencers to participate 
 
 <div className="api-endpoints-grid">
 
-### POST /v1/builder/register
+### Register your builder public key
 
 <details className="api-endpoint" id="post-v1builderregister">
 <summary className="api-endpoint-header">

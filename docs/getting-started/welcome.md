@@ -17,7 +17,7 @@ ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV 
 
 **Whole Block Markets** - Trade entire blocks for MEV opportunities. Available up to 64 slots in advance for maximum planning flexibility.
 
-**Rest-of-Block Auction** - Dynamic real-time auction for remaining block space. Available only for the current slot.
+<!-- **Rest-of-Block Auction** - Dynamic real-time auction for remaining block space. Available only for the current slot. -->
 
 **Inclusion Preconf Markets** - Trade generic blockspace with conventional CLOB interface. Available up to 32 slots in advance.
 
@@ -28,9 +28,9 @@ ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV 
 - **Authentication System**: Secure user authentication and session management
 - **Trading Tools**: Advanced order management and position tracking
 
-## Key Trading Concepts
+<!-- ## Key Trading Concepts -->
 
-<div className="row">
+<!-- <div className="row">
   <div className="col col--6">
     <div className="feature-card">
       <h3>Order Types</h3>
@@ -38,17 +38,17 @@ ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV 
       <p><strong>Limit Orders</strong> - Execute only at specified price or better</p>
       <p><strong>Fill-Or-Kill Orders</strong> - Execute completely or not at all</p>
     </div>
-  </div>
+  </div> -->
   
-  <div className="col col--6">
+  <!-- <div className="col col--6">
     <div className="feature-card">
       <h3>Position Management</h3>
       <p><strong>Long Positions</strong> - Profitable when market prices increase</p>
       <p><strong>Short Positions</strong> - Profitable when market prices decrease</p>
       <p><strong>Real-time Tracking</strong> - Live updates on position status and P&L</p>
     </div>
-  </div>
-</div>
+  </div> -->
+<!-- </div> -->
 
 ## Getting Started Checklist
 
