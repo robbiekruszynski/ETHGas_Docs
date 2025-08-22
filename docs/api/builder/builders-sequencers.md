@@ -72,7 +72,7 @@ ETHGas provides infrastructure for block builders and sequencers to participate 
 
 ### POST /v1/builder/register
 
-<details className="api-endpoint">
+<details className="api-endpoint" id="post-v1builderregister">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/v1/builder/register` - Register builder public keys with the ETHGas platform
 </summary>
@@ -169,7 +169,7 @@ print(response.text)
 
 ### GET /v1/builder/signingMessage
 
-<details className="api-endpoint">
+<details className="api-endpoint" id="get-v1buildersigningmessage">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/v1/builder/signingMessage` - Retrieve the message that needs to be signed by the builder's private key for registration verification
 </summary>
@@ -232,7 +232,7 @@ print(response.text)
 
 ### POST /v1/builder/deregister
 
-<details className="api-endpoint">
+<details className="api-endpoint" id="post-v1builderderegister">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/v1/builder/deregister` - Builder deregistering their public keys
 </summary>
@@ -301,7 +301,7 @@ print(response.text)
 
 ### GET /v1/p/builders
 
-<details className="api-endpoint">
+<details className="api-endpoint" id="get-v1pbuilders">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/v1/p/builders` - Retrieve a list of builder public keys submitted by a user
 </summary>

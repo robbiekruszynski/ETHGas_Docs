@@ -128,22 +128,72 @@ import TabItem from '@theme/TabItem';
 
 ## Channel Types {#channel-types}
 
-### Public Channels
-
-- Preconf Market Update
-- Candlestick Update
-- Recent Trades Update
-- Order Book Update
-- Ticker Update
-- Inclusion Preconf Top Sales
-- Block Builder Update
-
-### Private Channels
-
-- Account Order Update
-- Account Transaction Update
-- Account Position Update
-- Preconf Bundle Update
+<div className="row" style={{ marginBottom: '2rem' }}>
+  <div className="col col--6">
+    <div className="feature-card" style={{ height: '100%', padding: '1.5rem', border: '1px solid rgba(0, 162, 199, 0.2)', background: 'rgba(0, 162, 199, 0.02)' }}>
+      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <h3 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: '600' }}>Public Channels</h3>
+        <p style={{ margin: '0', color: 'var(--ifm-color-emphasis-600)', fontSize: '0.9rem', lineHeight: '1.4' }}>Real-time market data available to all users</p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Preconf Market Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Candlestick Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Recent Trades Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Order Book Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Ticker Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Inclusion Preconf Top Sales</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Block Builder Update</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="col col--6">
+    <div className="feature-card" style={{ height: '100%', padding: '1.5rem', border: '1px solid rgba(239, 68, 68, 0.2)', background: 'rgba(239, 68, 68, 0.02)' }}>
+      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+        <h3 style={{ color: '#ef4444', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: '600' }}>Private Channels</h3>
+        <p style={{ margin: '0', color: 'var(--ifm-color-emphasis-600)', fontSize: '0.9rem', lineHeight: '1.4' }}>User-specific data requiring authentication</p>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Account Order Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Account Transaction Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Account Position Update</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
+          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
+          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Preconf Bundle Update</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ## Error Handling {#error-handling}
 

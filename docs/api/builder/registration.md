@@ -244,7 +244,7 @@ When `ENABLE_REGISTRATION=true`:
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
 ```
 
 </TabItem>
@@ -540,10 +540,12 @@ All built blocks must pass validation checks:
 
 The Market Lists API provides endpoints for retrieving market information and data.
 
-### GET /api/v1/p/wholeblock/markets
+<!-- ### GET /v1/p/wholeblock/markets -->
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve whole block markets</summary>
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/markets` - Retrieve whole block markets
+</summary>
 
 #### Code Example:
 
@@ -551,7 +553,7 @@ The Market Lists API provides endpoints for retrieving market information and da
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/markets
+curl -X GET /v1/p/wholeblock/markets
 ```
 
 </TabItem>
@@ -649,10 +651,12 @@ print(response.text)
 
 </details>
 
-### GET /api/v1/p/inclusion-preconf/markets
+<!-- ### GET /v1/p/inclusion-preconf/markets -->
 
-<details>
-<summary style={{listStyle: 'none'}}>Retrieve active preconf markets</summary>
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/markets` - Retrieve active preconf markets
+</summary>
 
 
 #### Code Example:
@@ -661,7 +665,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -x GET /api/v1/p/inclusion-preconf/markets
+curl -x GET /v1/p/inclusion-preconf/markets
 ```
 
 </TabItem>
@@ -759,7 +763,7 @@ print(response.text)
 | markets | object[] | List of Market objects |
 | └ marketId | integer | Preconf market ID |
 | └ slot | integer | Slot number of the block |
-| └ instrumentId | string | Inclusion Preconf Market instrument ID<br/><br/>Use endpoint [GET /api/v1/p/inclusion-preconf/markets] to get a list of all available inclusion preconf markets' instrument IDs |
+| └ instrumentId | string | Inclusion Preconf Market instrument ID<br/><br/>Use endpoint [GET /v1/p/inclusion-preconf/markets] to get a list of all available inclusion preconf markets' instrument IDs |
 | └ name | string | Preconf market name<br/><br/>In format: "ETH-PC-xxxxxx" |
 | └ quantityStep | string | Minimum increment between different order quantities |
 | └ minQuantity | string | Minimum order quantity |
@@ -788,11 +792,12 @@ print(response.text)
 
 The Slot Bundles API provides endpoints for managing and querying bundle information for specific slots.
 
-### GET /api/v1/slot/bundles
+<!-- ### GET /v1/slot/bundles -->
 
-<details>
-
-<summary style={{listStyle: 'none'}}>Retrieve bundles for a specific slot</summary>
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/slot/bundles` - Retrieve bundles for a specific slot
+</summary>
 
 #### Code Example:
 
@@ -800,7 +805,7 @@ The Slot Bundles API provides endpoints for managing and querying bundle informa
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/slot/bundles?slot=123
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/slot/bundles?slot=123
 ```
 
 </TabItem>

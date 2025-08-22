@@ -133,6 +133,7 @@ Endpoints are divided into **two distinct categories**:
 #### Authentication Workflow
 
 For interacting with `/v1` endpoints, a login is required. The login workflow is as follows:
+See lang tabs
 
 <div className="step-item">
   <div className="step-circle">1</div>
@@ -155,9 +156,9 @@ For interacting with `/v1` endpoints, a login is required. The login workflow is
   </div>
 </div>
 
-:::info
+<!-- :::info
 The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
-:::
+::: -->
 
 </TabItem>
 <TabItem value="python" label="Using Python">
@@ -269,6 +270,738 @@ The JWT access token is valid for 1 hour, after each hour an access token refres
 
 
 </TabItem>
+<TabItem value="javascript" label="Using JavaScript">
+
+### Overview
+
+The JavaScript connector allows you to interact with the ETHGas platform using modern JavaScript/TypeScript. This connector provides both REST API and WebSocket client capabilities for seamless integration with web applications and Node.js environments.
+
+For accessing private endpoints and performing user-specific actions, the connector handles the complete authentication flow including login, JWT token management, and automatic token refresh.
+
+
+### Example Usage
+
+```javascript
+// API client configuration
+const ApiClient = {
+    APIURL: config.exchange.endpoint,
+    ChainID: config.exchange.chainId,
+    AccessToken: null,
+    RefreshToken: null,
+    client: axios.create({
+        baseURL: config.exchange.endpoint,
+        timeout: 10000,
+    }),
+};
+
+// Login function to authenticate and get tokens
+async function login(privateKey) {
+    const maxRetries = 30; // Maximum number of retries
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+        try {
+            const wallet = new ethers.Wallet(privateKey);
+            const address = wallet.address;
+
+            // Step 1: Login request
+            const formData = qs.stringify({
+                addr: address,
+                chainId: ApiClient.ChainID,
+            });
+
+            const loginResponse = await ApiClient.client.post("/api/v1/user/login", formData, {
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            });
+
+            if (!loginResponse.data.success) {
+                throw new Error("Login failed: response indicates failure");
+            }
+
+            const loginData = loginResponse.data.data;
+            const { eip712Message, nonceHash } = loginData;
+
+            // Step 2: EIP712 Signing
+            let type = JSON.parse(eip712Message).types;
+            delete type.EIP712Domain;
+            const signature = await wallet._signTypedData(
+                JSON.parse(eip712Message).domain,
+                type,
+                JSON.parse(eip712Message).message
+            );
+            const signatureHash = ethers.utils.hexlify(ethers.utils.arrayify(signature));
+
+            // Step 3: Verify request
+            const verifyFormData = qs.stringify({
+                addr: address,
+                signature: signatureHash,
+                nonceHash,
+            });
+
+            const verifyResponse = await ApiClient.client.post("/api/v1/user/login/verify", verifyFormData, {
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            });
+
+            if (!verifyResponse.data.success) {
+                throw new Error("Verification failed: response indicates failure");
+            }
+
+            const verifyData = verifyResponse.data.data;
+            ApiClient.AccessToken = verifyData.accessToken.token;
+            ApiClient.RefreshToken = extractRefreshToken(verifyResponse);
+            console.log(verifyData.accessToken.token)
+            return {
+                accessToken: ApiClient.AccessToken,
+                refreshToken: ApiClient.RefreshToken,
+            };
+        } catch (error) {
+            console.log(error)
+            console.error(`Login attempt ${attempt + 1} failed:`, error.message);
+            if (attempt < maxRetries - 1) {
+                await delay(60000); // Wait for 1 minute before retrying
+            } else {
+                throw error; // Rethrow error after max retries
+            }
+        }
+    }
+}
+
+// Refresh the access token using the refresh token
+async function refreshAccessToken() {
+    const maxRetries = 30; // Maximum number of retries
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+        try {
+            const formData = qs.stringify({
+                refreshToken: ApiClient.RefreshToken,
+            });
+
+            const refreshResponse = await ApiClient.client.post("/api/v1/user/login/refresh", formData, {
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            });
+
+            if (!refreshResponse.data.success) {
+                throw new Error("Refresh token failed: response indicates failure");
+            }
+
+            const refreshData = refreshResponse.data.data;
+            ApiClient.AccessToken = refreshData.accessToken.token;
+
+            // console.log("New Access Token:", ApiClient.AccessToken);
+            return; // Exit after successful refresh
+        } catch (error) {
+            console.error(`Refresh token attempt ${attempt + 1} failed:`, error.message);
+            if (attempt < maxRetries - 1) {
+                await delay(60000); // Wait for 1 minute before retrying
+            } else {
+                throw error; // Rethrow error after max retries
+            }
+        }
+    }
+}
+
+```
+
+### Repository
+
+For complete documentation and examples, visit the [ethgas-js repository](https://github.com/ethgas-developer/ethgas-js).
+
+<!-- :::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+::: -->
+
+</TabItem>
+<TabItem value="rust" label="Using Rust">
+
+### Overview
+
+The Rust connector provides a high-performance, memory-safe way to interact with the ETHGas platform. 
+
+
+For private endpoint access, the connector implements the complete authentication workflow including EIP-712 message signing, JWT token management, and automatic token refresh.
+
+<!-- ### Installation
+
+Add to your `Cargo.toml`:
+
+```toml
+[dependencies]
+ethgas-rs = "0.1.0"
+tokio = { version = "1.0", features = ["full"] }
+``` -->
+
+### Example Usage
+
+```rust
+impl PreconfApiClient {
+    pub async fn get_headers(&self) -> HeaderMap {
+        let mut headers = HeaderMap::new();
+        let guard = self.state.access_token.read().await;
+        let access_token = guard.clone();
+        if access_token.is_some() {
+            let token = access_token.clone().unwrap();
+            let authorization_header = format!("Bearer {}", token);
+            headers.insert(
+                AUTHORIZATION,
+                HeaderValue::from_str(authorization_header.as_str()).unwrap(),
+            );
+        }
+        headers.insert(USER_AGENT, HeaderValue::from_str("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36").unwrap());
+        headers
+    }
+
+    pub async fn re_login(&mut self) -> bool {
+        let mut retry_count = 0;
+        loop {
+            if self.login().await {
+                info!("ETHGas re-logged in.");
+                return true;
+            }
+            retry_count += 1;
+            if retry_count % 5 == 0 {
+                error!("Failed to login ETHGas, continue to retry login...");
+            }
+        }
+    }
+
+    pub async fn login(&mut self) -> bool {
+        let mut is_logged_in = false;
+
+        let secret_key_bytes = hex::decode(self.exchange_secret_key.as_str())
+            .expect("Failed to decode secret key for preconf login");
+        let signer: PrivateKeySigner = PrivateKeySigner::from_slice(secret_key_bytes.as_ref())
+            .expect("Failed to create signer from secret key for preconf login");
+        let address = format!("0x{:x}", signer.address());
+        let login_headers = self.get_headers().await;
+
+        let login_url = format!("{}api/v1/user/login", self.api_url);
+        let login_response = match self
+            .client
+            .post(&login_url)
+            .headers(login_headers)
+            .form(&[("addr", address.clone())])
+            .send()
+            .await
+        {
+            Ok(response) => {
+                info!("Received the login response from ETHGas.");
+                response
+            },
+            Err(e) => {
+                let mut guard = self.state.health_status.write().await;
+                *guard = PreconfHealthStatus::ServerFailed;
+                error!("Failed to login ETHGas: {}", e);
+                return is_logged_in;
+            }
+        };
+
+        if login_response.status().is_success() {
+            if let ApiData::Login(login_resp) = login_response
+                .json::<ApiResponse>()
+                .await
+                .expect("Failed to decode ETHGas login response")
+                .data
+            {
+                if !login_resp.nonce_hash.is_empty() && !login_resp.eip712_message.is_empty() {
+                    let eip712_msg: TypedData = serde_json::from_str(&login_resp.eip712_message)
+                        .expect("Failed to parse EIP712 message into typed data");
+                    let signature = signer
+                        .sign_dynamic_typed_data(&eip712_msg)
+                        .await
+                        .expect("Failed to sign EIP712 message");
+                    let signature_hex_str = format!("0x{}", hex::encode(signature.as_bytes()));
+                    let verify_headers = self.get_headers().await;
+                    // debug!("Generated signature: {}", signature_hex_str);
+
+                    // Send the signature back to complete verification
+                    let verify_response = match self
+                        .client
+                        .post(format!("{}api/v1/user/login/verify", self.api_url))
+                        .headers(verify_headers)
+                        .form(&[
+                            ("addr", address.clone()),
+                            ("signature", signature_hex_str),
+                            ("nonceHash", login_resp.nonce_hash),
+                        ])
+                        .send()
+                        .await
+                    {
+                        Ok(response) => {
+                            info!("Received the verify response from ETHGas.");
+                            response
+                        },
+                        Err(e) => {
+                            error!("Failed to verify signature: {}", e);
+                            return is_logged_in;
+                        }
+                    };
+
+                    if verify_response.status().is_success() {
+                        let (refresh_token, refresh_token_exp) =
+                            self.extract_refresh_token(&verify_response);
+                        trace!("refresh token: {:?}", refresh_token);
+                        if let ApiData::Verify(verify_resp) = verify_response
+                            .json::<ApiResponse>()
+                            .await
+                            .expect("Failed to decode verification response")
+                            .data
+                        {
+                            let access_token = verify_resp.access_token.token;
+                            let access_token_exp = verify_resp.access_token.data.payload.exp;
+                            trace!("JWT access token: {:?}", access_token);
+                            trace!("Expired at: {:?}", access_token_exp);
+                            let mut access_token_writer = self.state.access_token.write().await;
+                            *access_token_writer = Some(access_token);
+                            self.refresh_token = refresh_token;
+                            self.access_token_exp = Some(access_token_exp);
+                            self.refresh_token_exp = refresh_token_exp;
+                            is_logged_in = true;
+                            info!("ETHGas login successful.");
+                        }
+                    } else {
+                        error!(
+                            "Failed to verify ETHGas login signature, Err: {:?}",
+                            verify_response.text().await
+                        );
+                    }
+                }
+            }
+        }
+        is_logged_in
+    }
+
+    fn extract_refresh_token(&self, response: &Response) -> (Option<String>, Option<i64>) {
+        // Extract the cookies from the response
+        let cookies: HashMap<String, String> = response
+            .cookies()
+            .map(|cookie| (cookie.name().to_string(), cookie.value().to_string()))
+            .collect();
+        // 7 days
+        let refresh_token_exp = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .expect("Failed to get current time")
+            .as_secs() as i64
+            + Duration::from_secs(7 * 24 * 60 * 60).as_secs() as i64;
+
+        // Look for the x_auth_refresh_token cookie and return its value
+        (
+            cookies.get("x_auth_refresh_token").cloned(),
+            Some(refresh_token_exp),
+        )
+    }
+
+    fn is_token_expired(&self, target_ts: i64) -> bool {
+        // Get the current time in UTC
+        let current_time = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .expect("Failed to get current time")
+            .as_secs() as i64;
+        current_time >= target_ts
+    }
+
+    pub async fn refresh_access(&mut self) {
+        if self.refresh_token_exp.is_some() {
+            let refresh_expiry: i64 = self.refresh_token_exp.unwrap() - (24 * 60 * 60);
+            if self.is_token_expired(refresh_expiry) {
+                let logged_in = self.login().await;
+                if !logged_in {
+                    error!("Failed to refresh access token due to failed login.");
+                }
+            } else {
+                let start = Instant::now();
+                debug!("refreshing access token...");
+                self.refresh_access_token().await;
+                let elapsed = start.elapsed();
+                debug!("refresh access token elapsed: {:?}", elapsed);
+            }
+        } else {
+            error!(
+                "Failed to refresh access token due to missing refresh token expiry, Err: {:?}",
+                self.refresh_token_exp
+            );
+        }
+    }
+
+    async fn refresh_access_token(&mut self) {
+        if self.access_token_exp.is_some() {
+            // Get the target timestamp (access token expiration - 20 minutes)
+            let access_expiry: i64 = self.access_token_exp.unwrap() - (20 * 60);
+            if !self.is_token_expired(access_expiry) {
+                return;
+            }
+        }
+        let refresh_headers = self.get_headers().await;
+        let refresh_url = format!("{}api/v1/user/login/refresh", self.api_url);
+        let refresh_token = self.refresh_token.clone().unwrap();
+        let refresh_response = self
+            .client
+            .post(&refresh_url)
+            .headers(refresh_headers)
+            .form(&[("refreshToken", refresh_token.as_str())])
+            .send()
+            .await
+            .expect("Failed to refresh access token");
+
+        if refresh_response.status().is_success() {
+            if let ApiData::Verify(refresh_resp) = refresh_response
+                .json::<ApiResponse>()
+                .await
+                .expect("Failed to decode refresh response")
+                .data
+            {
+                debug!(
+                    "new JWT access token: {:?}",
+                    refresh_resp.access_token.token
+                );
+                let mut access_token_writer = self.state.access_token.write().await;
+                *access_token_writer = Some(refresh_resp.access_token.token);
+                self.access_token_exp = Some(refresh_resp.access_token.data.payload.exp);
+            }
+        } else {
+            error!(
+                "Failed to refresh access token, Err: {:?}",
+                refresh_response.text().await
+            );
+        }
+    }
+}
+
+```
+
+### Repository
+
+For complete documentation and examples, visit the [ethgas-rs repository](https://github.com/ethgas-developer/ethgas-rs).
+
+:::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
+
+</TabItem>
+<TabItem value="go" label="Using Go">
+
+### Overview
+
+The Go connector provides a robust, concurrent way to interact with the ETHGas platform.
+The connector includes a **REST client** for making HTTP requests with built-in retry logic and connection pooling, and a **WebSocket client** for real-time data streaming with automatic reconnection handling.
+
+For private endpoint access, the connector implements the complete authentication workflow including EIP-712 message signing, JWT token management, and automatic token refresh with goroutine-based background processing.
+<!-- 
+### Installation
+
+```bash
+go get github.com/ethgas-developer/ethgas-go
+``` -->
+
+### Example Usage
+
+```go
+// ApiClient represents the client for interacting with the API
+type ApiClient struct {
+	APIURL       string
+	ChainID      string
+	Client       *http.Client
+	AccessToken  string
+	RefreshToken string // Keeping this as a field for storing the refresh token
+}
+
+// LoginResponse represents the login response structure
+type LoginResponse struct {
+	Status        string `json:"status"`
+	EIP712Message string `json:"eip712Message"`
+	NonceHash     string `json:"nonceHash"`
+}
+
+// VerifyResponse represents the verification response structure
+type VerifyResponse struct {
+	User        User        `json:"user"`
+	AccessToken AccessToken `json:"accessToken"`
+}
+
+// AccessToken represents the access token structure
+type AccessToken struct {
+	Token string `json:"token"`
+}
+
+// ApiResponse represents the standard API response structure
+type ApiResponse struct {
+	Success bool            `json:"success"`
+	Data    json.RawMessage `json:"data"`
+}
+
+
+func (c *ApiClient) Login(privateKey string) (string, string, error) {
+	// Check cache first
+	loginCache.mutex.RLock()
+	if loginCache.AccessToken != "" && loginCache.RefreshToken != "" {
+		// If cache is less than 23 hours old, use it
+		if time.Since(loginCache.LastLogin) < 23*time.Hour {
+			accessToken := loginCache.AccessToken
+			refreshToken := loginCache.RefreshToken
+			loginCache.mutex.RUnlock()
+			return accessToken, refreshToken, nil
+		}
+	}
+	loginCache.mutex.RUnlock()
+
+	// If cache miss or expired, try to login with retries
+	var lastErr error
+	for i := 0; i < maxRetries; i++ {
+		accessToken, refreshToken, err := c.tryLogin(privateKey)
+		if err == nil {
+			// Update cache on success
+			loginCache.mutex.Lock()
+			loginCache.AccessToken = accessToken
+			loginCache.RefreshToken = refreshToken
+			loginCache.LastLogin = time.Now()
+			loginCache.mutex.Unlock()
+			return accessToken, refreshToken, nil
+		}
+		lastErr = err
+		log.Printf("Login attempt %d failed: %v, retrying in %v...", i+1, err, retryDelay)
+		time.Sleep(retryDelay)
+	}
+	return "", "", fmt.Errorf("all login attempts failed: %v", lastErr)
+}
+
+// Split out the actual login attempt into a separate method
+func (c *ApiClient) tryLogin(privateKey string) (string, string, error) {
+	privateKeyBytes, err := hex.DecodeString(privateKey)
+	if err != nil {
+		return "", "", fmt.Errorf("failed to decode private key: %w", err)
+	}
+	privateKeyECDSA, err := crypto.ToECDSA(privateKeyBytes)
+	if err != nil {
+		return "", "", fmt.Errorf("failed to create ECDSA private key: %w", err)
+	}
+	address := crypto.PubkeyToAddress(privateKeyECDSA.PublicKey).Hex()
+
+	loginURL := fmt.Sprintf("%s/api/v1/user/login", c.APIURL)
+
+	formData := url.Values{}
+	formData.Set("addr", address)
+	formData.Set("chainId", c.ChainID)
+
+	req, err := http.NewRequest("POST", loginURL, strings.NewReader(formData.Encode()))
+	if err != nil {
+		return "", "", fmt.Errorf("failed to create login request: %w", err)
+	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("User-Agent", "Relay/1.0")
+
+	resp, err := c.Client.Do(req)
+	if err != nil {
+		return "", "", fmt.Errorf("failed to send login request: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := ioutil.ReadAll(resp.Body)
+		return "", "", fmt.Errorf("login failed with status %d: %s", resp.StatusCode, string(body))
+	}
+
+	var apiResponse ApiResponse
+	if err := json.NewDecoder(resp.Body).Decode(&apiResponse); err != nil {
+		return "", "", fmt.Errorf("failed to parse login response: %w", err)
+	}
+	if !apiResponse.Success {
+		fmt.Println("Failed response:", apiResponse)
+		return "", "", fmt.Errorf("login failed: response indicates failure")
+	}
+
+	var loginData LoginResponse
+	if err := json.Unmarshal(apiResponse.Data, &loginData); err != nil {
+		return "", "", fmt.Errorf("failed to parse login data: %w", err)
+	}
+
+	fmt.Println("EIP712Message:", loginData.EIP712Message)
+	fmt.Println("NonceHash:", loginData.NonceHash)
+	// Parse the EIP712Message JSON string into apitypes.TypedData
+	var typedData apitypes.TypedData
+	if err := json.Unmarshal([]byte(loginData.EIP712Message), &typedData); err != nil {
+		return "", "", fmt.Errorf("failed to unmarshal EIP712Message: %w", err)
+	}
+	// signature, err := SignEIP712Message(privateKeyECDSA, loginData.EIP712Message)
+	signature, err := eip712.SignTypedData(typedData, privateKeyECDSA)
+	var signatureHash = hex.EncodeToString(signature)
+	if err != nil {
+		return "", "", fmt.Errorf("failed to sign EIP712 message: %w", err)
+	}
+	fmt.Println("Signature:", signatureHash)
+
+	// verifyURL := fmt.Sprintf("%s/api/user/login/verify", c.APIURL)
+	verifyURL := fmt.Sprintf("%s/api/v1/user/login/verify", c.APIURL)
+
+	verifyFormData := url.Values{}
+	verifyFormData.Set("addr", address)
+	verifyFormData.Set("signature", signatureHash)
+	verifyFormData.Set("nonceHash", loginData.NonceHash)
+
+	// Create a new request with User-Agent
+	verifyReq, err := http.NewRequest("POST", verifyURL, strings.NewReader(verifyFormData.Encode()))
+	if err != nil {
+		return "", "", fmt.Errorf("failed to create verification request: %w", err)
+	}
+	verifyReq.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	verifyReq.Header.Set("User-Agent", "Relay/1.0")
+
+	verifyResp, err := c.Client.Do(verifyReq)
+	if err != nil {
+		return "", "", fmt.Errorf("failed to send verification request: %w", err)
+	}
+	defer verifyResp.Body.Close()
+
+	if verifyResp.StatusCode != http.StatusOK {
+		body, _ := ioutil.ReadAll(verifyResp.Body)
+		return "", "", fmt.Errorf("verification failed with status %d: %s", verifyResp.StatusCode, string(body))
+	}
+
+	var verifyApiResponse ApiResponse
+	if err := json.NewDecoder(verifyResp.Body).Decode(&verifyApiResponse); err != nil {
+		return "", "", fmt.Errorf("failed to parse verification response: %w", err)
+	}
+	if !verifyApiResponse.Success {
+		return "", "", fmt.Errorf("verification failed: response indicates failure")
+	}
+
+	var verifyData VerifyResponse
+	if err := json.Unmarshal(verifyApiResponse.Data, &verifyData); err != nil {
+		return "", "", fmt.Errorf("failed to parse verify data: %w", err)
+	}
+
+	c.AccessToken = verifyData.AccessToken.Token
+	c.RefreshToken = c.extractRefreshToken(verifyResp)
+	return c.AccessToken, c.RefreshToken, nil
+}
+
+// Update the RefreshAccessToken method to include retries
+func (c *ApiClient) RefreshAccessToken() error {
+	var lastErr error
+	for i := 0; i < maxRetries; i++ {
+		err := c.tryRefreshAccessToken()
+		if err == nil {
+			return nil
+		}
+		lastErr = err
+		log.Printf("Token refresh attempt %d failed: %v, retrying in %v...", i+1, err, retryDelay)
+		time.Sleep(retryDelay)
+	}
+	return fmt.Errorf("all token refresh attempts failed: %v", lastErr)
+}
+
+// RefreshAccessToken refreshes the access token using the refresh token
+// Split out the actual refresh attempt into a separate method
+func (c *ApiClient) tryRefreshAccessToken() error {
+	refreshURL := fmt.Sprintf("%s/api/v1/user/login/refresh", c.APIURL)
+
+	formData := url.Values{}
+	formData.Set("refreshToken", c.RefreshToken)
+
+	req, err := http.NewRequest("POST", refreshURL, strings.NewReader(formData.Encode()))
+	if err != nil {
+		return fmt.Errorf("failed to create refresh token request: %w", err)
+	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("User-Agent", "Relay/1.0")
+
+	resp, err := c.Client.Do(req)
+	if err != nil {
+		return fmt.Errorf("failed to send refresh token request: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := ioutil.ReadAll(resp.Body)
+		return fmt.Errorf("refresh token failed with status %d: %s", resp.StatusCode, string(body))
+	}
+
+	// Parse the refresh response
+	var apiResponse ApiResponse
+	if err := json.NewDecoder(resp.Body).Decode(&apiResponse); err != nil {
+		return fmt.Errorf("failed to parse refresh token response: %w", err)
+	}
+	if !apiResponse.Success {
+		return fmt.Errorf("refresh token failed: response indicates failure")
+	}
+
+	// Extract the verify data
+	var verifyData VerifyResponse
+	if err := json.Unmarshal(apiResponse.Data, &verifyData); err != nil {
+		return fmt.Errorf("failed to parse verify data: %w", err)
+	}
+
+	// Save new access token
+	c.AccessToken = verifyData.AccessToken.Token
+	return nil
+}
+
+func (c *ApiClient) extractRefreshToken(resp *http.Response) string {
+	for _, cookie := range resp.Cookies() {
+		if cookie.Name == "x_auth_refresh_token" {
+			return cookie.Value
+		}
+	}
+	return ""
+}
+
+func InitLoginAndStartTokenRefresh() {
+	// Perform the initial login to get tokens
+	// TODO config
+
+	// privateKey := "8ca6e6e33b2170de9e6ce76bbb5808f8d5ec3e112c2c72cd0b97614f00061f0e"
+
+	accessToken, refreshToken, err := client.Login(exchangeLoginPrivateKey)
+	if err != nil || accessToken == "" || refreshToken == "" {
+		log.Printf("Failed to login during initialization: %v", err)
+		return
+	}
+
+	// Start a goroutine to refresh the tokens every 30 minutes
+	go client.startTokenRefreshLoop()
+	go client.startDailyLoginLoop(exchangeLoginPrivateKey)
+}
+
+// startTokenRefreshLoop refreshes access tokens every 30 minutes
+func (c *ApiClient) startTokenRefreshLoop() {
+	log.Println("Starting access token refresh loop...")
+	ticker := time.NewTicker(30 * time.Minute)
+	defer ticker.Stop()
+
+	for range ticker.C {
+		err := c.RefreshAccessToken()
+		if err != nil {
+			log.Printf("Failed to refresh access token: %v", err)
+		}
+	}
+}
+
+// Update the startDailyLoginLoop to handle failures better
+func (c *ApiClient) startDailyLoginLoop(privateKey string) {
+	log.Println("Starting daily login loop...")
+	ticker := time.NewTicker(24 * time.Hour)
+	defer ticker.Stop()
+
+	for range ticker.C {
+		accessToken, refreshToken, err := c.Login(privateKey)
+		if err != nil {
+			log.Printf("Failed to login during daily refresh: %v", err)
+			continue
+		}
+		if accessToken == "" || refreshToken == "" {
+			log.Printf("Received empty tokens during daily refresh")
+			continue
+		}
+	}
+}
+
+```
+
+### Repository
+
+For complete documentation and examples, visit the [ethgas-go repository](https://github.com/ethgas-developer/ethgas-go).
+
+:::info
+The JWT access token is valid for 1 hour, after each hour an access token refresh is required. A private REST request needs to include the JWT access token in the request's HEADER, format: Authorization: 'Bearer accessToken'. A private session is valid for 7 days, after 7 days a re-login is required. A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+:::
+
+</TabItem>
+
 </Tabs>
 
 

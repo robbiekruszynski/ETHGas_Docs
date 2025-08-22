@@ -1293,9 +1293,195 @@ No parameters required.
   <span className="api-category-desc">Network info, tokens, fees</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/p/network`
-- <span className="api-method-get">**GET**</span> `/v1/p/tokens`
-- <span className="api-method-get">**GET**</span> `/v1/p/user/fees`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/network` - Get network information
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/network
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/network"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "network": {
+            "chainId": 1,
+            "name": "Ethereum Mainnet",
+            "blockTime": 12
+        }
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `network` | object | Network information |
+| └ `chainId` | number | Chain identifier |
+| └ `name` | string | Network name |
+| └ `blockTime` | number | Average block time in seconds |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/tokens` - Get available tokens
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/tokens
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/tokens"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "tokens": [
+            {
+                "tokenId": 1,
+                "symbol": "ETH",
+                "name": "Ethereum",
+                "decimals": 18,
+                "address": "0x0000000000000000000000000000000000000000"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `tokens` | array | List of available tokens |
+| └ `tokenId` | number | Unique token identifier |
+| └ `symbol` | string | Token symbol |
+| └ `name` | string | Token name |
+| └ `decimals` | number | Token decimal places |
+| └ `address` | string | Token contract address |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/user/fees` - Get user fees
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/user/fees
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/user/fees"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "fees": {
+            "makerFee": "0.001",
+            "takerFee": "0.002"
+        }
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `fees` | object | Fee structure |
+| └ `makerFee` | string | Maker fee rate |
+| └ `takerFee` | string | Taker fee rate |
+
+</details>
 
 </details>
 
@@ -1307,10 +1493,273 @@ No parameters required.
   <span className="api-category-desc">Public market data</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/markets`
-- <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/positions`
-- <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/orders`
-- <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/trades`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/markets` - Get whole block markets
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/wholeblock/markets
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "markets": [
+            {
+                "marketId": 1,
+                "name": "ETH-USD",
+                "status": "active"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `markets` | array | List of whole block markets |
+| └ `marketId` | number | Unique market identifier |
+| └ `name` | string | Market name |
+| └ `status` | string | Market status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/positions` - Get whole block positions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/wholeblock/positions
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/positions"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "positions": [
+            {
+                "positionId": 1,
+                "marketId": 1,
+                "size": "100",
+                "side": "long"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `positions` | array | List of whole block positions |
+| └ `positionId` | number | Unique position identifier |
+| └ `marketId` | number | Market identifier |
+| └ `size` | string | Position size |
+| └ `side` | string | Position side (long/short) |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/orders` - Get whole block orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/wholeblock/orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/orders"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 1,
+                "marketId": 1,
+                "price": "2000",
+                "size": "10",
+                "side": "buy"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orders` | array | List of whole block orders |
+| └ `orderId` | number | Unique order identifier |
+| └ `marketId` | number | Market identifier |
+| └ `price` | string | Order price |
+| └ `size` | string | Order size |
+| └ `side` | string | Order side (buy/sell) |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/trades` - Get whole block trades
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/wholeblock/trades
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/trades"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "trades": [
+            {
+                "tradeId": 1,
+                "marketId": 1,
+                "price": "2000",
+                "size": "5",
+                "side": "buy",
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `trades` | array | List of whole block trades |
+| └ `tradeId` | number | Unique trade identifier |
+| └ `marketId` | number | Market identifier |
+| └ `price` | string | Trade price |
+| └ `size` | string | Trade size |
+| └ `side` | string | Trade side (buy/sell) |
+| └ `timestamp` | number | Trade timestamp in milliseconds |
+
+</details>
 
 </details>
 
@@ -1322,10 +1771,277 @@ No parameters required.
   <span className="api-category-desc">Public market data</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/markets`
-- <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/market`
-- <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/trades`
-- <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/top-sales`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/markets` - Get inclusion preconf markets
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/inclusion-preconf/markets
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/markets"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "markets": [
+            {
+                "marketId": 1,
+                "name": "ETH-Inclusion",
+                "status": "active"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `markets` | array | List of inclusion preconf markets |
+| └ `marketId` | number | Unique market identifier |
+| └ `name` | string | Market name |
+| └ `status` | string | Market status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/market` - Get specific inclusion preconf market
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/inclusion-preconf/market?marketId=1
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/market"
+
+params = {
+    'marketId': 1
+}
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `marketId` | YES | number | Market identifier |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "market": {
+            "marketId": 1,
+            "name": "ETH-Inclusion",
+            "status": "active",
+            "currentPrice": "2000"
+        }
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `market` | object | Market details |
+| └ `marketId` | number | Unique market identifier |
+| └ `name` | string | Market name |
+| └ `status` | string | Market status |
+| └ `currentPrice` | string | Current market price |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/trades` - Get inclusion preconf trades
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/inclusion-preconf/trades
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/trades"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "trades": [
+            {
+                "tradeId": 1,
+                "marketId": 1,
+                "price": "2000",
+                "size": "5",
+                "side": "buy",
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `trades` | array | List of inclusion preconf trades |
+| └ `tradeId` | number | Unique trade identifier |
+| └ `marketId` | number | Market identifier |
+| └ `price` | string | Trade price |
+| └ `size` | string | Trade size |
+| └ `side` | string | Trade side (buy/sell) |
+| └ `timestamp` | number | Trade timestamp in milliseconds |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/top-sales` - Get top inclusion preconf sales
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/inclusion-preconf/top-sales
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/inclusion-preconf/top-sales"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "topSales": [
+            {
+                "saleId": 1,
+                "marketId": 1,
+                "price": "2500",
+                "size": "10",
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `topSales` | array | List of top sales |
+| └ `saleId` | number | Unique sale identifier |
+| └ `marketId` | number | Market identifier |
+| └ `price` | string | Sale price |
+| └ `size` | string | Sale size |
+| └ `timestamp` | number | Sale timestamp in milliseconds |
+
+</details>
 
 </details>
 
@@ -1337,14 +2053,538 @@ No parameters required.
   <span className="api-category-desc">Place/cancel orders and view positions</span>
 </summary>
 
-- <span className="api-method-post">**POST**</span> `/v1/wholeblock/order`
-- <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-all-orders`
-- <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-batch-orders`
-- <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-order`
-- <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/all-orders`
-- <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/orders`
-- <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/positions`
-- <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/txs`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/order` - Place whole block order
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/order \
+  -d '{"marketId": 1, "side": "buy", "price": "2000", "size": "10"}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/order"
+
+payload = {
+    'marketId': 1,
+    'side': 'buy',
+    'price': '2000',
+    'size': '10'
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `marketId` | YES | number | Market identifier |
+| `side` | YES | string | Order side (buy/sell) |
+| `price` | YES | string | Order price |
+| `size` | YES | string | Order size |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orderId": 12345,
+        "status": "placed"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orderId` | number | Unique order identifier |
+| `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-all-orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-all-orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "cancelledOrders": 5
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `cancelledOrders` | number | Number of orders cancelled |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-batch-orders` - Cancel batch of whole block orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-batch-orders \
+  -d '{"orderIds": [12345, 12346, 12347]}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-batch-orders"
+
+payload = {
+    'orderIds': [12345, 12346, 12347]
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `orderIds` | YES | array | Array of order IDs to cancel |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "cancelledOrders": 3
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `cancelledOrders` | number | Number of orders cancelled |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-order` - Cancel specific whole block order
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-order \
+  -d '{"orderId": 12345}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-order"
+
+payload = {
+    'orderId': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `orderId` | YES | number | Order ID to cancel |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orderId": 12345,
+        "status": "cancelled"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orderId` | number | Cancelled order ID |
+| `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/all-orders` - Get all whole block orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/all-orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/all-orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 12345,
+                "marketId": 1,
+                "side": "buy",
+                "price": "2000",
+                "size": "10",
+                "status": "open"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orders` | array | List of all orders |
+| └ `orderId` | number | Unique order identifier |
+| └ `marketId` | number | Market identifier |
+| └ `side` | string | Order side (buy/sell) |
+| └ `price` | string | Order price |
+| └ `size` | string | Order size |
+| └ `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/orders` - Get user whole block orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 12345,
+                "marketId": 1,
+                "side": "buy",
+                "price": "2000",
+                "size": "10",
+                "status": "open"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orders` | array | List of user orders |
+| └ `orderId` | number | Unique order identifier |
+| └ `marketId` | number | Market identifier |
+| └ `side` | string | Order side (buy/sell) |
+| └ `price` | string | Order price |
+| └ `size` | string | Order size |
+| └ `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/positions` - Get user whole block positions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/positions
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/positions"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "positions": [
+            {
+                "positionId": 1,
+                "marketId": 1,
+                "size": "100",
+                "side": "long",
+                "unrealizedPnl": "500"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `positions` | array | List of user positions |
+| └ `positionId` | number | Unique position identifier |
+| └ `marketId` | number | Market identifier |
+| └ `size` | string | Position size |
+| └ `side` | string | Position side (long/short) |
+| └ `unrealizedPnl` | string | Unrealized profit/loss |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/txs` - Get user whole block transactions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/txs
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/txs"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "transactions": [
+            {
+                "txId": 1,
+                "type": "order_placed",
+                "marketId": 1,
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `transactions` | array | List of user transactions |
+| └ `txId` | number | Unique transaction identifier |
+| └ `type` | string | Transaction type |
+| └ `marketId` | number | Market identifier |
+| └ `timestamp` | number | Transaction timestamp in milliseconds |
+
+</details>
 
 </details>
 
@@ -1356,15 +2596,605 @@ No parameters required.
   <span className="api-category-desc">Place/cancel orders and view positions</span>
 </summary>
 
-- <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/order`
-- <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/cancel-all-orders`
-- <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/cancel-batch-orders`
-- <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/cancel-order`
-- <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/orders`
-- <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/all-orders`
-- <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/positions`
-- <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/txs`
-- <span className="api-method-post">**POST**</span> `/v1/user/inclusion-preconf/market/update`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/order` - Place inclusion preconf order
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/order \
+  -d '{"marketId": 1, "side": "buy", "price": "2000", "size": "10"}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/order"
+
+payload = {
+    'marketId': 1,
+    'side': 'buy',
+    'price': '2000',
+    'size': '10'
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `marketId` | YES | number | Market identifier |
+| `side` | YES | string | Order side (buy/sell) |
+| `price` | YES | string | Order price |
+| `size` | YES | string | Order size |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orderId": 12345,
+        "status": "placed"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orderId` | number | Unique order identifier |
+| `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/cancel-all-orders` - Cancel all inclusion preconf orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-all-orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/cancel-all-orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "cancelledOrders": 5
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `cancelledOrders` | number | Number of orders cancelled |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/cancel-batch-orders` - Cancel batch of inclusion preconf orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-batch-orders \
+  -d '{"orderIds": [12345, 12346, 12347]}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/cancel-batch-orders"
+
+payload = {
+    'orderIds': [12345, 12346, 12347]
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `orderIds` | YES | array | Array of order IDs to cancel |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "cancelledOrders": 3
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `cancelledOrders` | number | Number of orders cancelled |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/cancel-order` - Cancel specific inclusion preconf order
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-order \
+  -d '{"orderId": 12345}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/cancel-order"
+
+payload = {
+    'orderId': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `orderId` | YES | number | Order ID to cancel |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orderId": 12345,
+        "status": "cancelled"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orderId` | number | Cancelled order ID |
+| `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/orders` - Get user inclusion preconf orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/inclusion-preconf/orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 12345,
+                "marketId": 1,
+                "side": "buy",
+                "price": "2000",
+                "size": "10",
+                "status": "open"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orders` | array | List of user orders |
+| └ `orderId` | number | Unique order identifier |
+| └ `marketId` | number | Market identifier |
+| └ `side` | string | Order side (buy/sell) |
+| └ `price` | string | Order price |
+| └ `size` | string | Order size |
+| └ `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/all-orders` - Get all inclusion preconf orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/all-orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/inclusion-preconf/all-orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 12345,
+                "marketId": 1,
+                "side": "buy",
+                "price": "2000",
+                "size": "10",
+                "status": "open"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orders` | array | List of all orders |
+| └ `orderId` | number | Unique order identifier |
+| └ `marketId` | number | Market identifier |
+| └ `side` | string | Order side (buy/sell) |
+| └ `price` | string | Order price |
+| └ `size` | string | Order size |
+| └ `status` | string | Order status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/positions` - Get user inclusion preconf positions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/positions
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/inclusion-preconf/positions"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "positions": [
+            {
+                "positionId": 1,
+                "marketId": 1,
+                "size": "100",
+                "side": "long",
+                "unrealizedPnl": "500"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `positions` | array | List of user positions |
+| └ `positionId` | number | Unique position identifier |
+| └ `marketId` | number | Market identifier |
+| └ `size` | string | Position size |
+| └ `side` | string | Position side (long/short) |
+| └ `unrealizedPnl` | string | Unrealized profit/loss |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/txs` - Get user inclusion preconf transactions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/txs
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/inclusion-preconf/txs"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "transactions": [
+            {
+                "txId": 1,
+                "type": "order_placed",
+                "marketId": 1,
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `transactions` | array | List of user transactions |
+| └ `txId` | number | Unique transaction identifier |
+| └ `type` | string | Transaction type |
+| └ `marketId` | number | Market identifier |
+| └ `timestamp` | number | Transaction timestamp in milliseconds |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/inclusion-preconf/market/update` - Update inclusion preconf market
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/inclusion-preconf/market/update \
+  -d '{"marketId": 1, "price": "2100"}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/inclusion-preconf/market/update"
+
+payload = {
+    'marketId': 1,
+    'price': '2100'
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `marketId` | YES | number | Market identifier |
+| `price` | YES | string | New market price |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "marketId": 1,
+        "updatedPrice": "2100"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `marketId` | number | Market identifier |
+| `updatedPrice` | string | Updated market price |
+
+</details>
 
 </details>
 
@@ -1376,7 +3206,72 @@ No parameters required.
   <span className="api-category-desc">Submit transaction bundles</span>
 </summary>
 
-- <span className="api-method-post">**POST**</span> `/api/v1/user/bundle/send`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/api/v1/user/bundle/send` - Submit transaction bundle
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/bundle/send \
+  -d '{"transactions": ["0x...", "0x..."], "targetBlock": 12345}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/bundle/send"
+
+payload = {
+    'transactions': ['0x...', '0x...'],
+    'targetBlock': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `transactions` | YES | array | Array of transaction hashes |
+| `targetBlock` | YES | number | Target block number |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "bundleId": "bundle_12345",
+        "status": "submitted"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `bundleId` | string | Unique bundle identifier |
+| `status` | string | Bundle submission status |
+
+</details>
 
 </details>
 
@@ -1388,10 +3283,278 @@ No parameters required.
   <span className="api-category-desc">Per-slot bundle data</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/slot/bundles`
-- <span className="api-method-get">**GET**</span> `/v1/account/slot/bundles`
-- <span className="api-method-get">**GET**</span> `/v1/slot/forceEmptyBlockSpace`
-- <span className="api-method-get">**GET**</span> `/v1/p/slot/txs/hash`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/slot/bundles` - Get slot bundles
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/slot/bundles?slot=12345
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/slot/bundles"
+
+params = {
+    'slot': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `slot` | YES | number | Slot number |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "bundles": [
+            {
+                "bundleId": "bundle_12345",
+                "slot": 12345,
+                "transactions": ["0x...", "0x..."]
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `bundles` | array | List of bundles for the slot |
+| └ `bundleId` | string | Unique bundle identifier |
+| └ `slot` | number | Slot number |
+| └ `transactions` | array | Array of transaction hashes |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/account/slot/bundles` - Get account slot bundles
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/account/slot/bundles?accountId=242&slot=12345
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/account/slot/bundles"
+
+params = {
+    'accountId': 242,
+    'slot': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `accountId` | YES | number | Account identifier |
+| `slot` | YES | number | Slot number |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "bundles": [
+            {
+                "bundleId": "bundle_12345",
+                "accountId": 242,
+                "slot": 12345,
+                "transactions": ["0x...", "0x..."]
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `bundles` | array | List of account bundles for the slot |
+| └ `bundleId` | string | Unique bundle identifier |
+| └ `accountId` | number | Account identifier |
+| └ `slot` | number | Slot number |
+| └ `transactions` | array | Array of transaction hashes |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/slot/forceEmptyBlockSpace` - Get force empty block space
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/slot/forceEmptyBlockSpace?slot=12345
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/slot/forceEmptyBlockSpace"
+
+params = {
+    'slot': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `slot` | YES | number | Slot number |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "forceEmpty": true,
+        "slot": 12345
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `forceEmpty` | boolean | Whether block space is forced empty |
+| `slot` | number | Slot number |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/slot/txs/hash` - Get slot transaction hash
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/slot/txs/hash?slot=12345
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/slot/txs/hash"
+
+params = {
+    'slot': 12345
+}
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `slot` | YES | number | Slot number |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "txHash": "0x1234567890abcdef...",
+        "slot": 12345
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `txHash` | string | Transaction hash for the slot |
+| `slot` | number | Slot number |
+
+</details>
 
 </details>
 
@@ -1403,15 +3566,587 @@ No parameters required.
   <span className="api-category-desc">Builder registration and delegation</span>
 </summary>
 
-- <span className="api-method-post">**POST**</span> `/v1/builder/register`
-- <span className="api-method-get">**GET**</span> `/v1/builder/signingMessage`
-- <span className="api-method-post">**POST**</span> `/v1/builder/deregister`
-- <span className="api-method-get">**GET**</span> `/v1/p/builders`
-- <span className="api-method-get">**GET**</span> `/v1/user/builder`
-- <span className="api-method-post">**POST**</span> `/v1/user/delegate/builder`
-- <span className="api-method-get">**GET**</span> `/v1/user/delegate/builder`
-- <span className="api-method-get">**GET**</span> `/v1/p/builder/{slot}`
-- <span className="api-method-get">**GET**</span> `/v1/builder/delegation`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/builder/register` - Register builder
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/register \
+  -d '{"builderAddress": "0x1234567890abcdef...", "name": "MyBuilder"}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/builder/register"
+
+payload = {
+    'builderAddress': '0x1234567890abcdef...',
+    'name': 'MyBuilder'
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `builderAddress` | YES | string | Builder's wallet address |
+| `name` | YES | string | Builder name |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "builderId": 12345,
+        "status": "registered"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `builderId` | number | Unique builder identifier |
+| `status` | string | Registration status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/builder/signingMessage` - Get builder signing message
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/builder/signingMessage
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/builder/signingMessage"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "message": "Sign this message to verify builder ownership",
+        "nonce": "12345"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `message` | string | Message to sign |
+| `nonce` | string | Unique nonce for verification |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/builder/deregister` - Deregister builder
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/deregister \
+  -d '{"builderId": 12345}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/builder/deregister"
+
+payload = {
+    'builderId': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `builderId` | YES | number | Builder identifier |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "builderId": 12345,
+        "status": "deregistered"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `builderId` | number | Deregistered builder ID |
+| `status` | string | Deregistration status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/builders` - Get public builders list
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/builders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/builders"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "builders": [
+            {
+                "builderId": 12345,
+                "name": "MyBuilder",
+                "address": "0x1234567890abcdef...",
+                "status": "active"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `builders` | array | List of public builders |
+| └ `builderId` | number | Unique builder identifier |
+| └ `name` | string | Builder name |
+| └ `address` | string | Builder address |
+| └ `status` | string | Builder status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/builder` - Get user's builder
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/builder
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/builder"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "builder": {
+            "builderId": 12345,
+            "name": "MyBuilder",
+            "address": "0x1234567890abcdef...",
+            "status": "active"
+        }
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `builder` | object | User's builder information |
+| └ `builderId` | number | Unique builder identifier |
+| └ `name` | string | Builder name |
+| └ `address` | string | Builder address |
+| └ `status` | string | Builder status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/delegate/builder` - Delegate to builder
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/delegate/builder \
+  -d '{"builderId": 12345}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/delegate/builder"
+
+payload = {
+    'builderId': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `builderId` | YES | number | Builder identifier to delegate to |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "delegationId": 67890,
+        "status": "delegated"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `delegationId` | number | Unique delegation identifier |
+| `status` | string | Delegation status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/delegate/builder` - Get user's builder delegation
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/delegate/builder
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/delegate/builder"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "delegation": {
+            "delegationId": 67890,
+            "builderId": 12345,
+            "builderName": "MyBuilder",
+            "status": "active"
+        }
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `delegation` | object | User's builder delegation |
+| └ `delegationId` | number | Unique delegation identifier |
+| └ `builderId` | number | Builder identifier |
+| └ `builderName` | string | Builder name |
+| └ `status` | string | Delegation status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/builder/{slot}` - Get builder for specific slot
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/builder/12345
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/builder/12345"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `slot` | YES | number | Slot number (path parameter) |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "builder": {
+            "builderId": 12345,
+            "name": "MyBuilder",
+            "slot": 12345
+        }
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `builder` | object | Builder for the slot |
+| └ `builderId` | number | Unique builder identifier |
+| └ `name` | string | Builder name |
+| └ `slot` | number | Slot number |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/builder/delegation` - Get builder delegation info
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/builder/delegation
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/builder/delegation"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "delegations": [
+            {
+                "delegationId": 67890,
+                "userId": 78,
+                "builderId": 12345,
+                "status": "active"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `delegations` | array | List of builder delegations |
+| └ `delegationId` | number | Unique delegation identifier |
+| └ `userId` | number | User identifier |
+| └ `builderId` | number | Builder identifier |
+| └ `status` | string | Delegation status |
+
+</details>
 
 </details>
 
@@ -1423,14 +4158,537 @@ No parameters required.
   <span className="api-category-desc">Delegation and active markets</span>
 </summary>
 
-- <span className="api-method-post">**POST**</span> `/v1/user/delegate/pricer`
-- <span className="api-method-get">**GET**</span> `/v1/user/pricer`
-- <span className="api-method-get">**GET**</span> `/v1/pricer/account-tokens`
-- <span className="api-method-get">**GET**</span> `/v1/pricer/inclusion-preconf/orders`
-- <span className="api-method-get">**GET**</span> `/v1/pricer/inclusion-preconf/positions`
-- <span className="api-method-get">**GET**</span> `/v1/pricer/wholeblock/orders`
-- <span className="api-method-get">**GET**</span> `/v1/pricer/wholeblock/positions`
-- <span className="api-method-get">**GET**</span> `/v1/pricer/markets/active`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/user/delegate/pricer` - Delegate to pricer
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/delegate/pricer \
+  -d '{"pricerId": 12345}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/delegate/pricer"
+
+payload = {
+    'pricerId': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `pricerId` | YES | number | Pricer identifier to delegate to |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "delegationId": 67890,
+        "status": "delegated"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `delegationId` | number | Unique delegation identifier |
+| `status` | string | Delegation status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/pricer` - Get user's pricer
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/pricer
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/pricer"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "pricer": {
+            "pricerId": 12345,
+            "name": "MyPricer",
+            "status": "active"
+        }
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `pricer` | object | User's pricer information |
+| └ `pricerId` | number | Unique pricer identifier |
+| └ `name` | string | Pricer name |
+| └ `status` | string | Pricer status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/pricer/account-tokens` - Get pricer account tokens
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/account-tokens
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/pricer/account-tokens"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "tokens": [
+            {
+                "tokenId": 1,
+                "symbol": "ETH",
+                "balance": "1000000000000000000"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `tokens` | array | List of account tokens |
+| └ `tokenId` | number | Unique token identifier |
+| └ `symbol` | string | Token symbol |
+| └ `balance` | string | Token balance |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/pricer/inclusion-preconf/orders` - Get pricer inclusion preconf orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/inclusion-preconf/orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/pricer/inclusion-preconf/orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 12345,
+                "marketId": 1,
+                "side": "buy",
+                "price": "2000",
+                "size": "10"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orders` | array | List of inclusion preconf orders |
+| └ `orderId` | number | Unique order identifier |
+| └ `marketId` | number | Market identifier |
+| └ `side` | string | Order side (buy/sell) |
+| └ `price` | string | Order price |
+| └ `size` | string | Order size |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/pricer/inclusion-preconf/positions` - Get pricer inclusion preconf positions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/inclusion-preconf/positions
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/pricer/inclusion-preconf/positions"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "positions": [
+            {
+                "positionId": 1,
+                "marketId": 1,
+                "size": "100",
+                "side": "long"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `positions` | array | List of inclusion preconf positions |
+| └ `positionId` | number | Unique position identifier |
+| └ `marketId` | number | Market identifier |
+| └ `size` | string | Position size |
+| └ `side` | string | Position side (long/short) |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/pricer/wholeblock/orders` - Get pricer whole block orders
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/wholeblock/orders
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/pricer/wholeblock/orders"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 12345,
+                "marketId": 1,
+                "side": "buy",
+                "price": "2000",
+                "size": "10"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `orders` | array | List of whole block orders |
+| └ `orderId` | number | Unique order identifier |
+| └ `marketId` | number | Market identifier |
+| └ `side` | string | Order side (buy/sell) |
+| └ `price` | string | Order price |
+| └ `size` | string | Order size |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/pricer/wholeblock/positions` - Get pricer whole block positions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/wholeblock/positions
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/pricer/wholeblock/positions"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "positions": [
+            {
+                "positionId": 1,
+                "marketId": 1,
+                "size": "100",
+                "side": "long"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `positions` | array | List of whole block positions |
+| └ `positionId` | number | Unique position identifier |
+| └ `marketId` | number | Market identifier |
+| └ `size` | string | Position size |
+| └ `side` | string | Position side (long/short) |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/pricer/markets/active` - Get pricer active markets
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/markets/active
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/pricer/markets/active"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "markets": [
+            {
+                "marketId": 1,
+                "name": "ETH-USD",
+                "status": "active",
+                "currentPrice": "2000"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `markets` | array | List of active markets |
+| └ `marketId` | number | Unique market identifier |
+| └ `name` | string | Market name |
+| └ `status` | string | Market status |
+| └ `currentPrice` | string | Current market price |
+
+</details>
 
 </details>
 
@@ -1442,14 +4700,536 @@ No parameters required.
   <span className="api-category-desc">Registration, settings, payouts</span>
 </summary>
 
-- <span className="api-method-get">**GET**</span> `/v1/user/validators`
-- <span className="api-method-get">**GET**</span> `/v1/p/validators`
-- <span className="api-method-post">**POST**</span> `/v1/validator/register`
-- <span className="api-method-post">**POST**</span> `/v1/validator/verify`
-- <span className="api-method-post">**POST**</span> `/v1/validator/settings`
-- <span className="api-method-post">**POST**</span> `/v1/validator/deregister`
-- <span className="api-method-get">**GET**</span> `/v1/validator/fees`
-- <span className="api-method-get">**GET**</span> `/v1/validator/onchain/payout`
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/user/validators` - Get user validators
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/validators
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/validators"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "validators": [
+            {
+                "validatorId": 12345,
+                "name": "MyValidator",
+                "address": "0x1234567890abcdef...",
+                "status": "active"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `validators` | array | List of user validators |
+| └ `validatorId` | number | Unique validator identifier |
+| └ `name` | string | Validator name |
+| └ `address` | string | Validator address |
+| └ `status` | string | Validator status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/validators` - Get public validators list
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/validators
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/validators"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "validators": [
+            {
+                "validatorId": 12345,
+                "name": "MyValidator",
+                "address": "0x1234567890abcdef...",
+                "status": "active"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `validators` | array | List of public validators |
+| └ `validatorId` | number | Unique validator identifier |
+| └ `name` | string | Validator name |
+| └ `address` | string | Validator address |
+| └ `status` | string | Validator status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/validator/register` - Register validator
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/register \
+  -d '{"validatorAddress": "0x1234567890abcdef...", "name": "MyValidator"}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/validator/register"
+
+payload = {
+    'validatorAddress': '0x1234567890abcdef...',
+    'name': 'MyValidator'
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `validatorAddress` | YES | string | Validator's wallet address |
+| `name` | YES | string | Validator name |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "validatorId": 12345,
+        "status": "registered"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `validatorId` | number | Unique validator identifier |
+| `status` | string | Registration status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/validator/verify` - Verify validator
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/verify \
+  -d '{"validatorId": 12345, "signature": "0xabcdef123456..."}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/validator/verify"
+
+payload = {
+    'validatorId': 12345,
+    'signature': '0xabcdef123456...'
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `validatorId` | YES | number | Validator identifier |
+| `signature` | YES | string | Verification signature |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "validatorId": 12345,
+        "status": "verified"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `validatorId` | number | Validator identifier |
+| `status` | string | Verification status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/validator/settings` - Update validator settings
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/settings \
+  -d '{"validatorId": 12345, "settings": {"fee": "0.01"}}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/validator/settings"
+
+payload = {
+    'validatorId': 12345,
+    'settings': {
+        'fee': '0.01'
+    }
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `validatorId` | YES | number | Validator identifier |
+| `settings` | YES | object | Validator settings |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "validatorId": 12345,
+        "status": "updated"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `validatorId` | number | Validator identifier |
+| `status` | string | Update status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/validator/deregister` - Deregister validator
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/deregister \
+  -d '{"validatorId": 12345}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/validator/deregister"
+
+payload = {
+    'validatorId': 12345
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| `validatorId` | YES | number | Validator identifier |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "validatorId": 12345,
+        "status": "deregistered"
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `validatorId` | number | Deregistered validator ID |
+| `status` | string | Deregistration status |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/validator/fees` - Get validator fees
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/validator/fees
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/validator/fees"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "fees": [
+            {
+                "validatorId": 12345,
+                "fee": "0.01",
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `fees` | array | List of validator fees |
+| └ `validatorId` | number | Validator identifier |
+| └ `fee` | string | Fee amount |
+| └ `timestamp` | number | Fee timestamp in milliseconds |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/validator/onchain/payout` - Get validator onchain payout
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/validator/onchain/payout
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/validator/onchain/payout"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "payouts": [
+            {
+                "validatorId": 12345,
+                "amount": "1000000000000000000",
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+|------|------|-------------|
+| `payouts` | array | List of validator payouts |
+| └ `validatorId` | number | Validator identifier |
+| └ `amount` | string | Payout amount |
+| └ `timestamp` | number | Payout timestamp in milliseconds |
+
+</details>
 
 </details>
 
