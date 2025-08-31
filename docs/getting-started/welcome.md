@@ -7,48 +7,43 @@ import styles from '@site/src/pages/index.module.css';
 
 # Welcome to ETHGas
 
-Welcome to ETHGas, the premier platform for trading Ethereum Blockspace, and acquiring Realtime confirmations.
+**The End of Latency. The Beginning of Realtime.**
+
+Welcome to ETHGas, the real-time infrastructure layer that transforms Ethereum's blockspace into a structured, liquid, and tradable asset class.
 
 ## What is ETHGas?
 
-ETHGas is a comprehensive platform that enables trading of Ethereum gas and MEV opportunities through various market types:
+ETHGas is not just another protocol—we are building the foundational financial market for Ethereum's blockspace. We transform the chaotic, unpredictable auction for transaction inclusion into a structured, liquid, and tradable asset class.
+
+### Our Mission
+
+To build the **realtime infrastructure** for Ethereum's economy. We transform gas from a volatile friction point into a tradable asset class while removing the concept of gas from the user experience.
+
+### The Future We Create
+
+We are accelerating the Ethereum of the Future to make it instant—a future where transactions settle immediately, capital flows without friction, and the complexity of gas becomes a relic of the past.
+
+## Core Platform Features
 
 ### Market Types
 
-**Whole Block Markets** - Trade entire blocks for MEV opportunities. Available up to 64 slots in advance for maximum planning flexibility.
+**Inclusion Preconf Markets** - Trade generic blockspace with conventional CLOB interface. Available up to 32 slots in advance, enabling predictable transaction inclusion and gas cost management.
 
-<!-- **Rest-of-Block Auction** - Dynamic real-time auction for remaining block space. Available only for the current slot. -->
+**Whole Block Markets** - Trade entire blocks for advanced blockspace strategies. Available up to 64 slots in advance for maximum planning flexibility.
 
-**Inclusion Preconf Markets** - Trade generic blockspace with conventional CLOB interface. Available up to 32 slots in advance.
+### Real-time Infrastructure
 
-### Platform Components
+- **Instant Settlement** - Transactions settle immediately through our preconfirmation system
+- **Predictable Costs** - Transform volatile gas fees into structured, tradable assets
+- **Liquid Markets** - Access deep liquidity for blockspace trading
+- **Gas Abstraction** - Remove gas complexity from user experience
+
+## Platform Components
 
 - **REST API**: Complete HTTP API for all platform operations
 - **WebSocket API**: Real-time data streaming for live market updates
 - **Authentication System**: Secure user authentication and session management
 - **Trading Tools**: Advanced order management and position tracking
-
-<!-- ## Key Trading Concepts -->
-
-<!-- <div className="row">
-  <div className="col col--6">
-    <div className="feature-card">
-      <h3>Order Types</h3>
-      <p><strong>Market Orders</strong> - Execute immediately at current market price</p>
-      <p><strong>Limit Orders</strong> - Execute only at specified price or better</p>
-      <p><strong>Fill-Or-Kill Orders</strong> - Execute completely or not at all</p>
-    </div>
-  </div> -->
-  
-  <!-- <div className="col col--6">
-    <div className="feature-card">
-      <h3>Position Management</h3>
-      <p><strong>Long Positions</strong> - Profitable when market prices increase</p>
-      <p><strong>Short Positions</strong> - Profitable when market prices decrease</p>
-      <p><strong>Real-time Tracking</strong> - Live updates on position status and P&L</p>
-    </div>
-  </div> -->
-<!-- </div> -->
 
 ## Getting Started Checklist
 

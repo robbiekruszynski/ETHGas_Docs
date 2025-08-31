@@ -4,7 +4,60 @@ sidebar_position: 1
 
 # WebSocket
 
-The ETHGas WebSocket API provides real-time data streaming for market and account updates. Use the command/message structure described in the official API.
+WEBSOCKET
+
+## Path
+
+`/ws`
+
+The websocket channel provides access of streaming data subscriptions and queries on public/private data.
+
+### Sample Python Script
+
+```python
+import json
+
+import websocket
+from websocket import WebSocket
+
+__ws_url = "wss://holesky.app.ethgas.com/ws"
+
+
+def on_open(ws: WebSocket):
+    message = {
+        "op": "subscribe",
+        "args": [
+            {
+                "channel": "orderBookUpdate",
+                "marketType": "wholeBlock"
+            }
+        ]
+    }
+    ws.send(json.dumps(message))
+
+
+def on_message(ws: WebSocket, message: str):
+    print(f"Received message: {message}")
+
+
+def on_error(ws: WebSocket, error: Exception):
+    print(f"Error: {error}")
+
+
+def on_close(ws: WebSocket, close_status_code: int, close_msg: str):
+    print("WebSocket closed")
+
+
+if __name__ == "__main__":
+    ws_app = websocket.WebSocketApp(
+        __ws_url,
+        on_open=on_open,
+        on_message=on_message,
+        on_close=on_close,
+        on_error=on_error,
+    )
+    ws_app.run_forever()
+```
 
 ## Quick Navigation
 

@@ -179,8 +179,6 @@ API requests are subject to rate limiting. Check response headers for rate limit
 
 ## Core Components
 
-### Market Types
-
 ETHGas supports multiple market types for different trading and building scenarios.
 
 
@@ -219,7 +217,7 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/login"
 
 payload = {
-    'addr': '0x5eF1B2c02f5E39C0fF667611C5d7EfFb0E7df305',
+    'addr': '0x8F02425B5f3c522b7EF8EA124162645F0397c478',
     'name': 'username'
 }
 
@@ -401,11 +399,12 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/login/refresh"
 
 payload = {
-    'refreshToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+    'refreshToken': 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoicmVmcmVzaF90b2tlbiIsImlhdCI6MTY5NzQyNDM0MCwiZXhwIjoxNjk4MDI5MTQwfQ.Y5dtx_VXGDZ4EDt4e6qtaVd811XumXjtDtVMiQeibNCai5zvV1PJJ3R8WCTSZb6NbbxAtFsTglYRD10aigDECA'
 }
 
 headers = {
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ1MjQyLCJleHAiOjE2OTc0NDg4NDJ9.iPUK1f8QWZLnKPt-fdo-dlrakxSPyo041J5xnIKVLtsOsBIR8gu2hEv8a7S18CtRfViRchT4xhSQfSJj-SxleQ'
 }
 
 response = requests.post(url, headers=headers, params=payload)
@@ -592,34 +591,37 @@ print(response.text)
 
 ```json
 {
-    "user": {
-        "userId": 78,
-        "address": "0xe61f536f031f77c854b21652ab0f4fbe7cf3196f",
-        "status": 1,
-        "userType": 1,
-        "userClass": 1,
-        "displayName": "NewDisplayName",
-        "payoutAddress": "0x1234567890abcdef1234567890abcdef12345678",
-        "collateralPerSlot": "1000000000000000000",
-        "onchainPayout": true,
-        "accounts": [
-            {
-                "accountId": 242,
-                "userId": 78,
-                "type": 1,
-                "name": "Current",
-                "status": 1,
-                "updateDate": 1698127521000
-            },
-            {
-                "accountId": 243,
-                "userId": 78,
-                "type": 2,
-                "name": "Preconf",
-                "status": 1,
-                "updateDate": 1698127521000
-            }
-        ]
+    "success": true,
+    "data": {
+        "user": {
+            "userId": 73,
+            "address": "0xcc8f16b4e20feb0e7eb5a4725451db6316afa8f",
+            "status": 1,
+            "userType": 1,
+            "userClass": 1,
+            "displayName": "XXXXX",
+            "payoutAddress": "0xde88f16b4e20feb0525289041db6316afa8f",
+            "collateralPerSlot": "0",
+            "onchainPayout": true,
+            "accounts": [
+                {
+                    "accountId": 2170,
+                    "userId": 73,
+                    "type": 1,
+                    "name": "Current",
+                    "status": 1,
+                    "updateDate": 1751854737000
+                },
+                {
+                    "accountId": 2171,
+                    "userId": 73,
+                    "type": 2,
+                    "name": "InPreconf",
+                    "status": 1,
+                    "updateDate": 1751854737000
+                }
+            ]
+        }
     }
 }
 ```
@@ -698,37 +700,7 @@ print(response.text)
 ```json
 {
     "success": true,
-    "data": {
-        "user": {
-            "userId": 73,
-            "address": "0xcc8f16b4e20feb0e7eb5a4725451db6316afa8f",
-            "status": 1,
-            "userType": 1,
-            "userClass": 1,
-            "displayName": "XXXXX",
-            "payoutAddress": "0xde88f16b4e20feb0525289041db6316afa8f",
-            "collateralPerSlot": "0",
-            "onchainPayout": true,
-            "accounts": [
-                {
-                    "accountId": 2170,
-                    "userId": 73,
-                    "type": 1,
-                    "name": "Current",
-                    "status": 1,
-                    "updateDate": 1751854737000
-                },
-                {
-                    "accountId": 2171,
-                    "userId": 73,
-                    "type": 2,
-                    "name": "InPreconf",
-                    "status": 1,
-                    "updateDate": 1751854737000
-                }
-            ]
-        }
-    }
+    "data": {}
 }
 ```
 
@@ -783,13 +755,14 @@ print(response.text)
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| `collateralPerSlot` | YES | number | Collateral amount per slot |
+| `collateralPerSlot` | YES | BigDecimal | Collateral amount per slot (must be >=0) |
 
 **Response Example:**
 
 ```json
 {
-    "success": true
+    "success": true,
+    "data": {}
 }
 ```
 
@@ -1179,12 +1152,50 @@ No parameters required.
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/p/funding/contractAddress`
+  <span className="api-method-get">**GET**</span> `/v1/p/funding/contractAddress` - Get funding contract address 
 </summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/funding/contractAddress
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/funding/contractAddress"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
 
 **Request Parameters:**
 
 No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "contractAddress": "0x1234567890abcdef1234567890abcdef12345678"
+    }
+}
+```
 
 **Response Body:**
 
@@ -1196,90 +1207,331 @@ No parameters required.
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/user/funding/deposits`
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/deposits` - Get user deposits
 </summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/funding/deposits
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/funding/deposits"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
 
 **Request Parameters:**
 
 No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "deposits": [
+            {
+                "depositId": 1,
+                "accountId": 242,
+                "tokenId": 1,
+                "amount": "1000000000000000000",
+                "status": "confirmed",
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
 
 **Response Body:**
 
 | Name | Type | Description |
 |------|------|-------------|
 | `deposits` | array | List of user deposits |
+| └ `depositId` | number | Unique deposit identifier |
+| └ `accountId` | number | Account identifier |
+| └ `tokenId` | number | Token identifier |
+| └ `amount` | string | Deposit amount |
+| └ `status` | string | Deposit status |
+| └ `timestamp` | number | Deposit timestamp |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/v1/user/funding/withdraw`
+  <span className="api-method-post">**POST**</span> `/v1/user/funding/withdraw` - Submit withdrawal request
 </summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer \{\{access_token\}\}" -X POST /v1/user/funding/withdraw \
+  -d '{"accountId": 242, "tokenId": 1, "amount": "1000000000000000000"}'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/funding/withdraw"
+
+payload = {
+    'accountId': 242,
+    'tokenId': 1,
+    'amount': '1000000000000000000'
+}
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
 
 **Request Parameters:**
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
-| `accountId` | YES | string | Account identifier |
+| `accountId` | YES | number | Account identifier |
 | `tokenId` | YES | number | Token identifier |
-| `amount` | YES | number | Withdrawal amount |
+| `amount` | YES | string | Withdrawal amount (in wei) |
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "withdrawalId": 12345,
+        "status": "pending"
+    }
+}
+```
 
 **Response Body:**
 
 | Name | Type | Description |
 |------|------|-------------|
-| `success` | boolean | Withdrawal operation status |
+| `withdrawalId` | number | Unique withdrawal identifier |
+| `status` | string | Withdrawal status |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/p/funding/withdraw/dailyWithdrawLimits`
+  <span className="api-method-get">**GET**</span> `/v1/p/funding/withdraw/dailyWithdrawLimits` - Get daily withdrawal limits
 </summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/funding/withdraw/dailyWithdrawLimits
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/funding/withdraw/dailyWithdrawLimits"
+
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
 
 **Request Parameters:**
 
 No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "dailyLimits": {
+            "ETH": "1000000000000000000000",
+            "USDC": "1000000000"
+        }
+    }
+}
+```
 
 **Response Body:**
 
 | Name | Type | Description |
 |------|------|-------------|
-| `dailyLimits` | object | Daily withdrawal limits |
+| `dailyLimits` | object | Daily withdrawal limits by token |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraw/status`
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraw/status` - Get withdrawal status
 </summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/funding/withdraw/status
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/funding/withdraw/status"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
 
 **Request Parameters:**
 
 No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "withdrawStatus": {
+            "pendingWithdrawals": 2,
+            "totalPendingAmount": "5000000000000000000"
+        }
+    }
+}
+```
 
 **Response Body:**
 
 | Name | Type | Description |
 |------|------|-------------|
 | `withdrawStatus` | object | Current withdrawal status |
+| └ `pendingWithdrawals` | number | Number of pending withdrawals |
+| └ `totalPendingAmount` | string | Total pending withdrawal amount |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraws`
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraws` - Get user withdrawals
 </summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/funding/withdraws
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/funding/withdraws"
+
+headers = {
+    'Authorization': 'Bearer <your-access-token>',
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
 
 **Request Parameters:**
 
 No parameters required.
+
+**Response Example:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "withdrawals": [
+            {
+                "withdrawalId": 1,
+                "accountId": 242,
+                "tokenId": 1,
+                "amount": "1000000000000000000",
+                "status": "completed",
+                "timestamp": 1640995200000
+            }
+        ]
+    }
+}
+```
 
 **Response Body:**
 
 | Name | Type | Description |
 |------|------|-------------|
 | `withdrawals` | array | List of user withdrawals |
+| └ `withdrawalId` | number | Unique withdrawal identifier |
+| └ `accountId` | number | Account identifier |
+| └ `tokenId` | number | Token identifier |
+| └ `amount` | string | Withdrawal amount |
+| └ `status` | string | Withdrawal status |
+| └ `timestamp` | number | Withdrawal timestamp |
 
 </details>
 
@@ -2193,6 +2445,7 @@ No parameters required.
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-batch-orders \
   -d '{"orderIds": [12345, 12346, 12347]}'
 ```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -2255,6 +2508,7 @@ print(response.text)
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-order \
   -d '{"orderId": 12345}'
+```
 ```
 
 </TabItem>
@@ -2319,6 +2573,7 @@ print(response.text)
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/all-orders
+```
 ```
 
 </TabItem>
@@ -2391,6 +2646,7 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/orders
 ```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -2462,6 +2718,7 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/positions
 ```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -2530,6 +2787,7 @@ No parameters required.
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/txs
+```
 ```
 
 </TabItem>
@@ -2609,6 +2867,8 @@ No parameters required.
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/order \
   -d '{"marketId": 1, "side": "buy", "price": "2000", "size": "10"}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -2679,6 +2939,7 @@ print(response.text)
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-all-orders
 ```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -2735,6 +2996,8 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-batch-orders \
   -d '{"orderIds": [12345, 12346, 12347]}'
+```
+```
 ```
 
 </TabItem>
@@ -2799,6 +3062,8 @@ print(response.text)
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-order \
   -d '{"orderId": 12345}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -2862,6 +3127,7 @@ print(response.text)
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/orders
+```
 ```
 
 </TabItem>
@@ -2934,6 +3200,7 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/all-orders
 ```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3005,6 +3272,7 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/positions
 ```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3074,6 +3342,7 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/txs
 ```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3141,6 +3410,8 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/inclusion-preconf/market/update \
   -d '{"marketId": 1, "price": "2100"}'
+```
+```
 ```
 
 </TabItem>
@@ -3219,6 +3490,8 @@ print(response.text)
 curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/bundle/send \
   -d '{"transactions": ["0x...", "0x..."], "targetBlock": 12345}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3295,6 +3568,8 @@ print(response.text)
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/slot/bundles?slot=12345
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3365,6 +3640,8 @@ print(response.text)
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/account/slot/bundles?accountId=242&slot=12345
+```
+```
 ```
 
 </TabItem>
@@ -3440,6 +3717,8 @@ print(response.text)
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/slot/forceEmptyBlockSpace?slot=12345
+```
+```
 ```
 
 </TabItem>
@@ -3579,6 +3858,8 @@ print(response.text)
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/register \
   -d '{"builderAddress": "0x1234567890abcdef...", "name": "MyBuilder"}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3645,6 +3926,8 @@ print(response.text)
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/builder/signingMessage
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3703,6 +3986,8 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/deregister \
   -d '{"builderId": 12345}'
+```
+```
 ```
 
 </TabItem>
@@ -3834,6 +4119,8 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/builder
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3900,6 +4187,8 @@ No parameters required.
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/delegate/builder \
   -d '{"builderId": 12345}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -3963,6 +4252,8 @@ print(response.text)
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/delegate/builder
+```
+```
 ```
 
 </TabItem>
@@ -4093,6 +4384,8 @@ print(response.text)
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/builder/delegation
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -4171,6 +4464,8 @@ No parameters required.
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/delegate/pricer \
   -d '{"pricerId": 12345}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -4235,6 +4530,8 @@ print(response.text)
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/pricer
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -4297,6 +4594,8 @@ No parameters required.
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/account-tokens
+```
+```
 ```
 
 </TabItem>
@@ -4362,6 +4661,8 @@ No parameters required.
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/inclusion-preconf/orders
+```
+```
 ```
 
 </TabItem>
@@ -4432,6 +4733,8 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/inclusion-preconf/positions
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -4498,6 +4801,8 @@ No parameters required.
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/wholeblock/orders
+```
+```
 ```
 
 </TabItem>
@@ -4568,6 +4873,8 @@ No parameters required.
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/wholeblock/positions
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -4634,6 +4941,8 @@ No parameters required.
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/markets/active
+```
+```
 ```
 
 </TabItem>
@@ -4711,6 +5020,8 @@ No parameters required.
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/validators
+```
+```
 ```
 
 </TabItem>
@@ -4913,6 +5224,8 @@ print(response.text)
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/verify \
   -d '{"validatorId": 12345, "signature": "0xabcdef123456..."}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -5049,6 +5362,8 @@ print(response.text)
 curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/deregister \
   -d '{"validatorId": 12345}'
 ```
+```
+```
 
 </TabItem>
 <TabItem value="python" label="Python">
@@ -5112,6 +5427,8 @@ print(response.text)
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/validator/fees
+```
+```
 ```
 
 </TabItem>
@@ -5177,6 +5494,8 @@ No parameters required.
 
 ```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/validator/onchain/payout
+```
+```
 ```
 
 </TabItem>

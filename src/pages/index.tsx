@@ -23,16 +23,15 @@ function HomepageHeader() {
             </p>
             <div className={styles.buttons}>
               <Link
-                className="button button--primary button--lg"
-                to="/docs/getting-started/welcome"
-                style={{ cursor: 'pointer', position: 'relative', zIndex: 10 }}>
+                className={styles.heroButton}
+                to="/docs/getting-started/welcome">
                 Get Started →
               </Link>
             </div>
           </div>
           <div className="col col--4">
             <div className={styles.heroImage}>
-              <img src="/img/ETHGas_logo_wb.png" alt="ETHGas Logo" />
+              <img src="/img/eg_logo_w+b.png" alt="ETHGas Logo" />
             </div>
           </div>
         </div>
