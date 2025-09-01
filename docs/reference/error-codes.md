@@ -1,5 +1,14 @@
 # Error Codes
 
+## WebSocket Error Codes {#websocket-errors}
+
+WebSocket sessions use the same error codes as REST. For developers working with the WebSocket API, start here:
+
+- Where errors appear: see WebSocket message structure in [WebSocket Overview](/docs/websocket/overview#message-structure)
+- Codes to use: [General Error Codes](#general-error-codes), [Order API Error Codes](#order-api-error-codes), and [HTTP Response Codes](#response-codes)
+
+Use this section as the canonical reference for all error codes, regardless of transport (REST or WebSocket).
+
 ## General Error Codes
 
 <details>

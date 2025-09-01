@@ -18,24 +18,84 @@ Authentication involves:
 3. Refresh – rotate tokens
 4. Logout – invalidate session
 
-## Flow
+## Authentication Flow
+
+<div className="auth-flow-container">
 
 ```mermaid
 sequenceDiagram
-    participant Client
-    participant API
-    Client->>API: POST /v1/user/login
-    API->>Client: access/refresh tokens
-    Client->>API: POST /v1/user/login/verify
-    API->>Client: validity
-    Note over Client,API: token expiry
-    Client->>API: POST /v1/user/login/refresh
-    API->>Client: new tokens
-    Client->>API: POST /v1/user/logout
-    API->>Client: confirmation
+    participant C as 🔐 Client Application
+    participant A as ⚡ ETHGas API
+    
+    Note over C,A: 🚀 Authentication Process
+    
+    C->>+A: 1️⃣ POST /v1/user/login
+    Note right of A: Generate EIP712 message
+    A-->>-C: 📋 EIP712 message + nonce
+    
+    Note over C: 🖋️ User signs message
+    
+    C->>+A: 2️⃣ POST /v1/user/login/verify
+    Note right of A: Verify signature
+    A-->>-C: ✅ access_token + refresh_token
+    
+    Note over C,A: 🔄 Token Management
+    
+    loop API Requests
+        C->>A: 🔑 Authenticated requests
+        A-->>C: 📊 Response data
+    end
+    
+    Note over C,A: ⏰ When token expires
+    
+    C->>+A: 3️⃣ POST /v1/user/login/refresh
+    A-->>-C: 🔄 New access_token
+    
+    Note over C,A: 🏁 Session End
+    
+    C->>+A: 4️⃣ POST /v1/user/logout
+    A-->>-C: ✋ Session invalidated
 ```
 
+</div>
+
+<div className="auth-steps">
+  <div className="step-item">
+    <div className="step-circle">1</div>
+    <div className="step-content">
+      <strong>Initial Login</strong><br/>
+      Send wallet address to get EIP712 message for signing
+    </div>
+  </div>
+  
+  <div className="step-item">
+    <div className="step-circle">2</div>
+    <div className="step-content">
+      <strong>Verify Signature</strong><br/>
+      Submit signed message to receive access and refresh tokens
+    </div>
+  </div>
+  
+  <div className="step-item">
+    <div className="step-circle">3</div>
+    <div className="step-content">
+      <strong>Token Refresh</strong><br/>
+      Use refresh token to get new access token when expired
+    </div>
+  </div>
+  
+  <div className="step-item">
+    <div className="step-circle">4</div>
+    <div className="step-content">
+      <strong>Logout</strong><br/>
+      Invalidate session and clear all tokens securely
+    </div>
+  </div>
+</div>
+
 ## API Endpoints
+
+<div className="api-endpoints-grid">
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -270,6 +330,8 @@ No parameters required.
 ```
 
 </details>
+
+</div>
 
 ## Best Practices
 

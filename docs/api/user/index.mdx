@@ -2,17 +2,156 @@
 sidebar_position: 1
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+# User
 
-# User Management
+## POST /api/v1/user/update
+
+Code sample:
+
+```http
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/update?displayName=NewDisplayName
+```
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/update"
+
+payload = {
+    'displayName': 'NewDisplayName'
+}
+
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+}
+
+response = requests.post(url, headers=headers, params=payload)
+
+print(response.text)
+```
+
+
+Request
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| displayName | YES | String | Display name |
+
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| user | object | Updated user object |
+| └ userId | long | Unique user ID |
+| └ address | string | User's wallet address |
+| └ status | integer | User status (1 = active) |
+| └ userType | integer | User type |
+| └ userClass | integer | User class |
+| └ displayName | string | User's display name |
+| └ payoutAddress | string | User's payout address |
+| └ collateralPerSlot | string | Collateral per slot amount |
+| └ onchainPayout | boolean | Whether on-chain payout is enabled |
+| └ accounts | object[] | List of user accounts |
+| └└ accountId | long | Unique account ID |
+| └└ userId | long | User ID associated with the account |
+| └└ type | integer | Account type |
+| └└ name | string | Account name |
+| └└ status | integer | Account status |
+| └└ updateDate | long | Last update timestamp in milliseconds |
+
+
+## POST /api/v1/user/payoutAddress
+
+Code sample:
+
+```http
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/payoutAddress?payoutAddress=0x1234567890123456789012345678901234567890
+```
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/payoutAddress"
+
+payload = {
+    'payoutAddress': '0x1234567890123456789012345678901234567890'
+}
+
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+}
+
+response = requests.post(url, headers=headers, params=payload)
+
+print(response.text)
+```
+
+
+Request
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| payoutAddress | YES | String | New payout address (hex format) |
+
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | boolean | Operation success status |
+
+
+## POST /api/v1/user/collateralPerSlot
+
+Code sample:
+
+```http
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/collateralPerSlot?collateralPerSlot=10.5
+```
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/collateralPerSlot"
+
+payload = {
+    'collateralPerSlot': '10.5'
+}
+
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+}
+
+response = requests.post(url, headers=headers, params=payload)
+
+print(response.text)
+```
+
+
+Request
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| collateralPerSlot | YES | BigDecimal | Collateral per slot amount (must be &gt;= 0 and &lt;= 100) |
+
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | boolean | Operation success status |
+
 
 ## GET /api/v1/user/info
 
 Code sample:
 
 ```http
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /api/v1/user/info
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/info
 ```
 
 ```python
@@ -32,262 +171,60 @@ response = requests.get(url, headers=headers, params=payload)
 print(response.text)
 ```
 
-## Overview
 
-The User Management API provides endpoints for managing user information, accounts, transactions, and platform-specific settings. All endpoints require authentication using JWT tokens.
-
-## Quick Navigation
-
-<div className="row" style={{ marginBottom: '2rem' }}>
-  <div className="col col--3">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <h3>User Profile</h3>
-        <p>Manage user information and settings.</p>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <a href="#user-profile" className="button button--outline button--sm">
-          View Profile APIs →
-        </a>
-      </div>
-    </div>
-  </div>
-  <div className="col col--3">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <h3>Account Management</h3>
-        <p>Manage user accounts and balances.</p>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <a href="#account-management" className="button button--outline button--sm">
-          View Account APIs →
-        </a>
-      </div>
-    </div>
-  </div>
-  <div className="col col--3">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <h3>Transactions</h3>
-        <p>View and manage transactions.</p>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <a href="#transactions" className="button button--outline button--sm">
-          View Transaction APIs →
-        </a>
-      </div>
-    </div>
-  </div>
-  <div className="col col--3">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <h3>Platform Settings</h3>
-        <p>Configure payout and collateral settings.</p>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <a href="#platform-settings" className="button button--outline button--sm">
-          View Settings APIs →
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-## Authorization
-
-All user management endpoints require authentication. Include your JWT access token in the Authorization header:
-
-```bash
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-## API Endpoints
-
-### User Profile
-
-<details className="api-category" id="user-profile">
-<summary className="api-category-header">
-  <strong>User Profile</strong>
-  <span className="api-category-desc">User information and profile management</span>
-</summary>
-
-### GET /v1/user/info
-
-<details className="api-endpoint" id="get-v1userinfo">
-<summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/user/info` - Get user information
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/info
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/user/info"
-
-headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
-}
-
-response = requests.get(url, headers=headers)
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-**Request Parameters:**
-
-No parameters required.
-
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "user": {
-            "userId": 78,
-            "address": "0xe61f536f031f77c854b21652ab0f4fbe7cf3196f",
-            "status": 1,
-            "userType": 1,
-            "userClass": 1,
-            "accounts": [
-                {
-                    "accountId": 242,
-                    "userId": 78,
-                    "type": 1,
-                    "name": "Current",
-                    "status": 1,
-                    "updateDate": 1698127521000
-                },
-                {
-                    "accountId": 243,
-                    "userId": 78,
-                    "type": 2,
-                    "name": "Preconf",
-                    "status": 1,
-                    "updateDate": 1698127521000
-                }
-            ]
-        }
-    }
-}
-```
-
-**Response Body:**
+Request
 
 | Name | Type | Description |
-|------|------|-------------|
-| `user` | User | User information and details |
-| └ `userId` | number | Unique user identifier |
-| └ `address` | string | User's wallet address |
-| └ `status` | number | User account status |
-| └ `userType` | number | User type classification |
-| └ `userClass` | number | User class classification |
-| └ `accounts` | array | List of user accounts |
+| --- | --- | --- |
+| user | object | User object |
+| └ userId | long | Unique user ID |
+| └ address | string | User's wallet address |
+| └ status | integer | User status (1 = active) |
+| └ userType | integer | User type |
+| └ userClass | integer | User class |
+| └ displayName | string | User's display name |
+| └ payoutAddress | string | User's payout address |
+| └ collateralPerSlot | string | Collateral per slot amount |
+| └ onchainPayout | boolean | Whether on-chain payout is enabled |
+| └ accounts | object[] | List of user accounts |
+| └└ accountId | long | Unique account ID |
+| └└ userId | long | User ID associated with the account |
+| └└ type | integer | Account type |
+| └└ name | string | Account name |
+| └└ status | integer | Account status |
+| └└ updateDate | long | Last update timestamp in milliseconds |
 
-</details>
 
-### POST /v1/user/update
-
-<details className="api-endpoint" id="post-v1userupdate">
-<summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/v1/user/update` - Update user display name
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X POST /v1/user/update?displayName=NewDisplayName
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/user/update"
-
-headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
-}
-
-params = {
-    'displayName': 'NewDisplayName'
-}
-
-response = requests.post(url, headers=headers, params=params)
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-**Request Parameters:**
-
-| Parameter | Required | Type | Description |
-|-----------|----------|------|-------------|
-| `displayName` | YES | string | New user display name |
-
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "message": "User updated successfully"
-    }
-}
-```
-
-**Response Body:**
+Response Body
 
 | Name | Type | Description |
-|------|------|-------------|
-| `success` | boolean | Update operation status |
-| `message` | string | Success message |
+| --- | --- | --- |
+| user | object | User object |
+| └ userId | long | Unique user ID |
+| └ address | string | User's wallet address |
+| └ status | integer | User status (1 = active) |
+| └ userType | integer | User type |
+| └ userClass | integer | User class |
+| └ displayName | string | User's display name |
+| └ payoutAddress | string | User's payout address |
+| └ collateralPerSlot | string | Collateral per slot amount |
+| └ onchainPayout | boolean | Whether on-chain payout is enabled |
+| └ accounts | object[] | List of user accounts |
+| └└ accountId | long | Unique account ID |
+| └└ userId | long | User ID associated with the account |
+| └└ type | integer | Account type |
+| └└ name | string | Account name |
+| └└ status | integer | Account status |
+| └└ updateDate | long | Last update timestamp in milliseconds |
 
-</details>
 
-</details>
+## GET /api/v1/user/accounts
 
-### Account Management
+Code sample:
 
-<details className="api-category" id="account-management">
-<summary className="api-category-header">
-  <strong>Account Management</strong>
-  <span className="api-category-desc">Manage user accounts and account details</span>
-</summary>
-
-### GET /v1/user/accounts
-
-<details className="api-endpoint" id="get-v1useraccounts">
-<summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/user/accounts` - Get user accounts
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/accounts
-
-</TabItem>
-<TabItem value="python" label="Python">
+```http
+curl  -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/accounts
+```
 
 ```python
 import requests
@@ -295,315 +232,114 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/accounts"
 
 headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
 }
 
 response = requests.get(url, headers=headers)
+
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
 
-**Request Parameters:**
-
-No parameters required.
-
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "accounts": [
-            {
-                "accountId": 242,
-                "userId": 78,
-                "type": 1,
-                "name": "Current",
-                "status": 1,
-                "updateDate": 1698127521000
-            },
-            {
-                "accountId": 243,
-                "userId": 78,
-                "type": 2,
-                "name": "Preconf",
-                "status": 1,
-                "updateDate": 1698127521000
-            }
-        ]
-    }
-}
-```
-
-**Response Body:**
+Response Body
 
 | Name | Type | Description |
-|------|------|-------------|
-| `accounts` | array | List of user accounts |
-| └ `accountId` | number | Unique account identifier |
-| └ `userId` | number | User identifier |
-| └ `type` | number | Account type (1: Current, 2: Preconf) |
-| └ `name` | string | Account name |
-| └ `status` | number | Account status |
-| └ `updateDate` | number | Last update timestamp |
+| --- | --- | --- |
+| accounts | arrary of object | List of account objects |
+| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
+| └ userId | integer | Unique ID for the user, assigned by ETHGas |
+| └ type | integer | Account type:1 for current account2 for preconf trading account |
+| └ name | string | Account nameDefault values are "Current" and "Trading" but these can be changed using the /private/update_account_name endpoint |
+| └ status | integer | Account status:All active accounts have status 1 |
+| └ updateDate | integer | Datetime (in UNIX time) the healthscoare and other risk metrics (asset amount, liability amount, etc) were last calculated |
+| └ tokens | object[] | List of tokens in account |
+| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
+| └ tokenId | integer | ETHGas Token IDSee Token IDs section for list of Token IDs |
+| └ quantity | string | Amount of token in account in USD |
+| └ lockedQuantity | string | Amount of token in account in USD which is covering pending limit orders (and so cannot be transfered out of account) |
+| └ code | string | Token codeSee Token IDs section for list of token codes |
+| └ tokenType | integer | Token type:Currently all tokens at ETHGas are designated as type 1 |
+| └ valueType | integer | Value type:1 for non-stablecoin tokens2 for stablecoin tokens |
+| └ tokenValuationProtocol | integer | Platform the complex token comes from (if relevant):See Token Valuation Protocols section |
+| └ availableQuantity | string | Available quantity for using as collateral for buying or for transfering out of the account:Available Quantity = Quantity - Locked Quantity |
 
-</details>
 
-### GET /v1/user/account/\{accountId\}
+## GET /api/v1/user/account/&#123;accountId&#125;
 
-<details className="api-endpoint" id="get-v1useraccount">
-<summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> <code>/v1/user/account/\{accountId\}</code> - Get account details
-</summary>
+Code sample:
 
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/account/242
-
-</TabItem>
-<TabItem value="python" label="Python">
+```http
+curl  -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/128
+```
 
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/user/account/242"
+url = "https://mainnet.app.ethgas.com/api/v1/user/account/128"
+
 
 headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
 }
 
 response = requests.get(url, headers=headers)
+
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
+## GET /api/v1/user/account/&#123;accountId&#125;/txs
 
-**Request Parameters:**
+Code sample:
 
-| Parameter | Required | Type | Description |
-|-----------|----------|------|-------------|
-| `accountId` | YES | string | Account identifier |
-
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "account": {
-            "accountId": 242,
-            "userId": 78,
-            "type": 1,
-            "name": "Current",
-            "status": 1,
-            "updateDate": 1698127521000
-        }
-    }
-}
+```http
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/128/txs
 ```
-
-**Response Body:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `account` | Account | Account details |
-| └ `accountId` | number | Unique account identifier |
-| └ `userId` | number | User identifier |
-| └ `type` | number | Account type |
-| └ `name` | string | Account name |
-| └ `status` | number | Account status |
-| └ `updateDate` | number | Last update timestamp |
-
-</details>
-
-### POST /v1/user/account/transfer/token
-
-<details className="api-endpoint" id="post-v1useraccounttransfer">
-<summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/v1/user/account/transfer/token` - Transfer tokens between accounts
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X POST /v1/user/account/transfer/token \
-  -H "Content-Type: application/json" \
-  -d '{
-    "fromAccountId": 242,
-    "toAccountId": 243,
-    "tokenId": 1,
-    "amount": "1000000000000000000"
-  }'
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
 
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/user/account/transfer/token"
+url = "https://mainnet.app.ethgas.com/api/v1/user/account/{accountId}/txs
+
 
 headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
-}
-
-data = {
-    'fromAccountId': 242,
-    'toAccountId': 243,
-    'tokenId': 1,
-    'amount': '1000000000000000000'
-}
-
-response = requests.post(url, headers=headers, json=data)
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-**Request Parameters:**
-
-| Parameter | Required | Type | Description |
-|-----------|----------|------|-------------|
-| `fromAccountId` | YES | number | Source account ID |
-| `toAccountId` | YES | number | Destination account ID |
-| `tokenId` | YES | number | Token identifier |
-| `amount` | YES | string | Transfer amount (in wei) |
-
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "message": "Transfer completed successfully",
-        "transactionId": "0x1234567890abcdef..."
-    }
-}
-```
-
-**Response Body:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `success` | boolean | Transfer operation status |
-| `message` | string | Success message |
-| `transactionId` | string | Transaction identifier |
-
-</details>
-
-</details>
-
-### Transactions
-
-<details className="api-category" id="transactions">
-<summary className="api-category-header">
-  <strong>Transactions</strong>
-  <span className="api-category-desc">View and manage user transactions</span>
-</summary>
-
-### GET /v1/user/account/\{accountId\}/txs
-
-<details className="api-endpoint" id="get-v1useraccounttxs">
-<summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> <code>/v1/user/account/\{accountId\}/txs</code> - Get account transactions
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/account/242/txs
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/user/account/242/txs"
-
-headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
 }
 
 response = requests.get(url, headers=headers)
+
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
 
-**Request Parameters:**
+Request
 
 | Parameter | Required | Type | Description |
-|-----------|----------|------|-------------|
-| `accountId` | YES | string | Account identifier |
+| --- | --- | --- | --- |
+| type | NO | string | Transaction type (comma-separated for multiple types) |
+| startId | NO | integer | Start of transaction ID |
+| limit | NO | integer | Max number of transactions to return (default: 20, max: 100) |
 
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "transactions": [
-            {
-                "txId": "0x1234567890abcdef...",
-                "accountId": 242,
-                "type": "deposit",
-                "amount": "1000000000000000000",
-                "status": "confirmed",
-                "timestamp": 1698127521000
-            }
-        ]
-    }
-}
-```
-
-**Response Body:**
+Response Body
 
 | Name | Type | Description |
-|------|------|-------------|
-| `transactions` | array | List of account transactions |
-| └ `txId` | string | Transaction hash |
-| └ `accountId` | number | Account identifier |
-| └ `type` | string | Transaction type |
-| └ `amount` | string | Transaction amount |
-| └ `status` | string | Transaction status |
-| └ `timestamp` | number | Transaction timestamp |
+| --- | --- | --- |
+| txs | object[] | List of transaction objects |
+| └ trxId | integer | Unique ID for the transaction, assigned by ETHGas |
+| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
+| └ tokenId | integer | ETHGas Token IDSee Token IDs section for list of Token IDs |
+| └ type | integer | Transaction typeSee Transaction Types section for full list |
+| └ quantity | string | Transaction quantity |
+| └ balance | string | Balance of account after transaction |
+| └ createDate | integer | Transaction datetime stamp (in UNIX time) |
 
-</details>
 
-### GET /v1/user/account/txs
+## GET /api/v1/user/account/txs
 
-<details className="api-endpoint" id="get-v1useraccountalltxs">
-<summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/v1/user/account/txs` - Get all user transactions
-</summary>
+Code sample:
 
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X GET /v1/user/account/txs
-
-</TabItem>
-<TabItem value="python" label="Python">
+```http
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/txs
+```
 
 ```python
 import requests
@@ -611,286 +347,51 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/account/txs"
 
 headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
 }
 
 response = requests.get(url, headers=headers)
+
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
+## POST /api/v1/user/account/transfer/token
 
-**Request Parameters:**
+Code sample:
 
-No parameters required.
-
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "transactions": [
-            {
-                "txId": "0x1234567890abcdef...",
-                "accountId": 242,
-                "type": "deposit",
-                "amount": "1000000000000000000",
-                "status": "confirmed",
-                "timestamp": 1698127521000
-            },
-            {
-                "txId": "0xabcdef1234567890...",
-                "accountId": 243,
-                "type": "withdrawal",
-                "amount": "500000000000000000",
-                "status": "pending",
-                "timestamp": 1698127600000
-            }
-        ]
-    }
-}
+```http
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/account/transfer/token?fromAccountId=128&toAccountId=127&tokenId=1&quantity=0.01
 ```
-
-**Response Body:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `transactions` | array | List of all user transactions across all accounts |
-
-</details>
-
-</details>
-
-### Platform Settings
-
-<details className="api-category" id="platform-settings">
-<summary className="api-category-header">
-  <strong>Platform Settings</strong>
-  <span className="api-category-desc">Configure payout address and collateral settings</span>
-</summary>
-
-### POST /v1/user/payoutAddress
-
-<details className="api-endpoint" id="post-v1userpayoutaddress">
-<summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/v1/user/payoutAddress` - Update user payout address
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X POST /v1/user/payoutAddress?payoutAddress=0x1234567890abcdef1234567890abcdef12345678
-
-</TabItem>
-<TabItem value="python" label="Python">
 
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/user/payoutAddress"
-
-headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
-}
+url = "https://mainnet.app.ethgas.com/api/v1/user/account/transfer/token"
 
 params = {
-    'payoutAddress': '0x1234567890abcdef1234567890abcdef12345678'
+    "fromAccountId": 128,
+    "toAccountId": 127,
+    "tokenId": 1,
+    "quantity": 0.01
+}
+
+headers = {
+  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
 }
 
 response = requests.post(url, headers=headers, params=params)
+
 print(response.text)
 ```
 
-</TabItem>
-</Tabs>
 
-**Request Parameters:**
+Request
 
 | Parameter | Required | Type | Description |
-|-----------|----------|------|-------------|
-| `payoutAddress` | YES | string | User's payout address (must be valid Ethereum address) |
+| --- | --- | --- | --- |
+| fromAccountId | YES | integer | Source account ID |
+| toAccountId | YES | integer | Destination account ID |
+| tokenId | YES | integer | Token ID |
+| quantity | YES | number | Quantity |
 
-**Response Example:**
 
-```json
-{
-    "success": true,
-    "data": {
-        "message": "Payout address updated successfully"
-    }
-}
-```
-
-**Response Body:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `success` | boolean | Update operation status |
-| `message` | string | Success message |
-
-</details>
-
-### POST /v1/user/collateralPerSlot
-
-<details className="api-endpoint" id="post-v1usercollateralperslot">
-<summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/v1/user/collateralPerSlot` - Update user collateral per slot
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer \{\{access_token\}\}" -X POST /v1/user/collateralPerSlot?collateralPerSlot=1000000000000000000
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/user/collateralPerSlot"
-
-headers = {
-    'Authorization': 'Bearer <your-access-token>',
-    'Content-Type': 'application/json'
-}
-
-params = {
-    'collateralPerSlot': '1000000000000000000'
-}
-
-response = requests.post(url, headers=headers, params=params)
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-**Request Parameters:**
-
-| Parameter | Required | Type | Description |
-|-----------|----------|------|-------------|
-| `collateralPerSlot` | YES | string | Collateral amount per slot (in wei) |
-
-**Response Example:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "message": "Collateral per slot updated successfully"
-    }
-}
-```
-
-**Response Body:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `success` | boolean | Update operation status |
-| `message` | string | Success message |
-
-</details>
-
-</details>
-
-## Best Practices
-
-<div className="row" style={{ marginTop: '2rem' }}>
-  <div className="col col--6">
-    <div className="feature-card">
-      <h3>🔐 Security</h3>
-      <ul>
-        <li>Always use HTTPS for all API calls</li>
-        <li>Store access tokens securely</li>
-        <li>Never expose tokens in client-side code</li>
-        <li>Implement proper token refresh logic</li>
-      </ul>
-    </div>
-  </div>
-  <div className="col col--6">
-    <div className="feature-card">
-      <h3>⚡ Performance</h3>
-      <ul>
-        <li>Cache user information when appropriate</li>
-        <li>Use pagination for large transaction lists</li>
-        <li>Implement proper error handling</li>
-        <li>Monitor API rate limits</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div className="row" style={{ marginTop: '1rem' }}>
-  <div className="col col--6">
-    <div className="feature-card">
-      <h3>🛡️ Validation</h3>
-      <ul>
-        <li>Validate all input parameters</li>
-        <li>Check address format before submission</li>
-        <li>Verify transaction amounts are positive</li>
-        <li>Handle API errors gracefully</li>
-      </ul>
-    </div>
-  </div>
-  <div className="col col--6">
-    <div className="feature-card">
-      <h3>📊 Monitoring</h3>
-      <ul>
-        <li>Log all API interactions</li>
-        <li>Monitor transaction success rates</li>
-        <li>Track user account changes</li>
-        <li>Set up alerts for critical operations</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-## Error Handling
-
-All endpoints return standard HTTP status codes and error responses:
-
-- **200**: Success
-- **400**: Bad Request (invalid parameters)
-- **401**: Unauthorized (invalid or missing token)
-- **403**: Forbidden (insufficient permissions)
-- **404**: Not Found (resource doesn't exist)
-- **429**: Too Many Requests (rate limit exceeded)
-- **500**: Internal Server Error
-
-**Error Response Format:**
-
-```json
-{
-    "success": false,
-    "error": {
-        "code": "INVALID_ADDRESS",
-        "message": "Invalid Ethereum address format",
-        "details": "Address must be a valid 42-character hex string"
-    }
-}
-```
-
-## Rate Limiting
-
-User management endpoints are subject to rate limiting:
-
-- **Standard users**: 100 requests per minute
-- **Premium users**: 500 requests per minute
-- **Enterprise users**: 1000 requests per minute
-
-Rate limit headers are included in all responses:
-
-```
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 95
-X-RateLimit-Reset: 1640995200
-``` 

@@ -20,7 +20,7 @@ import json
 import websocket
 from websocket import WebSocket
 
-__ws_url = "wss://holesky.app.ethgas.com/ws"
+__ws_url = "wss://mainnet.app.ethgas.com/ws"
 
 
 def on_open(ws: WebSocket):
@@ -113,14 +113,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="testnet" label="TestNet" default>
+<TabItem value="mainnet" label="MainNet" default>
 
-**WebSocket URL**: `wss://testnet-ws.ethgas.com`
+**WebSocket URL**: `wss://mainnet.app.ethgas.com/ws`
 
 </TabItem>
-<TabItem value="mainnet" label="MainNet">
+<TabItem value="testnet-hoodi" label="TestNet (Hoodi)">
 
-**WebSocket URL**: `wss://ws.ethgas.com`
+**WebSocket URL**: `wss://hoodi.app.ethgas.com/ws`
+
+</TabItem>
+<TabItem value="testnet-private" label="TestNet (Private Chain)">
+
+**WebSocket URL**: `wss://testchain.app.ethgas.com/ws`
 
 </TabItem>
 </Tabs>
@@ -131,37 +136,25 @@ import TabItem from '@theme/TabItem';
 - **Authentication**: Required for private channels
 - **Rate Limiting**: Applied to prevent abuse
 
+> A private websocket session needs to include the access token in the session header, format: 'Bearer accessToken'
+
 ## Message Structure {#message-structure}
 
 ### Request
 
-```json
-{
-  "op": "command_name",
-  "args": {
-    
-  }
-}
-```
+| Field | Required | Type | Description |
+| --- | --- | --- | --- |
+| op | YES | string | operation type |
+| args | YES | object[] | list of operation arguments |
 
 ### Response (generic)
 
-```json
-{
-  
-}
-```
-
-### Error (generic)
-
-```json
-{
-  "error": {
-    "code": 1001,
-    "message": "..."
-  }
-}
-```
+| Field | Type | Description |
+| --- | --- | --- |
+| e | string | Event type |
+| E | integer | Event timestamp |
+| s | string | Instrument ID |
+| P | object | Data of corresponding event type |
 
 ## Commands
 
@@ -250,6 +243,10 @@ import TabItem from '@theme/TabItem';
 
 ## Error Handling {#error-handling}
 
+For all error codes and handling guidance (WebSocket and REST), see the Error Codes Reference:
+
+- [Error Codes](/docs/reference/error-codes#websocket-errors)
+
 | Error Code | Description |
 |------------|-------------|
 | 1001 | Authentication failed |
@@ -260,3 +257,454 @@ import TabItem from '@theme/TabItem';
 <!-- ## References
 
 - WebSocket section: This documentation  -->
+
+
+
+## Public Channels (Examples)
+
+### Preconf Market Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "preconfMarketUpdate",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "preconfMarketUpdate",
+    "E": 1744684899022,
+    "s": "ETH-PC-603410",
+    "a": "NewEpoch",
+    "P": {
+        "m": 1000000603410,
+        "T": "inclusionPreconf",
+        "s": 603410,
+        "i": "ETH-PC-603410",
+        "n": "Eth Preconf Inclusion Slot #603410",
+        "M": 1744685494000,
+        "f": 1744686266000,
+        "b": 1744685498000,
+        "q": "1",
+        "mQ": "1",
+        "MQ": "36000000",
+        "PS": "0.00000000001",
+        "mP": "0.00000000001",
+        "MP": "0.00001",
+        "C": "3.99996",
+        "A": 36000000,
+        "r": 0,
+        "S": 0,
+        "e": 1,
+        "a": 1744685496000,
+        "c": 1744684899000,
+        "u": 1744684899000,
+        "tp": 36000000
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | channel name, e.g. preconfMarketUpdate` |
+| └ marketType | string | Market type, e.g., inclusionPreconf`. |
+
+
+### Candlestick Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "candlestickUpdate",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "candlestickUpdate",
+    "E": 1736742241012,
+    "s": "ETH-PC-117",
+    "P": {
+        "I": "ETH-PC-117",
+        "m": 1000000000117,
+        "t": 1736742240000,
+        "i": 1000,
+        "o": "0",
+        "h": "0",
+        "l": "0",
+        "c": "0",
+        "v": "0",
+        "F": true
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., candlestickUpdate`. |
+| └ marketType | string | Market type, e.g., inclusionPreconf`. |
+
+
+### Recent Trades Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "recentTradeUpdate",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "recentTradeUpdate",
+    "E": 1739528277074,
+    "s": "ETH-PC-173649",
+    "P": {
+        "i": "ETH-PC-173649",
+        "p": "0.00000000006",
+        "q": "1702005",
+        "s": true,
+        "d": 1739528277070,
+        "t": 683198
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., recentTradeUpdate |
+| └ marketType | string | Market type, e.g., inclusionPreconf. |
+
+
+### Order Book Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "orderBookUpdate",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "orderBookUpdate",
+    "E": 1736751224943,
+    "s": "ETH-PC-863",
+    "P": {
+        "a": [],
+        "b": [
+            {
+                "p": "0.00000000005",
+                "q": "5861476"
+            }
+        ],
+        "I": "ETH-PC-863",
+        "t": 1736751224941
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., orderBookUpdate. |
+| └ marketType | string | Market type, e.g., inclusionPreconf. |
+
+
+### Ticker Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "tickerUpdate",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "tickerUpdate",
+    "E": 1743667424734,
+    "s": "ETH-PC-518598",
+    "P": {
+        "d": false,
+        "p": "0.00000000002",
+        "b": "0.00000000002",
+        "M": "0.00000000002",
+        "A": 18855242,
+        "g": 17144758,
+        "P": 1.0,
+        "u": 1743667299000
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., tickerUpdate. |
+| └ marketType | string | Market type, e.g., inclusionPreconf. |
+
+
+### Inclusion Preconf Top Sales
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "inclusionPreconfSaleUpdate"
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "inclusionPreconfSaleUpdate",
+    "E": 1739765044256,
+    "P": {
+        "s": 193373,
+        "g": "11288799",
+        "S": [
+            {
+                "p": "0.0000000001",
+                "q": "11078799"
+            }
+        ]
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., inclusionPreconfSaleUpdate. |
+
+
+
+## Private Channels (Examples)
+
+### Account Order Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+             "channel": "accountOrderUpdate",
+             "marketType": "inclusionPreconf",
+             "pricerOnly": false
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "accountOrderUpdate",
+    "E": 1742288403296,
+    "s": "ETH-PC-403684",
+    "P": {
+        "o": 173639360,
+        "c": "613ec528",
+        "a": 2049,
+        "C": 53,
+        "t": 2,
+        "i": "ETH-PC-403684",
+        "m": 1000000403684,
+        "p": "0.00000000001",
+        "q": "3181683",
+        "F": "3181683",
+        "fp": "0.00003181683",
+        "f": "0.0000028635147",
+        "s": false,
+        "P": false,
+        "S": 10,
+        "d": 1742288403289,
+        "u": 1742288403289
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., accountOrderUpdate. |
+| └ marketType | string | Market type, e.g., inclusionPreconf. |
+| └ pricerOnly | boolean | Flag for only displaying pricer information. Optional. Default to false. |
+
+
+### Account Transaction Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "accountTransactionUpdate",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "accountTransactionUpdate",
+    "E": 1742288580882,
+    "s": "ETH-PC-403699",
+    "P": {
+        "t": 146600149,
+        "i": "ETH-PC-403699",
+        "o": 173651088,
+        "a": 2049,
+        "s": true,
+        "p": "0.00000000001",
+        "q": "1248972",
+        "f": "0.0000011240748",
+        "d": 1742288580863
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., accountTransactionUpdate. |
+| └ marketType | string | Market type, e.g., inclusionPreconf. |
+
+
+### Account Position Update
+
+Example Request
+
+```json
+{
+    "op": "subscribe",
+    "args": [
+        {
+            "channel": "accountPositionUpdate",
+            "marketType": "inclusionPreconf",
+            "pricerOnly": true
+        }
+    ]
+}
+```
+
+Example Response
+
+```json
+{
+    "e": "accountPositionUpdate",
+    "E": 1742288402217,
+    "P": {
+        "a": 2049,
+        "s": 403684,
+        "m": 1,
+        "q": "20427356",
+        "l": "0",
+        "p": "0",
+        "e": false,
+        "b": false,
+        "c": 1742288355000,
+        "u": 1742288402000,
+        "A": "20427356"
+    }
+}
+```
+
+Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| op | string | e.g. subscribe |
+| args | object | Arguments |
+| └ channel | string | Channel name, e.g., accountPositionUpdate. |
+| └ marketType | string | Market type, e.g., inclusionPreconf. |
+| └ pricerOnly | boolean | Flag for only displaying pricer information. Optional. Default to false. |
+

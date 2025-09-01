@@ -4,67 +4,6 @@ sidebar_position: 1
 
 # CHANGE LOG
 
-## 2024-10-01
-
-- Ready for Testnet launch
-
-## 2024-12-01
-
-- Updated RPC endpoint for Holesky chain
-
-## 2025-01-12
-
-- Added pricer api for market making and block building api for submitting bundles
-- Added get user validators api for retrieving a list of validators for the user 
-
-## 2025-02-21
-
-- Update API naming. Added version control (v1)
-
-## 2025-03-15
-
-- Updated Production Hoodi API and WS base url
-- Updated testchain url for example usage
-- Updated Validator API and User deposit collateral API
-
-## 2025-03-25
-
-Updated Production Hoodi API and WS base url
-Updated testchain url for example usage
-Updated Validator API and User deposit collateral API
-
-## 2025-03-28
-
-- Updated get wholeblock and inclusion preconf markets API
-
-## 2025-04-02
-
-- Mainnet v1 launched.
-- Updated mainnet collateral deposit address
-
-## 2025-04-16
-
-- Add user fees api
-
-## 2025-05-06
-
-- Update withdraw api
-- Rename `/api/v1/p/blockchain` to `/api/v1/p/network`
-
-## 2025-05-14
-
-- Add validator fees payout api
-- Add set User onchain_payout_enabled api
-- Add contract address for different environments
-
-## 2025-06-18
-
-- Update builder delegation api
-
-## 2025-06-26
-
-- Update validator api
-
 ## 2025-07-08
 
 - Update inclusion-preconf cancel-all-orders api
@@ -76,62 +15,63 @@ Updated Validator API and User deposit collateral API
 - Removed api endpoint `POST /api/v1/builder/verify`
   - Now user can use `POST /api/v1/builder/register` to register and verify builder public keys with signatures
 
-<!-- ## Documentation Structure
+## 2025-06-26
 
-The documentation is organized into the following sections:
+- Update validator api
 
-### Getting Started
-- **Welcome**: Platform overview and key concepts
-- **Environments**: TestNet and MainNet configuration
-- **Connecting**: Authentication and connection setup
+## 2025-06-18
 
-### REST API
-- **Overview**: API structure and response format
-- **Authentication**: Login, logout, and token management
-- **User Management**: Profile and account operations
-- **Trading**: Order placement and management
-- **Market Data**: Market information and status
+- Update builder delegation api
 
-### WebSocket API
-- **Overview**: Real-time data streaming
-- **Authentication**: WebSocket authentication
-- **Public Channels**: Market data and updates
-- **Private Channels**: User-specific data streams
-- **Queries**: Real-time data queries
+## 2025-05-14
 
-### Reference
-- **Data Types**: Complete data structure definitions
-- **Error Codes**: Comprehensive error code reference
-- **Lookup Tables**: Market types, order types, and more
-- **Response Codes**: Standard HTTP response codes
+- Add validator fees payout api
+- Add set User onchain_payout_enabled api
+- Add contract address for different environments
 
-## Future Updates
+## 2025-05-06
 
-This documentation will be updated as the ETHGas platform evolves:
+- Update withdraw api
+- Rename `/api/v1/p/blockchain` to `/api/v1/p/network`
 
-- **New Features**: Additional trading capabilities
-- **API Enhancements**: New endpoints and functionality
-- **Performance Improvements**: Optimized data delivery
-- **Security Updates**: Enhanced security measures
-- **User Experience**: Improved interface and usability
+## 2025-04-16
 
-## Contributing
+- Add user fees api
 
-To contribute to this documentation:
+## 2025-04-02
 
-1. **Report Issues**: Submit documentation bugs or improvements
-2. **Suggest Enhancements**: Propose new documentation sections
-3. **Submit Examples**: Share code examples and use cases
-4. **Update Content**: Help keep documentation current
+- Mainnet v1 launched.
+- Updated mainnet collateral deposit address
 
-## Support
+## 2025-03-28
 
-For questions about this documentation or the ETHGas platform:
+- Updated get wholeblock and inclusion preconf markets API
 
-- **Documentation**: This documentation
-- **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com)
-- **ETHGas Homepage**: [ethgas.com](https://ethgas.com)
+## 2025-03-25
 
---- -->
+Updated Production Hoodi API and WS base url
+Updated testchain url for example usage
+Updated Validator API and User deposit collateral API
 
-<!-- *Last updated: 2025-07-08*  -->
+## 2025-03-15
+
+- Updated Production Hoodi API and WS base url
+- Updated testchain url for example usage
+- Updated Validator API and User deposit collateral API
+
+## 2025-02-21
+
+- Update API naming. Added version control (v1)
+
+## 2025-01-12
+
+- Added pricer api for market making and block building api for submitting bundles
+- Added get user validators api for retrieving a list of validators for the user 
+
+## 2024-12-01
+
+- Updated RPC endpoint for Holesky chain
+
+## 2024-10-01
+
+- Ready for Testnet launch

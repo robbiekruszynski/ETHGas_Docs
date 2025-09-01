@@ -3887,3 +3887,182 @@ details[open] > summary strong::before {
 [data-theme='dark'] details > summary strong::before {
   color: var(--ifm-color-primary-light);
 }
+
+/* Authentication Flow Styling */
+.auth-flow-container {
+  background: linear-gradient(135deg, rgba(0, 162, 199, 0.05) 0%, rgba(0, 137, 168, 0.05) 100%);
+  border: 1px solid rgba(0, 162, 199, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-flow-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00A2C7 0%, #1AB3D6 50%, #33C4E5 100%);
+  border-radius: 12px 12px 0 0;
+}
+
+[data-theme='dark'] .auth-flow-container {
+  background: linear-gradient(135deg, rgba(26, 179, 214, 0.08) 0%, rgba(0, 162, 199, 0.08) 100%);
+  border: 1px solid rgba(26, 179, 214, 0.2);
+}
+
+.auth-flow-container .mermaid {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.auth-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.auth-steps .step-item {
+  background: var(--ifm-card-background-color);
+  border: 1px solid rgba(0, 162, 199, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-steps .step-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-light) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.auth-steps .step-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 8px 25px rgba(0, 162, 199, 0.15);
+}
+
+.auth-steps .step-item:hover::before {
+  transform: scaleX(1);
+}
+
+[data-theme='dark'] .auth-steps .step-item {
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px solid rgba(26, 179, 214, 0.15);
+}
+
+[data-theme='dark'] .auth-steps .step-item:hover {
+  border-color: var(--ifm-color-primary-light);
+  box-shadow: 0 8px 25px rgba(26, 179, 214, 0.2);
+}
+
+.auth-steps .step-circle {
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-light) 100%);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 162, 199, 0.3);
+  position: relative;
+}
+
+.auth-steps .step-circle::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-light) 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.auth-steps .step-item:hover .step-circle::after {
+  opacity: 0.3;
+}
+
+[data-theme='dark'] .auth-steps .step-circle {
+  background: linear-gradient(135deg, var(--ifm-color-primary-light) 0%, #4CD5F4 100%);
+  box-shadow: 0 4px 12px rgba(26, 179, 214, 0.4);
+}
+
+.auth-steps .step-content {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.auth-steps .step-content strong {
+  color: var(--ifm-color-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme='dark'] .auth-steps .step-content strong {
+  color: var(--ifm-color-primary-light);
+}
+
+.auth-steps .step-content {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+}
+
+[data-theme='dark'] .auth-steps .step-content {
+  color: var(--ifm-color-emphasis-300);
+}
+
+/* Mobile responsiveness for auth steps */
+@media (max-width: 768px) {
+  .auth-flow-container {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .auth-steps {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .auth-steps .step-item {
+    padding: 1.25rem;
+  }
+  
+  .auth-steps .step-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .auth-steps .step-content strong {
+    font-size: 1rem;
+  }
+  
+  .auth-steps .step-content {
+    font-size: 0.9rem;
+  }
+}

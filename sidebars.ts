@@ -23,7 +23,13 @@ const sidebars: SidebarsConfig = {
           items: [
             'api/authentication/index',
             'api/user/index',
+            'api/funding/index',
+            'api/public/index',
+            'api/bundles/index',
+            'api/pricer/index',
+            'api/validator/index',
             'api/trading/whole-block/index',
+            'api/trading/inclusion-preconf/index',
           ],
         },
       ],
@@ -73,8 +79,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'community',
         'reference/lookup-tables',
-        'changelog/index',
         'reference/error-codes',
+        'changelog/index',
       ],
     },
   ],
