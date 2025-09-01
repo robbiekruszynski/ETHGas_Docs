@@ -151,7 +151,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/orders
+curl -X GET /api/v1/p/wholeblock/orders?instrumentId=ETH-WB-9884031&onbook=false&done=false&limit=10
 ```
 
 </TabItem>
@@ -162,9 +162,14 @@ import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/orders"
 
-headers = {}
+params = {
+  "instrumentId": "ETH-WB-9884031",
+  "onbook": False,
+  "done": False,
+  "limit": 10
+}
 
-response = requests.get(url, headers=headers)
+response = requests.get(url, params=params)
 
 print(response.text)
 ```
@@ -172,20 +177,84 @@ print(response.text)
 </TabItem>
 </Tabs>
 
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+             {
+                "orderId": 8522999,
+                "marketId": 2000000160031,
+                "side": false,
+                "orderType": 2,
+                "quantity": "1",
+                "fulfilled": "1",
+                "price": "0.00000000569",
+                "fees": "0.0091793925",
+                "status": 10,
+                "clientOrderId": "b0eeb664",
+                "passive": false,
+                "createDate": 1750324420793,
+                "source": 1,
+                "updateDate": 1750324423349,
+                "instrumentId": "ETH-WB-160031"
+            },
+            {
+                "orderId": 8523033,
+                "marketId": 2000000160031,
+                "side": true,
+                "orderType": 2,
+                "quantity": "1",
+                "fulfilled": "1",
+                "price": "0.00000000591",
+                "fees": "0.002039865",
+                "status": 10,
+                "clientOrderId": "b274e878",
+                "passive": false,
+                "createDate": 1750324423349,
+                "source": 1,
+                "updateDate": 1750324423349,
+                "instrumentId": "ETH-WB-160031"
+            }
+        ]
+    }
+}
+```
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| instrumentId | YES | string | List whole block Orders for a market |
+| onbook | NO | boolean | Pending Orders Only? (default: false) |
+| done | NO | boolean | Done Orders Only? (default: false) |
+| startId | NO | integer | Order Start ID (default: 0) |
+| asc | NO | boolean | Sort Order Direction, true=asc, false=desc, Default to true=asc |
+| limit | NO | integer | Maximum Number of Orders To Return (default: 10) |
+
 **Response Body:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| orders | array | Array of whole block orders |
-| └ orderId | integer | Order ID |
-| └ marketId | integer | Market ID |
-| └ instrumentId | string | Instrument ID |
-| └ side | boolean | Order side (true = buy, false = sell) |
-| └ orderType | integer | Order type (1 = market, 2 = limit, 3 = FOK) |
-| └ quantity | string | Order quantity |
-| └ price | string | Order price |
-| └ status | integer | Order status |
-| └ createDate | integer | Creation timestamp |
+| orders | object[] | List of order object |
+| └ orderId | integer | Unique order ID, assigned by ETHGas |
+| └ marketId | integer | Market ID for this order |
+| └ instrumentId | string | Whole block market instrument ID |
+| └ side | boolean | buy order (true) or sell order (false) |
+| └ orderType | integer | Market order (1) or limit order (2) |
+| └ quantity | string | Order quantity (1 for whole block orders) |
+| └ fulfilled | string | Quantity that has already been executed |
+| └ price | string | Price of the order |
+| └ fees | string | Fees charged for this order |
+| └ status | integer | Order status - see the Order Status Codes section for more information |
+| └ errorCode | integer | Error code if order failed (null if successful) |
+| └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
+| └ passive | boolean | Whether the order is a maker order only |
+| └ createDate | integer | Datetime (in UNIX time) when the order was created |
+| └ source | integer | Where the order is originated |
+| └ updateDate | integer | Datetime (in UNIX time) when the order was last updated |
 
 </details>
 
@@ -333,7 +402,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders
+  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders for a given user account ID for an instrument Id
 </summary>
 
 **Code Example:**
@@ -341,7 +410,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-all-orders
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-all-orders?accountId=128&instrumentId=ETH-WB-1012051
 ```
 
 </TabItem>
@@ -352,11 +421,17 @@ import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-all-orders"
 
-headers = {
-    'Authorization': 'Bearer {{access_token}}'
+payload = {
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051"
 }
 
-response = requests.post(url, headers=headers)
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer {{access_token}}'
+}
+
+response = requests.post(url, headers=headers, json=payload)
 
 print(response.text)
 ```
@@ -364,18 +439,41 @@ print(response.text)
 </TabItem>
 </Tabs>
 
+**Example Response:**
+
+```json
+{
+    "success": false,
+    "errorCode": 1002,
+    "errorMsgKey": "error.order.doneOrCancelled",
+    "data": {}
+}
+```
+
+```json
+{
+    "success": true,
+    "data": {}
+}
+```
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| accountId | YES | integer | Account ID |
+| instrumentId | YES | string | Instrument ID |
+
 **Response Body:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | boolean | Whether the operation was successful |
-| message | string | Response message |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-batch-orders` - Cancel batch of whole block orders
+  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-batch-orders` - Cancel whole block orders for a given user account ID, and user order IDs or whole block order IDs
 </summary>
 
 **Code Example:**
@@ -383,11 +481,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-batch-orders \
-  -H "Content-Type: application/json" \
-  -d '{
-    "orderIds": [12345, 67890]
-}'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-all-orders?accountId=128&instrumentId=ETH-WB-1012051&orderIds=b25ab4023%2c5e885dd
 ```
 
 </TabItem>
@@ -395,20 +489,24 @@ curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/canc
 
 ```python
 import requests
-import json
 
-url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-batch-orders"
+url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-batch-oders"
 
-payload = json.dumps({
-    "orderIds": [12345, 67890]
-})
-
-headers = {
-    'Authorization': 'Bearer {{access_token}}',
-    'Content-Type': 'application/json'
+payload = {
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051",
+    "orderIds": [
+        "b25ab402",
+        "5e885ddd"
+    ]
 }
 
-response = requests.post(url, headers=headers, data=payload)
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer {{access_token}}'
+}
+
+response = requests.post(url, headers=headers, json=payload)
 
 print(response.text)
 ```
@@ -416,19 +514,36 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-**Request Body:**
+**Example Response:**
+
+```json
+{
+    "success": false,
+    "errorCode": 1002,
+    "errorMsgKey": "error.order.doneOrCancelled",
+    "data": {}
+}
+```
+
+```json
+{
+    "success": true,
+    "data": {}
+}
+```
+
+**Request Parameters:**
 
 | Parameter | Required | Type | Description |
 | --- | --- | --- | --- |
-| orderIds | YES | array | Array of order IDs to cancel |
+| accountId | YES | integer | Account ID |
+| orderIds | YES | List of integer | Order ID |
+| instrumentId | YES | string | Instrument ID |
 
 **Response Body:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | boolean | Whether the operation was successful |
-| cancelledOrders | array | Array of cancelled order IDs |
-| message | string | Response message |
 
 </details>
 
