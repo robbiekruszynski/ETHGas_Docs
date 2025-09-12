@@ -1,187 +1,112 @@
-# ETHGas Documentation
+# ETHGas API Documentation
 
-Complete documentation for the ETHGas platform - the next-generation infrastructure for Ethereum gas trading and MEV (Maximal Extractable Value) extraction. This documentation provides comprehensive coverage of all ETHGas platform features, APIs, and integration guides.
+**The End of Latency. The Beginning of Realtime.**
 
-## What is ETHGas?
+Welcome to the ETHGas API docs! This is your gateway to building on the real-time infrastructure layer for Ethereum's blockspace economy.
 
-ETHGas is a revolutionary platform that democratizes access to Ethereum's gas markets and MEV opportunities. By providing sophisticated infrastructure for gas trading, block building, and validator operations, ETHGas enables participants to optimize their Ethereum transactions and capture value that was previously accessible only to large institutions.
+## 🚀 What is ETHGas?
 
-### Core Platform Features
+ETHGas transforms Ethereum's chaotic gas markets into a structured, liquid, and tradable asset class. We're building the foundational financial market for Ethereum's blockspace - turning gas from a volatile friction point into a new asset class.
 
-**🎯 Whole Block Markets**
-- Trade entire Ethereum blocks for MEV opportunities
-- Access to complete block rewards and transaction fees
-- Advanced bidding mechanisms for block ownership
+### For Developers Like You
 
-**⚡ Inclusion Preconf Markets** 
-- Predict and trade on gas price movements
-- Real-time gas price discovery and trading
-- Risk management tools for transaction inclusion
+**🎯 Build Better dApps**
+- Gas abstraction for seamless user experiences
+- Predictable transaction costs
+- Real-time gas price feeds
 
-**🔧 Builder Infrastructure**
-- Professional-grade block building tools
-- Automated bundle submission and management
-- Integration with major Ethereum relays
+**⚡ Trade Blockspace**
+- Whole block markets for MEV opportunities  
+- Inclusion preconf markets for gas price trading
+- Professional-grade APIs and WebSocket feeds
 
-**👥 Validator Operations**
-- Streamlined validator registration and management
-- Automated fee distribution and optimization
-- Performance monitoring and analytics
+**🔧 Integrate with Validators**
+- Automated fee optimization
+- Builder infrastructure
+- Validator delegation tools
 
-## Why ETHGas?
+## 🛠️ Quick Start
 
-### For Traders
-- **Access to MEV**: Capture value from arbitrage, liquidations, and other MEV opportunities
-- **Gas Optimization**: Reduce transaction costs through intelligent gas price prediction
-- **Risk Management**: Advanced tools for managing gas price volatility
-- **Real-time Data**: Live market feeds and WebSocket connections for instant decision making
+### 1. Choose Your Environment
+```bash
+# TestNet (Recommended for development)
+API: https://hoodi.app.ethgas.com/api
+WS:  wss://hoodi.app.ethgas.com/ws
 
-### For Builders
-- **Professional Tools**: Enterprise-grade block building infrastructure
-- **Revenue Optimization**: Maximize block rewards through advanced algorithms
-- **Reliability**: High-availability systems with automatic failover
-- **Integration**: Seamless connection to major Ethereum relays
+# MainNet (Production)
+API: https://mainnet.app.ethgas.com/api  
+WS:  wss://mainnet.app.ethgas.com/ws
+```
 
-### For Validators
-- **Fee Maximization**: Optimize validator rewards through gas trading
-- **Automation**: Set-and-forget strategies for consistent income
-- **Transparency**: Clear visibility into all operations and earnings
-- **Compliance**: Built-in tools for regulatory compliance and reporting
+### 2. Authenticate
+```python
+import requests
 
-## Platform Architecture
+# Get login message
+response = requests.post('https://hoodi.app.ethgas.com/api/v1/user/login', 
+                        params={'addr': '0x...'})
 
-ETHGas operates on a sophisticated multi-layered architecture designed for performance, reliability, and scalability:
+# Sign and verify (see docs for full flow)
+# Get your JWT access token
+```
 
-- **REST APIs**: Comprehensive HTTP APIs for all platform operations
-- **WebSocket Feeds**: Real-time data streaming for live market updates
-- **Builder Network**: Distributed network of professional block builders
-- **Validator Integration**: Direct integration with Ethereum validator infrastructure
-- **Security Layer**: Enterprise-grade security with multi-factor authentication
+### 3. Start Building
+```python
+# Get market data
+markets = requests.get('https://hoodi.app.ethgas.com/api/v1/p/wholeblock/markets')
 
-## Getting Started
+# Place orders (authenticated)
+headers = {'Authorization': f'Bearer {access_token}'}
+order = requests.post('https://hoodi.app.ethgas.com/api/v1/wholeblock/order', 
+                     headers=headers, json=order_data)
+```
 
-### Quick Start Guide
+## 📚 Documentation
 
-1. **Choose Your Environment**
-   - Start with TestNet for development and testing
-   - Move to MainNet for production trading
+### Core APIs
+- **[REST API](/docs/api/overview)** - Complete HTTP API reference
+- **[WebSocket API](/docs/websocket/overview)** - Real-time data streams
+- **[Authentication](/docs/api/authentication)** - JWT-based auth flow
 
-2. **Set Up Authentication**
-   - Register an account on ETHGas Exchange
-   - Configure API credentials and permissions
+### Trading
+- **[Whole Block Markets](/docs/api/trading/whole-block)** - Trade entire blocks
+- **[Inclusion Preconf](/docs/api/trading/inclusion-preconf)** - Gas price trading
+- **[Market Data](/docs/api/markets)** - Public market information
 
-3. **Connect Your Application**
-   - Use our SDKs for Python, JavaScript, Rust, or Go
-   - Or integrate directly with our REST APIs
+### Integration
+- **[Builder Tools](/docs/api/builder)** - Block building infrastructure
+- **[Validator Integration](/docs/validators)** - Validator operations
+- **[Bundle Submission](/docs/api/bundles)** - Transaction bundles
 
-4. **Start Trading**
-   - Access market data and place orders
-   - Monitor positions and manage risk
+## 🛠️ Development
 
-### Supported Languages
-
-- **Python**: `python-ethgas` package with async support
-- **JavaScript**: `ethgas-js` for web and Node.js applications  
-- **Rust**: `ethgas-rs` for high-performance systems
-- **Go**: `ethgas-go` for concurrent applications
-
-## Documentation Structure
-
-### Getting Started
-- **Welcome**: Platform overview and key concepts
-- **Environments**: TestNet and MainNet configuration
-- **Connecting**: Authentication and connection setup
-
-### REST API
-- **Overview**: API structure and response format
-- **Authentication**: Login, logout, and token management
-- **User Management**: Profile and account operations
-- **Trading**: Order placement and management
-- **Market Data**: Market information and status
-
-### WebSocket API
-- **Overview**: Real-time data streaming
-- **Authentication**: WebSocket authentication
-- **Public Channels**: Market data and updates
-- **Private Channels**: User-specific data streams
-- **Queries**: Real-time data queries
-
-### Reference
-- **Data Types**: Complete data structure definitions
-- **Error Codes**: Comprehensive error code reference
-- **Lookup Tables**: Market types, order types, and more
-- **Response Codes**: Standard HTTP response codes
-
-## Development
-
-### Installation
-
-1. Clone this repository:
+### Local Setup
 ```bash
 git clone <repository-url>
 cd ETHGas_Docs
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
-
-3. Start the development server:
-```bash
 npm start
 ```
 
-4. Open [http://localhost:3002](http://localhost:3002) in your browser.
+Open [http://localhost:3002](http://localhost:3002) to view the docs locally.
 
-### Building for Production
-
+### Build for Production
 ```bash
 npm run build
 ```
 
-This generates static content into the `build` directory that can be served using any static contents hosting service.
+## 🤝 Contributing
 
-### Project Structure
+Help us improve the docs! Found a bug or have a suggestion? We'd love your input.
 
-```
-ETHGas_Docs/
-├── docs/                    # Documentation files
-│   ├── getting-started/     # Getting started guides
-│   ├── api/                 # REST API documentation
-│   ├── websocket/           # WebSocket API documentation
-│   ├── reference/           # Reference materials
-│   └── changelog/           # Changelog and updates
-├── src/                     # Source code
-├── static/                  # Static assets
-├── docusaurus.config.ts     # Docusaurus configuration
-├── sidebars.ts             # Sidebar configuration
-└── package.json            # Project dependencies
-```
+## 📞 Support
 
-
-## Contributing
-
-We welcome contributions to improve this documentation:
-
-1. **Report Issues**: Submit documentation bugs or improvements
-2. **Suggest Enhancements**: Propose new documentation sections
-3. **Submit Examples**: Share code examples and use cases
-4. **Update Content**: Help keep documentation current
-
-## Support
-
-For questions about this documentation or the ETHGas platform:
-
-- **Documentation**: This documentation
 - **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com)
-- **ETHGas Homepage**: [ethgas.com](https://ethgas.com)
+- **ETHGas Homepage**: [ethgas.com](https://ethgas.com)  
 - **Community**: Join our Discord for real-time support
 
-## License
-
-This documentation is licensed under the same terms as the ETHGas platform.
-
 ---
+
+*Building the real-time infrastructure for Ethereum's economy.*
 
 

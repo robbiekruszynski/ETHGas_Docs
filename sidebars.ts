@@ -28,6 +28,7 @@ const sidebars: SidebarsConfig = {
             'api/bundles/index',
             'api/pricer/index',
             'api/validator/index',
+            'api/markets/whole-block/index',
             'api/trading/whole-block/index',
             'api/trading/inclusion-preconf/index',
           ],

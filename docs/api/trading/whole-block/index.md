@@ -248,7 +248,7 @@ print(response.text)
 | └ fulfilled | string | Quantity that has already been executed |
 | └ price | string | Price of the order |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see the Order Status Codes section for more information |
+| └ status | integer | Order status - see the [Order Status Codes](./#order-status-codes) section for more information |
 | └ errorCode | integer | Error code if order failed (null if successful) |
 | └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
 | └ passive | boolean | Whether the order is a maker order only |
@@ -306,7 +306,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/order` - Place whole block order
+  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/order` - Create new whole block order
 </summary>
 
 **Code Example:**
@@ -314,18 +314,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/order \
-  -H "Content-Type: application/json" \
-  -d '{
-    "instrumentId": "ETH-WB-9884031",
-    "accountId": 128,
-    "side": true,
-    "orderType": 2,
-    "clientOrderId": "05d61624",
-    "passive": false,
-    "price": "0.01",
-    "quantity": "1"
-}'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/order&instrumentId=ETH-WB-9884031&accountId=128&side=1&orderType=2&clientOrderId=05d61624&passive=false&price=0.01
 ```
 
 </TabItem>
@@ -333,27 +322,25 @@ curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/orde
 
 ```python
 import requests
-import json
 
 url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/order"
 
-payload = json.dumps({
+payload = {
     "instrumentId": "ETH-WB-9884031",
     "accountId": 128,
-    "side": True,
+    "side": 1, 
     "orderType": 2,
     "clientOrderId": "05d61624",
     "passive": False,
-    "price": "0.01",
-    "quantity": "1"
-})
-
-headers = {
-    'Authorization': 'Bearer {{access_token}}',
-    'Content-Type': 'application/json'
+    "price": 0.01
 }
 
-response = requests.post(url, headers=headers, data=payload)
+headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer {{access_token}}'
+}
+
+response = requests.post(url, headers=headers, json=payload)
 
 print(response.text)
 ```
@@ -361,16 +348,45 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-**Request Body:**
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "order": {
+            "orderId": 204415806,
+            "marketId": 2000009884031,
+            "instrumentId": "ETH-WB-9884031",
+            "side": true,
+            "orderType": 2,
+            "quantity": "1",
+            "fulfilled": "1",
+            "price": "0.01",
+            "averageTradePrice": "0.01",
+            "fees": "0.0001",
+            "status": 1,
+            "errorCode": null,
+            "clientOrderId": "05d61624",
+            "preconfQuantity": "3585000",
+            "passive": false,
+            "createDate": 1697449417659,
+            "source": 1,
+            "updateDate": 1697449417659
+        }
+    }
+}
+```
+
+**Request Parameters:**
 
 | Parameter | Required | Type | Description |
 | --- | --- | --- | --- |
 | instrumentId | YES | string | Instrument ID |
-| accountId | YES | integer | Account ID |
 | side | YES | boolean | Order Side. Buy = true, Sell = false |
 | orderType | YES | integer | Order Type. Market = 1, Limit = 2, FOK = 3 |
 | clientOrderId | YES | string | A client generated random string as orderId |
-| passive | NO | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br/><br/>If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
+| passive | NO | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br /><br />If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
 | price | NO | string | Price in Ethereum per gas bought. Only applicable to limit, fok order. |
 | quantity | YES | string | Order quantity (1 for whole block orders) |
 
@@ -381,21 +397,21 @@ print(response.text)
 | order | object | Order object |
 | └ orderId | integer | Unique order ID, assigned by ETHGas |
 | └ marketId | integer | Market ID for this order |
-| └ instrumentId | string | Whole block market instrument ID<br/><br/>Use endpoint [GET /api/v1/p/wholeblock/markets] to get a list of all available wholeblock markets' instrument IDs |
+| └ instrumentId | string | Whole block market instrument ID<br /><br />Use endpoint [GET /api/v1/p/wholeblock/markets] to get a list of all available wholeblock markets' instrument IDs |
 | └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
 | └ side | boolean | buy order (true) or sell order (false) |
-| └ orderType | integer | Market order (1) or limit order (2)<br/><br/>If an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
+| └ orderType | integer | Market order (1) or limit order (2)<br /><br />If an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
 | └ quantity | string | Order quantity (1 for whole block orders) |
 | └ fulfilled | string | Quantity that has already been executed |
-| └ price | string | Price of the order<br/><br/>The should not be included for a regular market order; however if an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
+| └ price | string | Price of the order<br /><br />The should not be included for a regular market order; however if an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
 | └ averageTradePrice | string | Average price of executed trades |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see the Order Status Codes section for more information |
+| └ status | integer | Order status - see the [Order Status Codes](./#order-status-codes) section for more information |
 | └ errorCode | integer | Error code if order failed (null if successful) |
 | └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
-| └ passive | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br/><br/>If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
+| └ passive | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br /><br />If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
 | └ createDate | integer | Datetime (in UNIX time) when the order was created |
-| └ source | integer | Where the order is originated (1: User interface) |
+| └ source | integer | Where the order is originated<br/><br/>1: User interface<br/>5: TWAP |
 | └ updateDate | integer | Datetime (in UNIX time) when the order was last updated |
 
 </details>
@@ -549,7 +565,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-order` - Cancel specific whole block order
+  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-order` - Cancel whole block order for a given order ID
 </summary>
 
 **Code Example:**
@@ -557,11 +573,14 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-order \
-  -H "Content-Type: application/json" \
-  -d '{
-    "orderId": 12345
-}'
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-order?accountId=128&instrumentId=ETH-WB-1012051&orderId=b25ab402
+
+
+{
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051",
+    "orderId": "b25ab402" or "clientOrderId": "64395144"
+}
 ```
 
 </TabItem>
@@ -569,20 +588,21 @@ curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/canc
 
 ```python
 import requests
-import json
 
 url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-order"
 
-payload = json.dumps({
-    "orderId": 12345
-})
-
-headers = {
-    'Authorization': 'Bearer {{access_token}}',
-    'Content-Type': 'application/json'
+payload = {
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051",
+    "clientOrderId": "b25ab402" or "orderId" : "64395144"
 }
 
-response = requests.post(url, headers=headers, data=payload)
+headers = {
+   'Content-Type': 'application/json',
+   'Authorization': 'Bearer {{access_token}}'
+}
+
+response = requests.post(url, headers=headers, params=params)
 
 print(response.text)
 ```
@@ -590,25 +610,44 @@ print(response.text)
 </TabItem>
 </Tabs>
 
-**Request Body:**
+**Example Response:**
+
+```json
+{
+    "success": false,
+    "errorCode": 1002,
+    "errorMsgKey": "error.order.doneOrCancelled",
+    "data": {}
+}
+```
+
+```json
+{
+    "success": true,
+    "data": {}
+}
+```
+
+**Request Parameters:**
 
 | Parameter | Required | Type | Description |
 | --- | --- | --- | --- |
-| orderId | YES | integer | Order ID to cancel |
+| instrumentId | YES | string | Instrument ID |
+| orderId | YES | integer | Order ID |
+| accountId | YES | integer | Account ID |
+| clientOrderId | YES | string | A client generated random string as orderId |
 
 **Response Body:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| success | boolean | Whether the operation was successful |
-| orderId | integer | Cancelled order ID |
 | message | string | Response message |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/all-orders` - Get all whole block orders
+  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/all-orders` - Get all user whole block orders for a given user account ID
 </summary>
 
 **Code Example:**
@@ -616,7 +655,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/all-orders?onBook=false&startId=0&limit=10&asc=true
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/all-orders?onBook=false&limit=10
 ```
 
 </TabItem>
@@ -628,14 +667,12 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/all-orders"
 
 params = {
-    "onBook": False,
-    "startId": 0,
-    "limit": 10,
-    "asc": True
+  "onBook": False,
+  "limit": 10
 }
 
 headers = {
-    'Authorization': 'Bearer {{access_token}}'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers, params=params)
@@ -645,6 +682,38 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 204421028,
+                "marketId": 2000009884031,
+                "instrumentId": "ETH-WB-9884031",
+                "accountId": 128,
+                "side": false,
+                "orderType": 1,
+                "quantity": "1",
+                "fulfilled": "1",
+                "price": "0.01",
+                "averageTradePrice": "0.01",
+                "fees": "0.0001",
+                "status": 10,
+                "errorCode": null,
+                "clientOrderId": "y0xja3Xi",
+                "passive": false,
+                "createDate": 1697449610000,
+                "source": 1,
+                "updateDate": 1697449609000
+            }
+        ]
+    }
+}
+```
 
 **Request Parameters:**
 
@@ -683,7 +752,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/orders` - Get user whole block orders
+  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/orders` - Get user whole block orders for a given account ID (and instrument ID)
 </summary>
 
 **Code Example:**
@@ -703,12 +772,11 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/orders"
 
 params = {
-    "instrumentId": "ETH-WB-9884031",
-    "accountId": 128
+  "instrumentId": "ETH-WB-9884031"
 }
 
 headers = {
-    'Authorization': 'Bearer {{access_token}}'
+   'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers, params=params)
@@ -766,31 +834,31 @@ print(response.text)
 
 | Name | Type | Description |
 | --- | --- | --- |
-| orders | array | Array of user's whole block orders |
-| └ orderId | integer | Order ID |
-| └ marketId | integer | Market ID |
-| └ instrumentId | string | Instrument ID |
-| └ accountId | integer | Account ID |
-| └ side | boolean | Order side |
-| └ orderType | integer | Order type |
-| └ quantity | string | Order quantity |
-| └ fulfilled | string | Fulfilled quantity |
-| └ price | string | Order price |
-| └ averageTradePrice | string | Average trade price |
-| └ fees | string | Order fees |
-| └ status | integer | Order status |
-| └ errorCode | integer | Error code (null if successful) |
-| └ clientOrderId | string | Client order ID |
-| └ passive | boolean | Passive order flag |
-| └ createDate | integer | Creation timestamp |
-| └ source | integer | Order source |
-| └ updateDate | integer | Last update timestamp |
+| orders | object[] | List of order object |
+| └ orderId | integer | Unique order ID, assigned by ETHGas |
+| └ marketId | integer | Market ID for this order |
+| └ instrumentId | string | Whole block market instrument ID<br /><br />Use endpoint [GET /api/v1/wholeblock/markets] to get a list of all available wholeblock markets' instrument IDs |
+| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
+| └ side | boolean | buy order (true) or sell order (false) |
+| └ orderType | integer | Market order (1) or limit order (2)<br /><br />If an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
+| └ quantity | string | Order quantity (1 for whole block orders) |
+| └ fulfilled | string | Quantity that has already been executed |
+| └ price | string | Price of the order |
+| └ averageTradePrice | string | Average price of executed trades |
+| └ fees | string | Fees charged for this order |
+| └ status | integer | Order status - see the [Order Status Codes](./#order-status-codes) section for more information |
+| └ errorCode | integer | Error code if order failed (null if successful) |
+| └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
+| └ passive | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br /><br />If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
+| └ createDate | integer | Datetime (in UNIX time) when the order was created |
+| └ source | integer | Where the order is originated<br/><br/>1: User interface<br/>5: TWAP |
+| └ updateDate | integer | Datetime (in UNIX time) when the order was last updated |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/positions` - Get user whole block positions
+  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/positions` - Get user wholeblock positions for a given account ID (and instrument ID)
 </summary>
 
 **Code Example:**
@@ -798,7 +866,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/positions?instrumentId=ETH-WB-9884031&accountId=128&limit=10
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/positions?instrumentId=ETH-WB-9884031&limit=10
 ```
 
 </TabItem>
@@ -810,13 +878,12 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/positions"
 
 params = {
-    "instrumentId": "ETH-WB-9884031",
-    "accountId": 128,
-    "limit": 10
+  "instrumentId": "ETH-WB-9884031",
+  "limit": 10
 }
 
 headers = {
-    'Authorization': 'Bearer {{access_token}}'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers, params=params)
@@ -845,28 +912,13 @@ print(response.text)
     "data": {
         "positions": [
             {
-                "positionId": 204421028,
-                "instrumentId": "ETH-WB-9884031",
-                "accountId": 128,
-                "side": false,
-                "orderType": 1,
+                "slot": 296895,
                 "quantity": "1",
-                "fulfilled": "1",
-                "status": 10,
-                "clientOrderId": "y0xja3Xi",
-                "passive": false,
-                "orderDate": 1697449610000,
-                "source": 1,
-                "updateDate": 1697449609000,
-                "averageTradePrice": "0.047",
-                "trades": [
-                    {
-                        "side": false,
-                        "price": "0.047",
-                        "quantity": "1",
-                        "date": 1697449609000
-                    }
-                ]
+                "locked": "0",
+                "expired": false,
+                "updateDate": 1751967044730,
+                "available": "1",
+                "averagePrice": "0.0000000058"
             }
         ]
     }
@@ -877,32 +929,20 @@ print(response.text)
 
 | Name | Type | Description |
 | --- | --- | --- |
-| positions | array | List of position object |
-| └ positionId | integer | Unique position ID, assigned by ETHGas |
-| └ instrumentId | string | Whole block market instrument ID<br/><br/>Use endpoint [GET /api/v1/wholeblock/markets] to get a list of all available wholeblock markets' instrument IDs |
-| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
-| └ side | boolean | Order side - buy (true) or sell (false) |
-| └ orderType | integer | Order type |
-| └ quantity | string | Order quantity |
-| └ fulfilled | string | Quantity that has been fulfilled |
-| └ status | integer | Order status - see the Order Status Codes section for more information |
-| └ clientOrderId | string | Client order ID |
-| └ passive | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br/><br/>If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
-| └ orderDate | integer | Datetime (in UNIX time) when the order was created |
-| └ source | integer | Where the order is originated<br/><br/>1: User interface<br/>5: TWAP |
-| └ updateDate | integer | Datetime (in UNIX time) something last occurred to the order |
-| └ averageTradePrice | string | Average trade price |
-| └ trades | array | List of executed trades for this order |
-| 　└ side | boolean | Order side - buy (true) or sell (false) |
-| 　└ price | string | Price executed |
-| 　└ quantity | string | Quantity executed |
-| 　└ date | integer | Datetime (in UNIX time) executed |
+| positions | object[] | List of position object |
+| └ slot | integer | Slot number |
+| └ quantity | string | Total quantity |
+| └ locked | string | Locked quantity |
+| └ expired | boolean | Whether the position is expired |
+| └ updateDate | integer | Datetime (in UNIX time) when the position was last updated |
+| └ available | string | Available quantity |
+| └ averagePrice | string | Average price of the position |
 
 </details>
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/txs` - Get user whole block transactions
+  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/txs` - Get the user transactions for wholeblock market
 </summary>
 
 **Code Example:**
@@ -910,7 +950,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/txs?instrumentId=ETH-WB-9884031&limit=10
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/txs?instrumentId=ETH-WB-63999&limit=100
 ```
 
 </TabItem>
@@ -922,12 +962,12 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/txs"
 
 params = {
-    "instrumentId": "ETH-WB-9884031",
-    "limit": 10
+  "instrumentId": "ETH-WB-63999",
+  "limit": 10
 }
 
 headers = {
-    'Authorization': 'Bearer {{access_token}}'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers, params=params)
@@ -942,8 +982,11 @@ print(response.text)
 
 | Parameter | Required | Type | Description |
 | --- | --- | --- | --- |
-| instrumentId | YES | string | Whole block market instrument ID<br/><br/>Use endpoint [GET /api/v1/p/wholeblock/markets] to get a list of all available wholeblock markets' instrument IDs |
-| limit | NO | integer | Maximum number of transactions to return |
+| instrumentId | NO | string | Instrument ID |
+| accountId | YES | integer | Account ID |
+| startId | NO | integer | Transaction start Id |
+| asc | NO | boolean | Sort direction, true = ascending, false = descending, default to false |
+| limit | NO | integer | Maximum Number of Transactions To Return |
 
 **Response Body:**
 
