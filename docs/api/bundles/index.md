@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 ## API Endpoints
 
+### Submit transaction bundle
+
 <div className="api-endpoints-grid">
 
 <details className="api-endpoint">
@@ -45,6 +47,8 @@ print(response.text)
 </Tabs>
 
 </details>
+
+### Get slot bundles
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -84,6 +88,8 @@ print(response.text)
 </Tabs>
 
 </details>
+
+### Get account slot bundles
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">

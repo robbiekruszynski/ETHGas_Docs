@@ -1,4 +1,4 @@
----
+api informatyion---
 sidebar_position: 1
 ---
 
@@ -8,6 +8,8 @@ import TabItem from '@theme/TabItem';
 # Whole Block Trading
 
 ## API Endpoints
+
+### Get whole block markets
 
 <div className="api-endpoints-grid">
 
@@ -96,6 +98,8 @@ print(response.text)
 
 </details>
 
+### Get whole block positions
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/positions` - Get whole block positions
@@ -140,6 +144,8 @@ print(response.text)
 | └ realizedPnl | string | Realized profit/loss |
 
 </details>
+
+### Get whole block orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -258,6 +264,8 @@ print(response.text)
 
 </details>
 
+### Get whole block trades
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/trades` - Get whole block trades
@@ -303,6 +311,8 @@ print(response.text)
 | └ timestamp | integer | Trade timestamp |
 
 </details>
+
+### Create new whole block order
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -416,6 +426,8 @@ print(response.text)
 
 </details>
 
+### Cancel all whole block orders
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders for a given user account ID for an instrument Id
@@ -486,6 +498,8 @@ print(response.text)
 | --- | --- | --- |
 
 </details>
+
+### Cancel batch whole block orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -562,6 +576,8 @@ print(response.text)
 | --- | --- | --- |
 
 </details>
+
+### Cancel whole block order
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -644,6 +660,8 @@ print(response.text)
 | message | string | Response message |
 
 </details>
+
+### Get all user whole block orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -749,6 +767,8 @@ print(response.text)
 | └ updateDate | integer | Last update timestamp |
 
 </details>
+
+### Get user whole block orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -856,6 +876,8 @@ print(response.text)
 
 </details>
 
+### Get user wholeblock positions
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/positions` - Get user wholeblock positions for a given account ID (and instrument ID)
@@ -939,6 +961,8 @@ print(response.text)
 | └ averagePrice | string | Average price of the position |
 
 </details>
+
+### Get user wholeblock transactions
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">

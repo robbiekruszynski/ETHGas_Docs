@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 ## API Endpoints
 
+### Delegate pricer
+
 <div className="api-endpoints-grid">
 
 <details className="api-endpoint">
@@ -51,6 +53,8 @@ print(response.text)
 
 </details>
 
+### Get pricer information
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/user/pricer` - Get pricer information
@@ -86,6 +90,8 @@ print(response.text)
 
 </details>
 
+### Get inclusion preconf orders
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/pricer/inclusion-preconf/orders` - Get inclusion preconf orders
@@ -118,6 +124,8 @@ print(response.text)
 </Tabs>
 
 </details>
+
+### Get account tokens
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -154,6 +162,8 @@ print(response.text)
 
 </details>
 
+### Get active markets
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/pricer/markets/active` - Get active markets
@@ -189,6 +199,8 @@ print(response.text)
 
 </details>
 
+### Get inclusion preconf positions
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/pricer/inclusion-preconf/positions` - Get inclusion preconf positions
@@ -222,6 +234,8 @@ print(response.text)
 
 </details>
 
+### Get wholeblock orders
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/pricer/wholeblock/orders` - Get wholeblock orders
@@ -254,6 +268,8 @@ print(response.text)
 </Tabs>
 
 </details>
+
+### Get wholeblock positions
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">

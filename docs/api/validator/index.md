@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 ## API Endpoints
 
+### Get user validators
+
 <div className="api-endpoints-grid">
 
 <details className="api-endpoint">

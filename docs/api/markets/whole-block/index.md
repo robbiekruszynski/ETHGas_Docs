@@ -10,6 +10,10 @@ import TabItem from '@theme/TabItem';
 
 Public endpoints for accessing whole block market data without authentication.
 
+## API Endpoints
+
+### Get all available whole block markets
+
 <div className="api-endpoints-grid">
 
 <details className="api-endpoint">
@@ -115,6 +119,8 @@ print(response.text)
 
 </details>
 
+### Get public whole block positions
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/positions` - Get public whole block positions
@@ -193,6 +199,8 @@ print(response.text)
 | └ averagePrice | string | Average price of the position |
 
 </details>
+
+### Get public whole block orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -290,6 +298,8 @@ print(response.text)
 | └ updateDate | integer | Datetime (in UNIX time) when the order was last updated |
 
 </details>
+
+### Get public whole block trades
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">

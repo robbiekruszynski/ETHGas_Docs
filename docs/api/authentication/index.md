@@ -37,6 +37,8 @@ sequenceDiagram
 
 ## API Endpoints
 
+### Login with user address
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/v1/user/login` - Login with user address and optional display name
@@ -104,6 +106,8 @@ print(response.text)
 
 </details>
 
+### Verify login with signed EIP712 message
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/v1/user/login/verify` - Verify login with signed EIP712 message
@@ -165,6 +169,8 @@ print(response.text)
 
 </details>
 
+### Refresh access token
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/v1/user/login/refresh` - Refresh access token using refresh token
@@ -222,6 +228,8 @@ print(response.text)
 ```
 
 </details>
+
+### Logout and invalidate session
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
