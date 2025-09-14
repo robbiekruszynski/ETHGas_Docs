@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 ## API Endpoints
 
+### Get fund deposits history
+
 <div className="api-endpoints-grid">
 
 <details className="api-endpoint">
@@ -105,6 +107,8 @@ print(response.text)
 | └ createDate | date | create date |
 
 </details>
+
+### Request to withdraw funds
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -214,6 +218,8 @@ print(response.text)
 
 </details>
 
+### Get daily withdraw limits
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/p/funding/withdraw/dailyWithdrawLimits` - Get list of token's current on-chain daily withdraw limits
@@ -281,6 +287,8 @@ print(response.text)
 | └ remainingWithdrawLimit | string | Remaining withdraw limit |
 
 </details>
+
+### Get fund withdrawal request status
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -381,6 +389,8 @@ print(response.text)
 | └ updateDate | string | Last update date |
 
 </details>
+
+### Get list of fund withdrawals
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">

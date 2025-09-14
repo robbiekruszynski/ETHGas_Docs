@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 ## API Endpoints
 
+### Get network information
+
 <div className="api-endpoints-grid">
 
 <details className="api-endpoint">
@@ -65,6 +67,8 @@ print(response.text)
 
 </details>
 
+### Get available tokens
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/p/tokens` - Get available tokens
@@ -110,6 +114,8 @@ print(response.text)
 | └ price | string | Latest token price |
 
 </details>
+
+### Get user fees
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">

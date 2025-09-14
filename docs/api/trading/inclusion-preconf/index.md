@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 
 ## API Endpoints
 
+### Get active all preconf market details
+
 <div className="api-endpoints-grid">
 
 <details className="api-endpoint">
@@ -117,6 +119,8 @@ print(response.text)
 | └ updateDate | integer | Datetime (in UNIX time) when the market orderbook was last updated |
 
 </details>
+
+### Get preconfs market details for a given slot
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -227,6 +231,8 @@ print(response.text)
 
 </details>
 
+### Get recent preconf trade details
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/trades` - Get recent preconf trade details for a given preconf instrument ID
@@ -309,6 +315,8 @@ print(response.text)
 
 </details>
 
+### Get inclusion preconf top sales
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/top-sales` - Get inclusion preconf top sales
@@ -358,6 +366,8 @@ print(response.text)
 | 　└ quantity | string | Purchased gas quantity |
 
 </details>
+
+### Create new preconfs order
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -474,6 +484,8 @@ print(response.text)
 
 </details>
 
+### Cancel all inclusion preconf orders
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/cancel-all-orders` - Cancel all inclusion preconf orders for a given user account ID for an instrument Id
@@ -543,6 +555,8 @@ print(response.text)
 | code | integer | Response code |
 
 </details>
+
+### Cancel batch preconfs orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -620,6 +634,8 @@ print(response.text)
 
 </details>
 
+### Cancel preconfs order
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/cancel-order` - Cancel preconfs order for a given order ID
@@ -693,6 +709,8 @@ print(response.text)
 | code | integer | Response code |
 
 </details>
+
+### Get user preconfs orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -797,6 +815,8 @@ print(response.text)
 
 </details>
 
+### Get all inclusion preconf orders
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/all-orders` - Get all inclusion preconf orders
@@ -854,6 +874,8 @@ print(response.text)
 
 </details>
 
+### Get user inclusion preconf positions
+
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
   <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/positions` - Get user inclusion preconf positions
@@ -908,6 +930,8 @@ print(response.text)
 | └ updateDate | integer | Last update timestamp |
 
 </details>
+
+### Get user inclusion preconf transactions
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
@@ -969,6 +993,8 @@ print(response.text)
 | └ date | integer | Datetime (in UNIX time) when the market orderbook was last updated |
 
 </details>
+
+### Block owner reserve Inclusion Preconfs
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
