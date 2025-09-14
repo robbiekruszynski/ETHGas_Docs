@@ -1,4 +1,4 @@
-api informatyion---
+---
 sidebar_position: 1
 ---
 
@@ -7,18 +7,28 @@ import TabItem from '@theme/TabItem';
 
 # Whole Block Trading
 
+Complete API reference for whole block trading, including public market data and authenticated trading operations.
+
+## Overview
+
+Whole block trading allows you to trade entire Ethereum blocks. This API provides:
+
+- **Public Market Data**: Access market information, order books, trades, and positions without authentication
+- **Trading Operations**: Create, cancel, and manage orders (requires authentication)
+- **Account Data**: View your orders, positions, and transaction history (requires authentication)
+
 ## API Endpoints
 
-### Get whole block markets
-
-<div className="api-endpoints-grid">
+### Get all available whole block markets
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/markets` - Get whole block markets
+  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/markets` - Get all available whole block markets
 </summary>
 
-**Code Example:**
+**Description:**
+Get a list of all available whole block markets with their current status and details.
+
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -34,9 +44,7 @@ import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/markets"
 
-headers = {}
-
-response = requests.get(url, headers=headers)
+response = requests.get(url)
 
 print(response.text)
 ```
@@ -78,86 +86,41 @@ print(response.text)
 
 | Name | Type | Description |
 | --- | --- | --- |
-| markets | array | Array of whole block markets |
-| └ marketId | integer | Unique market ID |
-| └ slot | integer | Block slot number |
-| └ instrumentId | string | Market instrument ID |
-| └ name | string | Market display name |
-| └ priceStep | string | Minimum price increment |
-| └ minPrice | string | Minimum allowed price |
-| └ maxPrice | string | Maximum allowed price |
-| └ availablePreconf | integer | Available preconfirmation amount |
-| └ direction | boolean | Market direction |
-| └ price | string | Current market price |
-| └ midPrice | string | Mid price |
-| └ status | integer | Market status |
-| └ maturityTime | integer | Market maturity timestamp |
-| └ blockTime | integer | Block time timestamp |
-| └ finalityTime | integer | Finality time timestamp |
-| └ updateDate | integer | Last update timestamp |
+| markets | object[] | List of Whole Block Market objects |
+| └ marketId | integer | Whole block market ID |
+| └ slot | integer | Slot number of the block |
+| └ instrumentId | string | Whole block market instrument ID |
+| └ name | string | Whole block market name (format: "ETH-WB-xxxxxx") |
+| └ priceStep | string | Minimum increment between valid price levels |
+| └ minPrice | string | Minimum price |
+| └ maxPrice | string | Maximum price |
+| └ availablePreconf | integer | Available preconf quantity for trading |
+| └ direction | boolean | The last trading direction (true = buy, false = sell) |
+| └ price | string | Latest traded market price for this market |
+| └ midPrice | string | Mid price of the market |
+| └ status | integer | Market status - see [Market Status Codes](../../reference/lookup-tables#market-status-codes) |
+| └ maturityTime | integer | Datetime (in UNIX time) when the market will be closed |
+| └ blockTime | integer | Datetime (in UNIX time) when the block starts |
+| └ finalityTime | integer | Datetime (in UNIX time) when the block is being finalized |
+| └ updateDate | integer | Datetime (in UNIX time) when the market orderbook was last updated |
 
 </details>
 
-### Get whole block positions
+### Get public whole block orders
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/positions` - Get whole block positions
+  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/orders` - Get public whole block orders
 </summary>
 
-**Code Example:**
+**Description:**
+Get public order book data for whole block markets.
+
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/positions
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/positions"
-
-headers = {}
-
-response = requests.get(url, headers=headers)
-
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-**Response Body:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| positions | array | Array of whole block positions |
-| └ marketId | integer | Market ID |
-| └ instrumentId | string | Instrument ID |
-| └ quantity | string | Position quantity |
-| └ averagePrice | string | Average entry price |
-| └ unrealizedPnl | string | Unrealized profit/loss |
-| └ realizedPnl | string | Realized profit/loss |
-
-</details>
-
-### Get whole block orders
-
-<details className="api-endpoint">
-<summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/orders` - Get whole block orders
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -X GET /api/v1/p/wholeblock/orders?instrumentId=ETH-WB-9884031&onbook=false&done=false&limit=10
+curl -X GET /api/v1/p/wholeblock/orders?instrumentId=ETH-WB-9884031&limit=10
 ```
 
 </TabItem>
@@ -169,10 +132,8 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/orders"
 
 params = {
-  "instrumentId": "ETH-WB-9884031",
-  "onbook": False,
-  "done": False,
-  "limit": 10
+    "instrumentId": "ETH-WB-9884031",
+    "limit": 10
 }
 
 response = requests.get(url, params=params)
@@ -182,6 +143,17 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| instrumentId | YES | string | List whole block Orders for a market |
+| onbook | NO | boolean | Pending Orders Only? (default: false) |
+| done | NO | boolean | Done Orders Only? (default: false) |
+| startId | NO | integer | Order Start ID (default: 0) |
+| asc | NO | boolean | Sort Order Direction, true=asc, false=desc, Default to true=asc |
+| limit | NO | integer | Maximum Number of Orders To Return (default: 10) |
 
 **Example Response:**
 
@@ -206,39 +178,11 @@ print(response.text)
                 "source": 1,
                 "updateDate": 1750324423349,
                 "instrumentId": "ETH-WB-160031"
-            },
-            {
-                "orderId": 8523033,
-                "marketId": 2000000160031,
-                "side": true,
-                "orderType": 2,
-                "quantity": "1",
-                "fulfilled": "1",
-                "price": "0.00000000591",
-                "fees": "0.002039865",
-                "status": 10,
-                "clientOrderId": "b274e878",
-                "passive": false,
-                "createDate": 1750324423349,
-                "source": 1,
-                "updateDate": 1750324423349,
-                "instrumentId": "ETH-WB-160031"
             }
         ]
     }
 }
 ```
-
-**Request Parameters:**
-
-| Parameter | Required | Type | Description |
-| --- | --- | --- | --- |
-| instrumentId | YES | string | List whole block Orders for a market |
-| onbook | NO | boolean | Pending Orders Only? (default: false) |
-| done | NO | boolean | Done Orders Only? (default: false) |
-| startId | NO | integer | Order Start ID (default: 0) |
-| asc | NO | boolean | Sort Order Direction, true=asc, false=desc, Default to true=asc |
-| limit | NO | integer | Maximum Number of Orders To Return (default: 10) |
 
 **Response Body:**
 
@@ -254,9 +198,9 @@ print(response.text)
 | └ fulfilled | string | Quantity that has already been executed |
 | └ price | string | Price of the order |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see the [Order Status Codes](./#order-status-codes) section for more information |
+| └ status | integer | Order status - see [Order Status Codes](../../reference/lookup-tables#order-status-codes) |
 | └ errorCode | integer | Error code if order failed (null if successful) |
-| └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
+| └ clientOrderId | string | An arbitrary string with max 32 characters provided by the client |
 | └ passive | boolean | Whether the order is a maker order only |
 | └ createDate | integer | Datetime (in UNIX time) when the order was created |
 | └ source | integer | Where the order is originated |
@@ -264,19 +208,21 @@ print(response.text)
 
 </details>
 
-### Get whole block trades
+### Get public whole block trades
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/trades` - Get whole block trades
+  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/trades` - Get public whole block trades
 </summary>
 
-**Code Example:**
+**Description:**
+Get public trade history for whole block markets.
+
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/trades
+curl -X GET /api/v1/p/wholeblock/trades?instrumentId=ETH-WB-9884031&limit=10
 ```
 
 </TabItem>
@@ -287,9 +233,12 @@ import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/trades"
 
-headers = {}
+params = {
+    "instrumentId": "ETH-WB-9884031",
+    "limit": 10
+}
 
-response = requests.get(url, headers=headers)
+response = requests.get(url, params=params)
 
 print(response.text)
 ```
@@ -297,18 +246,129 @@ print(response.text)
 </TabItem>
 </Tabs>
 
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| instrumentId | NO | string | Instrument ID |
+| limit | NO | integer | Maximum Number of Trades To Return |
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "trades": [
+            {
+                "tradeId": 12345,
+                "marketId": 2000009884031,
+                "instrumentId": "ETH-WB-9884031",
+                "side": true,
+                "quantity": "1",
+                "price": "0.01",
+                "fees": "0.0001",
+                "createDate": 1697449417659
+            }
+        ]
+    }
+}
+```
+
 **Response Body:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| trades | array | Array of whole block trades |
-| └ tradeId | integer | Trade ID |
-| └ marketId | integer | Market ID |
-| └ instrumentId | string | Instrument ID |
-| └ side | boolean | Trade side |
+| trades | object[] | List of trade object |
+| └ tradeId | integer | Unique trade ID |
+| └ marketId | integer | Market ID for this trade |
+| └ instrumentId | string | Whole block market instrument ID |
+| └ side | boolean | buy trade (true) or sell trade (false) |
 | └ quantity | string | Trade quantity |
 | └ price | string | Trade price |
-| └ timestamp | integer | Trade timestamp |
+| └ fees | string | Fees for this trade |
+| └ createDate | integer | Datetime (in UNIX time) when the trade was executed |
+
+</details>
+
+### Get public whole block positions
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/positions` - Get public whole block positions
+</summary>
+
+**Description:**
+Get public position data for whole block markets.
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /api/v1/p/wholeblock/positions?instrumentId=ETH-WB-9884031&limit=10
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/p/wholeblock/positions"
+
+params = {
+    "instrumentId": "ETH-WB-9884031",
+    "limit": 10
+}
+
+response = requests.get(url, params=params)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| instrumentId | NO | string | Instrument ID |
+| limit | NO | integer | Maximum Number of Positions To Return |
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "positions": [
+            {
+                "slot": 296895,
+                "quantity": "1",
+                "locked": "0",
+                "expired": false,
+                "updateDate": 1751967044730,
+                "available": "1",
+                "averagePrice": "0.0000000058"
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| positions | object[] | List of position object |
+| └ slot | integer | Slot number |
+| └ quantity | string | Total quantity |
+| └ locked | string | Locked quantity |
+| └ expired | boolean | Whether the position is expired |
+| └ updateDate | integer | Datetime (in UNIX time) when the position was last updated |
+| └ available | string | Available quantity |
+| └ averagePrice | string | Average price of the position |
 
 </details>
 
@@ -319,12 +379,20 @@ print(response.text)
   <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/order` - Create new whole block order
 </summary>
 
-**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/order&instrumentId=ETH-WB-9884031&accountId=128&side=1&orderType=2&clientOrderId=05d61624&passive=false&price=0.01
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/order \
+  -d '{
+    "instrumentId": "ETH-WB-9884031",
+    "accountId": 128,
+    "side": 1, 
+    "orderType": 2,
+    "clientOrderId": "05d61624",
+    "passive": false,
+    "price": 0.01
+  }'
 ```
 
 </TabItem>
@@ -396,7 +464,7 @@ print(response.text)
 | side | YES | boolean | Order Side. Buy = true, Sell = false |
 | orderType | YES | integer | Order Type. Market = 1, Limit = 2, FOK = 3 |
 | clientOrderId | YES | string | A client generated random string as orderId |
-| passive | NO | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br /><br />If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
+| passive | NO | boolean | Whether the order is a maker order only (post-only) |
 | price | NO | string | Price in Ethereum per gas bought. Only applicable to limit, fok order. |
 | quantity | YES | string | Order quantity (1 for whole block orders) |
 
@@ -407,22 +475,94 @@ print(response.text)
 | order | object | Order object |
 | └ orderId | integer | Unique order ID, assigned by ETHGas |
 | └ marketId | integer | Market ID for this order |
-| └ instrumentId | string | Whole block market instrument ID<br /><br />Use endpoint [GET /api/v1/p/wholeblock/markets] to get a list of all available wholeblock markets' instrument IDs |
-| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
+| └ instrumentId | string | Whole block market instrument ID |
+| └ accountId | integer | Unique ID for each of the user's current & trading accounts |
 | └ side | boolean | buy order (true) or sell order (false) |
-| └ orderType | integer | Market order (1) or limit order (2)<br /><br />If an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
+| └ orderType | integer | Market order (1) or limit order (2) |
 | └ quantity | string | Order quantity (1 for whole block orders) |
 | └ fulfilled | string | Quantity that has already been executed |
-| └ price | string | Price of the order<br /><br />The should not be included for a regular market order; however if an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
+| └ price | string | Price of the order |
 | └ averageTradePrice | string | Average price of executed trades |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see the [Order Status Codes](./#order-status-codes) section for more information |
+| └ status | integer | Order status - see [Order Status Codes](../../reference/lookup-tables#order-status-codes) |
 | └ errorCode | integer | Error code if order failed (null if successful) |
-| └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
-| └ passive | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br /><br />If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
+| └ clientOrderId | string | An arbitrary string with max 32 characters provided by the client |
+| └ passive | boolean | Whether the order is a maker order only |
 | └ createDate | integer | Datetime (in UNIX time) when the order was created |
-| └ source | integer | Where the order is originated<br/><br/>1: User interface<br/>5: TWAP |
+| └ source | integer | Where the order is originated (1: User interface, 5: TWAP) |
 | └ updateDate | integer | Datetime (in UNIX time) when the order was last updated |
+
+</details>
+
+### Cancel whole block order
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-order` - Cancel whole block order for a given order ID
+</summary>
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-order \
+  -d '{
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051",
+    "clientOrderId": "b25ab402"
+  }'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-order"
+
+payload = {
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051",
+    "clientOrderId": "b25ab402"
+}
+
+headers = {
+   'Content-Type': 'application/json',
+   'Authorization': 'Bearer {{access_token}}'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {}
+}
+```
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| instrumentId | YES | string | Instrument ID |
+| orderId | YES | integer | Order ID |
+| accountId | YES | integer | Account ID |
+| clientOrderId | YES | string | A client generated random string as orderId |
+
+**Response Body:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| message | string | Response message |
 
 </details>
 
@@ -433,12 +573,15 @@ print(response.text)
   <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders for a given user account ID for an instrument Id
 </summary>
 
-**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-all-orders?accountId=128&instrumentId=ETH-WB-1012051
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-all-orders \
+  -d '{
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051"
+  }'
 ```
 
 </TabItem>
@@ -471,15 +614,6 @@ print(response.text)
 
 ```json
 {
-    "success": false,
-    "errorCode": 1002,
-    "errorMsgKey": "error.order.doneOrCancelled",
-    "data": {}
-}
-```
-
-```json
-{
     "success": true,
     "data": {}
 }
@@ -494,8 +628,7 @@ print(response.text)
 
 **Response Body:**
 
-| Name | Type | Description |
-| --- | --- | --- |
+Empty response on success.
 
 </details>
 
@@ -506,12 +639,16 @@ print(response.text)
   <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-batch-orders` - Cancel whole block orders for a given user account ID, and user order IDs or whole block order IDs
 </summary>
 
-**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-all-orders?accountId=128&instrumentId=ETH-WB-1012051&orderIds=b25ab4023%2c5e885dd
+curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-batch-orders \
+  -d '{
+    "accountId": 128,
+    "instrumentId": "ETH-WB-1012051",
+    "orderIds": ["b25ab402", "5e885ddd"]
+  }'
 ```
 
 </TabItem>
@@ -520,7 +657,7 @@ curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/canc
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-batch-oders"
+url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-batch-orders"
 
 payload = {
     "accountId": 128,
@@ -548,15 +685,6 @@ print(response.text)
 
 ```json
 {
-    "success": false,
-    "errorCode": 1002,
-    "errorMsgKey": "error.order.doneOrCancelled",
-    "data": {}
-}
-```
-
-```json
-{
     "success": true,
     "data": {}
 }
@@ -572,199 +700,7 @@ print(response.text)
 
 **Response Body:**
 
-| Name | Type | Description |
-| --- | --- | --- |
-
-</details>
-
-### Cancel whole block order
-
-<details className="api-endpoint">
-<summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-order` - Cancel whole block order for a given order ID
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-order?accountId=128&instrumentId=ETH-WB-1012051&orderId=b25ab402
-
-
-{
-    "accountId": 128,
-    "instrumentId": "ETH-WB-1012051",
-    "orderId": "b25ab402" or "clientOrderId": "64395144"
-}
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/wholeblock/cancel-order"
-
-payload = {
-    "accountId": 128,
-    "instrumentId": "ETH-WB-1012051",
-    "clientOrderId": "b25ab402" or "orderId" : "64395144"
-}
-
-headers = {
-   'Content-Type': 'application/json',
-   'Authorization': 'Bearer {{access_token}}'
-}
-
-response = requests.post(url, headers=headers, params=params)
-
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-**Example Response:**
-
-```json
-{
-    "success": false,
-    "errorCode": 1002,
-    "errorMsgKey": "error.order.doneOrCancelled",
-    "data": {}
-}
-```
-
-```json
-{
-    "success": true,
-    "data": {}
-}
-```
-
-**Request Parameters:**
-
-| Parameter | Required | Type | Description |
-| --- | --- | --- | --- |
-| instrumentId | YES | string | Instrument ID |
-| orderId | YES | integer | Order ID |
-| accountId | YES | integer | Account ID |
-| clientOrderId | YES | string | A client generated random string as orderId |
-
-**Response Body:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| message | string | Response message |
-
-</details>
-
-### Get all user whole block orders
-
-<details className="api-endpoint">
-<summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/all-orders` - Get all user whole block orders for a given user account ID
-</summary>
-
-**Code Example:**
-<Tabs>
-<TabItem value="http" label="HTTP" default>
-
-```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/all-orders?onBook=false&limit=10
-```
-
-</TabItem>
-<TabItem value="python" label="Python">
-
-```python
-import requests
-
-url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/all-orders"
-
-params = {
-  "onBook": False,
-  "limit": 10
-}
-
-headers = {
-  'Authorization': 'Bearer {{access_token}}'
-}
-
-response = requests.get(url, headers=headers, params=params)
-
-print(response.text)
-```
-
-</TabItem>
-</Tabs>
-
-**Example Response:**
-
-```json
-{
-    "success": true,
-    "data": {
-        "orders": [
-            {
-                "orderId": 204421028,
-                "marketId": 2000009884031,
-                "instrumentId": "ETH-WB-9884031",
-                "accountId": 128,
-                "side": false,
-                "orderType": 1,
-                "quantity": "1",
-                "fulfilled": "1",
-                "price": "0.01",
-                "averageTradePrice": "0.01",
-                "fees": "0.0001",
-                "status": 10,
-                "errorCode": null,
-                "clientOrderId": "y0xja3Xi",
-                "passive": false,
-                "createDate": 1697449610000,
-                "source": 1,
-                "updateDate": 1697449609000
-            }
-        ]
-    }
-}
-```
-
-**Request Parameters:**
-
-| Parameter | Required | Type | Description |
-| --- | --- | --- | --- |
-| onBook | NO | boolean | Pending Orders Only? (default: false) |
-| startId | NO | integer | Order Start ID |
-| limit | NO | integer | Maximum Number of Orders To Return (default: 10) |
-| asc | NO | boolean | Sort Order Direction, true=asc, false=desc, Default to true=asc |
-
-**Response Body:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| orders | array | List of order object |
-| └ orderId | integer | Unique order ID, assigned by ETHGas |
-| └ marketId | integer | Market ID for this order |
-| └ instrumentId | string | Whole block market instrument ID |
-| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
-| └ side | boolean | buy order (true) or sell order (false) |
-| └ orderType | integer | Market order (1) or limit order (2) |
-| └ quantity | string | Order quantity (1 for whole block orders) |
-| └ fulfilled | string | Quantity that has already been executed |
-| └ price | string | Price of the order |
-| └ averageTradePrice | string | Average price of executed trades |
-| └ fees | string | Fees charged for this order |
-| └ status | integer | Order status |
-| └ errorCode | integer | Error code if order failed (null if successful) |
-| └ clientOrderId | string | Client order ID |
-| └ passive | boolean | Passive order flag |
-| └ createDate | integer | Creation timestamp |
-| └ source | integer | Order source |
-| └ updateDate | integer | Last update timestamp |
+Empty response on success.
 
 </details>
 
@@ -775,7 +711,6 @@ print(response.text)
   <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/orders` - Get user whole block orders for a given account ID (and instrument ID)
 </summary>
 
-**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -857,22 +792,108 @@ print(response.text)
 | orders | object[] | List of order object |
 | └ orderId | integer | Unique order ID, assigned by ETHGas |
 | └ marketId | integer | Market ID for this order |
-| └ instrumentId | string | Whole block market instrument ID<br /><br />Use endpoint [GET /api/v1/wholeblock/markets] to get a list of all available wholeblock markets' instrument IDs |
-| └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
+| └ instrumentId | string | Whole block market instrument ID |
+| └ accountId | integer | Unique ID for each of the user's current & trading accounts |
 | └ side | boolean | buy order (true) or sell order (false) |
-| └ orderType | integer | Market order (1) or limit order (2)<br /><br />If an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
+| └ orderType | integer | Market order (1) or limit order (2) |
 | └ quantity | string | Order quantity (1 for whole block orders) |
 | └ fulfilled | string | Quantity that has already been executed |
 | └ price | string | Price of the order |
 | └ averageTradePrice | string | Average price of executed trades |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see the [Order Status Codes](./#order-status-codes) section for more information |
+| └ status | integer | Order status - see [Order Status Codes](../../reference/lookup-tables#order-status-codes) |
 | └ errorCode | integer | Error code if order failed (null if successful) |
-| └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
-| └ passive | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br /><br />If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
+| └ clientOrderId | string | An arbitrary string with max 32 characters provided by the client |
+| └ passive | boolean | Whether the order is a maker order only |
 | └ createDate | integer | Datetime (in UNIX time) when the order was created |
-| └ source | integer | Where the order is originated<br/><br/>1: User interface<br/>5: TWAP |
+| └ source | integer | Where the order is originated (1: User interface, 5: TWAP) |
 | └ updateDate | integer | Datetime (in UNIX time) when the order was last updated |
+
+</details>
+
+### Get all user whole block orders
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/all-orders` - Get all user whole block orders for a given user account ID
+</summary>
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/all-orders?onBook=false&limit=10
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+url = "https://mainnet.app.ethgas.com/api/v1/user/wholeblock/all-orders"
+
+params = {
+  "onBook": False,
+  "limit": 10
+}
+
+headers = {
+  'Authorization': 'Bearer {{access_token}}'
+}
+
+response = requests.get(url, headers=headers, params=params)
+
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Request Parameters:**
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| onBook | NO | boolean | Pending Orders Only? (default: false) |
+| startId | NO | integer | Order Start ID |
+| limit | NO | integer | Maximum Number of Orders To Return (default: 10) |
+| asc | NO | boolean | Sort Order Direction, true=asc, false=desc, Default to true=asc |
+
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "orders": [
+            {
+                "orderId": 204421028,
+                "marketId": 2000009884031,
+                "instrumentId": "ETH-WB-9884031",
+                "accountId": 128,
+                "side": false,
+                "orderType": 1,
+                "quantity": "1",
+                "fulfilled": "1",
+                "price": "0.01",
+                "averageTradePrice": "0.01",
+                "fees": "0.0001",
+                "status": 10,
+                "errorCode": null,
+                "clientOrderId": "y0xja3Xi",
+                "passive": false,
+                "createDate": 1697449610000,
+                "source": 1,
+                "updateDate": 1697449609000
+            }
+        ]
+    }
+}
+```
+
+**Response Body:**
+
+Same as "Get user whole block orders" response format.
 
 </details>
 
@@ -883,7 +904,6 @@ print(response.text)
   <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/positions` - Get user wholeblock positions for a given account ID (and instrument ID)
 </summary>
 
-**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -969,7 +989,6 @@ print(response.text)
   <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/txs` - Get the user transactions for wholeblock market
 </summary>
 
-**Code Example:**
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
@@ -1012,12 +1031,36 @@ print(response.text)
 | asc | NO | boolean | Sort direction, true = ascending, false = descending, default to false |
 | limit | NO | integer | Maximum Number of Transactions To Return |
 
+**Example Response:**
+
+```json
+{
+    "success": true,
+    "data": {
+        "txs": [
+            {
+                "instrumentId": "ETH-WB-63999",
+                "trxId": 146600149,
+                "buyerAccountId": 2049,
+                "sellerAccountId": 128,
+                "side": true,
+                "quantity": "1",
+                "price": "0.00000000001",
+                "fees": "0.0000011240748",
+                "timestamp": 1742288580863,
+                "status": 10
+            }
+        ]
+    }
+}
+```
+
 **Response Body:**
 
 | Name | Type | Description |
 | --- | --- | --- |
 | txs | array | List of trades |
-| └ instrumentId | string | Whole block market instrument ID<br/><br/>Use endpoint [GET /api/v1/p/wholeblock/markets] to get a list of all available whole block markets' instrument IDs |
+| └ instrumentId | string | Whole block market instrument ID |
 | └ trxId | integer | Transaction Id |
 | └ buyerAccountId | integer | Buyer Account Id |
 | └ sellerAccountId | integer | Seller Account Id |
@@ -1029,5 +1072,3 @@ print(response.text)
 | └ status | integer | Transaction status |
 
 </details>
-
-</div>
