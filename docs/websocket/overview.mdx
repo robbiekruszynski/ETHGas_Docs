@@ -12,7 +12,8 @@ WEBSOCKET
 
 The websocket channel provides access of streaming data subscriptions and queries on public/private data.
 
-### Sample Python Script
+<details>
+<summary>Sample Python Script</summary>
 
 ```python
 import json
@@ -59,53 +60,17 @@ if __name__ == "__main__":
     ws_app.run_forever()
 ```
 
+</details>
+
 ## Quick Navigation
 
-<div className="quick-nav">
+- [Connection Information](#connection-information) - WebSocket URLs and authentication
+- [Message Structure](#message-structure) - Request/response format and commands  
+- [Channel Types](#channel-types) - Public and private channel overview
+- [Public Channels](#public-channels-examples) - Market data and trading updates
+- [Private Channels](#private-channels-examples) - Account-specific data
+- [WebSocket Query](#websocket-query) - On-demand data requests
 
-<div className="row" style={{ marginBottom: '1rem' }}>
-  <div className="col col--4">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <h3>Connection</h3>
-        <p>WebSocket URLs and connection basics.</p>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <a href="#connection-information" className="button button--outline button--sm">
-          View Connection Info →
-        </a>
-      </div>
-    </div>
-  </div>
-  <div className="col col--4">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <h3>Channels</h3>
-        <p>Public and private channels.</p>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <a href="#channel-types" className="button button--outline button--sm">
-          View Channels →
-        </a>
-      </div>
-    </div>
-  </div>
-  <div className="col col--4">
-    <div className="feature-card text--center" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-      <div>
-        <h3>Messages</h3>
-        <p>Message structure and commands.</p>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <a href="#message-structure" className="button button--outline button--sm">
-          View Message Format →
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-</div>
 
 ## Connection Information {#connection-information}
 
@@ -174,72 +139,24 @@ import TabItem from '@theme/TabItem';
 
 ## Channel Types {#channel-types}
 
-<div className="row" style={{ marginBottom: '2rem' }}>
-  <div className="col col--6">
-    <div className="feature-card" style={{ height: '100%', padding: '1.5rem', border: '1px solid rgba(0, 162, 199, 0.2)', background: 'rgba(0, 162, 199, 0.02)' }}>
-      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-        <h3 style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: '600' }}>Public Channels</h3>
-        <p style={{ margin: '0', color: 'var(--ifm-color-emphasis-600)', fontSize: '0.9rem', lineHeight: '1.4' }}>Real-time market data available to all users</p>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Preconf Market Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Candlestick Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Recent Trades Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Order Book Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Ticker Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Inclusion Preconf Top Sales</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: 'var(--ifm-color-primary)', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Block Builder Update</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div className="col col--6">
-    <div className="feature-card" style={{ height: '100%', padding: '1.5rem', border: '1px solid rgba(239, 68, 68, 0.2)', background: 'rgba(239, 68, 68, 0.02)' }}>
-      <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-        <h3 style={{ color: '#ef4444', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: '600' }}>Private Channels</h3>
-        <p style={{ margin: '0', color: 'var(--ifm-color-emphasis-600)', fontSize: '0.9rem', lineHeight: '1.4' }}>User-specific data requiring authentication</p>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Account Order Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Account Transaction Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Account Position Update</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem', borderRadius: '6px', transition: 'background-color 0.2s ease' }}>
-          <span style={{ color: '#ef4444', fontSize: '1rem', fontWeight: '600' }}>→</span>
-          <span style={{ color: 'var(--ifm-color-emphasis-700)', fontSize: '0.95rem' }}>Preconf Bundle Update</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+### Public Channels
+Real-time market data available to all users:
+
+- Preconf Market Update
+- Candlestick Update  
+- Recent Trades Update
+- Order Book Update
+- Ticker Update
+- Inclusion Preconf Top Sales
+- Block Builder Update
+
+### Private Channels
+User-specific data requiring authentication:
+
+- Account Order Update
+- Account Transaction Update
+- Account Position Update
+- Preconf Bundle Update
 
 ## Error Handling {#error-handling}
 
@@ -260,11 +177,16 @@ For all error codes and handling guidance (WebSocket and REST), see the Error Co
 
 
 
-## Public Channels (Examples)
+## Public Channels
 
 ### Preconf Market Update
 
-Example Request
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`preconfMarketUpdate` - Real-time preconfirmation market data updates
+</summary>
+
+**Example Request:**
 
 ```json
 {
@@ -278,7 +200,7 @@ Example Request
 }
 ```
 
-Example Response
+**Example Response:**
 
 ```json
 {
@@ -314,19 +236,25 @@ Example Response
 }
 ```
 
-Fields
+**Request Parameters:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| op | string | e.g. subscribe |
+| op | string | Operation type (subscribe) |
 | args | object | Arguments |
-| └ channel | string | channel name, e.g. preconfMarketUpdate` |
-| └ marketType | string | Market type, e.g., inclusionPreconf`. |
+| └ channel | string | Channel name (preconfMarketUpdate) |
+| └ marketType | string | Market type (inclusionPreconf) |
 
+</details>
 
 ### Candlestick Update
 
-Example Request
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`candlestickUpdate` - Real-time candlestick/OHLC data updates
+</summary>
+
+**Example Request:**
 
 ```json
 {
@@ -340,7 +268,7 @@ Example Request
 }
 ```
 
-Example Response
+**Example Response:**
 
 ```json
 {
@@ -362,19 +290,25 @@ Example Response
 }
 ```
 
-Fields
+**Request Parameters:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| op | string | e.g. subscribe |
+| op | string | Operation type (subscribe) |
 | args | object | Arguments |
-| └ channel | string | Channel name, e.g., candlestickUpdate`. |
-| └ marketType | string | Market type, e.g., inclusionPreconf`. |
+| └ channel | string | Channel name (candlestickUpdate) |
+| └ marketType | string | Market type (inclusionPreconf) |
 
+</details>
 
 ### Recent Trades Update
 
-Example Request
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`recentTradeUpdate` - Real-time recent trades data updates
+</summary>
+
+**Example Request:**
 
 ```json
 {
@@ -388,7 +322,7 @@ Example Request
 }
 ```
 
-Example Response
+**Example Response:**
 
 ```json
 {
@@ -406,17 +340,23 @@ Example Response
 }
 ```
 
-Fields
+**Request Parameters:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| op | string | e.g. subscribe |
+| op | string | Operation type (subscribe) |
 | args | object | Arguments |
-| └ channel | string | Channel name, e.g., recentTradeUpdate |
-| └ marketType | string | Market type, e.g., inclusionPreconf. |
+| └ channel | string | Channel name (recentTradeUpdate) |
+| └ marketType | string | Market type (inclusionPreconf) |
 
+</details>
 
 ### Order Book Update
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`orderBookUpdate` - Real-time order book updates
+</summary>
 
 Example Request
 
@@ -462,8 +402,14 @@ Fields
 | └ channel | string | Channel name, e.g., orderBookUpdate. |
 | └ marketType | string | Market type, e.g., inclusionPreconf. |
 
+</details>
 
 ### Ticker Update
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`tickerUpdate` - Real-time ticker/price updates
+</summary>
 
 Example Request
 
@@ -508,8 +454,14 @@ Fields
 | └ channel | string | Channel name, e.g., tickerUpdate. |
 | └ marketType | string | Market type, e.g., inclusionPreconf. |
 
+</details>
 
 ### Inclusion Preconf Top Sales
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`inclusionPreconfSaleUpdate` - Real-time top sales updates
+</summary>
 
 Example Request
 
@@ -551,11 +503,16 @@ Fields
 | args | object | Arguments |
 | └ channel | string | Channel name, e.g., inclusionPreconfSaleUpdate. |
 
-
+</details>
 
 ## Private Channels (Examples)
 
 ### Account Order Update
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`accountOrderUpdate` - Real-time account order updates
+</summary>
 
 Example Request
 
@@ -611,10 +568,16 @@ Fields
 | └ marketType | string | Market type, e.g., inclusionPreconf. |
 | └ pricerOnly | boolean | Flag for only displaying pricer information. Optional. Default to false. |
 
+</details>
 
 ### Account Transaction Update
 
-Example Request
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`accountTransactionUpdate` - Real-time account transaction updates
+</summary>
+
+**Example Request:**
 
 ```json
 {
@@ -649,19 +612,25 @@ Example Response
 }
 ```
 
-Fields
+**Request Parameters:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| op | string | e.g. subscribe |
+| op | string | Operation type (subscribe) |
 | args | object | Arguments |
-| └ channel | string | Channel name, e.g., accountTransactionUpdate. |
-| └ marketType | string | Market type, e.g., inclusionPreconf. |
+| └ channel | string | Channel name (accountTransactionUpdate) |
+| └ marketType | string | Market type (inclusionPreconf) |
 
+</details>
 
 ### Account Position Update
 
-Example Request
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+`accountPositionUpdate` - Real-time account position updates
+</summary>
+
+**Example Request:**
 
 ```json
 {
@@ -698,13 +667,416 @@ Example Response
 }
 ```
 
-Fields
+**Request Parameters:**
 
 | Name | Type | Description |
 | --- | --- | --- |
-| op | string | e.g. subscribe |
+| op | string | Operation type (subscribe) |
 | args | object | Arguments |
-| └ channel | string | Channel name, e.g., accountPositionUpdate. |
-| └ marketType | string | Market type, e.g., inclusionPreconf. |
+| └ channel | string | Channel name (accountPositionUpdate) |
+| └ marketType | string | Market type (inclusionPreconf) |
 | └ pricerOnly | boolean | Flag for only displaying pricer information. Optional. Default to false. |
+
+</details>
+
+<details>
+<summary>WebSocket Query (on-demand data requests)</summary>
+
+## WebSocket Query
+
+WebSocket queries allow you to request specific data on-demand without subscribing to continuous updates.
+
+### Query Structure
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "queryTypeName",
+            "parameter1": "value1",
+            "parameter2": "value2"
+        }
+    ]
+}
+```
+
+### Public Queries
+
+#### Preconf Markets Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "preconfMarkets"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "preconfMarkets",
+    "P": [
+        {
+            "m": 1000000603410,
+            "T": "inclusionPreconf",
+            "s": 603410,
+            "i": "ETH-PC-603410",
+            "n": "Eth Preconf Inclusion Slot #603410",
+            "M": 1744685494000,
+            "f": 1744686266000,
+            "b": 1744685498000,
+            "q": "1",
+            "mQ": "1",
+            "MQ": "36000000",
+            "PS": "0.00000000001",
+            "mP": "0.00000000001",
+            "MP": "0.00001",
+            "C": "3.99996",
+            "A": 36000000,
+            "r": 0,
+            "S": 0,
+            "e": 1,
+            "a": 1744685496000,
+            "c": 1744684899000,
+            "u": 1744684899000,
+            "tp": 36000000
+        }
+    ]
+}
+```
+
+#### Order Books Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "orderBooks",
+            "marketId": "ETH-PC-603410"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "orderBooks",
+    "P": {
+        "a": [
+            {
+                "p": "0.00000000006",
+                "q": "1702005"
+            }
+        ],
+        "b": [
+            {
+                "p": "0.00000000005",
+                "q": "5861476"
+            }
+        ],
+        "I": "ETH-PC-603410",
+        "t": 1736751224941
+    }
+}
+```
+
+#### Current Slot Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "currentSlot"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "currentSlot",
+    "P": {
+        "s": 603410
+    }
+}
+```
+
+#### Candlesticks Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "candlesticks",
+            "marketId": "ETH-PC-603410",
+            "interval": 1000
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "candlesticks",
+    "P": [
+        {
+            "I": "ETH-PC-603410",
+            "m": 1000000603410,
+            "t": 1736742240000,
+            "i": 1000,
+            "o": "0",
+            "h": "0",
+            "l": "0",
+            "c": "0",
+            "v": "0",
+            "F": true
+        }
+    ]
+}
+```
+
+#### Recent Trades Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "recentTrades",
+            "marketId": "ETH-PC-603410"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "recentTrades",
+    "P": [
+        {
+            "i": "ETH-PC-603410",
+            "p": "0.00000000006",
+            "q": "1702005",
+            "s": true,
+            "d": 1739528277070,
+            "t": 683198
+        }
+    ]
+}
+```
+
+#### Inclusion Preconf Top Sales Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "inclusionPreconfTopSales"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "inclusionPreconfTopSales",
+    "P": {
+        "s": 193373,
+        "g": "11288799",
+        "S": [
+            {
+                "p": "0.0000000001",
+                "q": "11078799"
+            }
+        ]
+    }
+}
+```
+
+#### Current Block Builder Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "currentBlockBuilder"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "currentBlockBuilder",
+    "P": {
+        "s": 193373,
+        "b": "0x1234567890123456789012345678901234567890"
+    }
+}
+```
+
+### Private Queries
+
+#### Open Orders Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "openOrders",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "openOrders",
+    "P": [
+        {
+            "o": 173639360,
+            "c": "613ec528",
+            "a": 2049,
+            "C": 53,
+            "t": 2,
+            "i": "ETH-PC-403684",
+            "m": 1000000403684,
+            "p": "0.00000000001",
+            "q": "3181683",
+            "F": "3181683",
+            "fp": "0.00003181683",
+            "f": "0.0000028635147",
+            "s": false,
+            "P": false,
+            "S": 10,
+            "d": 1742288403289,
+            "u": 1742288403289
+        }
+    ]
+}
+```
+
+#### Account Positions Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "accountPositions",
+            "marketType": "inclusionPreconf"
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "accountPositions",
+    "P": [
+        {
+            "a": 2049,
+            "s": 403684,
+            "m": 1,
+            "q": "20427356",
+            "l": "0",
+            "p": "0",
+            "e": false,
+            "b": false,
+            "c": 1742288355000,
+            "u": 1742288402000,
+            "A": "20427356"
+        }
+    ]
+}
+```
+
+#### Preconf Bundles Query
+
+> Example Request
+
+```json
+{
+    "op": "query",
+    "args": [
+        {
+            "queryType": "preconfBundles",
+            "slot": 123456
+        }
+    ]
+}
+```
+
+> Example Response
+
+```json
+{
+    "q": "preconfBundles",
+    "P": {
+        "s": 194265,
+        "bu": [
+            {
+                "u": "c439371a-7095-4de6-82ce-6bf4fc6fd693",
+                "txs": [
+                    {
+                        "r": false,
+                        "tx": "0x02f88a827e7e82088b808477359400830334509412643b525cc34282ba84298d32bf2d094448f1c4843b9aca009b45746847617320496e636c7573696f6e20507265636f6e66732e20c080a03b39cc9c4a92f32f8d4bc88546e2655378d4e87468ba74b0d20164ed9c346838a01bdbe85274f17b2c87e4689996089affd2d7d8c542616ef7020f5975bf4ddb52",
+                        "h": "0xeb1bca2f601eb124563286455544cc87a1b04b28bd5bed6fb28be81417c4a0de"
+                    }
+                ],
+                "p": "0.00000000013"
+            }
+        ]
+    }
+}
+```
+
+</details>
 

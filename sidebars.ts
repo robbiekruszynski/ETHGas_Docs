@@ -79,8 +79,15 @@ const sidebars: SidebarsConfig = {
       label: 'Resources',
       items: [
         'community',
-        'reference/lookup-tables',
-        'reference/error-codes',
+        {
+          type: 'category',
+          label: 'Reference',
+          items: [
+            'reference/data-types/index',
+            'reference/lookup-tables',
+            'reference/error-codes',
+          ],
+        },
         'changelog/index',
       ],
     },
