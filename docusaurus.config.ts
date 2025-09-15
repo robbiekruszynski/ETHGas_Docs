@@ -79,7 +79,7 @@ const config: Config = {
         },
         {
           to: '/docs/developers/overview',
-          label: 'Developers',
+          label: 'Traders',
           position: 'left',
         },
         {
@@ -168,7 +168,7 @@ const config: Config = {
       additionalLanguages: ['bash', 'json', 'typescript'],
     },
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: 'dark',
       disableSwitch: false,
       respectPrefersColorScheme: false,
     },

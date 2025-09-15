@@ -1,15 +1,28 @@
 ---
 sidebar_position: 1
-sidebar_label: Welcome
+title: Welcome
 ---
 
-import styles from '@site/src/pages/index.module.css';
-
-# Welcome to ETHGas
-
-**The End of Latency. The Beginning of Realtime.**
-
-Welcome to ETHGas, the real-time infrastructure layer that transforms Ethereum's blockspace into a structured, liquid, and tradable asset class.
+<div className="hero hero--primary" style={{padding: '4rem 0', background: 'transparent', color: 'var(--ifm-color-content)'}}>
+  <div className="container">
+    <div className="row">
+      <div className="col col--8">
+        <h1 className="hero__title" style={{fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem'}}>
+          ETHGas
+        </h1>
+        <p className="hero__subtitle" style={{fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem', color: 'var(--ifm-color-primary)'}}>
+          The End of Latency. The Beginning of Realtime.
+        </p>
+        <p className="hero__subtitle" style={{fontSize: '1.25rem', marginBottom: '2rem'}}>
+          The real-time infrastructure layer that transforms Ethereum's blockspace into a structured, liquid, and tradable asset class.
+        </p>
+      </div>
+      <div className="col col--4" style={{textAlign: 'center'}}>
+        <img src="/img/eg_logo_w+b.png" alt="ETHGas Logo" style={{maxWidth: '200px', height: 'auto'}} />
+      </div>
+    </div>
+  </div>
+</div>
 
 ## What is ETHGas?
 

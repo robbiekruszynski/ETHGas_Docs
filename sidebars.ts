@@ -12,7 +12,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Developers',
+      label: 'Traders',
       items: [
         'developers/overview',
         'api/overview',
