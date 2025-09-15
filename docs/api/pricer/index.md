@@ -39,8 +39,8 @@ payload = {
 }
 
 headers = {
-    'Authorization': 'Bearer <your-auth-token>',
-    'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.post(url, headers=headers, params=payload)
@@ -50,6 +50,19 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+Request
+
+| Parameter | Required | Type | Description |
+| --- | --- | --- | --- |
+| enable | YES | boolean | Enable or disable pricer delegation |
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| success | boolean | Whether the delegation was successful |
+| message | string | Response message |
 
 </details>
 
@@ -77,7 +90,7 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/pricer"
 
 headers = {
-    'Authorization': 'Bearer <your-auth-token>'
+    'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers)
@@ -87,6 +100,15 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| pricerId | string | Pricer ID |
+| enabled | boolean | Whether pricer is enabled |
+| accountId | long | Account ID associated with pricer |
+| status | integer | Pricer status |
 
 </details>
 
@@ -123,6 +145,18 @@ print(response.text)
 </TabItem>
 </Tabs>
 
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| orders | array | Array of inclusion preconf orders |
+| └ orderId | long | Order ID |
+| └ marketId | long | Market ID |
+| └ side | boolean | Order side (true = buy, false = sell) |
+| └ quantity | string | Order quantity |
+| └ price | string | Order price |
+| └ status | integer | Order status |
+
 </details>
 
 ### Get account tokens
@@ -149,7 +183,7 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/pricer/account-tokens"
 
 headers = {
-    'Authorization': 'Bearer <your-auth-token>'
+    'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers)
@@ -159,6 +193,16 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| tokens | array | Array of account tokens |
+| └ tokenId | integer | Token ID |
+| └ code | string | Token code (e.g., "ETH") |
+| └ quantity | string | Token quantity |
+| └ availableQuantity | string | Available quantity for trading |
 
 </details>
 
@@ -186,7 +230,7 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/pricer/markets/active"
 
 headers = {
-    'Authorization': 'Bearer <your-auth-token>'
+    'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers)
@@ -196,6 +240,17 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| markets | array | Array of active markets |
+| └ marketId | long | Market ID |
+| └ slot | integer | Slot number |
+| └ instrumentId | string | Market instrument ID |
+| └ status | integer | Market status |
+| └ price | string | Current market price |
 
 </details>
 
@@ -232,6 +287,17 @@ print(response.text)
 </TabItem>
 </Tabs>
 
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| positions | array | Array of inclusion preconf positions |
+| └ marketId | long | Market ID |
+| └ side | boolean | Position side (true = long, false = short) |
+| └ quantity | string | Position quantity |
+| └ averagePrice | string | Average fill price |
+| └ unrealizedPnl | string | Unrealized profit/loss |
+
 </details>
 
 ### Get wholeblock orders
@@ -267,6 +333,18 @@ print(response.text)
 </TabItem>
 </Tabs>
 
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| orders | array | Array of wholeblock orders |
+| └ orderId | long | Order ID |
+| └ marketId | long | Market ID |
+| └ side | boolean | Order side (true = buy, false = sell) |
+| └ quantity | string | Order quantity |
+| └ price | string | Order price |
+| └ status | integer | Order status |
+
 </details>
 
 ### Get wholeblock positions
@@ -301,6 +379,17 @@ print(response.text)
 
 </TabItem>
 </Tabs>
+
+Response Body
+
+| Name | Type | Description |
+| --- | --- | --- |
+| positions | array | Array of wholeblock positions |
+| └ marketId | long | Market ID |
+| └ side | boolean | Position side (true = long, false = short) |
+| └ quantity | string | Position quantity |
+| └ averagePrice | string | Average fill price |
+| └ unrealizedPnl | string | Unrealized profit/loss |
 
 </details>
 
