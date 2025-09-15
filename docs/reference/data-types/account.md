@@ -4,16 +4,26 @@
 
 The Account object represents a user's account within the ETHGas system. Each user can have multiple accounts for different purposes.
 
+### Used in API Endpoints
+
+The Account object is returned by the following API endpoints:
+
+- [GET /api/v1/user/accounts](/docs/api/user#get-user-accounts) - Returns list of user accounts
+- [GET /api/v1/user/account/{accountId}](/docs/api/user#get-account-by-id) - Returns specific account details
+- [POST /api/v1/user/update](/docs/api/user#update-user-information) - Returns user object with accounts array
+- [GET /api/v1/user/info](/docs/api/user#get-user-information) - Returns user object with accounts array
+
 ### Properties
 
 | Name | Type | Description |
 |------|------|-------------|
 | `accountId` | long | Unique account ID assigned by ETHGas |
 | `userId` | long | User ID associated with the account |
-| `type` | integer | Account type (1 = Current, 2 = Trading) |
+| `type` | integer | Account type (1 = Current, 2 = Trading) - see [Account Types](#account-types) |
 | `name` | string | Account name (default: "Current" or "Trading") |
-| `status` | integer | Account status (1 = active) |
+| `status` | integer | Account status (1 = active) - see [Account Status Codes](#account-status-codes) |
 | `updateDate` | long | Last update timestamp in milliseconds |
+| `cashTokenIds` | integer[] | Array of token IDs available in this account |
 | `tokens` | object[] | List of tokens in the account |
 
 ### Example
@@ -26,6 +36,7 @@ The Account object represents a user's account within the ETHGas system. Each us
   "name": "Current",
   "status": 1,
   "updateDate": 1698127521000,
+  "cashTokenIds": [1],
   "tokens": [
     {
       "accountId": 242,
@@ -60,7 +71,7 @@ The Account object represents a user's account within the ETHGas system. Each us
 | Name | Type | Description |
 |------|------|-------------|
 | `accountId` | integer | Unique ID for the account |
-| `tokenId` | integer | ETHGas Token ID (see Token IDs section) |
+| `tokenId` | integer | ETHGas Token ID - see [Token IDs](/docs/reference/lookup-tables#token-ids) |
 | `quantity` | string | Total amount of token in account |
 | `lockedQuantity` | string | Amount locked for pending orders |
 | `code` | string | Token code (e.g., "ETH") |

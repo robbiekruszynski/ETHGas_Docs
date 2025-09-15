@@ -330,13 +330,13 @@ Response Body
 | └ updateDate | integer | Datetime (in UNIX time) the healthscoare and other risk metrics (asset amount, liability amount, etc) were last calculated |
 | └ tokens | object[] | List of tokens in account |
 | └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
-| └ tokenId | integer | ETHGas Token IDSee Token IDs section for list of Token IDs |
+| └ tokenId | integer | ETHGas Token ID - see [Token IDs](/docs/reference/lookup-tables#token-ids) |
 | └ quantity | string | Amount of token in account in USD |
 | └ lockedQuantity | string | Amount of token in account in USD which is covering pending limit orders (and so cannot be transfered out of account) |
-| └ code | string | Token codeSee Token IDs section for list of token codes |
+| └ code | string | Token code - see [Token IDs](/docs/reference/lookup-tables#token-ids) |
 | └ tokenType | integer | Token type:Currently all tokens at ETHGas are designated as type 1 |
 | └ valueType | integer | Value type:1 for non-stablecoin tokens2 for stablecoin tokens |
-| └ tokenValuationProtocol | integer | Platform the complex token comes from (if relevant):See Token Valuation Protocols section |
+| └ tokenValuationProtocol | integer | Platform the complex token comes from (if relevant) - see [Token Valuation Protocols](/docs/reference/data-types/token#token-valuation-protocols) |
 | └ availableQuantity | string | Available quantity for using as collateral for buying or for transfering out of the account:Available Quantity = Quantity - Locked Quantity |
 
 </details>
@@ -430,8 +430,8 @@ Response Body
 | txs | object[] | List of transaction objects |
 | └ trxId | integer | Unique ID for the transaction, assigned by ETHGas |
 | └ accountId | integer | Unique ID for each of the user's current & trading accounts assigned by ETHGas |
-| └ tokenId | integer | ETHGas Token IDSee Token IDs section for list of Token IDs |
-| └ type | integer | Transaction typeSee Transaction Types section for full list |
+| └ tokenId | integer | ETHGas Token ID - see [Token IDs](/docs/reference/lookup-tables#token-ids) |
+| └ type | integer | Transaction type - see [Transaction Types](/docs/reference/lookup-tables#transaction-types) |
 | └ quantity | string | Transaction quantity |
 | └ balance | string | Balance of account after transaction |
 | └ createDate | integer | Transaction datetime stamp (in UNIX time) |

@@ -105,9 +105,9 @@ print(response.text)
 | Name | Type | Description |
 | --- | --- | --- |
 | tokens | object[] | List of token objects |
-| └ tokenId | integer | ETHGas Token IDSee Token IDs section for list of Token IDs |
-| └ code | string | Token codeSee Token IDs section for list of token codes |
-| └ name | string | Token codeSee Token IDs section for list of token names |
+| └ tokenId | integer | ETHGas Token ID - see [Token IDs](/docs/reference/lookup-tables#token-ids) |
+| └ code | string | Token code - see [Token IDs](/docs/reference/lookup-tables#token-ids) |
+| └ name | string | Token name - see [Token IDs](/docs/reference/lookup-tables#token-ids) |
 | └ tokenAddress | string | Token chain address |
 | └ decimals | integer | Number of decimal precision for this token |
 | └ withdrawFee | string | Withdrawal fee (in number of tokens) |

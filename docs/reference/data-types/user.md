@@ -4,15 +4,23 @@
 
 The User object represents a user account in the ETHGas system.
 
+### Used in API Endpoints
+
+The User object is returned by the following API endpoints:
+
+- [POST /api/v1/user/update](/docs/api/user#update-user-information) - Returns updated user object
+- [GET /api/v1/user/info](/docs/api/user#get-user-information) - Returns user information
+- [POST /api/v1/user/login/verify](/docs/api/authentication#post-apiv1userloginverify) - Returns user object in login response
+
 ### Properties
 
 | Name | Type | Description |
 |------|------|-------------|
 | `userId` | long | Unique user ID assigned by ETHGas |
 | `address` | string | User's Ethereum wallet address |
-| `status` | integer | User status (1 = active) |
-| `userType` | integer | User type classification |
-| `userClass` | integer | User class classification |
+| `status` | integer | User status (1 = active) - see [User Status Codes](#user-status-codes) |
+| `userType` | integer | User type classification - see [User Types](#user-types) |
+| `userClass` | integer | User class classification - see [User Classes](#user-classes) |
 | `displayName` | string | User's display name |
 | `payoutAddress` | string | User's payout address for withdrawals |
 | `collateralPerSlot` | string | Collateral amount per slot |

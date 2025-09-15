@@ -109,7 +109,7 @@ print(response.text)
 | └ direction | boolean | The last trading direction (true = buy, false = sell) |
 | └ price | string | Latest traded market price for this market |
 | └ midPrice | string | Mid price of bid and ask |
-| └ status | integer | Market status - see the [Market Status Codes](#market-status-codes) section for more information |
+| └ status | integer | Market status - see [Market Status Codes](/docs/reference/lookup-tables#market-status-codes) |
 | └ maturityTime | integer | Datetime (in UNIX time) when the market will be closed |
 | └ trxSubmitTime | integer | Datetime (in UNIX time) when the market will be closed for submitting transactions |
 | └ blockTime | integer | Datetime (in UNIX time) when the block starts |
@@ -220,7 +220,7 @@ print(response.text)
 | └ direction | boolean | The last trading direction (true = buy, false = sell) |
 | └ price | string | Latest traded market price for this market |
 | └ midPrice | string | Mid price of bid and ask |
-| └ status | integer | Market status - see the [Market Status Codes](#market-status-codes) section for more information |
+| └ status | integer | Market status - see [Market Status Codes](/docs/reference/lookup-tables#market-status-codes) |
 | └ maturityTime | integer | Datetime (in UNIX time) when the market will be closed |
 | └ trxSubmitTime | integer | Datetime (in UNIX time) when the market will be closed for submitting transactions |
 | └ blockTime | integer | Datetime (in UNIX time) when the block starts |
@@ -476,7 +476,7 @@ print(response.text)
 | └ quantity | string | Order quantity |
 | └ fulfilled | string | Quantity that has already been executed |
 | └ price | string | Price of the order |
-| └ status | integer | Order status - see the [Order Status Codes](#order-status-codes) section for more information |
+| └ status | integer | Order status - see [Order Status Codes](/docs/reference/lookup-tables#order-status-codes) |
 | └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
 | └ passive | boolean | Whether the order is a maker order only |
 | └ orderDate | integer | Datetime (in UNIX time) when the order was created |
@@ -806,7 +806,7 @@ print(response.text)
 | └ fulfilled | string | Whether the order has already been executed |
 | └ price | string | Price of the preconfirmation<br/><br/>The should not be included for a regular market order; however if an order is sent with both a price specified and an orderType of 1, then a maximum slippage order is created |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see the [Order Status Codes](#order-status-codes) section for more information |
+| └ status | integer | Order status - see [Order Status Codes](/docs/reference/lookup-tables#order-status-codes) |
 | └ clientOrderId | string | An arbitrary string with max 32 characters (preferably unique) provided by the client when the order was created |
 | └ passive | boolean | (Post-only) Whether the order is a maker order only (i.e. can only be lifted, but cannot lift/take any orders from the orderbook itself - in other words, can only add liquidity)<br/><br/>If set to false, there are no such restrictions and the order can immediately lift (i.e. take) existing orders in the orderbook if it is crossing the bid/sell price spread |
 | └ orderDate | integer | Datetime (in UNIX time) when the order was placed |

@@ -83,6 +83,11 @@ const sidebars: SidebarsConfig = {
           label: 'Reference',
           items: [
             'reference/data-types/index',
+            'reference/data-types/user',
+            'reference/data-types/account',
+            'reference/data-types/market',
+            'reference/data-types/order',
+            'reference/data-types/token',
             'reference/lookup-tables',
             'reference/error-codes',
           ],
