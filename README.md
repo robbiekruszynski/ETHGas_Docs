@@ -1,82 +1,69 @@
-# ETHGas API Documentation
+# ETHGas Documentation
 
 **The End of Latency. The Beginning of Realtime.**
 
-Welcome to the ETHGas API docs! This is your gateway to building on the real-time infrastructure layer for Ethereum's blockspace economy.
+Welcome to the comprehensive ETHGas documentation. This repository contains the complete technical documentation for ETHGas - the real-time infrastructure layer that transforms Ethereum's blockspace into a structured, liquid, and tradable asset class.
 
-## 🚀 What is ETHGas?
+## 🌟 What is ETHGas?
 
-ETHGas transforms Ethereum's chaotic gas markets into a structured, liquid, and tradable asset class. We're building the foundational financial market for Ethereum's blockspace - turning gas from a volatile friction point into a new asset class.
+ETHGas introduces realtime settlements and blockspace futures to Ethereum, enabling a blazingly fast, customizable experience for everyone. We're delivering the Ethereum of the Future, Today.
 
-### For Developers Like You
+### Our Vision: Realtime Ethereum
 
-**🎯 Build Better dApps**
+ETHGas is building the foundational financial market for Ethereum's blockspace, transforming the chaotic, unpredictable auction for transaction inclusion into a structured, liquid, and tradable asset class.
+
+### Our Four Pillars
+
+- **Instant Ethereum** - 3.1ms transaction confirmation times
+- **Blockspace Trading** - Trade entire blocks and inclusion preconfirmations
+- **Validator Integration** - Automated fee optimization and builder infrastructure
+- **Developer Tools** - Professional-grade APIs and real-time data feeds
+
+## 🛒 Our Product Suite
+
+### Whole Blocks & Sequencing Rights
+Primary and secondary markets where validators can sell entire blocks, conferring building/sequencing rights to the owner.
+
+### Inclusion Preconfirmations
+Commitments where validators guarantee to include your transactions within a specific block, with bids for fixed amounts of blockspace.
+
+### Execution Preconfirmations
+Like inclusion preconfs but with guarantees of specific state or results, requiring both blockspace and specific trade/bundle requirements.
+
+### Base Fee Futures
+Calendar futures for specific slots enabling traders to long or short the base fee with cash settlement.
+
+## 🎯 Who This Documentation Serves
+
+### For Traders & Market Makers
+- Direct access to ETHGas through robust APIs
+- Real-time market data and trading capabilities
+- Professional-grade tools for blockspace trading
+
+### For Validators & Staking Operators
+- Commit Boost module integration
+- Automated fee optimization
+- Builder infrastructure and delegation tools
+
+### For Protocols & dApps
 - Gas abstraction for seamless user experiences
 - Predictable transaction costs
 - Real-time gas price feeds
 
-**⚡ Trade Blockspace**
-- Whole block markets for MEV opportunities  
-- Inclusion preconf markets for gas price trading
-- Professional-grade APIs and WebSocket feeds
+### For Developers
+- Complete API documentation with code examples
+- WebSocket feeds for real-time data
+- Integration guides and best practices
 
-**🔧 Integrate with Validators**
-- Automated fee optimization
-- Builder infrastructure
-- Validator delegation tools
+## 🚀 Getting Started
 
-## 🛠️ Quick Start
+This documentation provides everything you need to integrate with ETHGas:
 
-### 1. Choose Your Environment
-```bash
-# TestNet (Recommended for development)
-API: https://hoodi.app.ethgas.com/api
-WS:  wss://hoodi.app.ethgas.com/ws
-
-# MainNet (Production)
-API: https://mainnet.app.ethgas.com/api  
-WS:  wss://mainnet.app.ethgas.com/ws
-```
-
-### 2. Authenticate
-```python
-import requests
-
-# Get login message
-response = requests.post('https://hoodi.app.ethgas.com/api/v1/user/login', 
-                        params={'addr': '0x...'})
-
-# Sign and verify (see docs for full flow)
-# Get your JWT access token
-```
-
-### 3. Start Building
-```python
-# Get market data
-markets = requests.get('https://hoodi.app.ethgas.com/api/v1/p/wholeblock/markets')
-
-# Place orders (authenticated)
-headers = {'Authorization': f'Bearer {access_token}'}
-order = requests.post('https://hoodi.app.ethgas.com/api/v1/wholeblock/order', 
-                     headers=headers, json=order_data)
-```
-
-## 📚 Documentation
-
-### Core APIs
-- **[REST API](/docs/api/overview)** - Complete HTTP API reference
-- **[WebSocket API](/docs/websocket/overview)** - Real-time data streams
-- **[Authentication](/docs/api/authentication)** - JWT-based auth flow
-
-### Trading
-- **[Whole Block Markets](/docs/api/trading/whole-block)** - Trade entire blocks
-- **[Inclusion Preconf](/docs/api/trading/inclusion-preconf)** - Gas price trading
-- **[Market Data](/docs/api/markets)** - Public market information
-
-### Integration
-- **[Builder Tools](/docs/api/builder)** - Block building infrastructure
-- **[Validator Integration](/docs/validators)** - Validator operations
-- **[Bundle Submission](/docs/api/bundles)** - Transaction bundles
+- **API Reference** - Complete REST and WebSocket API documentation
+- **Authentication** - JWT-based authentication flows
+- **Code Examples** - Ready-to-use code samples in multiple languages
+- **Integration Guides** - Step-by-step setup for different use cases
+- **Reference Materials** - Data types, error codes, and lookup tables
 
 ## 🛠️ Development
 
@@ -95,15 +82,11 @@ Open [http://localhost:3002](http://localhost:3002) to view the docs locally.
 npm run build
 ```
 
-## 🤝 Contributing
+## 📞 Support & Resources
 
-Help us improve the docs! Found a bug or have a suggestion? We'd love your input.
-
-## 📞 Support
-
-- **TestNet App**: [testnet.ethgas.com](https://testnet.ethgas.com)
-- **ETHGas Homepage**: [ethgas.com](https://ethgas.com)  
+- **ETHGas Platform**: [https://www.ethgas.com/](https://www.ethgas.com/)
 - **Community**: Join our Discord for real-time support
+- **Security**: ETHGas has been audited by Sigma Prime
 
 ---
 
