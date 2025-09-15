@@ -2,15 +2,32 @@
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # User
 
-## POST /api/v1/user/update
+## API Endpoints
 
-Code sample:
+### Update user information
 
-```http
+<div className="api-endpoints-grid">
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/api/v1/user/update` - Update user information
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/update?displayName=NewDisplayName
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -23,13 +40,16 @@ payload = {
 
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.post(url, headers=headers, params=payload)
 
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 
 Request
@@ -61,14 +81,25 @@ Response Body
 | └└ status | integer | Account status |
 | └└ updateDate | long | Last update timestamp in milliseconds |
 
+</details>
 
-## POST /api/v1/user/payoutAddress
+### Update payout address
 
-Code sample:
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/api/v1/user/payoutAddress` - Update payout address
+</summary>
 
-```http
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/payoutAddress?payoutAddress=0x1234567890123456789012345678901234567890
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -81,13 +112,16 @@ payload = {
 
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.post(url, headers=headers, params=payload)
 
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 
 Request
@@ -103,14 +137,25 @@ Response Body
 | --- | --- | --- |
 | success | boolean | Operation success status |
 
+</details>
 
-## POST /api/v1/user/collateralPerSlot
+### Update collateral per slot
 
-Code sample:
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/api/v1/user/collateralPerSlot` - Update collateral per slot
+</summary>
 
-```http
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/collateralPerSlot?collateralPerSlot=10.5
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -123,13 +168,16 @@ payload = {
 
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.post(url, headers=headers, params=payload)
 
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 
 Request
@@ -145,14 +193,25 @@ Response Body
 | --- | --- | --- |
 | success | boolean | Operation success status |
 
+</details>
 
-## GET /api/v1/user/info
+### Get user information
 
-Code sample:
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/api/v1/user/info` - Get user information
+</summary>
 
-```http
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/info
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -163,13 +222,16 @@ payload = {}
 
 headers = {
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers, params=payload)
 
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 
 Request
@@ -217,14 +279,25 @@ Response Body
 | └└ status | integer | Account status |
 | └└ updateDate | long | Last update timestamp in milliseconds |
 
+</details>
 
-## GET /api/v1/user/accounts
+### Get user accounts
 
-Code sample:
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/api/v1/user/accounts` - Get user accounts
+</summary>
 
-```http
-curl  -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/accounts
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/accounts
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -232,13 +305,16 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/accounts"
 
 headers = {
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers)
 
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 
 Response Body
@@ -263,23 +339,34 @@ Response Body
 | └ tokenValuationProtocol | integer | Platform the complex token comes from (if relevant):See Token Valuation Protocols section |
 | └ availableQuantity | string | Available quantity for using as collateral for buying or for transfering out of the account:Available Quantity = Quantity - Locked Quantity |
 
+</details>
 
-## GET /api/v1/user/account/&#123;accountId&#125;
 
-Code sample:
+### Get account by ID
 
-```http
-curl  -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/128
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/api/v1/user/account/{accountId}` - Get account by ID
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/128
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
 
 url = "https://mainnet.app.ethgas.com/api/v1/user/account/128"
 
-
 headers = {
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers)
@@ -287,28 +374,45 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-## GET /api/v1/user/account/&#123;accountId&#125;/txs
+</TabItem>
+</Tabs>
 
-Code sample:
+</details>
 
-```http
+### Get account transactions
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/api/v1/user/account/{accountId}/txs` - Get account transactions
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/128/txs
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/user/account/{accountId}/txs
-
+url = "https://mainnet.app.ethgas.com/api/v1/user/account/128/txs"
 
 headers = {
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers)
 
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 
 Request
@@ -332,14 +436,25 @@ Response Body
 | └ balance | string | Balance of account after transaction |
 | └ createDate | integer | Transaction datetime stamp (in UNIX time) |
 
+</details>
 
-## GET /api/v1/user/account/txs
+### Get all account transactions
 
-Code sample:
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/api/v1/user/account/txs` - Get all account transactions
+</summary>
 
-```http
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
 curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/txs
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -347,7 +462,7 @@ import requests
 url = "https://mainnet.app.ethgas.com/api/v1/user/account/txs"
 
 headers = {
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.get(url, headers=headers)
@@ -355,13 +470,28 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-## POST /api/v1/user/account/transfer/token
+</TabItem>
+</Tabs>
 
-Code sample:
+</details>
 
-```http
+### Transfer token between accounts
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/api/v1/user/account/transfer/token` - Transfer token between accounts
+</summary>
+
+**Code Example:**
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
 curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/account/transfer/token?fromAccountId=128&toAccountId=127&tokenId=1&quantity=0.01
 ```
+
+</TabItem>
+<TabItem value="python" label="Python">
 
 ```python
 import requests
@@ -376,13 +506,16 @@ params = {
 }
 
 headers = {
-  'Authorization': 'Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MzEsImFkZHJlc3MiOiIweDVjODEyYzlhNjdlNjkwMGViMjBmM2YzMWQwZWNjZTUyM2Q2YTVjMDMiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0sImFjY2Vzc190eXBlIjoiYWNjZXNzX3Rva2VuIiwiaWF0IjoxNjk3NDQ5MTM0LCJleHAiOjE2OTc0NTI3MzR9.reUyFbhlJ6ZXSUypWiWeikaPQdbcRB_ZgB2k4NxcKbJS1K9J1GZnfXl9GrYOmS67L19gC-wfKqSPN4-7T3Xk0w'
+  'Authorization': 'Bearer {{access_token}}'
 }
 
 response = requests.post(url, headers=headers, params=params)
 
 print(response.text)
 ```
+
+</TabItem>
+</Tabs>
 
 
 Request
@@ -394,4 +527,6 @@ Request
 | tokenId | YES | integer | Token ID |
 | quantity | YES | number | Quantity |
 
+</details>
 
+</div>
