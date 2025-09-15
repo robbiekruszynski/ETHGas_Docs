@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/network` - Get network information
+  <span className="api-method-get">**GET**</span> `/v1/p/network` - Get network information
 </summary>
 
 **Code Example:**
@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/network?chainId=1
+curl -X GET /v1/p/network?chainId=1
 ```
 
 </TabItem>

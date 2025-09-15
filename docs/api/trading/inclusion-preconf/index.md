@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/markets` - Get active all preconf market details
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/markets` - Get active all preconf market details
 </summary>
 
 **Code Example:**
@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/inclusion-preconf/markets
+curl -X GET /v1/p/inclusion-preconf/markets
 ```
 
 </TabItem>
@@ -124,7 +124,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/market` - Get preconfs market details for a given slot
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/market` - Get preconfs market details for a given slot
 </summary>
 
 **Code Example:**
@@ -132,7 +132,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/inclusion-preconf/market?slot=2880221
+curl -X GET /v1/p/inclusion-preconf/market?slot=2880221
 ```
 
 </TabItem>
@@ -235,7 +235,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/trades` - Get recent preconf trade details for a given preconf instrument ID
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/trades` - Get recent preconf trade details for a given preconf instrument ID
 </summary>
 
 **Code Example:**
@@ -243,7 +243,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/inclusion-preconf/trades?instrumentId=ETH-PC-988403&limit=10
+curl -X GET /v1/p/inclusion-preconf/trades?instrumentId=ETH-PC-988403&limit=10
 ```
 
 </TabItem>
@@ -319,7 +319,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/inclusion-preconf/top-sales` - Get inclusion preconf top sales
+  <span className="api-method-get">**GET**</span> `/v1/p/inclusion-preconf/top-sales` - Get inclusion preconf top sales
 </summary>
 
 **Code Example:**
@@ -327,7 +327,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/inclusion-preconf/top-sales
+curl -X GET /v1/p/inclusion-preconf/top-sales
 ```
 
 </TabItem>
@@ -371,7 +371,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/order` - Create new preconfs order
+  <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/order` - Create new preconfs order
 </summary>
 
 **Code Example:**
@@ -379,7 +379,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/inclusion-preconf/order \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/order \
   -H "Content-Type: application/json" \
   -d '{
     "instrumentId": "ETH-PC-9884031",
@@ -496,7 +496,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/inclusion-preconf/cancel-all-orders \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-all-orders \
   -H "Content-Type: application/json" \
   -d '{
     "accountId": 128,
@@ -510,7 +510,7 @@ curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/inclusion-preco
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/cancel-all-oders"
+url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/cancel-all-orders"
 
 payload = {
     "accountId": 128,
@@ -568,7 +568,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/inclusion-preconf/cancel-batch-oders \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-batch-orders \
   -H "Content-Type: application/json" \
   -d '{
     "accountId": 128,
@@ -583,7 +583,7 @@ curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/inclusion-preco
 ```python
 import requests
 
-url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/cancel-batch-oders"
+url = "https://mainnet.app.ethgas.com/api/v1/inclusion-preconf/cancel-batch-orders"
 
 payload = {
     "accountId": 128,
@@ -638,7 +638,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/inclusion-preconf/cancel-order` - Cancel preconfs order for a given order ID
+  <span className="api-method-post">**POST**</span> `/v1/inclusion-preconf/cancel-order` - Cancel preconfs order for a given order ID
 </summary>
 
 **Code Example:**
@@ -646,7 +646,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/inclusion-preconf/cancel-order \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/inclusion-preconf/cancel-order \
   -H "Content-Type: application/json" \
   -d '{
     "accountId": 128,
@@ -714,7 +714,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/orders` - Get user preconfs orders for a given account ID (and instrument ID)
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/orders` - Get user preconfs orders for a given account ID (and instrument ID)
 </summary>
 
 **Code Example:**
@@ -722,7 +722,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/inclusion-preconf/orders?accountId=128&instrumentId=ETH-PC-9884031
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/orders?accountId=128&instrumentId=ETH-PC-9884031
 ```
 
 </TabItem>
@@ -819,7 +819,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/all-orders` - Get all inclusion preconf orders
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/all-orders` - Get all inclusion preconf orders
 </summary>
 
 **Code Example:**
@@ -827,7 +827,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/inclusion-preconf/all-orders
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/all-orders
 ```
 
 </TabItem>
@@ -878,7 +878,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/positions` - Get user inclusion preconf positions
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/positions` - Get user inclusion preconf positions
 </summary>
 
 **Code Example:**
@@ -886,7 +886,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/inclusion-preconf/positions
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/positions
 ```
 
 </TabItem>
@@ -935,7 +935,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/inclusion-preconf/txs` - Get user inclusion preconf transactions
+  <span className="api-method-get">**GET**</span> `/v1/user/inclusion-preconf/txs` - Get user inclusion preconf transactions
 </summary>
 
 **Code Example:**
@@ -943,7 +943,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/inclusion-preconf/txs?instrumentId=ETH-PC-9884031&limit=10
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/inclusion-preconf/txs?instrumentId=ETH-PC-9884031&limit=10
 ```
 
 </TabItem>
@@ -998,7 +998,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/user/inclusion-preconf/market/update` - Block owner reserve Inclusion Preconfs
+  <span className="api-method-post">**POST**</span> `/v1/user/inclusion-preconf/market/update` - Block owner reserve Inclusion Preconfs
 </summary>
 
 **Code Example:**
@@ -1006,7 +1006,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/inclusion-preconf/market/update \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/inclusion-preconf/market/update \
   -H "Content-Type: application/json" \
   -d '{
     "instrumentId": "ETH-PC-475423",

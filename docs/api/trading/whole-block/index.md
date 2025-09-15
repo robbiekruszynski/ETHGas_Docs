@@ -23,7 +23,7 @@ Whole block trading allows you to trade entire Ethereum blocks. This API provide
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/markets` - Get all available whole block markets
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/markets` - Get all available whole block markets
 </summary>
 
 **Description:**
@@ -33,7 +33,7 @@ Get a list of all available whole block markets with their current status and de
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/markets
+curl -X GET /v1/p/wholeblock/markets
 ```
 
 </TabItem>
@@ -110,7 +110,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/orders` - Get public whole block orders
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/orders` - Get public whole block orders
 </summary>
 
 **Description:**
@@ -120,7 +120,7 @@ Get public order book data for whole block markets.
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/orders?instrumentId=ETH-WB-9884031&limit=10
+curl -X GET /v1/p/wholeblock/orders?instrumentId=ETH-WB-9884031&limit=10
 ```
 
 </TabItem>
@@ -212,7 +212,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/trades` - Get public whole block trades
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/trades` - Get public whole block trades
 </summary>
 
 **Description:**
@@ -222,7 +222,7 @@ Get public trade history for whole block markets.
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/trades?instrumentId=ETH-WB-9884031&limit=10
+curl -X GET /v1/p/wholeblock/trades?instrumentId=ETH-WB-9884031&limit=10
 ```
 
 </TabItem>
@@ -295,7 +295,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/wholeblock/positions` - Get public whole block positions
+  <span className="api-method-get">**GET**</span> `/v1/p/wholeblock/positions` - Get public whole block positions
 </summary>
 
 **Description:**
@@ -305,7 +305,7 @@ Get public position data for whole block markets.
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/wholeblock/positions?instrumentId=ETH-WB-9884031&limit=10
+curl -X GET /v1/p/wholeblock/positions?instrumentId=ETH-WB-9884031&limit=10
 ```
 
 </TabItem>
@@ -376,14 +376,14 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/order` - Create new whole block order
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/order` - Create new whole block order
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/order \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/order \
   -d '{
     "instrumentId": "ETH-WB-9884031",
     "accountId": 128,
@@ -498,14 +498,14 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-order` - Cancel whole block order for a given order ID
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-order` - Cancel whole block order for a given order ID
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-order \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-order \
   -d '{
     "accountId": 128,
     "instrumentId": "ETH-WB-1012051",
@@ -570,14 +570,14 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders for a given user account ID for an instrument Id
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-all-orders` - Cancel all whole block orders for a given user account ID for an instrument Id
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-all-orders \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-all-orders \
   -d '{
     "accountId": 128,
     "instrumentId": "ETH-WB-1012051"
@@ -636,14 +636,14 @@ Empty response on success.
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/wholeblock/cancel-batch-orders` - Cancel whole block orders for a given user account ID, and user order IDs or whole block order IDs
+  <span className="api-method-post">**POST**</span> `/v1/wholeblock/cancel-batch-orders` - Cancel whole block orders for a given user account ID, and user order IDs or whole block order IDs
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/wholeblock/cancel-batch-orders \
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/wholeblock/cancel-batch-orders \
   -d '{
     "accountId": 128,
     "instrumentId": "ETH-WB-1012051",
@@ -708,14 +708,14 @@ Empty response on success.
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/orders` - Get user whole block orders for a given account ID (and instrument ID)
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/orders` - Get user whole block orders for a given account ID (and instrument ID)
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/orders?accountId=128&instrumentId=ETH-WB-9884031
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/orders?accountId=128&instrumentId=ETH-WB-9884031
 ```
 
 </TabItem>
@@ -815,14 +815,14 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/all-orders` - Get all user whole block orders for a given user account ID
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/all-orders` - Get all user whole block orders for a given user account ID
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/all-orders?onBook=false&limit=10
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/all-orders?onBook=false&limit=10
 ```
 
 </TabItem>
@@ -901,14 +901,14 @@ Same as "Get user whole block orders" response format.
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/positions` - Get user wholeblock positions for a given account ID (and instrument ID)
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/positions` - Get user wholeblock positions for a given account ID (and instrument ID)
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/positions?instrumentId=ETH-WB-9884031&limit=10
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/positions?instrumentId=ETH-WB-9884031&limit=10
 ```
 
 </TabItem>
@@ -986,14 +986,14 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/wholeblock/txs` - Get the user transactions for wholeblock market
+  <span className="api-method-get">**GET**</span> `/v1/user/wholeblock/txs` - Get the user transactions for wholeblock market
 </summary>
 
 <Tabs>
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/wholeblock/txs?instrumentId=ETH-WB-63999&limit=100
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/wholeblock/txs?instrumentId=ETH-WB-63999&limit=100
 ```
 
 </TabItem>

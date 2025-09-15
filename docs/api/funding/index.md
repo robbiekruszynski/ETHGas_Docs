@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/funding/deposits` - Get fund deposits history
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/deposits` - Get fund deposits history
 </summary>
 
 **Code Example:**
@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/funding/deposits
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/funding/deposits
 ```
 
 </TabItem>
@@ -112,7 +112,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/user/funding/withdraw` - Request to withdraw funds
+  <span className="api-method-post">**POST**</span> `/v1/user/funding/withdraw` - Request to withdraw funds
 </summary>
 
 **Code Example:**
@@ -120,7 +120,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -x POST /api/v1/user/funding/withdraw
+curl -X POST /v1/user/funding/withdraw
 
 [
     {
@@ -222,7 +222,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/p/funding/withdraw/dailyWithdrawLimits` - Get list of token's current on-chain daily withdraw limits
+  <span className="api-method-get">**GET**</span> `/v1/p/funding/withdraw/dailyWithdrawLimits` - Get list of token's current on-chain daily withdraw limits
 </summary>
 
 **Code Example:**
@@ -230,7 +230,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/p/funding/withdraw/dailyWithdrawLimits
+curl -X GET /v1/p/funding/withdraw/dailyWithdrawLimits
 ```
 
 </TabItem>
@@ -292,7 +292,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/funding/withdraw/status` - Get fund withdrawal request status (for given list of request IDs)
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraw/status` - Get fund withdrawal request status (for given list of request IDs)
 </summary>
 
 **Code Example:**
@@ -300,7 +300,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/funding/withdraw/status?requestIds=123%2c456
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/funding/withdraw/status?requestIds=123%2c456
 ```
 
 </TabItem>
@@ -394,7 +394,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/funding/withdraws` - Get list of fund withdrawals
+  <span className="api-method-get">**GET**</span> `/v1/user/funding/withdraws` - Get list of fund withdrawals
 </summary>
 
 **Code Example:**
@@ -402,7 +402,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/funding/withdraws
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/funding/withdraws
 ```
 
 </TabItem>

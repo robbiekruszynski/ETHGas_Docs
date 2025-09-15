@@ -665,7 +665,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -x GET /v1/p/inclusion-preconf/markets
+curl -X GET /v1/p/inclusion-preconf/markets
 ```
 
 </TabItem>
@@ -913,7 +913,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/slot/bundles?slot=123
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/slot/bundles?slot=123
 ```
 
 </TabItem>
