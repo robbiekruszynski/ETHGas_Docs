@@ -172,7 +172,7 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-## GET /api/v1/p/builder/{slot}
+## GET /api/v1/p/builder/\{slot\}
 
 Code sample:
 

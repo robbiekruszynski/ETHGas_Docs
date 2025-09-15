@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Token
 
 ## Token Object
@@ -8,7 +12,7 @@ The Token object represents a token within a user's account in the ETHGas system
 
 The Token object is returned by the following API endpoints:
 
-- [GET /api/v1/user/account/{accountId}](/docs/api/user#get-account-by-id) - Returns account details with tokens array
+- [GET /api/v1/user/account/\{accountId\}](/docs/api/user#get-account-by-id) - Returns account details with tokens array
 - [GET /api/v1/user/accounts](/docs/api/user#get-user-accounts) - Returns accounts with tokens array
 - [GET /api/v1/p/tokens](/docs/api/public#get-tokens) - Returns list of available tokens
 

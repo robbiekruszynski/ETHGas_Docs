@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Account
 
 ## Account Object
@@ -9,7 +13,7 @@ The Account object represents a user's account within the ETHGas system. Each us
 The Account object is returned by the following API endpoints:
 
 - [GET /api/v1/user/accounts](/docs/api/user#get-user-accounts) - Returns list of user accounts
-- [GET /api/v1/user/account/{accountId}](/docs/api/user#get-account-by-id) - Returns specific account details
+- [GET /api/v1/user/account/\{accountId\}](/docs/api/user#get-account-by-id) - Returns specific account details
 - [POST /api/v1/user/update](/docs/api/user#update-user-information) - Returns user object with accounts array
 - [GET /api/v1/user/info](/docs/api/user#get-user-information) - Returns user object with accounts array
 

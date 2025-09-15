@@ -98,7 +98,7 @@ print(response.text)
 | └ direction | boolean | The last trading direction (true = buy, false = sell) |
 | └ price | string | Latest traded market price for this market |
 | └ midPrice | string | Mid price of the market |
-| └ status | integer | Market status - see [Market Status Codes](../../reference/lookup-tables#market-status-codes) |
+| └ status | integer | Market status - see [Market Status Codes](../../../reference/lookup-tables#market-status-codes) |
 | └ maturityTime | integer | Datetime (in UNIX time) when the market will be closed |
 | └ blockTime | integer | Datetime (in UNIX time) when the block starts |
 | └ finalityTime | integer | Datetime (in UNIX time) when the block is being finalized |
@@ -198,7 +198,7 @@ print(response.text)
 | └ fulfilled | string | Quantity that has already been executed |
 | └ price | string | Price of the order |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see [Order Status Codes](../../reference/lookup-tables#order-status-codes) |
+| └ status | integer | Order status - see [Order Status Codes](../../../reference/lookup-tables#order-status-codes) |
 | └ errorCode | integer | Error code if order failed (null if successful) |
 | └ clientOrderId | string | An arbitrary string with max 32 characters provided by the client |
 | └ passive | boolean | Whether the order is a maker order only |
@@ -484,7 +484,7 @@ print(response.text)
 | └ price | string | Price of the order |
 | └ averageTradePrice | string | Average price of executed trades |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see [Order Status Codes](../../reference/lookup-tables#order-status-codes) |
+| └ status | integer | Order status - see [Order Status Codes](../../../reference/lookup-tables#order-status-codes) |
 | └ errorCode | integer | Error code if order failed (null if successful) |
 | └ clientOrderId | string | An arbitrary string with max 32 characters provided by the client |
 | └ passive | boolean | Whether the order is a maker order only |
@@ -801,7 +801,7 @@ print(response.text)
 | └ price | string | Price of the order |
 | └ averageTradePrice | string | Average price of executed trades |
 | └ fees | string | Fees charged for this order |
-| └ status | integer | Order status - see [Order Status Codes](../../reference/lookup-tables#order-status-codes) |
+| └ status | integer | Order status - see [Order Status Codes](../../../reference/lookup-tables#order-status-codes) |
 | └ errorCode | integer | Error code if order failed (null if successful) |
 | └ clientOrderId | string | An arbitrary string with max 32 characters provided by the client |
 | └ passive | boolean | Whether the order is a maker order only |
