@@ -148,7 +148,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/ethgas',
+              href: 'https://github.com/ethgas-developer',
             },
             {
               label: 'Discord',

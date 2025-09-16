@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+sidebar_label: Setup
 ---
 
 # Validator Setup Guide
@@ -117,30 +118,32 @@ Monitor your validator using the official API endpoints:
 See the API endpoints below for complete monitoring and management capabilities.
 :::
 
+### API Endpoints
+
+For programmatic checks and dashboards, start with the Validator API:
+
+- [Get user validators](/docs/api/validator) — list your registered validators and their status
+
+You can combine this with your own system metrics (CPU, memory, disk, node logs) to build alerts and SLOs.
+
 ## Troubleshooting
 
 ### Common Issues
 
-<div style={{ marginBottom: '1rem' }}>
 1. **Service Won't Start**
    - Check Docker installation
    - Verify environment configuration
    - Review container logs
-</div>
 
-<div style={{ marginBottom: '1rem' }}>
 2. **Connection Issues**
    - Verify network connectivity
    - Check API endpoint URLs
    - Validate authentication credentials
-</div>
 
-<div style={{ marginBottom: '1rem' }}>
 3. **Performance Problems**
    - Monitor system resources
    - Check consensus client logs
    - Review validator configuration
-</div>
 
 ### Getting Help
 

@@ -26,30 +26,82 @@ title: Welcome
 
 ## What is ETHGas?
 
-ETHGas is not just another protocol—we are building the foundational financial market for Ethereum's blockspace. We transform the chaotic, unpredictable auction for transaction inclusion into a structured, liquid, and tradable asset class.
-
-### Our Mission
-
-To build the **realtime infrastructure** for Ethereum's economy. We transform gas from a volatile friction point into a tradable asset class while removing the concept of gas from the user experience.
-
-### The Future We Create
-
-We are accelerating the Ethereum of the Future to make it instant—a future where transactions settle immediately, capital flows without friction, and the complexity of gas becomes a relic of the past.
+<div className="row">
+  <div className="col col--7">
+    <p>
+      ETHGas is not just another protocol—we are building the foundational financial market for Ethereum's blockspace. We transform the chaotic, unpredictable auction for transaction inclusion into a structured, liquid, and tradable asset class.
+    </p>
+    <h3>Our Mission</h3>
+    <p>
+      To build the <strong>realtime infrastructure</strong> for Ethereum's economy. We transform gas from a volatile friction point into a tradable asset class while removing the concept of gas from the user experience.
+    </p>
+    <h3>The Future We Create</h3>
+    <p>
+      We accelerate the Ethereum of the Future to make it instant—a future where transactions settle immediately, capital flows without friction, and the complexity of gas becomes a relic of the past.
+    </p>
+  </div>
+  <div className="col col--5" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+    <div className="feature-card" style={{ padding: '1rem', marginTop: '1.5rem' }}>
+      <h3 style={{ marginTop: 0 }}>At a Glance</h3>
+      <ul style={{ margin: 0 }}>
+        <li>Structured, liquid blockspace markets</li>
+        <li>Predictable transaction inclusion</li>
+        <li>Realtime WebSocket data streams</li>
+        <li>Builder and validator integrations</li>
+      </ul>
+    </div>
+  </div>
+  </div>
 
 ## Core Platform Features
 
 ### Market Types
 
-**Inclusion Preconf Markets** - Trade generic blockspace with conventional CLOB interface. Available up to 32 slots in advance, enabling predictable transaction inclusion and gas cost management.
-
-**Whole Block Markets** - Trade entire blocks for advanced blockspace strategies. Available up to 64 slots in advance for maximum planning flexibility.
+<div className="row" style={{ marginTop: '0.5rem' }}>
+  <div className="col col--6">
+    <div className="feature-card" style={{ height: '100%' }}>
+      <h3>Inclusion Preconf Markets</h3>
+      <p>Trade generic blockspace with a conventional CLOB interface — available up to 32 slots in advance for predictable inclusion and gas management.</p>
+      <a href="/docs/api/trading/inclusion-preconf" className="button button--outline button--sm">Explore Inclusion Preconf →</a>
+    </div>
+  </div>
+  <div className="col col--6">
+    <div className="feature-card" style={{ height: '100%' }}>
+      <h3>Whole Block Markets</h3>
+      <p>Trade entire blocks for advanced blockspace strategies — available up to 64 slots in advance for maximum planning flexibility.</p>
+      <a href="/docs/api/trading/whole-block" className="button button--outline button--sm">Explore Whole Block →</a>
+    </div>
+  </div>
+</div>
 
 ### Real-time Infrastructure
 
-- **Instant Settlement** - Transactions settle immediately through our preconfirmation system
-- **Predictable Costs** - Transform volatile gas fees into structured, tradable assets
-- **Liquid Markets** - Access deep liquidity for blockspace trading
-- **Gas Abstraction** - Remove gas complexity from user experience
+<div className="row" style={{ marginTop: '0.5rem' }}>
+  <div className="col col--3">
+    <div className="feature-card text--center">
+      <h4 style={{ marginTop: 0 }}>Instant Settlement</h4>
+      <p style={{ marginBottom: 0 }}>Preconfirmation system for immediate results</p>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center">
+      <h4 style={{ marginTop: 0 }}>Predictable Costs</h4>
+      <p style={{ marginBottom: 0 }}>Turn volatile gas into structured pricing</p>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center">
+      <h4 style={{ marginTop: 0 }}>Liquid Markets</h4>
+      <p style={{ marginBottom: 0 }}>Depth for trading blockspace assets</p>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card text--center">
+      <h4 style={{ marginTop: 0 }}>Gas Abstraction</h4>
+      <p style={{ marginBottom: 0 }}>Remove gas complexity from UX</p>
+    </div>
+  </div>
+</div>
 
 ## Platform Components
 
@@ -130,4 +182,3 @@ Ready to dive deeper? Check out these resources:
 - [API Overview](/docs/api/overview) - Understand the REST API structure
 - [WebSocket Guide](/docs/websocket/overview) - Learn about real-time data streaming
 - [Reference Materials](/docs/reference/data-types) - Explore data types and error codes
-

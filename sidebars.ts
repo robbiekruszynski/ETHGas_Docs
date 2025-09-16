@@ -39,17 +39,9 @@ const sidebars: SidebarsConfig = {
       label: 'Validators',
       items: [
         'validators/overview',
-        {
-          type: 'category',
-          label: 'Setup',
-          items: [
-            'validators/setup',
-          ],
-        },
-        // Flatten Registration to a direct doc (not a nested category)
+        'validators/setup',
         'validators/registration',
         'validators/deposits',
-        'validators/monitoring',
       ],
     },
     {
