@@ -16,10 +16,36 @@ ETHGas is a platform for trading Ethereum blockspace and acquiring preconfirmati
 
 ### Core Components
 
-- **Whole Block Markets**
-- **Inclusion Preconf Markets**
-- **Builder Infrastructure**
-- **Validator Integration**
+<div className="row" style={{ marginTop: '0.5rem' }}>
+  <div className="col col--3">
+    <div className="feature-card" style={{ height: '100%' }}>
+      <h3>Whole Block Markets</h3>
+      <p>Trade entire blocks with clear order flow and settlement.</p>
+      <a href="/docs/api/trading/whole-block" className="button button--outline button--sm">Explore Whole Block →</a>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card" style={{ height: '100%' }}>
+      <h3>Inclusion Preconf</h3>
+      <p>Trade preconfirmation blockspace up to 32 slots ahead.</p>
+      <a href="/docs/api/trading/inclusion-preconf" className="button button--outline button--sm">Explore Preconf →</a>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card" style={{ height: '100%' }}>
+      <h3>Builder Infrastructure</h3>
+      <p>Register keys and integrate with ETHGas builder workflows.</p>
+      <a href="/docs/api/builder/registration" className="button button--outline button--sm">Builder Setup →</a>
+    </div>
+  </div>
+  <div className="col col--3">
+    <div className="feature-card" style={{ height: '100%' }}>
+      <h3>Validator Integration</h3>
+      <p>Configure validators to participate and monitor performance.</p>
+      <a href="/docs/validators/overview" className="button button--outline button--sm">Validator Docs →</a>
+    </div>
+  </div>
+</div>
 
 ## Platform Architecture
 
