@@ -612,6 +612,47 @@ blockquote {
   box-shadow: 0 4px 16px rgba(0,0,0,0.25);
 }
 
+/* Real-time Infrastructure mini-cards */
+.infra-cards .infra-card {
+  border: 2px solid var(--ifm-color-primary);
+  background: var(--ifm-card-background-color);
+  transition: all 0.2s ease-in-out;
+}
+
+[data-theme='dark'] .infra-cards .infra-card {
+  border-color: var(--ifm-color-primary-light);
+}
+
+.infra-cards .infra-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+}
+
+.infra-cards .infra-card h4 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+.infra-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  font-size: 1.1rem;
+}
+
+[data-theme='dark'] .infra-icon {
+  border-color: var(--ifm-color-primary-light);
+  color: var(--ifm-color-primary-light);
+}
+
 .theme-doc-markdown {
   max-width: 100%;
 }

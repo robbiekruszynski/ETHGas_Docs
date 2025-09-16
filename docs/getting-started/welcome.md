@@ -79,29 +79,29 @@ title: Welcome
 
 ### Real-time Infrastructure
 
-<div className="row" style={{ marginTop: '0.5rem' }}>
+<div className="row infra-cards" style={{ marginTop: '0.5rem' }}>
   <div className="col col--3">
-    <div className="feature-card text--center">
-      <h4 style={{ marginTop: 0 }}>Instant Settlement</h4>
-      <p style={{ marginBottom: 0 }}>Preconfirmation system for immediate results</p>
+    <div className="feature-card infra-card text--center">
+      <h4>Instant Settlement</h4>
+      <p>Preconfirmation system for immediate results</p>
     </div>
   </div>
   <div className="col col--3">
-    <div className="feature-card text--center">
-      <h4 style={{ marginTop: 0 }}>Predictable Costs</h4>
-      <p style={{ marginBottom: 0 }}>Turn volatile gas into structured pricing</p>
+    <div className="feature-card infra-card text--center">
+      <h4>Predictable Costs</h4>
+      <p>Turn volatile gas into structured pricing</p>
     </div>
   </div>
   <div className="col col--3">
-    <div className="feature-card text--center">
-      <h4 style={{ marginTop: 0 }}>Liquid Markets</h4>
-      <p style={{ marginBottom: 0 }}>Depth for trading blockspace assets</p>
+    <div className="feature-card infra-card text--center">
+      <h4>Liquid Markets</h4>
+      <p>Depth for trading blockspace assets</p>
     </div>
   </div>
   <div className="col col--3">
-    <div className="feature-card text--center">
-      <h4 style={{ marginTop: 0 }}>Gas Abstraction</h4>
-      <p style={{ marginBottom: 0 }}>Remove gas complexity from UX</p>
+    <div className="feature-card infra-card text--center">
+      <h4>Gas Abstraction</h4>
+      <p>Remove gas complexity from UX</p>
     </div>
   </div>
 </div>
