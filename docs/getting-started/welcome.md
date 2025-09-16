@@ -27,7 +27,7 @@ title: Welcome
 ## What is ETHGas?
 
 <div className="row">
-  <div className="col col--7">
+  <div className="col col--12">
     <p>
       ETHGas is not just another protocol—we are building the foundational financial market for Ethereum's blockspace. We transform the chaotic, unpredictable auction for transaction inclusion into a structured, liquid, and tradable asset class.
     </p>
@@ -40,18 +40,21 @@ title: Welcome
       We accelerate the Ethereum of the Future to make it instant—a future where transactions settle immediately, capital flows without friction, and the complexity of gas becomes a relic of the past.
     </p>
   </div>
-  <div className="col col--5" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-    <div className="feature-card" style={{ padding: '1rem', marginTop: '1.5rem' }}>
-      <h3 style={{ marginTop: 0 }}>At a Glance</h3>
-      <ul style={{ margin: 0 }}>
-        <li>Structured, liquid blockspace markets</li>
-        <li>Predictable transaction inclusion</li>
-        <li>Realtime WebSocket data streams</li>
-        <li>Builder and validator integrations</li>
-      </ul>
+  </div>
+
+<div className="row" style={{ marginTop: '1rem' }}>
+  <div className="col col--12">
+    <h3 style={{ marginTop: 0 }}>At a Glance</h3>
+    <div className="glance-card" style={{ padding: '1.25rem' }}>
+      <div className="glance-tags">
+        <span className="glance-tag">Structured, liquid blockspace markets</span>
+        <span className="glance-tag">Predictable transaction inclusion</span>
+        <span className="glance-tag">Realtime WebSocket data streams</span>
+        <span className="glance-tag">Builder and validator integrations</span>
+      </div>
     </div>
   </div>
-  </div>
+</div>
 
 ## Core Platform Features
 
@@ -114,6 +117,8 @@ title: Welcome
 
 Follow these steps to get started with ETHGas:
 
+<div className="checklist-box">
+
 <div className="row">
   <div className="col col--4">
     <div className="feature-card text--center">
@@ -142,9 +147,9 @@ Follow these steps to get started with ETHGas:
       </a>
     </div>
   </div>
-</div>
+  </div>
 
-<div className="row">
+  <div className="row" style={{ marginTop: '0.5rem' }}>
   <div className="col col--4">
     <div className="feature-card text--center">
       <h3>4. WebSocket Connection</h3>
@@ -172,6 +177,8 @@ Follow these steps to get started with ETHGas:
       </a>
     </div>
   </div>
+  </div>
+
 </div>
 
 ## Next Steps
