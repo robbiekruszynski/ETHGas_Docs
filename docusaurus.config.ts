@@ -88,9 +88,10 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/docs/validators/overview',
+          to: '/docs/validators/registration',
           label: 'Validators',
           position: 'left',
+          activeBaseRegex: '^/docs/validators/',
         },
         {
           type: 'search',
