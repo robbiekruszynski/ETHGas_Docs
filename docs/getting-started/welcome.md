@@ -42,17 +42,33 @@ title: Welcome
   </div>
   </div>
 
-<div className="row" style={{ marginTop: '1rem' }}>
-  <div className="col col--12">
-    <h3 style={{ marginTop: 0 }}>At a Glance</h3>
-    <div className="glance-card" style={{ padding: '1.25rem' }}>
-      <div className="glance-tags">
-        <span className="glance-tag">Structured, liquid blockspace markets</span>
-        <span className="glance-tag">Predictable transaction inclusion</span>
-        <span className="glance-tag">Realtime WebSocket data streams</span>
-        <span className="glance-tag">Builder and validator integrations</span>
+<div className="glance-section" style={{ marginTop: '1rem' }}>
+  <h3 className="gradient-text" style={{ marginTop: 0, marginBottom: '0.75rem' }}>At a Glance</h3>
+  <div className="row glance-grid">
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Liquid Markets</h4>
+          <p>Structured, tradable blockspace with real liquidity.</p>
+        </div>
       </div>
-    </div>
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Predictable Inclusion</h4>
+          <p>Plan with preconfs up to 32 slots ahead.</p>
+        </div>
+      </div>
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Realtime Data</h4>
+          <p>WebSocket streams for live markets and accounts.</p>
+        </div>
+      </div>
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Integrations</h4>
+          <p>Builder + validator tooling for fast onboarding.</p>
+        </div>
+      </div>
   </div>
 </div>
 
@@ -77,34 +93,7 @@ title: Welcome
   </div>
 </div>
 
-### Real-time Infrastructure
 
-<div className="row infra-cards" style={{ marginTop: '0.5rem' }}>
-  <div className="col col--3">
-    <div className="feature-card infra-card text--center">
-      <h4>Instant Settlement</h4>
-      <p>Preconfirmation system for immediate results</p>
-    </div>
-  </div>
-  <div className="col col--3">
-    <div className="feature-card infra-card text--center">
-      <h4>Predictable Costs</h4>
-      <p>Turn volatile gas into structured pricing</p>
-    </div>
-  </div>
-  <div className="col col--3">
-    <div className="feature-card infra-card text--center">
-      <h4>Liquid Markets</h4>
-      <p>Depth for trading blockspace assets</p>
-    </div>
-  </div>
-  <div className="col col--3">
-    <div className="feature-card infra-card text--center">
-      <h4>Gas Abstraction</h4>
-      <p>Remove gas complexity from UX</p>
-    </div>
-  </div>
-</div>
 
 ## Platform Components
 

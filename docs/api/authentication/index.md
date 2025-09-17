@@ -13,10 +13,45 @@ ETHGas API uses Bearer token authentication.
 
 Authentication involves:
 
-1. Login – obtain tokens
-2. Verify – check token validity
-3. Refresh – rotate tokens
-4. Logout – invalidate session
+<div className="row" style={{marginTop: '1rem', alignItems: 'center'}}>
+  <div className="col col--2">
+    <div className="feature-card text--center" style={{padding: '1rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)'}}>
+      <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--ifm-color-primary)', marginBottom: '0.5rem'}}>1</div>
+      <h4 style={{marginTop: 0, color: 'var(--ifm-color-primary)', fontSize: '1rem'}}>Login</h4>
+      <p style={{marginBottom: 0, fontSize: '0.8rem'}}>Obtain tokens</p>
+    </div>
+  </div>
+  <div className="col col--1" style={{textAlign: 'center', padding: '0'}}>
+    <div style={{fontSize: '1.5rem', color: 'var(--ifm-color-primary)', marginTop: '1.5rem'}}>→</div>
+  </div>
+  <div className="col col--2">
+    <div className="feature-card text--center" style={{padding: '1rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)'}}>
+      <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--ifm-color-primary)', marginBottom: '0.5rem'}}>2</div>
+      <h4 style={{marginTop: 0, color: 'var(--ifm-color-primary)', fontSize: '1rem'}}>Verify</h4>
+      <p style={{marginBottom: 0, fontSize: '0.8rem'}}>Check validity</p>
+    </div>
+  </div>
+  <div className="col col--1" style={{textAlign: 'center', padding: '0'}}>
+    <div style={{fontSize: '1.5rem', color: 'var(--ifm-color-primary)', marginTop: '1.5rem'}}>→</div>
+  </div>
+  <div className="col col--2">
+    <div className="feature-card text--center" style={{padding: '1rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)'}}>
+      <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--ifm-color-primary)', marginBottom: '0.5rem'}}>3</div>
+      <h4 style={{marginTop: 0, color: 'var(--ifm-color-primary)', fontSize: '1rem'}}>Refresh</h4>
+      <p style={{marginBottom: 0, fontSize: '0.8rem'}}>Rotate tokens</p>
+    </div>
+  </div>
+  <div className="col col--1" style={{textAlign: 'center', padding: '0'}}>
+    <div style={{fontSize: '1.5rem', color: 'var(--ifm-color-primary)', marginTop: '1.5rem'}}>→</div>
+  </div>
+  <div className="col col--2">
+    <div className="feature-card text--center" style={{padding: '1rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)'}}>
+      <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--ifm-color-primary)', marginBottom: '0.5rem'}}>4</div>
+      <h4 style={{marginTop: 0, color: 'var(--ifm-color-primary)', fontSize: '1rem'}}>Logout</h4>
+      <p style={{marginBottom: 0, fontSize: '0.8rem'}}>Invalidate session</p>
+    </div>
+  </div>
+</div>
 
 ## Flow
 

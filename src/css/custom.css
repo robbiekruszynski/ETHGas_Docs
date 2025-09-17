@@ -667,6 +667,54 @@ blockquote {
   box-shadow: 0 12px 20px rgba(0,0,0,0.08);
 }
 
+/* At-a-Glance cards */
+.glance-grid .glance-card-item {
+  border: 2px solid var(--ifm-color-primary);
+  transition: all 0.2s ease-in-out;
+  height: 100%;
+}
+
+[data-theme='dark'] .glance-grid .glance-card-item {
+  border-color: var(--ifm-color-primary-light);
+}
+
+.glance-grid .glance-card-item h4 {
+  color: var(--ifm-color-primary);
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.glance-grid .glance-card-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+}
+
+/* At-a-Glance section band */
+.glance-section {
+  border-radius: 14px;
+  padding: 1rem 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(0, 162, 199, 0.08) 0%, rgba(0, 137, 168, 0.06) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .glance-section {
+  background: linear-gradient(135deg, rgba(26, 179, 214, 0.12) 0%, rgba(0, 162, 199, 0.10) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Real-time Infrastructure section band */
+.infra-section {
+  border-radius: 14px;
+  padding: 1rem 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(0, 162, 199, 0.08) 0%, rgba(0, 137, 168, 0.06) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .infra-section {
+  background: linear-gradient(135deg, rgba(26, 179, 214, 0.12) 0%, rgba(0, 162, 199, 0.10) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .theme-doc-markdown {
   max-width: 100%;
 }

@@ -11,26 +11,34 @@ Complete API reference for whole block trading, including public market data and
 
 ## Overview
 
-Whole block trading allows you to trade entire Ethereum blocks. This API provides:
+Whole block trading allows you to trade entire Ethereum blocks. This API provides access to public market data, trading operations, and account management.
 
-<div className="row wb-cards" style={{ marginTop: '0.5rem' }}>
-  <div className="col col--4">
-    <div className="feature-card wb-card" style={{ height: '100%' }}>
-      <h3>Public Market Data</h3>
-      <p>Access markets, order books, trades, and positions without authentication.</p>
-    </div>
-  </div>
-  <div className="col col--4">
-    <div className="feature-card wb-card" style={{ height: '100%' }}>
-      <h3>Trading Operations</h3>
-      <p>Create, cancel, and manage orders with authenticated requests.</p>
-    </div>
-  </div>
-  <div className="col col--4">
-    <div className="feature-card wb-card" style={{ height: '100%' }}>
-      <h3>Account Data</h3>
-      <p>View your orders, positions, and transaction history.</p>
-    </div>
+<div className="glance-section" style={{ marginTop: '1rem' }}>
+  <div className="row glance-grid">
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Public Markets</h4>
+          <p>Access markets, order books, trades, and positions without authentication</p>
+        </div>
+      </div>
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Trading Operations</h4>
+          <p>Create, cancel, and manage orders with authenticated requests</p>
+        </div>
+      </div>
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Account Data</h4>
+          <p>View your orders, positions, and transaction history</p>
+        </div>
+      </div>
+      <div className="col col--3">
+        <div className="feature-card glance-card-item text--center">
+          <h4>Real-time Updates</h4>
+          <p>WebSocket feeds for live market data and order updates</p>
+        </div>
+      </div>
   </div>
 </div>
 
