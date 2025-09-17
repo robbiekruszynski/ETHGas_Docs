@@ -14,11 +14,35 @@ Validators play a crucial role in the ETHGas ecosystem by participating in preco
 
 ETHGas provides validators with the opportunity to:
 
-- **Earn additional rewards** through preconfirmation commitments
-- **Participate in gas trading** without complex trading strategies
-- **Delegate to specialized builders** for optimized block building
-- **Use automated pricing** through our default pricer
-- **Maintain validator operations** while earning extra income
+<div className="row" style={{marginTop: '1rem'}}>
+  <div className="col col--6">
+    <div className="feature-card" style={{padding: '1.5rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)'}}>
+      <h4 style={{color: 'var(--ifm-color-primary)', marginTop: 0}}>Earn Additional Rewards</h4>
+      <p style={{marginBottom: 0}}>Generate extra income through preconfirmation commitments and gas trading opportunities</p>
+    </div>
+  </div>
+  <div className="col col--6">
+    <div className="feature-card" style={{padding: '1.5rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)'}}>
+      <h4 style={{color: 'var(--ifm-color-primary)', marginTop: 0}}>Simplified Trading</h4>
+      <p style={{marginBottom: 0}}>Participate in gas trading without complex strategies using our automated pricing</p>
+    </div>
+  </div>
+</div>
+
+<div className="row" style={{marginTop: '1rem'}}>
+  <div className="col col--6">
+    <div className="feature-card" style={{padding: '1.5rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)'}}>
+      <h4 style={{color: 'var(--ifm-color-primary)', marginTop: 0}}>Builder Delegation</h4>
+      <p style={{marginBottom: 0}}>Delegate to specialized builders for optimized block building and performance</p>
+    </div>
+  </div>
+  <div className="col col--6">
+    <div className="feature-card" style={{padding: '1.5rem', borderRadius: '8px', height: '100%', border: '2px solid var(--ifm-color-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)'}}>
+      <h4 style={{color: 'var(--ifm-color-primary)', marginTop: 0}}>Automated Operations</h4>
+      <p style={{marginBottom: 0}}>Maintain validator operations while earning extra income through automated systems</p>
+    </div>
+  </div>
+</div>
 
 ## Validator Roles
 
