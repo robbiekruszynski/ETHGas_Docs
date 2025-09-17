@@ -653,6 +653,20 @@ blockquote {
   color: var(--ifm-color-primary-light);
 }
 
+/* Whole Block overview cards outline */
+.wb-cards .wb-card {
+  border: 2px solid var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .wb-cards .wb-card {
+  border-color: var(--ifm-color-primary-light);
+}
+
+.wb-cards .wb-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+}
+
 .theme-doc-markdown {
   max-width: 100%;
 }

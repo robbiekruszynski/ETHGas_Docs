@@ -13,9 +13,26 @@ Complete API reference for whole block trading, including public market data and
 
 Whole block trading allows you to trade entire Ethereum blocks. This API provides:
 
-- **Public Market Data**: Access market information, order books, trades, and positions without authentication
-- **Trading Operations**: Create, cancel, and manage orders (requires authentication)
-- **Account Data**: View your orders, positions, and transaction history (requires authentication)
+<div className="row wb-cards" style={{ marginTop: '0.5rem' }}>
+  <div className="col col--4">
+    <div className="feature-card wb-card" style={{ height: '100%' }}>
+      <h3>Public Market Data</h3>
+      <p>Access markets, order books, trades, and positions without authentication.</p>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card wb-card" style={{ height: '100%' }}>
+      <h3>Trading Operations</h3>
+      <p>Create, cancel, and manage orders with authenticated requests.</p>
+    </div>
+  </div>
+  <div className="col col--4">
+    <div className="feature-card wb-card" style={{ height: '100%' }}>
+      <h3>Account Data</h3>
+      <p>View your orders, positions, and transaction history.</p>
+    </div>
+  </div>
+</div>
 
 ## API Endpoints
 
