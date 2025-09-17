@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/user/delegate/pricer` - Delegate pricer
+  <span className="api-method-post">**POST**</span> `/v1/user/delegate/pricer` - Delegate pricer
 </summary>
 
 **Code Example:**
@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/delegate/pricer?enable=true
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/delegate/pricer?enable=true
 ```
 
 </TabItem>
@@ -70,7 +70,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/pricer` - Get pricer information
+  <span className="api-method-get">**GET**</span> `/v1/user/pricer` - Get pricer information
 </summary>
 
 **Code Example:**
@@ -78,7 +78,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/pricer
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/pricer
 ```
 
 </TabItem>
@@ -116,7 +116,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/pricer/inclusion-preconf/orders` - Get inclusion preconf orders
+  <span className="api-method-get">**GET**</span> `/v1/pricer/inclusion-preconf/orders` - Get inclusion preconf orders
 </summary>
 
 **Code Example:**
@@ -124,7 +124,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/pricer/inclusion-preconf/orders
+curl -X GET /v1/pricer/inclusion-preconf/orders
 ```
 
 </TabItem>
@@ -163,7 +163,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/pricer/account-tokens` - Get account tokens
+  <span className="api-method-get">**GET**</span> `/v1/pricer/account-tokens` - Get account tokens
 </summary>
 
 **Code Example:**
@@ -171,7 +171,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/pricer/account-tokens
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/account-tokens
 ```
 
 </TabItem>
@@ -210,7 +210,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/pricer/markets/active` - Get active markets
+  <span className="api-method-get">**GET**</span> `/v1/pricer/markets/active` - Get active markets
 </summary>
 
 **Code Example:**
@@ -218,7 +218,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/pricer/markets/active
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/pricer/markets/active
 ```
 
 </TabItem>
@@ -258,7 +258,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/pricer/inclusion-preconf/positions` - Get inclusion preconf positions
+  <span className="api-method-get">**GET**</span> `/v1/pricer/inclusion-preconf/positions` - Get inclusion preconf positions
 </summary>
 
 **Code Example:**
@@ -266,7 +266,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/pricer/inclusion-preconf/positions
+curl -X GET /v1/pricer/inclusion-preconf/positions
 ```
 
 </TabItem>
@@ -304,7 +304,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/pricer/wholeblock/orders` - Get wholeblock orders
+  <span className="api-method-get">**GET**</span> `/v1/pricer/wholeblock/orders` - Get wholeblock orders
 </summary>
 
 **Code Example:**
@@ -312,7 +312,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/pricer/wholeblock/orders
+curl -X GET /v1/pricer/wholeblock/orders
 ```
 
 </TabItem>
@@ -351,7 +351,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/pricer/wholeblock/positions` - Get wholeblock positions
+  <span className="api-method-get">**GET**</span> `/v1/pricer/wholeblock/positions` - Get wholeblock positions
 </summary>
 
 **Code Example:**
@@ -359,7 +359,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -X GET /api/v1/pricer/wholeblock/positions
+curl -X GET /v1/pricer/wholeblock/positions
 ```
 
 </TabItem>

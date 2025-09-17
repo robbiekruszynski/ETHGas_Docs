@@ -4,12 +4,12 @@ sidebar_position: 2
 
 # Builder Endpoints
 
-## POST /api/v1/builder/register
+## POST /v1/builder/register
 
 Code sample:
 
 ```http
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/register?publicKeys=0x12345...,0x234134...&signatures=2asdfjghadg,xghlktdhj
 ```
 
 ```python
@@ -32,12 +32,12 @@ response = requests.post(url, headers=headers, params=payload)
 print(response.text)
 ```
 
-## POST /api/v1/builder/signingMessage
+## POST /v1/builder/signingMessage
 
 Code sample:
 
 ```http
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/builder/signingMessage
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/builder/signingMessage
 ```
 
 ```python
@@ -55,12 +55,12 @@ response = requests.post(url, headers=headers)
 print(response.text)
 ```
 
-## POST /api/v1/validator/deregister
+## POST /v1/validator/deregister
 
 Code sample:
 
 ```http
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/validator/deregister?publicKey=0x123423qtdgasdg...
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/validator/deregister?publicKey=0x123423qtdgasdg...
 ```
 
 ```python
@@ -83,12 +83,12 @@ response = requests.post(url, headers=headers, params=payload)
 print(response.text)
 ```
 
-## GET /api/v1/p/builders
+## GET /v1/p/builders
 
 Code sample:
 
 ```http
-GET /api/v1/p/builders
+GET /v1/p/builders
 ```
 
 ```python
@@ -102,12 +102,12 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-## GET /api/v1/user/builder
+## GET /v1/user/builder
 
 Code sample:
 
 ```http
-GET /api/v1/user/builder
+GET /v1/user/builder
 ```
 
 ```python
@@ -121,12 +121,12 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-## POST /api/v1/user/delegate/builder
+## POST /v1/user/delegate/builder
 
 Code sample:
 
 ```http
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/delegate/builder?publicKeys=0x12345...,0x2df345...&enable=true
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/delegate/builder?publicKeys=0x12345...,0x2df345...&enable=true
 ```
 
 ```python
@@ -149,12 +149,12 @@ response = requests.post(url, headers=headers, params=payload)
 print(response.text)
 ```
 
-## GET /api/v1/user/delegate/builder
+## GET /v1/user/delegate/builder
 
 Code sample:
 
 ```http
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/delegate/builder
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/delegate/builder
 ```
 
 ```python
@@ -172,12 +172,12 @@ response = requests.get(url, headers=headers)
 print(response.text)
 ```
 
-## GET /api/v1/p/builder/\{slot\}
+## GET /v1/p/builder/\{slot\}
 
 Code sample:
 
 ```http
-GET /api/v1/p/builder/123
+GET /v1/p/builder/123
 ```
 
 ```python
@@ -189,4 +189,3 @@ response = requests.get(url, headers=headers)
 
 print(response.text)
 ```
-

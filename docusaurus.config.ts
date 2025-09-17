@@ -88,9 +88,10 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/docs/validators/overview',
+          to: '/docs/validators/registration',
           label: 'Validators',
           position: 'left',
+          activeBaseRegex: '^/docs/validators/',
         },
         {
           type: 'search',
@@ -147,7 +148,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/ethgas',
+              href: 'https://github.com/ethgas-developer',
             },
             {
               label: 'Discord',

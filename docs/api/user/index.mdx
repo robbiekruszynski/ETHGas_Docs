@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/user/update` - Update user information
+  <span className="api-method-post">**POST**</span> `/v1/user/update` - Update user information
 </summary>
 
 **Code Example:**
@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/update?displayName=NewDisplayName
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/update?displayName=NewDisplayName
 ```
 
 </TabItem>
@@ -87,7 +87,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/user/payoutAddress` - Update payout address
+  <span className="api-method-post">**POST**</span> `/v1/user/payoutAddress` - Update payout address
 </summary>
 
 **Code Example:**
@@ -95,7 +95,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/payoutAddress?payoutAddress=0x1234567890123456789012345678901234567890
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/payoutAddress?payoutAddress=0x1234567890123456789012345678901234567890
 ```
 
 </TabItem>
@@ -143,7 +143,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/user/collateralPerSlot` - Update collateral per slot
+  <span className="api-method-post">**POST**</span> `/v1/user/collateralPerSlot` - Update collateral per slot
 </summary>
 
 **Code Example:**
@@ -151,7 +151,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/collateralPerSlot?collateralPerSlot=10.5
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/collateralPerSlot?collateralPerSlot=10.5
 ```
 
 </TabItem>
@@ -199,7 +199,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/info` - Get user information
+  <span className="api-method-get">**GET**</span> `/v1/user/info` - Get user information
 </summary>
 
 **Code Example:**
@@ -207,7 +207,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/info
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/info
 ```
 
 </TabItem>
@@ -285,7 +285,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/accounts` - Get user accounts
+  <span className="api-method-get">**GET**</span> `/v1/user/accounts` - Get user accounts
 </summary>
 
 **Code Example:**
@@ -293,7 +293,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/accounts
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/accounts
 ```
 
 </TabItem>
@@ -346,7 +346,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/account/{accountId}` - Get account by ID
+  <span className="api-method-get">**GET**</span> `/v1/user/account/{accountId}` - Get account by ID
 </summary>
 
 **Code Example:**
@@ -354,7 +354,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/128
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/account/128
 ```
 
 </TabItem>
@@ -383,7 +383,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/account/{accountId}/txs` - Get account transactions
+  <span className="api-method-get">**GET**</span> `/v1/user/account/{accountId}/txs` - Get account transactions
 </summary>
 
 **Code Example:**
@@ -391,7 +391,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/128/txs
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/account/128/txs
 ```
 
 </TabItem>
@@ -442,7 +442,7 @@ Response Body
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/account/txs` - Get all account transactions
+  <span className="api-method-get">**GET**</span> `/v1/user/account/txs` - Get all account transactions
 </summary>
 
 **Code Example:**
@@ -450,7 +450,7 @@ Response Body
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/account/txs
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/account/txs
 ```
 
 </TabItem>
@@ -479,7 +479,7 @@ print(response.text)
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-post">**POST**</span> `/api/v1/user/account/transfer/token` - Transfer token between accounts
+  <span className="api-method-post">**POST**</span> `/v1/user/account/transfer/token` - Transfer token between accounts
 </summary>
 
 **Code Example:**
@@ -487,7 +487,7 @@ print(response.text)
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X POST /api/v1/user/account/transfer/token?fromAccountId=128&toAccountId=127&tokenId=1&quantity=0.01
+curl -H "Authorization: Bearer {{access_token}}" -X POST /v1/user/account/transfer/token?fromAccountId=128&toAccountId=127&tokenId=1&quantity=0.01
 ```
 
 </TabItem>

@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 <details className="api-endpoint">
 <summary className="api-endpoint-header">
-  <span className="api-method-get">**GET**</span> `/api/v1/user/validators` - Get user validators
+  <span className="api-method-get">**GET**</span> `/v1/user/validators` - Get user validators
 </summary>
 
 **Code Example:**
@@ -23,7 +23,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="http" label="HTTP" default>
 
 ```bash
-curl -H "Authorization: Bearer {{access_token}}" -X GET /api/v1/user/validators
+curl -H "Authorization: Bearer {{access_token}}" -X GET /v1/user/validators
 ```
 
 </TabItem>
