@@ -4244,3 +4244,514 @@ details[open] > summary strong::before {
     font-size: 0.9rem;
   }
 }
+
+/* ===== COMPREHENSIVE RESPONSIVE DESIGN ENHANCEMENTS ===== */
+
+/* Large Desktop Screens (1920px+) */
+@media screen and (min-width: 1920px) {
+  .container {
+    max-width: 1600px !important;
+  }
+  
+  .heroBanner {
+    padding: 6rem 0 !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 4rem !important;
+  }
+  
+  .heroBanner p {
+    font-size: 1.5rem !important;
+  }
+  
+  .feature-card {
+    padding: 2.5rem !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* 4K and Ultra-wide Screens (2560px+) */
+@media screen and (min-width: 2560px) {
+  .container {
+    max-width: 1800px !important;
+  }
+  
+  .heroBanner {
+    padding: 8rem 0 !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 5rem !important;
+  }
+  
+  .heroBanner p {
+    font-size: 1.75rem !important;
+  }
+  
+  .feature-card {
+    padding: 3rem !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.75rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Large Laptop Screens (1440px - 1919px) */
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+  .heroBanner {
+    padding: 4rem 0 !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 3rem !important;
+  }
+  
+  .heroBanner p {
+    font-size: 1.25rem !important;
+  }
+  
+  .feature-card {
+    padding: 2rem !important;
+  }
+}
+
+/* Standard Laptop Screens (1024px - 1439px) */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .heroBanner {
+    padding: 3rem 0 !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  .heroBanner p {
+    font-size: 1.125rem !important;
+  }
+  
+  .feature-card {
+    padding: 1.75rem !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 1rem !important;
+  }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .heroBanner {
+    padding: 2.5rem 0 !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 2.25rem !important;
+  }
+  
+  .heroBanner p {
+    font-size: 1rem !important;
+  }
+  
+  .feature-card {
+    padding: 1.5rem !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.125rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 0.95rem !important;
+  }
+  
+  /* Improve grid layouts for tablets */
+  .row .col.col--6 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    padding: 0 1rem !important;
+  }
+  
+  .row .col.col--4 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    padding: 0 1rem !important;
+  }
+  
+  .row .col.col--3 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    padding: 0 1rem !important;
+  }
+}
+
+/* Tablet Portrait (481px - 767px) */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .heroBanner {
+    padding: 2rem 0 !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 2rem !important;
+  }
+  
+  .heroBanner p {
+    font-size: 0.95rem !important;
+  }
+  
+  .feature-card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.125rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 0.9rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Single column layout for better readability */
+  .row .col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 1.5rem !important;
+    padding: 0 !important;
+  }
+}
+
+/* Mobile Landscape (320px - 480px) */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .heroBanner {
+    padding: 1.5rem 0.5rem !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .heroBanner p {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .feature-card {
+    padding: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.125rem !important;
+    margin-bottom: 0.75rem !important;
+    text-align: center !important;
+  }
+  
+  .feature-card p {
+    font-size: 0.875rem !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+  }
+  
+  .feature-card .button {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  /* Ensure single column layout */
+  .row .col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 1.25rem !important;
+    padding: 0 !important;
+  }
+  
+  /* Improve spacing for mobile */
+  .quickStart,
+  .features,
+  .resources,
+  .community {
+    padding: 1.5rem 0 !important;
+  }
+  
+  .quickStart h2,
+  .features h2,
+  .resources h2,
+  .community h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* Extra Small Mobile Devices (240px - 319px) */
+@media screen and (min-width: 240px) and (max-width: 319px) {
+  .heroBanner {
+    padding: 1rem 0.25rem !important;
+  }
+  
+  .heroBanner h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.1 !important;
+  }
+  
+  .heroBanner p {
+    font-size: 0.8rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .feature-card {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .feature-card h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .feature-card p {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .feature-card .button {
+    min-height: 44px !important;
+    padding: 0.6rem 0.8rem !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .quickStart h2,
+  .features h2,
+  .resources h2,
+  .community h2 {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* ===== NAVIGATION RESPONSIVE ENHANCEMENTS ===== */
+
+/* Large screens - ensure navbar items are properly spaced */
+@media screen and (min-width: 1440px) {
+  .navbar__items {
+    gap: 2rem !important;
+  }
+  
+  .navbar__link {
+    font-size: 1rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+}
+
+/* Medium screens - optimize navbar spacing */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .navbar__items {
+    gap: 1.5rem !important;
+  }
+  
+  .navbar__link {
+    font-size: 0.95rem !important;
+    padding: 0.6rem 0.8rem !important;
+  }
+}
+
+/* Tablet - hide some navbar items */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .navbar__item:nth-child(n+4) {
+    display: none !important;
+  }
+  
+  .navbar__link {
+    font-size: 0.9rem !important;
+    padding: 0.5rem 0.7rem !important;
+  }
+}
+
+/* ===== CONTENT LAYOUT RESPONSIVE ENHANCEMENTS ===== */
+
+/* Improve code blocks and tables for different screen sizes */
+@media screen and (max-width: 1023px) {
+  .theme-doc-markdown pre {
+    font-size: 0.8rem !important;
+    padding: 0.75rem !important;
+    overflow-x: auto !important;
+  }
+  
+  .theme-doc-markdown table {
+    font-size: 0.85rem !important;
+  }
+  
+  .theme-doc-markdown th,
+  .theme-doc-markdown td {
+    padding: 0.5rem 0.4rem !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .theme-doc-markdown pre {
+    font-size: 0.75rem !important;
+    padding: 0.5rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  
+  .theme-doc-markdown table {
+    font-size: 0.8rem !important;
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+  
+  .theme-doc-markdown th,
+  .theme-doc-markdown td {
+    padding: 0.4rem 0.3rem !important;
+    min-width: 120px !important;
+  }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+
+/* Improve touch targets for all interactive elements */
+@media (pointer: coarse) {
+  .navbar__link {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .button,
+  .feature-card .button,
+  .cardButton .button {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.95rem !important;
+  }
+  
+  /* Improve tap targets for mobile */
+  a,
+  .socialLink,
+  .navbar__item,
+  .theme-doc-sidebar-item-link {
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    -webkit-tap-highlight-color: rgba(0, 162, 199, 0.2) !important;
+    touch-action: manipulation !important;
+  }
+  
+  /* Ensure proper spacing for touch */
+  .feature-card {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .row .col {
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* ===== HIGH DPI DISPLAY OPTIMIZATIONS ===== */
+
+/* Retina and high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .heroImage img {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+  }
+  
+  .socialIcon,
+  .stepNumber {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+  }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+
+/* Improve contrast and readability */
+@media (prefers-contrast: high) {
+  .feature-card {
+    border: 2px solid var(--ifm-color-primary) !important;
+  }
+  
+  .button {
+    border: 2px solid var(--ifm-color-primary) !important;
+  }
+  
+  .navbar__link {
+    border: 1px solid transparent !important;
+  }
+  
+  .navbar__link:hover {
+    border: 1px solid var(--ifm-color-primary) !important;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .button,
+  .socialCard,
+  .heroButton {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .feature-card:hover,
+  .button:hover,
+  .socialCard:hover,
+  .heroButton:hover {
+    transform: none !important;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  .navbar,
+  .footer,
+  .buttons,
+  .cardButton {
+    display: none !important;
+  }
+  
+  .heroBanner {
+    background: none !important;
+    color: black !important;
+    padding: 1rem 0 !important;
+  }
+  
+  .feature-card {
+    border: 1px solid #ccc !important;
+    break-inside: avoid !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .heroBanner h1,
+  .feature-card h3 {
+    color: black !important;
+  }
+}
