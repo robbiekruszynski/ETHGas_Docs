@@ -1,0 +1,11 @@
+# For development with live reload
+# This takes a while to start up, please be patient - wait for the message "client (webpack 5.101.0) compiled successfully"
+
+services:
+  ethgas-docs:
+    build: .
+    volumes:
+      - ./:/opt/docusaurus/
+    ports:
+      - "3002:3002"
+    entrypoint: /bin/sh -c "npm install && npm run start -- --host 0.0.0.0 --poll 1000"
