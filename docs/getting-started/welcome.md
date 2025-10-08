@@ -18,7 +18,7 @@ title: Welcome
         </p>
       </div>
       <div className="col col--4" style={{textAlign: 'center'}}>
-        <img src="/img/eg_logo_w+b.png" alt="ETHGas Logo" style={{maxWidth: '200px', height: 'auto'}} />
+        <img src="/img/eg_logo_w_b.png" alt="ETHGas Logo" style={{maxWidth: '200px', height: 'auto'}} />
       </div>
     </div>
   </div>
