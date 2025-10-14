@@ -9,23 +9,23 @@ Register your validators with ETHGas to start earning rewards through preconfirm
 
 ## Prerequisites
 
-<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-  <input type="checkbox" checked readOnly style={{ marginRight: '2.5rem', margin: 0 }} />
+<div className="prerequisite-item">
+  <input type="checkbox" checked readOnly />
   <span><strong>Validator setup completed</strong></span>
 </div>
 
-<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-  <input type="checkbox" checked readOnly style={{ marginRight: '2.5rem', margin: 0 }} />
+<div className="prerequisite-item">
+  <input type="checkbox" checked readOnly />
   <span><strong>ETHGas account</strong></span>
 </div>
 
-<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-  <input type="checkbox" checked readOnly style={{ marginRight: '2.5rem', margin: 0 }} />
+<div className="prerequisite-item">
+  <input type="checkbox" checked readOnly />
   <span><strong>Validator BLS key(s)</strong></span>
 </div>
 
-<div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem' }}>
-  <input type="checkbox" checked readOnly style={{ marginRight: '2.5rem', margin: 0 }} />
+<div className="prerequisite-item">
+  <input type="checkbox" checked readOnly />
   <span><strong>API access</strong></span>
 </div>
 
@@ -55,18 +55,18 @@ import TabItem from '@theme/TabItem';
 
 | Contract Address |
 |------------------|
-| <code style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>`0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`</code> |
+| <code className="contract-address">`0xe8bfB84b14c383b94365a895fc8bfA36dE236dc8`</code> |
 
-<!-- **Recommendation**: Deposit collateral via the [ETHGas TestNet](https://testnet.ethgas.com) -->
+{/* **Recommendation**: Deposit collateral via the [ETHGas TestNet](https://testnet.ethgas.com) */}
 
 </TabItem>
 <TabItem value="mainnet" label="MainNet">
 
 | Contract Address |
 |------------------|
-| <code style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>`0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`</code> |
+| <code className="contract-address">`0x41c95AB9DBAC21B3992963Adf0e90F6478364b88`</code> |
 
-<!-- **Recommendation**: Deposit collateral via the [ETHGas website](https://ethgas.com) -->
+{/* **Recommendation**: Deposit collateral via the [ETHGas website](https://ethgas.com) */}
 
 </TabItem>
 </Tabs>
@@ -80,16 +80,16 @@ import TabItem from '@theme/TabItem';
 
 | Region | Endpoint |
 |--------|----------|
-| **Hoodi** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com`</code> |
+| **Hoodi** | <code className="relay-endpoint">`https://0xb20c3fe59db9c3655088839ef3d972878d182eb745afd8abb1dd2abf6c14f93cd5934ed4446a5fe1ba039e2bc0cf1011@hoodi-relay.ethgas.com`</code> |
 
 </TabItem>
 <TabItem value="mainnet-relays" label="MainNet">
 
 | Region | Endpoint |
 |--------|----------|
-| **Tokyo** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com`</code> |
-| **Frankfurt** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com`</code> |
-| **Virginia** | <code style={{ color: 'var(--ifm-color-primary)' }}>`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com`</code> |
+| **Tokyo** | <code className="relay-endpoint">`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@ap-relay.ethgas.com`</code> |
+| **Frankfurt** | <code className="relay-endpoint">`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@eu-relay.ethgas.com`</code> |
+| **Virginia** | <code className="relay-endpoint">`https://0x88ef3061f598101ca713d556cf757763d9be93d33c3092d3ab6334a36855b6b4a4020528dd533a62d25ea6648251e62e@us-relay.ethgas.com`</code> |
 
 </TabItem>
 </Tabs>
@@ -206,24 +206,16 @@ After completing registration:
 
 Validator registration follows a specific lifecycle with different status codes indicating the current state of your registration.
 
-<div style={{ 
-  display: 'flex', 
-  alignItems: 'center', 
-  justifyContent: 'space-between',
-  background: 'var(--ifm-color-emphasis-100)',
-  padding: '1rem',
-  borderRadius: '8px',
-  margin: '1rem 0'
-}}>
-  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-warning)' }}>pending</div>
-  <div style={{ fontSize: '1.5rem' }}>→</div>
-  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-info)' }}>registered</div>
-  <div style={{ fontSize: '1.5rem' }}>→</div>
-  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-success)' }}>active</div>
-  <div style={{ fontSize: '1.5rem' }}>→</div>
-  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-warning)' }}>suspended</div>
-  <div style={{ fontSize: '1.5rem' }}>→</div>
-  <div style={{ fontWeight: 'bold', color: 'var(--ifm-color-danger)' }}>deregistered</div>
+<div className="status-flow-container">
+  <div className="status-item status-pending">pending</div>
+  <div className="status-arrow">→</div>
+  <div className="status-item status-registered">registered</div>
+  <div className="status-arrow">→</div>
+  <div className="status-item status-active">active</div>
+  <div className="status-arrow">→</div>
+  <div className="status-item status-suspended">suspended</div>
+  <div className="status-arrow">→</div>
+  <div className="status-item status-deregistered">deregistered</div>
 </div>
 
 **Status Descriptions:**
