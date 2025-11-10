@@ -903,6 +903,165 @@ print(response.text)
 
 </details>
 
+### Bundle Rejection
+
+The bundle rejection endpoints allow builders to invalidate previously submitted bundles and expose their status through a public feed.
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-post">**POST**</span> `/v1/builder/bundle/reject/{slot}` - Reject a bundle for a slot
+</summary>
+
+#### Code Example:
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -H "Authorization: Bearer {{access_token}}" \
+  -H "Content-Type: application/json" \
+  -X POST /v1/builder/bundle/reject/12345 \
+  -d '{
+    "bundleUuid": "ab592371-84d6-459e-95e7-5edad485f282",
+    "reason": "Superseded by updated commitments"
+  }'
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+slot = 12345
+url = f"https://mainnet.app.ethgas.com/api/v1/builder/bundle/reject/{slot}"
+
+payload = {
+    "bundleUuid": "ab592371-84d6-459e-95e7-5edad485f282",
+    "reason": "Superseded by updated commitments"
+}
+
+headers = {
+    "Authorization": "Bearer <your-auth-token>",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Path Parameter**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| slot | Yes | integer | Slot whose bundle should be rejected |
+
+**Request Body**
+
+| Field | Required | Type | Description |
+|-------|----------|------|-------------|
+| bundleUuid | Yes | string | Identifier of the bundle to reject |
+| reason | No | string | Optional note explaining the rejection |
+
+**Response Example**
+
+```json
+{
+    "success": true,
+    "data": {
+        "slot": 12345,
+        "bundleUuid": "ab592371-84d6-459e-95e7-5edad485f282",
+        "status": "rejected"
+    }
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| slot | integer | Slot tied to the rejection |
+| bundleUuid | string | Rejected bundle identifier |
+| status | string | Rejection status (for example, `rejected`) |
+
+</details>
+
+<details className="api-endpoint">
+<summary className="api-endpoint-header">
+  <span className="api-method-get">**GET**</span> `/v1/p/builder/bundle/reject/{slot}/{builderAccountId}` - Retrieve bundle rejection status
+</summary>
+
+#### Code Example:
+
+<Tabs>
+<TabItem value="http" label="HTTP" default>
+
+```bash
+curl -X GET /v1/p/builder/bundle/reject/12345/67890
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import requests
+
+slot = 12345
+builder_account_id = "67890"
+
+url = f"https://mainnet.app.ethgas.com/api/v1/p/builder/bundle/reject/{slot}/{builder_account_id}"
+
+response = requests.get(url)
+print(response.text)
+```
+
+</TabItem>
+</Tabs>
+
+**Path Parameters**
+
+| Parameter | Required | Type | Description |
+|-----------|----------|------|-------------|
+| slot | Yes | integer | Slot to inspect |
+| builderAccountId | Yes | string | Builder account identifier |
+
+**Response Example**
+
+```json
+{
+    "success": true,
+    "data": {
+        "slot": 12345,
+        "builderAccountId": "67890",
+        "rejections": [
+            {
+                "bundleUuid": "ab592371-84d6-459e-95e7-5edad485f282",
+                "status": "rejected",
+                "timestamp": 1730193765339,
+                "reason": "Superseded by updated commitments"
+            }
+        ]
+    }
+}
+```
+
+**Response Body**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| slot | integer | Slot queried |
+| builderAccountId | string | Builder account identifier |
+| rejections | array | List of rejected bundles |
+| └ bundleUuid | string | Bundle identifier |
+| └ status | string | Rejection status |
+| └ timestamp | number | Time of rejection (epoch milliseconds) |
+| └ reason | string | Rejection message (if provided) |
+
+</details>
+
 <!-- ### GET /api/v1/account/slot/bundles
 
 <details>
