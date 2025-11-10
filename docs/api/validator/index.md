@@ -7,6 +7,10 @@ import TabItem from '@theme/TabItem';
 
 # Validator
 
+:::info
+For distributed validator setups using SSV, see the [SSV Validator API](/docs/api/validator/ssv) for operator and validator-specific endpoints.
+:::
+
 ## API Endpoints
 
 ### Get user validators
