@@ -29,6 +29,7 @@ const sidebars: SidebarsConfig = {
             'api/pricer/index',
             'api/validator/index',
             'api/validator/ssv/index',
+            'api/validator/obol/index',
             'api/trading/whole-block/index',
             'api/trading/inclusion-preconf/index',
           ],
