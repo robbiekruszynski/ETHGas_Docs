@@ -667,26 +667,43 @@ blockquote {
   box-shadow: 0 12px 20px rgba(0,0,0,0.08);
 }
 
-/* At-a-Glance cards */
+/* At-a-Glance cards - Primary colored borders matching button outline style */
 .glance-grid .glance-card-item {
-  border: 2px solid var(--ifm-color-primary);
+  border: 3px solid var(--ifm-color-primary) !important;
   transition: all 0.2s ease-in-out;
   height: 100%;
+  background: var(--ifm-card-background-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 162, 199, 0.1);
+  border-radius: 8px;
 }
 
+/* Dark mode - primary color borders */
 [data-theme='dark'] .glance-grid .glance-card-item {
-  border-color: var(--ifm-color-primary-light);
+  border-color: var(--ifm-color-primary) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(26, 179, 214, 0.2);
 }
 
 .glance-grid .glance-card-item h4 {
   color: var(--ifm-color-primary);
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.glance-grid .glance-card-item p {
+  margin-bottom: 0;
+  color: var(--ifm-color-content);
 }
 
 .glance-grid .glance-card-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(0, 162, 199, 0.2);
+  border-color: var(--ifm-color-primary) !important;
+}
+
+[data-theme='dark'] .glance-grid .glance-card-item:hover {
+  border-color: var(--ifm-color-primary) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(26, 179, 214, 0.3);
 }
 
 /* At-a-Glance section band */
@@ -4852,16 +4869,23 @@ details[open] > summary strong::before {
   border: 1px solid var(--ifm-color-emphasis-200);
 }
 
-/* Mobile responsive adjustments */
+/* ===== MOBILE RESPONSIVE ADJUSTMENTS (Consolidated) ===== */
+
+/* Mobile devices (max-width: 768px) */
 @media screen and (max-width: 768px) {
-  /* Main content container padding for better mobile reading */
+  /* ===== CONTAINER & WRAPPER PADDING ===== */
+  /* Main content containers - consistent 1rem padding for comfortable reading */
   .container,
   .main-wrapper,
   .theme-doc-markdown,
-  .markdown {
+  .markdown,
+  .theme-doc-markdown .container,
+  .markdown .container {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
-    max-width: calc(100% - 2rem) !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
   
   /* Article and content containers */
@@ -4872,14 +4896,22 @@ details[open] > summary strong::before {
     padding-right: 0.75rem !important;
   }
   
-  /* Improve readability with better line spacing */
+  /* Content block spacing - prevent negative margins but allow natural spacing */
+  .theme-doc-markdown > *:not(table):not(pre):not(blockquote),
+  .markdown > *:not(table):not(pre):not(blockquote) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* ===== TYPOGRAPHY & READABILITY ===== */
+  /* Paragraph spacing and line height */
   .theme-doc-markdown p,
   .markdown p {
     margin-bottom: 1rem !important;
     line-height: 1.6 !important;
   }
   
-  /* Better spacing for headings */
+  /* Heading spacing */
   .theme-doc-markdown h1,
   .theme-doc-markdown h2,
   .theme-doc-markdown h3,
@@ -4892,15 +4924,57 @@ details[open] > summary strong::before {
     padding-right: 0 !important;
   }
   
-  /* Container and wrapper adjustments */
-  .theme-doc-markdown .container,
-  .markdown .container {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+  /* ===== CODE BLOCKS ===== */
+  .theme-doc-markdown pre,
+  .markdown pre {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    font-size: 0.875rem !important;
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+    border-radius: 8px !important;
   }
   
+  .theme-doc-markdown code,
+  .markdown code {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  
+  /* ===== BLOCKQUOTES ===== */
+  .theme-doc-markdown blockquote,
+  .markdown blockquote {
+    margin: 1rem 0 !important;
+    padding: 1rem !important;
+    border-left: 4px solid var(--ifm-color-primary);
+    background: var(--ifm-color-emphasis-100);
+    border-radius: 0 8px 8px 0;
+  }
+  
+  /* ===== TABLES ===== */
+  .theme-doc-markdown table,
+  .markdown table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 1rem 0 !important;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .theme-doc-markdown table td,
+  .theme-doc-markdown table th,
+  .markdown table td,
+  .markdown table th {
+    padding: 0.375rem 0.25rem !important;
+    font-size: 0.8rem !important;
+    min-width: 120px !important;
+  }
+  
+  /* ===== CUSTOM COMPONENTS ===== */
+  /* Prerequisite items */
   .prerequisite-item {
     gap: 0.5rem;
     margin-bottom: 0.75rem;
@@ -4914,6 +4988,7 @@ details[open] > summary strong::before {
     min-height: 16px;
   }
   
+  /* Status flow container */
   .status-flow-container {
     flex-direction: column;
     align-items: stretch;
@@ -4935,79 +5010,64 @@ details[open] > summary strong::before {
     margin: 0.25rem 0;
   }
   
+  /* Contract addresses and relay endpoints */
   .contract-address,
   .relay-endpoint {
     font-size: 0.75rem;
     word-break: break-all;
   }
-  
-  /* Enhanced table mobile handling */
-  .theme-doc-markdown table,
-  .markdown table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    margin: 1rem 0 !important;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .theme-doc-markdown table td,
-  .theme-doc-markdown table th,
-  .markdown table td,
-  .markdown table th {
-    padding: 0.375rem 0.25rem;
-    font-size: 0.8rem;
-    min-width: 120px;
-  }
-  
-  /* Ensure code blocks don't overflow */
-  .theme-doc-markdown pre,
-  .markdown pre {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    font-size: 0.75rem;
-    padding: 0.75rem;
-    margin: 0.5rem 0;
-  }
-  
-  .theme-doc-markdown code,
-  .markdown code {
-    word-break: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-  }
 }
 
+/* Small mobile devices (max-width: 480px) */
 @media screen and (max-width: 480px) {
-  /* Enhanced mobile padding for very small screens */
+  /* ===== CONTAINER & WRAPPER PADDING ===== */
+  /* Reduced padding for very small screens - 0.75rem for balance */
   .container,
   .main-wrapper,
   .theme-doc-markdown,
-  .markdown {
+  .markdown,
+  .theme-doc-markdown .container,
+  .markdown .container {
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
     max-width: calc(100% - 1.5rem) !important;
   }
   
-  /* Better spacing for content */
+  /* ===== TYPOGRAPHY & READABILITY ===== */
+  /* Slightly tighter spacing for small screens */
   .theme-doc-markdown p,
   .markdown p {
     margin-bottom: 0.875rem !important;
     line-height: 1.5 !important;
   }
   
-  .status-item {
-    font-size: 0.8rem;
-    padding: 0.375rem;
+  /* ===== CODE BLOCKS ===== */
+  /* Compact code blocks for small screens */
+  .theme-doc-markdown pre,
+  .markdown pre {
+    margin: 0.75rem 0 !important;
+    padding: 0.75rem !important;
+    font-size: 0.75rem !important;
   }
   
-  .contract-address,
-  .relay-endpoint {
-    font-size: 0.7rem;
+  /* ===== LISTS ===== */
+  /* Better mobile list spacing */
+  .theme-doc-markdown ul,
+  .theme-doc-markdown ol,
+  .markdown ul,
+  .markdown ol {
+    padding-left: 1.25rem !important;
+    margin: 1rem 0 !important;
   }
   
+  .theme-doc-markdown li,
+  .markdown li {
+    margin-bottom: 0.5rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* ===== CUSTOM COMPONENTS ===== */
+  /* Prerequisite items - stacked layout on small screens */
   .prerequisite-item {
     flex-direction: column;
     align-items: flex-start;
@@ -5023,78 +5083,16 @@ details[open] > summary strong::before {
     margin-top: 0.125rem;
   }
   
-  /* Better mobile list spacing */
-  .theme-doc-markdown ul,
-  .theme-doc-markdown ol,
-  .markdown ul,
-  .markdown ol {
-    padding-left: 1.25rem !important;
-    margin: 1rem 0 !important;
+  /* Status items - smaller on very small screens */
+  .status-item {
+    font-size: 0.8rem;
+    padding: 0.375rem;
   }
   
-  .theme-doc-markdown li,
-  .markdown li {
-    margin-bottom: 0.5rem !important;
-    line-height: 1.5 !important;
-  }
-}
-
-/* Additional mobile container improvements */
-@media screen and (max-width: 768px) {
-  /* Main documentation wrapper */
-  .main-wrapper,
-  .theme-doc-markdown .container,
-  .markdown .container {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    max-width: 100% !important;
-  }
-  
-  /* Ensure proper spacing for all content blocks */
-  .theme-doc-markdown > *,
-  .markdown > * {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  
-  /* Better spacing for code blocks */
-  .theme-doc-markdown pre,
-  .markdown pre {
-    margin: 1rem 0 !important;
-    padding: 1rem !important;
-    border-radius: 8px;
-  }
-  
-  /* Improve blockquote spacing */
-  .theme-doc-markdown blockquote,
-  .markdown blockquote {
-    margin: 1rem 0 !important;
-    padding: 1rem !important;
-    border-left: 4px solid var(--ifm-color-primary);
-    background: var(--ifm-color-emphasis-100);
-    border-radius: 0 8px 8px 0;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  /* Even more aggressive padding for very small screens */
-  .main-wrapper,
-  .theme-doc-markdown .container,
-  .markdown .container {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-  
-  /* Compact spacing for very small screens */
-  .theme-doc-markdown pre,
-  .markdown pre {
-    margin: 0.75rem 0 !important;
-    padding: 0.75rem !important;
-    font-size: 0.75rem !important;
+  /* Contract addresses and relay endpoints - smaller font */
+  .contract-address,
+  .relay-endpoint {
+    font-size: 0.7rem;
   }
 }
 

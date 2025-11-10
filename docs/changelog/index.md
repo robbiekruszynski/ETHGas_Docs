@@ -1,6 +1,24 @@
 # CHANGE LOG
 
 <details>
+<summary style={{listStyle: 'none'}}>2025-10-31</summary>
+
+## 2025-10-31
+
+- Support Ethereum Fusaka upgrade
+
+</details>
+
+<details>
+<summary style={{listStyle: 'none'}}>2025-10-11</summary>
+
+## 2025-10-11
+
+- Updated contract address for mainnet and hoodi
+
+</details>
+
+<details>
 <summary style={{listStyle: 'none'}}>2025-07-08</summary>
 
 ## 2025-07-08
